@@ -541,39 +541,40 @@ body{padding-bottom:68px;}
 .sp-red .sp-desc{color:rgba(252,231,216,.88);}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   MENU — DARK
+   MENU — 가로 스크롤 옥된장 스타일
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #menu{background:var(--dark2);}
-.menu-wrap{display:grid;grid-template-columns:220px 1fr;gap:2px;background:rgba(252,231,216,.08);margin-top:52px;}
-.menu-tabs{display:flex;flex-direction:column;background:var(--dark3);}
-.menu-tab{padding:30px 26px;font-family:var(--display-font);font-size:16px;font-weight:700;color:var(--tm);cursor:pointer;transition:all .3s;border-left:2px solid transparent;}
-.menu-tab:hover{color:var(--ivory);background:rgba(252,231,216,.04);}
-.menu-tab.active{color:var(--ivory);background:rgba(175,29,51,.15);border-left-color:var(--red);}
-.menu-panels{background:var(--dark2);}
-.menu-panel{display:none;}
-.menu-panel.active{display:block;}
-.mp-hero{position:relative;height:280px;overflow:hidden;cursor:pointer;}
-.mp-hero-img{width:100%;height:100%;object-fit:cover;display:block;}
-.mp-hero-ph{width:100%;height:100%;background:linear-gradient(135deg,var(--dark3),#280510);display:flex;align-items:center;justify-content:center;}
-.mp-hero-ph svg{opacity:.15;}
-.mp-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(16,5,8,.8) 0%,transparent 55%);}
-.mp-hero-info{position:absolute;bottom:0;left:0;right:0;padding:28px 32px;}
-.mp-hero-badge{font-size:9px;letter-spacing:4px;color:var(--ivory);opacity:.7;font-weight:700;text-transform:uppercase;margin-bottom:8px;}
-.mp-hero-name{font-family:var(--display-font);font-size:28px;font-weight:900;color:var(--ivory);}
-.mp-hero-desc{font-size:12px;color:rgba(252,231,216,.55);margin-top:6px;line-height:1.6;}
-
-.mp-subs{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(252,231,216,.06);}
-.mp-sub{cursor:pointer;transition:background .3s;position:relative;overflow:hidden;background:var(--dark3);}
-.mp-sub:hover{background:var(--dark2);}
-.mp-sub-img-wrap{height:110px;overflow:hidden;position:relative;}
-.mp-sub-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
-.mp-sub:hover .mp-sub-img{transform:scale(1.05);}
-.mp-sub-ph{width:100%;height:110px;background:var(--dark3);display:flex;align-items:center;justify-content:center;}
-.mp-sub-ph-inner{width:48px;height:48px;border-radius:50%;border:1px solid rgba(175,29,51,.35);background:rgba(175,29,51,.1);}
-.mp-sub-info{padding:14px 16px 18px;}
-.mp-sub-name{font-family:var(--display-font);font-size:12px;font-weight:700;color:var(--ivory);}
-
-.mp-sub:hover 
+.hmenu-wrap{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  min-height:420px;
+  max-width:1160px;
+  margin:0 auto;
+  border:1px solid rgba(252,231,216,.06);
+}
+.hmenu-tabs{background:rgba(0,0,0,.3);border-right:1px solid rgba(252,231,216,.06);display:flex;flex-direction:column;padding:8px 0;}
+.hmenu-tab{padding:22px 28px;cursor:pointer;border-left:3px solid transparent;transition:all .25s;}
+.hmenu-tab:hover{background:rgba(252,231,216,.04);}
+.hmenu-tab.active{background:rgba(175,29,51,.15);border-left-color:var(--red);}
+.hmenu-tab-ko{display:block;font-family:var(--display-font);font-size:18px;font-weight:400;color:rgba(252,231,216,.5);line-height:1.2;}
+.hmenu-tab-sub{display:block;font-size:11px;letter-spacing:1px;color:var(--tm);margin-top:4px;}
+.hmenu-tab.active .hmenu-tab-ko{color:var(--ivory);}
+.hmenu-tab.active .hmenu-tab-sub{color:rgba(252,231,216,.65);}
+.hmenu-right{position:relative;overflow:hidden;}
+.hmenu-panel{display:none;height:100%;}
+.hmenu-panel.active{display:flex;align-items:center;}
+.hmenu-scroll{display:flex;gap:0;padding:48px 48px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;width:100%;cursor:grab;}
+.hmenu-scroll:active{cursor:grabbing;}
+.hmenu-scroll::-webkit-scrollbar{display:none;}
+.hmenu-item{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:180px;padding:0 16px;transition:transform .3s;cursor:default;}
+.hmenu-item:hover{transform:translateY(-6px);}
+.hmenu-circle{width:140px;height:140px;border-radius:50%;overflow:hidden;position:relative;margin-bottom:18px;border:3px solid rgba(175,29,51,.3);transition:border-color .3s;flex-shrink:0;}
+.hmenu-item:hover .hmenu-circle{border-color:var(--red);}
+.hmenu-circle img{width:100%;height:100%;object-fit:cover;display:block;}
+.hmenu-circle-ph{position:absolute;inset:0;border-radius:50%;opacity:.75;}
+.hmenu-name{font-family:var(--display-font);font-size:15px;font-weight:400;color:var(--ivory);text-align:center;margin-bottom:8px;word-break:keep-all;}
+.hmenu-desc{font-size:11px;color:var(--tm);text-align:center;line-height:1.6;word-break:keep-all;max-width:150px;}
+.hmenu-right::after{content:'';position:absolute;right:0;top:0;bottom:0;width:80px;background:linear-gradient(to right,transparent,var(--dark2));pointer-events:none;z-index:2;}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
    LOGISTICS — DARK
@@ -810,14 +811,15 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
   .proc-dot{width:52px;height:52px;font-size:12px;}
   .proc-step.op .proc-dot{font-size:9px;}
 
-  /* menu */
-  .menu-wrap{grid-template-columns:1fr;}
-  .menu-tabs{flex-direction:row;overflow-x:auto;}
-  .menu-tab{padding:18px 16px;font-size:13px;border-left:none;border-bottom:2px solid transparent;white-space:nowrap;}
-  .menu-tab.active{border-left:none;border-bottom-color:var(--red);}
-  .mp-subs{grid-template-columns:1fr 1fr;}
-  .mp-hero-info{padding:20px;}
-  .mp-hero-name{font-size:22px;}
+  /* menu — 가로 스크롤 */
+  .hmenu-wrap{grid-template-columns:1fr;max-width:100%;border:none;border-bottom:1px solid rgba(252,231,216,.06);}
+  .hmenu-tabs{flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid rgba(252,231,216,.06);padding:0;}
+  .hmenu-tab{border-left:none;border-bottom:3px solid transparent;padding:16px 20px;white-space:nowrap;}
+  .hmenu-tab.active{border-left:none;border-bottom-color:var(--red);background:rgba(175,29,51,.1);}
+  .hmenu-tab-ko{font-size:14px;}
+  .hmenu-scroll{padding:32px 20px;}
+  .hmenu-item{width:140px;padding:0 10px;}
+  .hmenu-circle{width:110px;height:110px;}
 
   /* cost table */
   .ct td,.ct th{padding:12px 14px;font-size:12px;}
@@ -1172,68 +1174,124 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
   </div>
 </section>
 
-<!-- MENU — IVORY -->
-<section id="menu" class="sec">
-  <div class="con">
-    <div class="stag stag-light rv">화미옥 메뉴</div>
-    <h2 class="sh rv d1" style="color:var(--ivory);margin-bottom:12px;">멋부리지 않고 편안하게,<br><span style="color:var(--red3)">화미옥 메뉴</span></h2>
-    <p class="sb rv d2" style="color:var(--tm);margin-bottom:48px;">따뜻하면서 든든하게, 1987년부터 이어온 한 상입니다.</p>
-    <div class="menu-wrap rv d3">
-      <div class="menu-tabs">
-        <div class="menu-tab active" data-tab="0">김치찌개</div>
-        <div class="menu-tab" data-tab="1">제육볶음</div>
-        <div class="menu-tab" data-tab="2">사이드 메뉴</div>
+<!-- MENU — 옥된장 스타일 가로 스크롤 -->
+<section id="menu" style="background:var(--dark2);padding:0;">
+  <!-- 상단 타이틀 -->
+  <div class="con" style="padding-top:80px;padding-bottom:48px;text-align:center;">
+    <div class="stag stag-light rv" style="color:rgba(252,231,216,.5);justify-content:center;">화미옥 메뉴</div>
+    <h2 class="sh rv d1" style="color:var(--ivory);">멋부리지 않고 편안하게,<br><span style="color:var(--red3)">화미옥 메뉴</span></h2>
+    <p class="sb rv d2" style="color:var(--tm);max-width:520px;margin:0 auto;">따뜻하면서 든든하게, 1987년부터 이어온 한 상입니다.</p>
+  </div>
+
+  <!-- 좌탭 + 우스크롤 레이아웃 -->
+  <div class="hmenu-wrap">
+    <!-- 왼쪽 카테고리 탭 -->
+    <div class="hmenu-tabs">
+      <div class="hmenu-tab active" data-cat="0">
+        <span class="hmenu-tab-ko">식사류</span>
+        <span class="hmenu-tab-sub">김치찌개</span>
       </div>
-      <div class="menu-panels">
-        <!-- Panel 0 -->
-        <div class="menu-panel active">
-          <div class="mp-hero">
-            <img id="menu-main-0" src="" alt="" class="mp-hero-img" style="display:none;">
-            <div class="mp-hero-ph" id="menu-ph-0"><svg width="100" height="68" viewBox="0 0 120 80" fill="none"><ellipse cx="60" cy="62" rx="52" ry="14" stroke="var(--red)" stroke-width="1.5" opacity=".3"/><path d="M8 62 Q8 24 60 24 Q112 24 112 62" stroke="var(--red)" stroke-width="1.5" fill="none" opacity=".3"/></svg></div>
-            <div class="mp-hero-overlay"></div>
-            <div class="mp-hero-info"><div class="mp-hero-badge">SIGNATURE MENU</div><div class="mp-hero-name">김치찌개</div><div class="mp-hero-desc">37년 전통의 비법 육수에 잘 익은 김치, 두툼한 돼지고기, 두부를 넣어 끓인 화미옥의 시그니처.</div></div>
-            
-            
+      <div class="hmenu-tab" data-cat="1">
+        <span class="hmenu-tab-ko">식사류</span>
+        <span class="hmenu-tab-sub">볶음 · 돈까스</span>
+      </div>
+      <div class="hmenu-tab" data-cat="2">
+        <span class="hmenu-tab-ko">안주류</span>
+        <span class="hmenu-tab-sub">묵은지 김치찜</span>
+      </div>
+      <div class="hmenu-tab" data-cat="3">
+        <span class="hmenu-tab-ko">곁차림</span>
+        <span class="hmenu-tab-sub">사이드</span>
+      </div>
+    </div>
+
+    <!-- 오른쪽 가로 스크롤 영역 -->
+    <div class="hmenu-right">
+      <!-- 카테고리 0: 김치찌개 -->
+      <div class="hmenu-panel active" data-panel="0">
+        <div class="hmenu-scroll">
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-0-0" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#6b1020,#af1d33);"></div></div>
+            <div class="hmenu-name">돼지 김치찌개</div>
+            <div class="hmenu-desc">국내산 돼지고기를 넣어 진한 담백함이 일품</div>
           </div>
-          <div class="mp-subs">
-            <div class="mp-sub"><div class="mp-sub-img-wrap"><img id="ms-0-0" src="" alt="" class="mp-sub-img" style="display:none;"><div class="mp-sub-ph" id="msph-0-0"><div class="mp-sub-ph-inner" style="background:linear-gradient(135deg,#8f1628,#af1d33);"></div></div></div><div class="mp-sub-info"><div class="mp-sub-name">원조 김치찌개</div></div></div>
-            <div class="mp-sub"><div class="mp-sub-img-wrap"><img id="ms-0-1" src="" alt="" class="mp-sub-img" style="display:none;"><div class="mp-sub-ph" id="msph-0-1"><div class="mp-sub-ph-inner" style="background:linear-gradient(135deg,#6b1020,#9b2020);"></div></div></div><div class="mp-sub-info"><div class="mp-sub-name">묵은지 김치찌개</div></div></div>
-            <div class="mp-sub"><div class="mp-sub-img-wrap"><img id="ms-0-2" src="" alt="" class="mp-sub-img" style="display:none;"><div class="mp-sub-ph" id="msph-0-2"><div class="mp-sub-ph-inner" style="background:linear-gradient(135deg,#5a0e10,#8b1818);"></div></div></div><div class="mp-sub-info"><div class="mp-sub-name">참치 김치찌개</div></div></div>
-            <div class="mp-sub" style="cursor:default;opacity:.35;"><div class="mp-sub-img-wrap"><div class="mp-sub-ph"></div></div><div class="mp-sub-info"><div class="mp-sub-name" style="color:rgba(26,6,8,.3);">+ 추가</div></div></div>
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-0-1" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#5a0e18,#9b2030);"></div></div>
+            <div class="hmenu-name">부대 김치찌개</div>
+            <div class="hmenu-desc">햄과 김치의 어우러짐과 깊은 국물 맛</div>
+          </div>
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-0-2" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#8f1628,#c82540);"></div></div>
+            <div class="hmenu-name">참치 김치찌개</div>
+            <div class="hmenu-desc">참치를 넣어 담백하고 깊은 국물 맛</div>
+          </div>
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-0-3" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#7b1020,#af2538);"></div></div>
+            <div class="hmenu-name">돈까스 김치찌개</div>
+            <div class="hmenu-desc">등심돈까스와 김치의 만남, 특별한 김치찌개</div>
           </div>
         </div>
-        <!-- Panel 1 -->
-        <div class="menu-panel">
-          <div class="mp-hero">
-            <img id="menu-main-1" src="" alt="" class="mp-hero-img" style="display:none;">
-            <div class="mp-hero-ph" id="menu-ph-1"><svg width="100" height="68" viewBox="0 0 120 80" fill="none"><ellipse cx="60" cy="52" rx="50" ry="16" fill="rgba(120,50,10,.3)" stroke="rgba(180,80,20,.25)" stroke-width="1.2"/></svg></div>
-            <div class="mp-hero-overlay"></div>
-            <div class="mp-hero-info"><div class="mp-hero-badge">POPULAR MENU</div><div class="mp-hero-name">제육볶음</div><div class="mp-hero-desc">칼칼한 양념에 버무린 두툼한 돼지고기. 저녁 반주 안주로도 제격인 화미옥의 인기 메뉴.</div></div>
-            
-            
+      </div>
+
+      <!-- 카테고리 1: 볶음·돈까스 -->
+      <div class="hmenu-panel" data-panel="1">
+        <div class="hmenu-scroll">
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-1-0" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#7b3010,#c05020);"></div></div>
+            <div class="hmenu-name">고추장 제육볶음</div>
+            <div class="hmenu-desc">특제 고추장 양념으로 볶아낸 매콤하면서도 든든한</div>
           </div>
-          <div class="mp-subs">
-            <div class="mp-sub"><div class="mp-sub-img-wrap"><img id="ms-1-0" src="" alt="" class="mp-sub-img" style="display:none;"><div class="mp-sub-ph" id="msph-1-0"><div class="mp-sub-ph-inner" style="background:linear-gradient(135deg,#7b3010,#b04010);"></div></div></div><div class="mp-sub-info"><div class="mp-sub-name">제육볶음</div></div></div>
-            <div class="mp-sub"><div class="mp-sub-img-wrap"><img id="ms-1-1" src="" alt="" class="mp-sub-img" style="display:none;"><div class="mp-sub-ph" id="msph-1-1"><div class="mp-sub-ph-inner" style="background:linear-gradient(135deg,#5a2008,#8b3015);"></div></div></div><div class="mp-sub-info"><div class="mp-sub-name">돼지불고기</div></div></div>
-            <div class="mp-sub" style="cursor:default;opacity:.35;"><div class="mp-sub-img-wrap"><div class="mp-sub-ph"></div></div><div class="mp-sub-info"><div class="mp-sub-name" style="color:rgba(26,6,8,.3);">+ 추가</div></div></div>
-            <div class="mp-sub" style="cursor:default;opacity:.15;"><div class="mp-sub-img-wrap"><div class="mp-sub-ph"></div></div></div>
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-1-1" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#5a2a10,#8b4020);"></div></div>
+            <div class="hmenu-name">간장 돼지불고기</div>
+            <div class="hmenu-desc">특제 간장 양념에 재워 부드럽게 즐기는 돼지불고기</div>
+          </div>
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-1-2" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#3a2010,#6b4020);"></div></div>
+            <div class="hmenu-name">등심돈까스</div>
+            <div class="hmenu-desc">겉은 바삭하고 속은 촉촉한 등심돈까스</div>
           </div>
         </div>
-        <!-- Panel 2 -->
-        <div class="menu-panel">
-          <div class="mp-hero">
-            <img id="menu-main-2" src="" alt="" class="mp-hero-img" style="display:none;">
-            <div class="mp-hero-ph" id="menu-ph-2"><svg width="100" height="68" viewBox="0 0 120 80" fill="none"><circle cx="30" cy="45" r="16" fill="rgba(30,60,30,.3)"/><circle cx="60" cy="45" r="16" fill="rgba(100,30,10,.3)"/><circle cx="90" cy="45" r="16" fill="rgba(60,20,10,.3)"/></svg></div>
-            <div class="mp-hero-overlay"></div>
-            <div class="mp-hero-info"><div class="mp-hero-badge">SIDE MENU</div><div class="mp-hero-name">사이드 메뉴</div><div class="mp-hero-desc">정갈한 한식 반찬과 사이드 메뉴. 찌개와 함께 한 상 가득 차리는 화미옥의 든든한 밥상입니다.</div></div>
-            
-            
+      </div>
+
+      <!-- 카테고리 2: 안주류 -->
+      <div class="hmenu-panel" data-panel="2">
+        <div class="hmenu-scroll">
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-2-0" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#6b1020,#af1d33);"></div></div>
+            <div class="hmenu-name">돼지고기 김치찜</div>
+            <div class="hmenu-desc">묵은지의 깊은맛과 부드러운 돼지고기의 졸라본</div>
           </div>
-          <div class="mp-subs">
-            <div class="mp-sub"><div class="mp-sub-img-wrap"><img id="ms-2-0" src="" alt="" class="mp-sub-img" style="display:none;"><div class="mp-sub-ph" id="msph-2-0"><div class="mp-sub-ph-inner" style="background:linear-gradient(135deg,#1e3a1e,#2e5a2e);"></div></div></div><div class="mp-sub-info"><div class="mp-sub-name">공기밥</div></div></div>
-            <div class="mp-sub"><div class="mp-sub-img-wrap"><img id="ms-2-1" src="" alt="" class="mp-sub-img" style="display:none;"><div class="mp-sub-ph" id="msph-2-1"><div class="mp-sub-ph-inner" style="background:linear-gradient(135deg,#3a1e1e,#5a3030);"></div></div></div><div class="mp-sub-info"><div class="mp-sub-name">계란후라이</div></div></div>
-            <div class="mp-sub"><div class="mp-sub-img-wrap"><img id="ms-2-2" src="" alt="" class="mp-sub-img" style="display:none;"><div class="mp-sub-ph" id="msph-2-2"><div class="mp-sub-ph-inner" style="background:linear-gradient(135deg,#2a1a0e,#4a2e18);"></div></div></div><div class="mp-sub-info"><div class="mp-sub-name">라면 사리</div></div></div>
-            <div class="mp-sub"><div class="mp-sub-img-wrap"><img id="ms-2-3" src="" alt="" class="mp-sub-img" style="display:none;"><div class="mp-sub-ph" id="msph-2-3"><div class="mp-sub-ph-inner" style="background:linear-gradient(135deg,#1a1a1a,#2a2a2a);"></div></div></div><div class="mp-sub-info"><div class="mp-sub-name">두부 추가</div></div></div>
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-2-1" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#5a0e18,#9b2030);"></div></div>
+            <div class="hmenu-name">부대 김치찜</div>
+            <div class="hmenu-desc">묵은지의 깊은맛과 햄 소시지의 뿌짐한 김치찜</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 카테고리 3: 곁차림 -->
+      <div class="hmenu-panel" data-panel="3">
+        <div class="hmenu-scroll">
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-3-0" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#3a1a10,#6b3018);"></div></div>
+            <div class="hmenu-name">햄구이</div>
+            <div class="hmenu-desc">등심돈까스와 충복</div>
+          </div>
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-3-1" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#4a2a10,#8b5020);"></div></div>
+            <div class="hmenu-name">계란말이</div>
+            <div class="hmenu-desc">부드러운 계란을 정성껏 말아낸 수하리표 계란말이</div>
+          </div>
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-3-2" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#6b1020,#af1d33);"></div></div>
+            <div class="hmenu-name">김치말이국수</div>
+            <div class="hmenu-desc">아삭한 김치를 더해 깔끔하게 입가심하기 좋은 국수</div>
+          </div>
+          <div class="hmenu-item">
+            <div class="hmenu-circle"><img id="hm-3-3" src="" style="display:none;"><div class="hmenu-circle-ph" style="background:linear-gradient(135deg,#2a1a18,#5a3028);"></div></div>
+            <div class="hmenu-name">주먹밥</div>
+            <div class="hmenu-desc">찌개와 함께 즐기기 좋은 한입 주먹밥</div>
           </div>
         </div>
       </div>
@@ -1571,6 +1629,20 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
     if (imgs.tabbar_tel)   { const a = document.querySelector('.bt-tel'); if(a){ a.textContent = imgs.tabbar_tel; a.href = 'tel:' + imgs.tabbar_tel.replace(/-/g,''); } }
     if (imgs.cta_tel)      { const a = document.querySelector('.ctatel'); if(a){ a.textContent = imgs.cta_tel; a.href = 'tel:' + imgs.cta_tel.replace(/-/g,''); } }
 
+    // 메뉴 원형 이미지 (hm-카테고리-인덱스)
+    [[0,4],[1,3],[2,2],[3,4]].forEach(([cat, count]) => {
+      for (let i = 0; i < count; i++) {
+        const key = `hm-${cat}-${i}`;
+        const el = document.getElementById(key);
+        if (el && imgs[key]) {
+          el.src = imgs[key];
+          el.style.display = 'block';
+          const ph = el.closest('.hmenu-circle');
+          if (ph) { const p = ph.querySelector('.hmenu-circle-ph'); if(p) p.style.display='none'; }
+        }
+      }
+    });
+
     // 브랜드 비주얼
     apply('brand-visual-img', imgs.brand, 'bvf-ph');
     [0,1,2].forEach(i => apply(`sys-ico-${i}`, imgs[`sys_ico_${i}`]));
@@ -1818,13 +1890,27 @@ if(omEl){
   omObs.observe(omEl);
 }
 
-// MENU TABS
-document.querySelectorAll('.menu-tab').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('.menu-panel').forEach(p=>p.classList.remove('active'));
+// MENU TABS (가로 스크롤)
+document.querySelectorAll('.hmenu-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.hmenu-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.hmenu-panel').forEach(p => p.classList.remove('active'));
     tab.classList.add('active');
-    document.querySelectorAll('.menu-panel')[tab.dataset.tab].classList.add('active');
+    const panel = document.querySelector(`.hmenu-panel[data-panel="${tab.dataset.cat}"]`);
+    if (panel) panel.classList.add('active');
+  });
+});
+
+// 드래그 스크롤
+document.querySelectorAll('.hmenu-scroll').forEach(el => {
+  let isDown = false, startX = 0, scrollLeft = 0;
+  el.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft; });
+  el.addEventListener('mouseleave', () => isDown = false);
+  el.addEventListener('mouseup', () => isDown = false);
+  el.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    el.scrollLeft = scrollLeft - (e.pageX - el.offsetLeft - startX);
   });
 });
 
