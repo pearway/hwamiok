@@ -366,7 +366,7 @@ body{padding-bottom:68px;}
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
    BRAND A — DARK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-#brandA{background:var(--dark2);}
+#brandA{background:var(--dark2);min-height:700px;}
 .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:stretch;}
 .ba-quote{position:relative;padding:44px 0;border-top:1px solid rgba(252,231,216,.07);border-bottom:1px solid rgba(252,231,216,.07);margin:44px 0;}
 .ba-quote::before{content:'"';position:absolute;top:-40px;left:-16px;font-family:var(--display-font);font-size:200px;font-weight:900;color:rgba(175,29,51,.08);line-height:1;}
@@ -395,7 +395,7 @@ body{padding-bottom:68px;}
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
    BRAND B — RED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-#brandB{background:var(--red2);}
+#brandB{background:var(--red2);min-height:700px;}
 .bb-inner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-55deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 44px);}
 .bb-inner{position:relative;}
 .bb-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:stretch;}
@@ -532,7 +532,7 @@ body{padding-bottom:68px;}
    SUCCESS POINTS — IVORY/RED 교차
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #success{background:var(--ivory);}
-.sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding-bottom:130px;}
 /* 01, 03 = ivory */
 .sp-ivory{background:var(--ivory2);padding:72px 36px;position:relative;overflow:hidden;border-top:3px solid var(--red);transition:background .3s;cursor:default;}
 .sp-ivory:hover{background:var(--ivory);}
@@ -562,15 +562,16 @@ body{padding-bottom:68px;}
   border:1px solid rgba(252,231,216,.06);
   overflow:hidden;
 }
-.hmenu-tabs{background:rgba(0,0,0,.3);border-right:1px solid rgba(252,231,216,.06);display:flex;flex-direction:column;padding:8px 0;}
+.hmenu-tabs{background:rgba(0,0,0,.25);border-right:1px solid rgba(252,231,216,.1);display:flex;flex-direction:column;padding:8px 0;}
 .hmenu-tab{padding:22px 28px;cursor:pointer;border-left:3px solid transparent;transition:all .25s;}
-.hmenu-tab:hover{background:rgba(252,231,216,.04);}
-.hmenu-tab.active{background:rgba(175,29,51,.15);border-left-color:var(--red);}
+.hmenu-tab:hover{background:rgba(252,231,216,.08);}
+.hmenu-tab.active{background:rgba(0,0,0,.2);border-left-color:var(--ivory);}
 .hmenu-tab-ko{display:block;font-family:var(--display-font);font-size:18px;font-weight:400;color:rgba(252,231,216,.5);line-height:1.2;}
-.hmenu-tab-sub{display:block;font-size:11px;letter-spacing:1px;color:var(--tm);margin-top:4px;}
+.hmenu-tab-sub{display:block;font-size:11px;letter-spacing:1px;color:rgba(252,231,216,.35);margin-top:4px;}
 .hmenu-tab.active .hmenu-tab-ko{color:var(--ivory);}
-.hmenu-tab.active .hmenu-tab-sub{color:rgba(252,231,216,.65);}
+.hmenu-tab.active .hmenu-tab-sub{color:rgba(252,231,216,.7);}
 .hmenu-right{position:relative;overflow:hidden;min-width:0;}
+.hmenu-right::after{content:'';position:absolute;right:0;top:0;bottom:0;width:80px;background:linear-gradient(to right,transparent,var(--red2));pointer-events:none;z-index:2;}
 .hmenu-panel{display:none;height:100%;}
 .hmenu-panel.active{display:flex;align-items:center;}
 .hmenu-scroll{display:flex;gap:0;padding:48px 48px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;min-width:0;cursor:grab;}
@@ -583,8 +584,7 @@ body{padding-bottom:68px;}
 .hmenu-circle img{width:100%;height:100%;object-fit:cover;display:block;}
 .hmenu-circle-ph{position:absolute;inset:0;border-radius:50%;opacity:.75;}
 .hmenu-name{font-family:var(--display-font);font-size:15px;font-weight:400;color:var(--ivory);text-align:center;margin-bottom:8px;word-break:keep-all;}
-.hmenu-desc{font-size:11px;color:var(--tm);text-align:center;line-height:1.6;word-break:keep-all;max-width:150px;}
-.hmenu-right::after{content:'';position:absolute;right:0;top:0;bottom:0;width:80px;background:linear-gradient(to right,transparent,var(--dark2));pointer-events:none;z-index:2;}
+.hmenu-desc{font-size:11px;color:rgba(252,231,216,.6);text-align:center;line-height:1.6;word-break:keep-all;max-width:150px;}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
    LOGISTICS — DARK
@@ -618,16 +618,16 @@ body{padding-bottom:68px;}
 .ct{width:100%;border-collapse:collapse;margin-top:52px;}
 .ct thead tr{background:var(--red);}
 .ct th{padding:16px 26px;font-size:9px;letter-spacing:4px;font-weight:700;color:var(--ivory);text-transform:uppercase;text-align:left;}
-.ct tbody tr{border-bottom:1px solid rgba(26,6,8,.08);transition:background .2s;background:#ffffff;}
-.ct tbody tr:hover{background:var(--ivory2);}
-.ct td{padding:16px 26px;font-size:13px;color:#3a1010;}
-.ct td:first-child{color:#1a0608;font-weight:600;}
+.ct tbody tr{border-bottom:1px solid rgba(26,6,8,.1);transition:background .2s;background:#ffffff;}
+.ct tbody tr:hover{background:var(--ivory);}
+.ct td{padding:16px 26px;font-size:13px;color:#2a0608;}
+.ct td:first-child{color:#1a0608;font-weight:700;}
 .ct td strong{color:var(--red);font-size:15px;font-weight:700;}
 .etag{display:inline-block;font-size:9px;letter-spacing:2px;font-weight:700;color:var(--red);border:1px solid rgba(175,29,51,.4);padding:3px 10px;border-radius:100px;text-transform:uppercase;}
-.stk{opacity:.35;text-decoration:line-through;font-size:11px;color:#1a0608;}
+.stk{opacity:.4;text-decoration:line-through;font-size:11px;color:#4a1010;}
 .ct tfoot tr{background:var(--red);}
 .ct tfoot td{color:var(--ivory);font-weight:700;font-family:var(--display-font);font-size:18px;padding:20px 26px;}
-.cn2{margin-top:14px;font-size:11px;color:rgba(26,6,8,.45);line-height:1.8;}
+.cn2{margin-top:14px;font-size:11px;color:rgba(252,231,216,.5);line-height:1.8;}
 
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1021,8 +1021,11 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 </section>
 
 <!-- BRAND B — RED -->
-<section id="brandB" class="sec">
-  <div class="bb-inner con" style="position:relative;">
+<section id="brandB" class="sec" style="position:relative;overflow:hidden;">
+  <!-- 인테리어 배경 이미지 (어드민에서 설정) -->
+  <img id="brandb-bg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.12;">
+  <div style="position:absolute;inset:0;background:var(--red2);z-index:1;opacity:.88;" id="brandb-overlay"></div>
+  <div class="bb-inner con" style="position:relative;z-index:2;" style="position:relative;">
     <div class="bb-grid">
       <div>
         <div class="stag stag-red rv">01 · 브랜드 철학</div>
@@ -1036,6 +1039,21 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
           <div style="background:var(--ivory);padding:36px 28px;border-top:3px solid var(--red);"><div style="font-family:var(--display-font);font-size:15px;font-weight:900;color:var(--red);letter-spacing:1px;margin-bottom:10px;">한결같은 맛</div><p style="font-size:13px;line-height:1.75;color:#1a0608;font-weight:500;">원팩 시스템으로 어디서든 37년 전통의 맛을 구현.</p></div>
         </div>
     </div>
+  </div>
+</section>
+
+<!-- SUCCESS POINTS — IVORY BG, 타이틀만 가운데 -->
+<section id="success" style="background:var(--ivory);padding:130px 0 0;">
+  <div class="con" style="text-align:center;padding-bottom:64px;">
+    <div class="stag rv" style="color:var(--red2);font-weight:700;justify-content:center;">화미옥의 성공포인트</div>
+    <h2 class="sh rv d1" style="color:#1a0608;">왜 <span style="color:var(--red)">화미옥</span>인가</h2>
+    <p class="sb rv d2" style="color:#5a2a20;max-width:580px;margin:0 auto;word-break:keep-all;">37년의 역사와 단골 고객이 증명하는 화미옥. 유행이 아닌 일상 속에 자리 잡은 한식으로, 안정적인 창업의 답이 여기 있습니다.</p>
+  </div>
+  <div class="sp-grid">
+    <div class="sp-ivory rv d1"><div class="sp-num">01</div><h3 class="sp-title">친숙한 한식 브랜드</h3><p class="sp-desc">한식은 유행에 맞춰 탄생한 것이 아닌 어릴 적부터 우리의 밥상 위에 존재했습니다. 김치찌개는 대한민국 국민이 가장 사랑하는 메뉴입니다.</p></div>
+    <div class="sp-red rv d2"><div class="sp-num">02</div><h3 class="sp-title">37년이 증명한 브랜드</h3><p class="sp-desc">1987년부터 이어온 원조 레시피와 지속 운영 매장들의 데이터로 입증된 안정적인 브랜드입니다.</p></div>
+    <div class="sp-ivory rv d3"><div class="sp-num">03</div><h3 class="sp-title">효율적인 매장 운영</h3><p class="sp-desc">간단한 원팩 조리 시스템을 통해 최소의 인력으로 매장 운영이 가능합니다. 경력 없이도 동일한 맛 구현이 가능합니다.</p></div>
+    <div class="sp-red rv d4"><div class="sp-num">04</div><h3 class="sp-title">안정적인 수익 구조</h3><p class="sp-desc">점심·저녁·포장·배달 매출까지 다방면의 4WAY 매출 구조를 통한 안정적 수익 구조가 가능합니다.</p></div>
   </div>
 </section>
 
@@ -1164,53 +1182,30 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
       <p class="syp" style="color:rgba(252,231,216,.78);">그게 전부입니다. 간소화된 조리 공정으로 누구든 화미옥의 맛을 그대로 구현할 수 있습니다.</p>
     </div>
   </div>
-</section>
-<!-- 1분 — DARK -->
-<section id="oneminute">
-  <div class="con om-inner rv">
-    <p class="om-pre">홀 매출에 필요한 메뉴 준비 시간</p>
-    <div class="om-num" id="om-num">0<span>분</span></div>
-    <div class="om-steps">
-      <div class="om-step">
-        <div class="om-step-label">STEP 01</div>
-        <div class="om-step-text">재료 담고</div>
-      </div>
-      <div class="om-arrow">→</div>
-      <div class="om-step">
-        <div class="om-step-label">STEP 02</div>
-        <div class="om-step-text">육수 붓고</div>
-      </div>
-      <div class="om-arrow">→</div>
-      <div class="om-step">
-        <div class="om-step-label">DONE</div>
-        <div class="om-step-text">끝</div>
+  <!-- 1분 — 합쳐진 파트 -->
+  <div style="background:var(--dark2);padding:80px 0;text-align:center;border-top:1px solid rgba(26,6,8,.12);">
+    <div class="con">
+      <p style="font-size:11px;letter-spacing:4px;color:rgba(252,231,216,.4);text-transform:uppercase;margin-bottom:16px;">홀 매출에 필요한 메뉴 준비 시간</p>
+      <div class="om-num" id="om-num">0<span>분</span></div>
+      <div class="om-steps" style="margin-top:32px;">
+        <div class="om-step"><div class="om-step-label">STEP 01</div><div class="om-step-text">재료 담고</div></div>
+        <div class="om-arrow">→</div>
+        <div class="om-step"><div class="om-step-label">STEP 02</div><div class="om-step-text">육수 붓고</div></div>
+        <div class="om-arrow">→</div>
+        <div class="om-step"><div class="om-step-label">DONE</div><div class="om-step-text">끝</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SUCCESS POINTS — IVORY BG, 타이틀만 가운데 -->
-<section id="success" style="background:var(--ivory);padding:80px 0 0;">
-  <div class="con" style="text-align:center;padding-bottom:56px;">
-    <div class="stag rv" style="color:var(--red2);font-weight:700;justify-content:center;">화미옥의 성공포인트</div>
-    <h2 class="sh rv d1" style="color:#1a0608;">왜 <span style="color:var(--red)">화미옥</span>인가</h2>
-    <p class="sb rv d2" style="color:#5a2a20;max-width:580px;margin:0 auto;word-break:keep-all;">37년의 역사와 단골 고객이 증명하는 화미옥. 유행이 아닌 일상 속에 자리 잡은 한식으로, 안정적인 창업의 답이 여기 있습니다.</p>
-  </div>
-  <div class="sp-grid">
-    <div class="sp-ivory rv d1"><div class="sp-num">01</div><h3 class="sp-title">친숙한 한식 브랜드</h3><p class="sp-desc">한식은 유행에 맞춰 탄생한 것이 아닌 어릴 적부터 우리의 밥상 위에 존재했습니다. 김치찌개는 대한민국 국민이 가장 사랑하는 메뉴입니다.</p></div>
-    <div class="sp-red rv d2"><div class="sp-num">02</div><h3 class="sp-title">37년이 증명한 브랜드</h3><p class="sp-desc">1987년부터 이어온 원조 레시피와 지속 운영 매장들의 데이터로 입증된 안정적인 브랜드입니다.</p></div>
-    <div class="sp-ivory rv d3"><div class="sp-num">03</div><h3 class="sp-title">효율적인 매장 운영</h3><p class="sp-desc">간단한 원팩 조리 시스템을 통해 최소의 인력으로 매장 운영이 가능합니다. 경력 없이도 동일한 맛 구현이 가능합니다.</p></div>
-    <div class="sp-red rv d4"><div class="sp-num">04</div><h3 class="sp-title">안정적인 수익 구조</h3><p class="sp-desc">점심·저녁·포장·배달 매출까지 다방면의 4WAY 매출 구조를 통한 안정적 수익 구조가 가능합니다.</p></div>
-  </div>
-</section>
 
 <!-- MENU — 옥된장 스타일 가로 스크롤 -->
-<section id="menu" style="background:var(--dark2);padding:0;">
+<section id="menu" style="background:var(--red2);padding:0;">
   <!-- 상단 타이틀 -->
   <div class="con" style="padding-top:80px;padding-bottom:48px;text-align:center;">
     <div class="stag stag-light rv" style="color:rgba(252,231,216,.5);justify-content:center;">화미옥 메뉴</div>
-    <h2 class="sh rv d1" style="color:var(--ivory);">멋부리지 않고 편안하게,<br><span style="color:var(--red3)">화미옥 메뉴</span></h2>
-    <p class="sb rv d2" style="color:var(--tm);max-width:520px;margin:0 auto;">따뜻하면서 든든하게, 1987년부터 이어온 한 상입니다.</p>
+    <h2 class="sh rv d1" style="color:var(--ivory);">멋부리지 않고 편안하게,<br><span style="color:rgba(252,231,216,.6)">화미옥 메뉴</span></h2>
+    <p class="sb rv d2" style="color:rgba(252,231,216,.6);max-width:520px;margin:0 auto;">따뜻하면서 든든하게, 1987년부터 이어온 한 상입니다.</p>
   </div>
 
   <!-- 좌탭 + 우스크롤 레이아웃 -->
@@ -1329,6 +1324,31 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
   </div>
 </section>
 
+<!-- INTERIOR — DARK2 -->
+<section id="interior" style="background:var(--dark);padding:80px 0 0;">
+  <div class="con" style="text-align:center;padding-bottom:48px;">
+    <div class="stag stag-light rv" style="justify-content:center;">화미옥 매장</div>
+    <h2 class="sh rv d1" style="color:var(--ivory);">화미옥의 <span style="color:var(--red3)">공간</span></h2>
+  </div>
+  <!-- 메인 사진 -->
+  <div style="position:relative;height:55vh;min-height:320px;overflow:hidden;background:var(--dark2);">
+    <img id="interior-main" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(16,5,8,.7));z-index:1;pointer-events:none;"></div>
+  </div>
+  <!-- 서브 3개 -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(252,231,216,.04);">
+    <div style="height:220px;overflow:hidden;background:var(--dark2);position:relative;">
+      <img id="interior-sub-0" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div style="height:220px;overflow:hidden;background:var(--dark3);position:relative;">
+      <img id="interior-sub-1" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div style="height:220px;overflow:hidden;background:var(--dark2);position:relative;">
+      <img id="interior-sub-2" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
+    </div>
+  </div>
+</section>
+
 <!-- LOGISTICS — DARK -->
 <section id="logistics" style="background:var(--dark);padding:80px 0 0;">
   <div class="con" style="text-align:center;padding-bottom:56px;">
@@ -1384,12 +1404,13 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
   </div>
 </section>
 
+
 <!-- COST — IVORY -->
-<section id="cost" class="sec" style="background:var(--ivory);">
+<section id="cost" class="sec" style="background:var(--dark2);">
   <div class="con">
-    <div class="stag rv" style="color:var(--red2);">06 · 개설 비용</div>
-    <h2 class="sh rv d1" style="color:#1a0608;">합리적인<br><span style="color:var(--red)">창업 비용</span></h2>
-    <p class="sb rv d2" style="color:#5a2a20;">15평 공실 기준 · 부가세 별도 · 가맹비·교육비 선착순 면제 이벤트 진행 중</p>
+    <div class="stag rv" style="color:rgba(252,231,216,.45);">06 · 개설 비용</div>
+    <h2 class="sh rv d1" style="color:var(--ivory);">합리적인<br><span style="color:var(--red3)">창업 비용</span></h2>
+    <p class="sb rv d2" style="color:var(--tm);">15평 공실 기준 · 부가세 별도 · 가맹비·교육비 선착순 면제 이벤트 진행 중</p>
     <table class="ct rv d3">
       <thead><tr><th>구분</th><th>내용</th><th>비고</th></tr></thead>
       <tbody>
@@ -1672,6 +1693,18 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
         }
       }
     });
+
+    // 오래가는 길 섹션 인테리어 배경
+    if (imgs.brandb_bg) {
+      const bg = document.getElementById('brandb-bg');
+      const ov = document.getElementById('brandb-overlay');
+      if (bg) { bg.src = imgs.brandb_bg; bg.style.display = 'block'; }
+      if (ov) ov.style.opacity = '.82';
+    }
+
+    // 인테리어 사진 (logi 섹션 아래)
+    apply('interior-main', imgs.interior_main);
+    [0,1,2].forEach(i => apply(`interior-sub-${i}`, imgs[`interior_sub_${i}`]));
 
     // 브랜드 비주얼
     apply('brand-visual-img', imgs.brand, 'bvf-ph');
