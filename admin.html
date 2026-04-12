@@ -375,8 +375,17 @@ function up(input, key) {
     }
     const c = document.createElement('canvas');
     c.width = w; c.height = h;
-    c.getContext('2d').drawImage(img, 0, 0, w, h);
-    const b64 = c.toDataURL('image/jpeg', 0.82);
+    const ctx = c.getContext('2d');
+    // PNG 투명 배경 유지 — jpeg 강제 변환 안 함
+    const isPng = f.type === 'image/png';
+    if (!isPng) {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+    }
+    ctx.drawImage(img, 0, 0, w, h);
+    const b64 = isPng
+      ? c.toDataURL('image/png')
+      : c.toDataURL('image/jpeg', 0.82);
     imgs[key] = b64;
     save();
     showPreview(key, b64);

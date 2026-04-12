@@ -415,7 +415,8 @@ body{padding-bottom:68px;}
 .syc-red .syti{color:var(--ivory);}
 .syc-red .syp{color:rgba(252,231,216,.65);}
 .syico-wrap{width:52px;height:52px;margin-bottom:22px;position:relative;cursor:pointer;}
-.syico-img{width:100%;height:100%;object-fit:contain;}
+.syico-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
+.syico-wrap svg{display:block;}
 
 .syico-wrap:hover 
 
@@ -590,7 +591,8 @@ body{padding-bottom:68px;}
 .logi-iv .logi-num{color:rgba(175,29,51,.1);}
 .logi-rd .logi-num{color:rgba(255,255,255,.1);}
 .logi-ico{width:52px;height:52px;margin-bottom:20px;position:relative;}
-.logi-ico-img{width:100%;height:100%;object-fit:contain;display:none;}
+.logi-ico-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:none;}
+.logi-ico svg{display:block;}
 
 .logi-ico:hover 
 .logi-title{font-family:var(--display-font);font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.35;}
@@ -897,7 +899,7 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
   <div class="h-lines"></div>
   <div class="h-inner">
     <div class="h-tag">SINCE 1987 &nbsp;·&nbsp; 한식의 대가 &nbsp;·&nbsp; 석관동 원조</div>
-    <h1 class="h-h">화미옥<br><span class="rd">김치찌개</span></h1>
+    <h1 class="h-h">화미옥<br><span class="rd" style="-webkit-text-fill-color:var(--ivory);color:var(--ivory);">김치찌개</span></h1>
     <p class="h-sub">火 &thinsp; 味 &thinsp; 屋</p>
     <div class="h-ctas"><a href="#cta" class="btn-r">창업 상담 신청</a></div>
   </div>
@@ -1525,7 +1527,7 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
   </div>
   <div class="fr">
     <div style="font-size:10px;letter-spacing:3px;color:rgba(252,231,216,.25);margin-bottom:6px;">창업 상담</div>
-    <a id="footer-tel-link" href="tel:18993283"><div class="ftel" id="footer-tel">1899-3283</div></a>
+    <a id="footer-tel-link" href="tel:18993283" style="text-decoration:none;"><div class="ftel" id="footer-tel">1899-3283</div></a>
     <div style="font-size:11px;color:rgba(252,231,216,.25);">월-금 09:00 – 18:00</div>
   </div>
 </footer>
@@ -1645,7 +1647,16 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 
     // 브랜드 비주얼
     apply('brand-visual-img', imgs.brand, 'bvf-ph');
-    [0,1,2].forEach(i => apply(`sys-ico-${i}`, imgs[`sys_ico_${i}`]));
+    // 조리 시스템 아이콘 — 이미지 보이면 SVG 숨김
+    [0,1,2].forEach(i => {
+      const img = document.getElementById(`sys-ico-${i}`);
+      const svg = document.getElementById(`sis${i}`);
+      if (img && imgs[`sys_ico_${i}`]) {
+        img.src = imgs[`sys_ico_${i}`];
+        img.style.display = 'block';
+        if (svg) svg.style.display = 'none';
+      }
+    });
     [0,1,2].forEach(i => apply(`menu-main-${i}`, imgs[`menu_main_${i}`], `menu-ph-${i}`));
     [[0,3],[1,2],[2,4]].forEach(([tab,count]) => {
       for(let s=0;s<count;s++) apply(`ms-${tab}-${s}`, imgs[`menu_sub_${tab}_${s}`], `msph-${tab}-${s}`);
