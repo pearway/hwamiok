@@ -290,7 +290,15 @@ body{padding-bottom:68px;}
     flex-shrink:0;
   }
   body{padding-bottom:126px;}
+  /* ── 가맹문의 — 모바일 1열 + 좌측 가운데 정렬 ── */
   .contact-grid{grid-template-columns:1fr;gap:48px;}
+  .contact-grid .rv:first-child{text-align:center;}
+  .contact-grid .ctag,
+  .contact-grid .ctah,
+  .contact-grid .ctas,
+  .contact-grid .ctatel,
+  .contact-grid p,
+  .contact-grid div[style*="font-size:12px"]{text-align:center!important;}
   .cf-row{grid-template-columns:1fr;}
 }
 @media(max-width:520px){
@@ -359,11 +367,11 @@ body{padding-bottom:68px;}
    BRAND A — DARK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #brandA{background:var(--dark2);}
-.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:stretch;}
 .ba-quote{position:relative;padding:44px 0;border-top:1px solid rgba(252,231,216,.07);border-bottom:1px solid rgba(252,231,216,.07);margin:44px 0;}
 .ba-quote::before{content:'"';position:absolute;top:-40px;left:-16px;font-family:var(--display-font);font-size:200px;font-weight:900;color:rgba(175,29,51,.08);line-height:1;}
 .ba-quote p{font-family:var(--display-font);font-size:20px;line-height:1.75;color:var(--tl);font-weight:600;position:relative;z-index:1;}
-.bvf{aspect-ratio:4/5;position:relative;overflow:hidden;}
+.bvf{position:relative;overflow:hidden;height:100%;min-height:300px;}
 .bvf-img{width:100%;height:100%;object-fit:cover;display:none;}
 .bvf-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--dark3),#280510);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;position:relative;}
 .bvf-placeholder::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(252,231,216,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(252,231,216,.022) 1px,transparent 1px);background-size:48px 48px;}
@@ -552,6 +560,7 @@ body{padding-bottom:68px;}
   max-width:1160px;
   margin:0 auto;
   border:1px solid rgba(252,231,216,.06);
+  overflow:hidden;
 }
 .hmenu-tabs{background:rgba(0,0,0,.3);border-right:1px solid rgba(252,231,216,.06);display:flex;flex-direction:column;padding:8px 0;}
 .hmenu-tab{padding:22px 28px;cursor:pointer;border-left:3px solid transparent;transition:all .25s;}
@@ -561,10 +570,10 @@ body{padding-bottom:68px;}
 .hmenu-tab-sub{display:block;font-size:11px;letter-spacing:1px;color:var(--tm);margin-top:4px;}
 .hmenu-tab.active .hmenu-tab-ko{color:var(--ivory);}
 .hmenu-tab.active .hmenu-tab-sub{color:rgba(252,231,216,.65);}
-.hmenu-right{position:relative;overflow:hidden;}
+.hmenu-right{position:relative;overflow:hidden;min-width:0;}
 .hmenu-panel{display:none;height:100%;}
 .hmenu-panel.active{display:flex;align-items:center;}
-.hmenu-scroll{display:flex;gap:0;padding:48px 48px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;width:100%;cursor:grab;}
+.hmenu-scroll{display:flex;gap:0;padding:48px 48px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none;min-width:0;cursor:grab;}
 .hmenu-scroll:active{cursor:grabbing;}
 .hmenu-scroll::-webkit-scrollbar{display:none;}
 .hmenu-item{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:180px;padding:0 16px;transition:transform .3s;cursor:default;}
@@ -745,6 +754,11 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
   /* overflow는 html/body clip으로만 처리 — section/div overflow:hidden은 sticky 파괴함 */
   .con{padding:0 20px;}
   .sec{padding:80px 0;}
+
+  /* ── 전체 글씨 단어 단위 줄바꿈 ── */
+  body{word-break:keep-all;overflow-wrap:break-word;}
+  p,h1,h2,h3,h4,h5,span,a,li,td,th,label{word-break:keep-all;overflow-wrap:break-word;}
+
   /* ── 타이틀 글씨 크기 ── */
   .sh{font-size:clamp(32px,8vw,54px);letter-spacing:-1px;}
   .h-h{font-size:clamp(60px,15vw,120px);letter-spacing:-2px;}
@@ -756,8 +770,16 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
   #nav{padding:16px 24px;}#nav.s{padding:14px 24px;}
   .nlinks{display:none;}
 
-  /* ── CENTER EVERYTHING on mobile ── */
-  .h-inner,.k-content,.rec-inner,.om-inner,.ctai{text-align:center;}
+  /* ── 가맹문의 섹션 좌측 — 모바일 가운데 정렬 ── */
+  .ctag{text-align:center!important;}
+  .ctah{text-align:center!important;}
+  .ctas{text-align:center!important;}
+  .ctatel{text-align:center!important;display:block;}
+  #cta .rv > div[style*="font-size:12px"]{text-align:center!important;}
+  #cta .rv > p{text-align:center!important;}
+  #cta > .con > div > .rv:first-child{text-align:center;}
+
+
   .stag{justify-content:center;}
   .sh,.sb,.ba-quote p{text-align:center;}
   /* stats row center */
@@ -981,8 +1003,8 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
           <div class="sb2"><span class="sn"><span class="cnt" data-to="1">0</span><em>%</em></span><div class="sl">월 로열티</div></div>
         </div>
       </div>
-      <div class="rv d2">
-        <div class="bvf" id="brandVisualWrap">
+      <div class="rv d2" style="height:100%;">
+        <div class="bvf" id="brandVisualWrap" style="height:100%;">
           <div class="cn tl"></div><div class="cn tr"></div><div class="cn bl"></div><div class="cn br"></div>
           <img id="brand-visual-img" src="" alt="" class="bvf-img">
           <div class="bvf-placeholder" id="bvf-ph"><div class="bvf-ph-year">1987</div><div class="bvf-ph-kor">火</div><div class="bvf-ph-center"><div class="bvf-ph-kanji">火味屋</div><div class="bvf-ph-since">SINCE 1987 · SEOKGWAN-DONG</div></div></div>
@@ -1439,7 +1461,7 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 <!-- CTA + CONTACT MERGED — RED -->
 <section id="cta" style="background:var(--red2);padding:100px 0;position:relative;overflow:hidden;">
   <div class="con" style="position:relative;z-index:2;">
-    <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start;">
+    <div class="contact-grid">
       <!-- LEFT: CTA -->
       <div class="rv">
         <div class="ctag" style="text-align:left;margin-bottom:16px;">창업 문의 · FRANCHISE INQUIRY</div>
