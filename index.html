@@ -1081,8 +1081,8 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 <!-- BRAND B — RED -->
 <section id="brandB" class="sec" style="position:relative;overflow:hidden;">
   <!-- 인테리어 배경 이미지 (어드민에서 설정) -->
-  <img id="brandb-bg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.12;">
-  <div style="position:absolute;inset:0;background:var(--red2);z-index:1;opacity:.88;" id="brandb-overlay"></div>
+  <img id="brandb-bg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.22;">
+  <div style="position:absolute;inset:0;background:var(--red2);z-index:1;opacity:.78;" id="brandb-overlay"></div>
   <div class="bb-inner con" style="position:relative;z-index:2;" style="position:relative;">
     <div class="bb-grid">
       <div>
@@ -1244,16 +1244,19 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 
 
 <!-- MENU — 옥된장 스타일 가로 스크롤 -->
-<section id="menu" style="background:var(--red2);padding:0;">
+<section id="menu" style="background:var(--red2);padding:0;position:relative;overflow:hidden;">
+  <!-- 메뉴 배경 이미지 (어드민에서 설정) -->
+  <img id="menu-bg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.18;">
+  <div style="position:absolute;inset:0;background:var(--red2);z-index:1;opacity:.82;pointer-events:none;" id="menu-bg-overlay"></div>
   <!-- 상단 타이틀 -->
-  <div class="con" style="padding-top:80px;padding-bottom:48px;text-align:center;">
+  <div class="con" style="padding-top:80px;padding-bottom:48px;text-align:center;position:relative;z-index:2;">
     <div class="stag stag-light rv" style="color:rgba(252,231,216,.5);justify-content:center;">화미옥 메뉴</div>
     <h2 class="sh rv d1" style="color:var(--ivory);">멋부리지 않고 편안하게,<br><span style="color:rgba(252,231,216,.6)">화미옥 메뉴</span></h2>
     <p class="sb rv d2" style="color:rgba(252,231,216,.6);max-width:520px;margin:0 auto;">따뜻하면서 든든하게, 1987년부터 이어온 한 상입니다.</p>
   </div>
 
   <!-- 좌탭 + 우스크롤 레이아웃 -->
-  <div class="hmenu-wrap">
+  <div class="hmenu-wrap" style="position:relative;z-index:2;">
     <!-- 왼쪽 카테고리 탭 -->
     <div class="hmenu-tabs">
       <div class="hmenu-tab active" data-cat="0">
@@ -1744,6 +1747,14 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
         }
       }
     });
+
+    // 메뉴 섹션 배경 이미지
+    if (imgs.menu_bg) {
+      const bg = document.getElementById('menu-bg');
+      const ov = document.getElementById('menu-bg-overlay');
+      if (bg) { bg.src = imgs.menu_bg; bg.style.display = 'block'; }
+      if (ov) ov.style.opacity = '.78';
+    }
 
     // 오래가는 길 섹션 인테리어 배경
     if (imgs.brandb_bg) {
