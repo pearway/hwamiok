@@ -1068,8 +1068,8 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 <!-- BRAND B — RED -->
 <section id="brandB" class="sec" style="position:relative;overflow:hidden;">
   <!-- 인테리어 배경 이미지 (어드민에서 설정) -->
-  <img id="brandb-bg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.22;">
-  <div style="position:absolute;inset:0;background:var(--red2);z-index:1;opacity:.78;" id="brandb-overlay"></div>
+  <img id="brandb-bg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.28;">
+  <div style="position:absolute;inset:0;background:var(--red2);z-index:1;opacity:.72;" id="brandb-overlay"></div>
   <div class="bb-inner con" style="position:relative;z-index:2;" style="position:relative;">
     <div class="bb-grid">
       <div>
@@ -1102,8 +1102,11 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
   </div>
 </section>
 
-<section id="revenue" class="sec" style="background:var(--dark2);">
-  <div class="con">
+<section id="revenue" class="sec" style="background:var(--dark2);position:relative;overflow:hidden;">
+  <!-- 배경 이미지 -->
+  <img id="revenue-bg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.15;">
+  <div style="position:absolute;inset:0;background:var(--dark2);z-index:1;opacity:.85;pointer-events:none;" id="revenue-bg-overlay"></div>
+  <div class="con" style="position:relative;z-index:2;">
     <div class="stag rv" style="color:var(--ivory);opacity:.55;">02 · 운영 수익률</div>
     <h2 class="sh rv d1" style="color:var(--ivory);">10년 이상<br><span style="color:var(--red3);">안정적인 수익</span></h2>
     <p class="sb rv d2" style="color:var(--tm);">생계형 점포 운영 기준 (점주 직접 운영) · 15평 기준 · 홀 80% / 배달 20% 예시</p>
@@ -1736,6 +1739,14 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
       }
     });
 
+    // 수익 섹션 배경 이미지
+    if (imgs.revenue_bg) {
+      const bg = document.getElementById('revenue-bg');
+      const ov = document.getElementById('revenue-bg-overlay');
+      if (bg) { bg.src = imgs.revenue_bg; bg.style.display = 'block'; }
+      if (ov) ov.style.opacity = '.72';
+    }
+
     // 메뉴 섹션 배경 이미지
     if (imgs.menu_bg) {
       const bg = document.getElementById('menu-bg');
@@ -1749,7 +1760,7 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
       const bg = document.getElementById('brandb-bg');
       const ov = document.getElementById('brandb-overlay');
       if (bg) { bg.src = imgs.brandb_bg; bg.style.display = 'block'; }
-      if (ov) ov.style.opacity = '.82';
+      if (ov) ov.style.opacity = '.72';
     }
 
     // 인테리어 사진
