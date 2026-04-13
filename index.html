@@ -46,9 +46,9 @@ body{background:var(--dark);color:var(--ivory);font-family:'Noto Sans KR',sans-s
 #nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:24px 64px;display:flex;align-items:center;justify-content:space-between;transition:background .5s,padding .4s,border-color .5s;border-bottom:1px solid transparent;}
 #nav.s{background:rgba(16,5,8,.96);backdrop-filter:blur(16px);padding:14px 64px;border-bottom-color:rgba(175,29,51,.15);}
 .nlogo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nlogo-img{height:36px;width:auto;object-fit:contain;transition:height .3s;display:none;}
-#nav.s .nlogo-img{height:30px;}
-.nlogo-text{font-family:var(--display-font);font-size:17px;font-weight:900;color:var(--ivory);letter-spacing:-.5px;}
+.nlogo-img{height:40px;width:auto;object-fit:contain;transition:height .3s;display:none;}
+#nav.s .nlogo-img{height:34px;}
+.nlogo-text{font-family:var(--display-font);font-size:22px;font-weight:900;color:var(--ivory);letter-spacing:-.5px;}
 .nlinks{display:flex;gap:36px;align-items:center;}
 .nlinks a{text-decoration:none;font-size:11px;font-weight:500;letter-spacing:2.5px;color:var(--tm);transition:color .3s;text-transform:uppercase;}
 .nlinks a:hover{color:var(--ivory);}
@@ -987,7 +987,7 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="nlogo" href="#">
+  <a class="nlogo" href="#" onclick="event.preventDefault();if(window.scrollToTop)scrollToTop();history.replaceState(null,'',location.pathname);">
     <img id="logo-img" class="nlogo-img" src="" alt="">
     <span class="nlogo-text" id="logo-text">화미옥 김치찌개</span>
   </a>
@@ -1741,11 +1741,10 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
     bar.style.width = progress + '%';
   }, 30);
 
-  // 최소 2초는 보여주기
   const minTime = 3000;
   const startTime = Date.now();
 
-  function done() {
+  function close() {
     const elapsed = Date.now() - startTime;
     const wait = Math.max(0, minTime - elapsed);
     setTimeout(() => {
@@ -1756,11 +1755,29 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
     }, wait);
   }
 
+  // Adobe Fonts wf-active/wf-inactive 클래스 감지 → 폰트 로딩 완료 확인
+  function waitForFonts(cb) {
+    const html = document.documentElement;
+    if (html.classList.contains('wf-active') || html.classList.contains('wf-inactive')) {
+      cb(); return;
+    }
+    const obs = new MutationObserver(() => {
+      if (html.classList.contains('wf-active') || html.classList.contains('wf-inactive')) {
+        obs.disconnect(); cb();
+      }
+    });
+    obs.observe(html, { attributes: true, attributeFilter: ['class'] });
+    // 폰트 감지 최대 2.5초
+    setTimeout(() => { obs.disconnect(); cb(); }, 2500);
+  }
+
+  function done() { waitForFonts(close); }
+
   if (document.readyState === 'complete') {
     done();
   } else {
     window.addEventListener('load', done);
-    setTimeout(done, 5000); // 최대 5초
+    setTimeout(close, 6000); // 최대 6초 강제 종료
   }
 })();
 
@@ -1898,7 +1915,14 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
   let tgt = window.scrollY;
   let raf = null;
   const EASE = 0.1;
-  const MAX_DELTA = 120; // 한번에 너무 많이 튀지 않게
+  const MAX_DELTA = 120;
+
+  // 로고 클릭 등에서 최상단으로 강제 이동
+  window.scrollToTop = function() {
+    cur = 0; tgt = 0;
+    window.scrollTo(0, 0);
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+  };
 
   window.addEventListener('wheel', e => {
     e.preventDefault();
