@@ -637,7 +637,11 @@ body{padding-bottom:68px;}
   background:var(--dark2);
   display:flex;align-items:center;justify-content:center;
 }
-
+@media(max-width:900px){
+  .interior-grid{grid-template-columns:1fr;}
+  .interior-main-wrap{aspect-ratio:16/9;}
+  .interior-subs{grid-template-rows:none;grid-template-columns:1fr;}
+  .interior-sub-item{height:200px;}
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -663,7 +667,9 @@ body{padding-bottom:68px;}
 .logi-rd .logi-title{color:var(--ivory);}
 .logi-desc{font-size:16px;line-height:1.8;}
 .logi-iv .logi-desc{color:#4a1a20;}
-.logi-rd .logi-desc{color:rgba(252,231,216,.78);/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+.logi-rd .logi-desc{color:rgba(252,231,216,.78);}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
    LOGISTICS — DARK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #cost{background:var(--ivory);}
@@ -1747,9 +1753,21 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
       if (ov) ov.style.opacity = '.82';
     }
 
-    // 인테리어 사진 (logi 섹션 아래)
-    apply('interior-main', imgs.interior_main);
-    [0,1,2].forEach(i => apply(`interior-sub-${i}`, imgs[`interior_sub_${i}`]));
+    // 인테리어 사진
+    if (imgs.interior_main) {
+      const img = document.getElementById('interior-main');
+      const ph  = document.getElementById('interior-main-ph');
+      if (img) { img.src = imgs.interior_main; img.style.display = 'block'; }
+      if (ph)  ph.style.display = 'none';
+    }
+    [0,1,2].forEach(i => {
+      if (imgs[`interior_sub_${i}`]) {
+        const img = document.getElementById(`interior-sub-${i}`);
+        const ph  = document.getElementById(`interior-sub-ph-${i}`);
+        if (img) { img.src = imgs[`interior_sub_${i}`]; img.style.display = 'block'; }
+        if (ph)  ph.style.display = 'none';
+      }
+    });
 
     // 브랜드 비주얼
     apply('brand-visual-img', imgs.brand, 'bvf-ph');
