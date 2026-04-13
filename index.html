@@ -404,18 +404,39 @@ body{padding-bottom:68px;}
 .bb-card-title{font-family:var(--display-font);font-size:13px;font-weight:900;color:var(--ivory);letter-spacing:2px;margin-bottom:10px;}
 .bb-card-desc{font-size:13px;line-height:1.7;color:rgba(252,231,216,.72);}
 
+/* ── brandB 카드 동적 효과 ── */
+#brandB .rv.d2 > div{
+  position:relative;
+  overflow:hidden;
+  transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s;
+}
+#brandB .rv.d2 > div::before{
+  content:'';
+  position:absolute;inset:0;
+  background:rgba(255,255,255,0);
+  transition:background .35s;
+  z-index:0;pointer-events:none;
+}
+#brandB .rv.d2 > div:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 40px rgba(16,5,8,.25);
+  z-index:2;
+}
+#brandB .rv.d2 > div:hover::before{
+  background:rgba(255,255,255,.07);
+}
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
    SYSTEM — IVORY BG
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #system{background:var(--ivory);}
 .syg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(26,6,8,.12);}
 /* Cards 01,02 = DARK */
-.syc{background:var(--dark2);padding:54px 38px;position:relative;overflow:hidden;transition:background .3s;cursor:default;border-top:3px solid var(--red);}
+.syc{background:var(--dark2);padding:80px 44px;position:relative;overflow:hidden;transition:background .3s;cursor:default;border-top:3px solid var(--red);}
 .syc:hover{background:var(--dark3);}
-.syn{font-family:var(--display-font);font-size:60px;font-weight:900;color:rgba(175,29,51,.15);line-height:1;margin-bottom:26px;display:block;}
+.syn{font-family:var(--display-font);font-size:80px;font-weight:900;color:rgba(175,29,51,.15);line-height:1;margin-bottom:30px;display:block;}
 .syst{font-size:10px;letter-spacing:4px;color:rgba(252,231,216,.5);font-weight:700;text-transform:uppercase;margin-bottom:14px;}
-.syti{font-family:var(--display-font);font-size:21px;font-weight:700;color:var(--ivory);margin-bottom:14px;line-height:1.35;}
-.syp{font-size:13px;line-height:1.85;color:var(--tm);}
+.syti{font-family:var(--display-font);font-size:26px;font-weight:700;color:var(--ivory);margin-bottom:18px;line-height:1.35;}
+.syp{font-size:15px;line-height:1.85;color:var(--tm);}
 /* Card 03 = RED */
 .syc-red{background:var(--dark2);border-top:3px solid var(--red2);}
 .syc-red .syn{color:rgba(175,29,51,.2);}
@@ -466,14 +487,14 @@ body{padding-bottom:68px;}
   grid-template-rows:1fr auto;
 }
 .ld-lunch{
-  background:var(--dark2);padding:80px 60px 44px;
-  position:relative;overflow:hidden;
+  background:var(--dark2);padding:80px 60px 52px;
+  position:relative;
   border-right:1px solid rgba(252,231,216,.04);
   grid-column:1;grid-row:1;
 }
 .ld-dinner{
-  background:rgba(175,29,51,.14);padding:80px 60px 44px;
-  position:relative;overflow:hidden;
+  background:rgba(175,29,51,.14);padding:80px 60px 52px;
+  position:relative;
   border-left:2px solid rgba(175,29,51,.3);
   grid-column:2;grid-row:1;
 }
@@ -491,21 +512,21 @@ body{padding-bottom:68px;}
   border-top:1px solid rgba(252,231,216,.12);
   grid-column:2;grid-row:2;
 }
-.ld-ghost{position:absolute;top:-20px;right:-20px;font-family:var(--display-font);font-size:160px;font-weight:900;line-height:1;pointer-events:none;}
+.ld-ghost{display:none;}
 .ld-lunch .ld-ghost{color:rgba(175,29,51,.05);}
 .ld-dinner .ld-ghost{color:rgba(252,231,216,.04);}
-.ld-stag{font-size:10px;letter-spacing:5px;font-weight:700;text-transform:uppercase;margin-bottom:18px;position:relative;z-index:1;}
+.ld-stag{font-size:14px;letter-spacing:4px;font-weight:700;text-transform:uppercase;margin-bottom:22px;position:relative;z-index:1;}
 .ld-lunch .ld-stag{color:rgba(252,231,216,.65);}
 .ld-dinner .ld-stag{color:var(--ivory);opacity:.75;}
-.ld-h{font-family:var(--display-font);font-size:clamp(28px,3.5vw,46px);font-weight:900;line-height:1.15;margin-bottom:22px;position:relative;z-index:1;color:var(--ivory);}
+.ld-h{font-family:var(--display-font);font-size:clamp(36px,4.5vw,60px);font-weight:900;line-height:1.1;margin-bottom:26px;position:relative;z-index:1;color:var(--ivory);}
 .ld-lunch .ld-h .hl{color:var(--red3);}
 .ld-dinner .ld-h .hl{color:var(--ivory);}
-.ld-p{font-size:14px;line-height:1.9;color:rgba(252,231,216,.72);position:relative;z-index:1;}
+.ld-p{font-size:16px;line-height:1.9;color:rgba(252,231,216,.78);position:relative;z-index:1;}
 .ld-stats{display:flex;gap:24px;z-index:1;}
-.ld-stat-n{font-family:var(--display-font);font-size:28px;font-weight:900;color:var(--ivory);}
+.ld-stat-n{font-family:var(--display-font);font-size:36px;font-weight:900;color:var(--ivory);}
 .ld-stat-n em{font-size:14px;font-style:normal;opacity:.6;}
 .ld-stat-l{font-size:10px;letter-spacing:2px;color:var(--tm);}
-.ld-badge{font-size:11px;letter-spacing:2px;color:var(--ivory);opacity:.7;font-weight:700;}
+.ld-badge{font-size:14px;letter-spacing:2px;color:var(--ivory);opacity:.8;font-weight:700;}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
    1분 — DARK
@@ -532,22 +553,20 @@ body{padding-bottom:68px;}
    SUCCESS POINTS — IVORY/RED 교차
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #success{background:var(--ivory);}
-.sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding-bottom:130px;}
-/* 01, 03 = ivory */
-.sp-ivory{background:var(--ivory2);padding:72px 36px;position:relative;overflow:hidden;border-top:3px solid var(--red);transition:background .3s;cursor:default;}
+.sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.sp-ivory{background:var(--ivory2);padding:100px 40px 100px;position:relative;overflow:hidden;border-top:3px solid var(--red);transition:background .3s;cursor:default;}
 .sp-ivory:hover{background:var(--ivory);}
-.sp-num{font-family:var(--display-font);font-size:64px;font-weight:900;line-height:1;margin-bottom:4px;}
-.sp-ivory .sp-num{color:rgba(175,29,51,.12);}
-.sp-title{font-family:var(--display-font);font-size:18px;font-weight:700;margin-bottom:14px;word-break:keep-all;}
+.sp-num{font-family:var(--display-font);font-size:80px;font-weight:900;line-height:1;margin-bottom:20px;}
+.sp-ivory .sp-num{color:rgba(175,29,51,.1);}
+.sp-title{font-family:var(--display-font);font-size:22px;font-weight:700;margin-bottom:22px;word-break:keep-all;}
 .sp-ivory .sp-title{color:#1a0608;}
-.sp-desc{font-size:13px;line-height:1.85;word-break:keep-all;overflow-wrap:break-word;}
+.sp-desc{font-size:15px;line-height:1.9;word-break:keep-all;overflow-wrap:break-word;}
 .sp-ivory .sp-desc{color:#2a0608;font-weight:500;}
-/* 02, 04 = red */
-.sp-red{background:var(--red);padding:72px 36px;position:relative;overflow:hidden;border-top:3px solid var(--dark);transition:background .3s;cursor:default;}
+.sp-red{background:var(--red);padding:100px 40px 100px;position:relative;overflow:hidden;border-top:3px solid var(--dark);transition:background .3s;cursor:default;}
 .sp-red:hover{background:var(--red2);}
 .sp-red .sp-num{color:rgba(255,255,255,.1);}
 .sp-red .sp-title{color:var(--ivory);}
-.sp-red .sp-desc{color:rgba(252,231,216,.88);}
+.sp-red .sp-desc{color:rgba(252,231,216,.88);font-size:15px;}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
    MENU — 가로 스크롤 옥된장 스타일
@@ -591,25 +610,25 @@ body{padding-bottom:68px;}
    01,03=ivory / 02,04=red
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #logistics{background:var(--dark);}
-.logi-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(252,231,216,.06);}
-.logi-iv{background:var(--ivory);padding:50px 34px;position:relative;border-top:3px solid var(--red);transition:background .3s;cursor:default;}
+.logi-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(175,29,51,.12);}
+.logi-iv{background:var(--ivory);padding:90px 44px;position:relative;border-top:4px solid var(--red);transition:background .3s;cursor:default;}
 .logi-iv:hover{background:var(--ivory2);}
-.logi-rd{background:var(--red);padding:50px 34px;position:relative;border-top:3px solid var(--dark2);transition:background .3s;cursor:default;}
+.logi-rd{background:var(--red);padding:90px 44px;position:relative;border-top:4px solid var(--dark2);transition:background .3s;cursor:default;}
 .logi-rd:hover{background:var(--red2);}
-.logi-num{font-family:var(--display-font);font-size:52px;font-weight:900;line-height:1;margin-bottom:18px;}
-.logi-iv .logi-num{color:rgba(175,29,51,.1);}
+.logi-num{font-family:var(--display-font);font-size:88px;font-weight:900;line-height:1;margin-bottom:26px;}
+.logi-iv .logi-num{color:rgba(175,29,51,.12);}
 .logi-rd .logi-num{color:rgba(255,255,255,.1);}
 .logi-ico{width:52px;height:52px;margin-bottom:20px;position:relative;}
 .logi-ico-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:none;}
 .logi-ico svg{display:block;}
 
 .logi-ico:hover 
-.logi-title{font-family:var(--display-font);font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.35;}
+.logi-title{font-family:var(--display-font);font-size:26px;font-weight:700;margin-bottom:16px;line-height:1.35;}
 .logi-iv .logi-title{color:#1a0608;}
 .logi-rd .logi-title{color:var(--ivory);}
-.logi-desc{font-size:12px;line-height:1.8;}
+.logi-desc{font-size:16px;line-height:1.8;}
 .logi-iv .logi-desc{color:#4a1a20;}
-.logi-rd .logi-desc{color:rgba(252,231,216,.72);}
+.logi-rd .logi-desc{color:rgba(252,231,216,.78);}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
    COST — IVORY
@@ -1033,10 +1052,10 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
         <p class="sb rv d2" style="color:rgba(252,231,216,.68);">지역과 상권, 그리고 함께하는 모든 분들과 지속 가능한 성장을 이어가겠습니다. 언제 가도 변함없는 맛과 마음을 느낄 수 있는 곳, 그것이 화미옥이 지켜온 방향입니다.</p>
       </div>
         <div class="rv d2" style="display:grid;grid-template-columns:1fr 1fr;gap:2px;align-content:stretch;height:100%;">
-          <div style="background:var(--ivory);padding:36px 28px;border-top:3px solid var(--red);"><div style="font-family:var(--display-font);font-size:15px;font-weight:900;color:var(--red);letter-spacing:1px;margin-bottom:10px;">유행 불변</div><p style="font-size:13px;line-height:1.75;color:#1a0608;font-weight:500;">김치찌개는 유행이 아닌 한국인의 일상 그 자체입니다.</p></div>
-          <div style="background:var(--ivory2);padding:36px 28px;border-top:3px solid var(--red2);"><div style="font-family:var(--display-font);font-size:15px;font-weight:900;color:var(--red);letter-spacing:1px;margin-bottom:10px;">지역 밀착</div><p style="font-size:13px;line-height:1.75;color:#1a0608;font-weight:500;">화려한 상권보다 동네 단골 고객과 함께 성장합니다.</p></div>
-          <div style="background:var(--ivory2);padding:36px 28px;border-top:3px solid var(--red2);"><div style="font-family:var(--display-font);font-size:15px;font-weight:900;color:var(--red);letter-spacing:1px;margin-bottom:10px;">지속 가능</div><p style="font-size:13px;line-height:1.75;color:#1a0608;font-weight:500;">10년 이상 운영 매장들이 증명하는 안정적인 브랜드.</p></div>
-          <div style="background:var(--ivory);padding:36px 28px;border-top:3px solid var(--red);"><div style="font-family:var(--display-font);font-size:15px;font-weight:900;color:var(--red);letter-spacing:1px;margin-bottom:10px;">한결같은 맛</div><p style="font-size:13px;line-height:1.75;color:#1a0608;font-weight:500;">원팩 시스템으로 어디서든 37년 전통의 맛을 구현.</p></div>
+          <div style="background:var(--ivory);padding:44px 32px;border-top:3px solid var(--red);"><div style="font-family:var(--display-font);font-size:11px;letter-spacing:2px;color:rgba(175,29,51,.4);margin-bottom:6px;">01</div><div style="font-family:var(--display-font);font-size:20px;font-weight:900;color:var(--red);margin-bottom:14px;">유행 불변</div><p style="font-size:15px;line-height:1.8;color:#1a0608;font-weight:500;">김치찌개는 유행이 아닌 한국인의 일상 그 자체입니다.</p></div>
+          <div style="background:var(--ivory2);padding:44px 32px;border-top:3px solid var(--red2);"><div style="font-family:var(--display-font);font-size:11px;letter-spacing:2px;color:rgba(175,29,51,.4);margin-bottom:6px;">02</div><div style="font-family:var(--display-font);font-size:20px;font-weight:900;color:var(--red);margin-bottom:14px;">지역 밀착</div><p style="font-size:15px;line-height:1.8;color:#1a0608;font-weight:500;">화려한 상권보다 동네 단골 고객과 함께 성장합니다.</p></div>
+          <div style="background:var(--ivory2);padding:44px 32px;border-top:3px solid var(--red2);"><div style="font-family:var(--display-font);font-size:11px;letter-spacing:2px;color:rgba(175,29,51,.4);margin-bottom:6px;">03</div><div style="font-family:var(--display-font);font-size:20px;font-weight:900;color:var(--red);margin-bottom:14px;">지속 가능</div><p style="font-size:15px;line-height:1.8;color:#1a0608;font-weight:500;">10년 이상 운영 매장들이 증명하는 안정적인 브랜드.</p></div>
+          <div style="background:var(--ivory);padding:44px 32px;border-top:3px solid var(--red);"><div style="font-family:var(--display-font);font-size:11px;letter-spacing:2px;color:rgba(175,29,51,.4);margin-bottom:6px;">04</div><div style="font-family:var(--display-font);font-size:20px;font-weight:900;color:var(--red);margin-bottom:14px;">한결같은 맛</div><p style="font-size:15px;line-height:1.8;color:#1a0608;font-weight:500;">원팩 시스템으로 어디서든 37년 전통의 맛을 구현.</p></div>
         </div>
     </div>
   </div>
@@ -1141,8 +1160,8 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 <section id="system" style="background:var(--ivory);padding:80px 0 0;">
   <div class="con" style="text-align:center;padding-bottom:56px;">
     <div class="stag rv" style="color:var(--red2);justify-content:center;">03 · 원팩 조리 시스템</div>
-    <h2 class="sh rv d1" style="color:#1a0608;">넣고,<br>끓이기만 하면 <span class="stamp">끝.</span></h2>
-    <p class="sb rv d2" style="color:#5a2a20;max-width:560px;margin:0 auto;">본사에서 직접 개발한 특제 비법 소스, 표준화된 레시피로 전문 자격증이나 경력 없는 초보자도 동일한 맛을 구현합니다.</p>
+    <h2 class="sh rv d1" style="color:#1a0608;">홀 매출에 필요한<br>메뉴 준비 시간 <span class="stamp">1분.</span></h2>
+    <p class="sb rv d2" style="color:#5a2a20;max-width:560px;margin:0 auto;">재료 담고, 육수 붓고, 끓이기만 하면 끝. 본사 원팩 시스템으로 전문 자격 없이도 동일한 맛을 구현합니다.</p>
   </div>
   <div class="syg">
     <!-- 01: 흰색 배경 -->
@@ -1180,20 +1199,6 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
       </div>
       <div class="syti" style="color:var(--ivory);">끓이기만 하면<br>조리 끝!</div>
       <p class="syp" style="color:rgba(252,231,216,.78);">그게 전부입니다. 간소화된 조리 공정으로 누구든 화미옥의 맛을 그대로 구현할 수 있습니다.</p>
-    </div>
-  </div>
-  <!-- 1분 — 합쳐진 파트 -->
-  <div style="background:var(--dark2);padding:80px 0;text-align:center;border-top:1px solid rgba(26,6,8,.12);">
-    <div class="con">
-      <p style="font-size:11px;letter-spacing:4px;color:rgba(252,231,216,.4);text-transform:uppercase;margin-bottom:16px;">홀 매출에 필요한 메뉴 준비 시간</p>
-      <div class="om-num" id="om-num">0<span>분</span></div>
-      <div class="om-steps" style="margin-top:32px;">
-        <div class="om-step"><div class="om-step-label">STEP 01</div><div class="om-step-text">재료 담고</div></div>
-        <div class="om-arrow">→</div>
-        <div class="om-step"><div class="om-step-label">STEP 02</div><div class="om-step-text">육수 붓고</div></div>
-        <div class="om-arrow">→</div>
-        <div class="om-step"><div class="om-step-label">DONE</div><div class="om-step-text">끝</div></div>
-      </div>
     </div>
   </div>
 </section>
@@ -1350,52 +1355,52 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 </section>
 
 <!-- LOGISTICS — DARK -->
-<section id="logistics" style="background:var(--dark);padding:80px 0 0;">
+<section id="logistics" style="background:var(--ivory);padding:80px 0 0;">
   <div class="con" style="text-align:center;padding-bottom:56px;">
-    <div class="stag stag-light rv" style="justify-content:center;">04 · 물류 배송</div>
-    <h2 class="sh rv d1" style="color:var(--ivory);">안전한<br><span style="color:var(--ivory);opacity:.55">공급 시스템</span></h2>
-    <p class="sb rv d2" style="color:var(--tm);max-width:560px;margin:0 auto;">업계 최대 규모 첨단 설비의 콜드체인 물류 시스템. 삼성웰스토리와 함께하는 전국 물류 네트워크로 모든 가맹점에 동일한 품질을 안정 공급합니다.</p>
+    <div class="stag rv" style="color:var(--red2);justify-content:center;">04 · 물류 배송</div>
+    <h2 class="sh rv d1" style="color:#1a0608;">안전한<br><span style="color:var(--red);">공급 시스템</span></h2>
+    <p class="sb rv d2" style="color:#4a1a20;max-width:560px;margin:0 auto;">업계 최대 규모 첨단 설비의 콜드체인 물류 시스템. 삼성웰스토리와 함께하는 전국 물류 네트워크로 모든 가맹점에 동일한 품질을 안정 공급합니다.</p>
   </div>
   <div class="logi-cards">
     <!-- 01 IVORY -->
-    <div class="logi-iv rv d2">
+    <div class="logi-rd rv d2">
       <div class="logi-num">01</div>
       <div class="logi-ico">
         <img id="logi-ico-0" class="logi-ico-img" src="" alt="">
-        <svg id="lis0" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#1a0608" stroke-width="1.2" style="opacity:.65;"><rect x="4" y="12" width="24" height="18" rx="2"/><path d="M28 16h4l4 6v6h-8V16z"/><circle cx="10" cy="32" r="3"/><circle cx="32" cy="32" r="3"/></svg>
+        <svg id="lis0" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--ivory)" stroke-width="1.5" style="opacity:.75;"><rect x="4" y="12" width="24" height="18" rx="2"/><path d="M28 16h4l4 6v6h-8V16z"/><circle cx="10" cy="32" r="3"/><circle cx="32" cy="32" r="3"/></svg>
         
       </div>
       <div class="logi-title">삼성웰스토리<br>콜드체인 물류</div>
       <p class="logi-desc">식자재 입고, 보관, 배송까지 전 과정 적정온도 유지</p>
     </div>
     <!-- 02 RED -->
-    <div class="logi-rd rv d3">
+    <div class="logi-iv rv d3">
       <div class="logi-num">02</div>
       <div class="logi-ico">
         <img id="logi-ico-1" class="logi-ico-img" src="" alt="">
-        <svg id="lis1" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--ivory)" stroke-width="1.2" style="opacity:.75;"><path d="M20 4 L36 12 L36 28 L20 36 L4 28 L4 12 Z"/><path d="M20 4 L20 36M4 12 L36 12M4 28 L36 28" opacity=".4"/></svg>
+        <svg id="lis1" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--red)" stroke-width="1.5" style="opacity:.7;"><path d="M20 4 L36 12 L36 28 L20 36 L4 28 L4 12 Z"/><path d="M20 4 L20 36M4 12 L36 12M4 28 L36 28" opacity=".4"/></svg>
         
       </div>
       <div class="logi-title">HACCP 인증<br>가공 공장</div>
       <p class="logi-desc">김치·육류 전문 공장 생산, 최상 품질 기준 충족</p>
     </div>
     <!-- 03 IVORY -->
-    <div class="logi-iv rv d4">
+    <div class="logi-rd rv d4">
       <div class="logi-num">03</div>
       <div class="logi-ico">
         <img id="logi-ico-2" class="logi-ico-img" src="" alt="">
-        <svg id="lis2" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#1a0608" stroke-width="1.2" style="opacity:.65;"><circle cx="20" cy="20" r="15"/><path d="M20 8 L20 20 L28 26" stroke-linecap="round"/><circle cx="20" cy="20" r="2" fill="#1a0608" opacity=".4"/></svg>
+        <svg id="lis2" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--ivory)" stroke-width="1.5" style="opacity:.75;"><circle cx="20" cy="20" r="15"/><path d="M20 8 L20 20 L28 26" stroke-linecap="round"/><circle cx="20" cy="20" r="2" fill="var(--ivory)" opacity=".4"/></svg>
         
       </div>
       <div class="logi-title">찌개 최적화<br>숙성 기준</div>
       <p class="logi-desc">전 가맹점 동일 품질로 깊고 안정적인 맛 유지</p>
     </div>
     <!-- 04 RED -->
-    <div class="logi-rd rv d5">
+    <div class="logi-iv rv d5">
       <div class="logi-num">04</div>
       <div class="logi-ico">
         <img id="logi-ico-3" class="logi-ico-img" src="" alt="">
-        <svg id="lis3" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--ivory)" stroke-width="1.2" style="opacity:.75;"><circle cx="20" cy="20" r="14"/><path d="M10 20 C10 14 14 10 20 10 C26 10 30 14 30 20" opacity=".5"/><path d="M8 24h4M28 24h4" stroke-linecap="round"/></svg>
+        <svg id="lis3" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="var(--red)" stroke-width="1.5" style="opacity:.7;"><circle cx="20" cy="20" r="14"/><path d="M10 20 C10 14 14 10 20 10 C26 10 30 14 30 20" opacity=".5"/><path d="M8 24h4M28 24h4" stroke-linecap="round"/></svg>
         
       </div>
       <div class="logi-title">전국 동일<br>품질 공급</div>
