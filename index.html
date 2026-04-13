@@ -760,7 +760,49 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 .ftel{font-family:var(--display-font);font-size:26px;font-weight:900;color:var(--ivory);margin-bottom:6px;}
 .fcp{font-size:10px;color:rgba(252,231,216,.18);margin-top:18px;}
 
-/* REVEAL */
+/* ── LOADER ── */
+#loader{
+  position:fixed;inset:0;z-index:99999;
+  background:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .9s ease, visibility .9s ease;
+}
+#loader.hide{opacity:0;visibility:hidden;}
+.loader-inner{text-align:center;display:flex;flex-direction:column;align-items:center;}
+.loader-tag{
+  font-size:11px;letter-spacing:5px;
+  color:rgba(252,231,216,.4);
+  text-transform:uppercase;
+  margin-bottom:20px;
+  animation:loader-fade-in .7s .2s ease forwards;
+  opacity:0;
+}
+.loader-logo{
+  font-family:var(--display-font);
+  font-size:clamp(36px,6vw,68px);
+  font-weight:400;
+  color:var(--ivory);
+  line-height:1.1;
+  margin-bottom:48px;
+  animation:loader-fade-in .9s .5s ease forwards;
+  opacity:0;
+}
+.loader-name{display:none;}
+.loader-bar-wrap{
+  width:200px;height:1px;
+  background:rgba(252,231,216,.1);
+  border-radius:1px;
+  overflow:hidden;
+}
+.loader-bar{
+  height:100%;width:0%;
+  background:var(--red);
+  transition:width .1s linear;
+}
+@keyframes loader-fade-in{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
 .rv{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
 .rv.on{opacity:1;transform:translateY(0);}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
@@ -851,8 +893,8 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
   .rc:nth-child(2){margin-top:0;}
 
   /* success */
-  .sp-grid{grid-template-columns:1fr 1fr;}
-  .sp-ivory,.sp-red{padding:44px 24px;}
+  .sp-grid{grid-template-columns:1fr;}
+  .sp-ivory,.sp-red{padding:56px 28px;}
   /* brandB cards */
   #brandB .rv.d2{grid-template-columns:1fr!important;}
   #brandB .bb-grid{grid-template-columns:1fr;}
@@ -930,6 +972,14 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 </style>
 </head>
 <body>
+<!-- ── 로딩 스크린 ── -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-tag">SINCE 1987 · 한식의 대가</div>
+    <div class="loader-logo">화미옥 김치찌개</div>
+    <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+  </div>
+</div>
 <div id="cur"></div>
 <div id="cur2"></div>
 
@@ -1678,6 +1728,42 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 </div>
 
 <script>
+// ── LOADER ──
+(function(){
+  const loader = document.getElementById('loader');
+  const bar = document.getElementById('loaderBar');
+  if (!loader || !bar) return;
+
+  let progress = 0;
+  const tick = setInterval(() => {
+    const step = progress < 60 ? 1.2 : progress < 85 ? 0.5 : 0.2;
+    progress = Math.min(progress + step, 92);
+    bar.style.width = progress + '%';
+  }, 30);
+
+  // 최소 2초는 보여주기
+  const minTime = 3000;
+  const startTime = Date.now();
+
+  function done() {
+    const elapsed = Date.now() - startTime;
+    const wait = Math.max(0, minTime - elapsed);
+    setTimeout(() => {
+      clearInterval(tick);
+      bar.style.transition = 'width .4s ease';
+      bar.style.width = '100%';
+      setTimeout(() => loader.classList.add('hide'), 500);
+    }, wait);
+  }
+
+  if (document.readyState === 'complete') {
+    done();
+  } else {
+    window.addEventListener('load', done);
+    setTimeout(done, 5000); // 최대 5초
+  }
+})();
+
 // ── IMAGES.JSON 로더 ──
 (async function loadImages() {
   try {
