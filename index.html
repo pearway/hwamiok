@@ -606,7 +606,42 @@ body{padding-bottom:68px;}
 .hmenu-desc{font-size:11px;color:rgba(252,231,216,.6);text-align:center;line-height:1.6;word-break:keep-all;max-width:150px;}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   LOGISTICS — DARK
+   INTERIOR — 사진 그리드
+━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.interior-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  align-items:stretch;
+}
+.interior-main-wrap{
+  aspect-ratio:1/1;
+  overflow:hidden;
+  border-radius:4px;
+  background:var(--dark2);
+  position:relative;
+}
+.interior-subs{
+  display:grid;
+  grid-template-rows:repeat(3,1fr);
+  gap:16px;
+}
+.interior-sub-item{
+  overflow:hidden;
+  border-radius:4px;
+  background:var(--dark3);
+  position:relative;
+}
+.interior-ph{
+  position:absolute;inset:0;
+  background:var(--dark2);
+  display:flex;align-items:center;justify-content:center;
+}
+
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   COST — IVORY
    01,03=ivory / 02,04=red
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #logistics{background:var(--dark);}
@@ -628,10 +663,8 @@ body{padding-bottom:68px;}
 .logi-rd .logi-title{color:var(--ivory);}
 .logi-desc{font-size:16px;line-height:1.8;}
 .logi-iv .logi-desc{color:#4a1a20;}
-.logi-rd .logi-desc{color:rgba(252,231,216,.78);}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   COST — IVORY
+.logi-rd .logi-desc{color:rgba(252,231,216,.78);/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   LOGISTICS — DARK
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 #cost{background:var(--ivory);}
 .ct{width:100%;border-collapse:collapse;margin-top:52px;}
@@ -1330,26 +1363,33 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 </section>
 
 <!-- INTERIOR — DARK2 -->
-<section id="interior" style="background:var(--dark);padding:80px 0 0;">
+<section id="interior" style="background:var(--dark);padding:80px 0 80px;">
   <div class="con" style="text-align:center;padding-bottom:48px;">
     <div class="stag stag-light rv" style="justify-content:center;">화미옥 매장</div>
     <h2 class="sh rv d1" style="color:var(--ivory);">화미옥의 <span style="color:var(--red3)">공간</span></h2>
   </div>
-  <!-- 메인 사진 -->
-  <div style="position:relative;height:55vh;min-height:320px;overflow:hidden;background:var(--dark2);">
-    <img id="interior-main" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(16,5,8,.7));z-index:1;pointer-events:none;"></div>
-  </div>
-  <!-- 서브 3개 -->
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(252,231,216,.04);">
-    <div style="height:220px;overflow:hidden;background:var(--dark2);position:relative;">
-      <img id="interior-sub-0" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
-    </div>
-    <div style="height:220px;overflow:hidden;background:var(--dark3);position:relative;">
-      <img id="interior-sub-1" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
-    </div>
-    <div style="height:220px;overflow:hidden;background:var(--dark2);position:relative;">
-      <img id="interior-sub-2" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
+  <div class="con">
+    <div class="interior-grid rv">
+      <!-- 왼쪽: 정사각형 메인 -->
+      <div class="interior-main-wrap">
+        <img id="interior-main" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
+        <div class="interior-ph" id="interior-main-ph"></div>
+      </div>
+      <!-- 오른쪽: 가로로 3개 세로 나열 -->
+      <div class="interior-subs">
+        <div class="interior-sub-item">
+          <img id="interior-sub-0" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
+          <div class="interior-ph" id="interior-sub-ph-0"></div>
+        </div>
+        <div class="interior-sub-item">
+          <img id="interior-sub-1" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
+          <div class="interior-ph" id="interior-sub-ph-1"></div>
+        </div>
+        <div class="interior-sub-item">
+          <img id="interior-sub-2" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
+          <div class="interior-ph" id="interior-sub-ph-2"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
