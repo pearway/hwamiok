@@ -63,16 +63,23 @@ var changes = 0;
 
 var sections = [
   {
-    title:'🎬 히어로 & 배경',
+    title:'🎬 히어로 (메인 첫 화면)',
+    note:'페이지 맨 처음 나오는 전체 배경 영상/이미지',
     items:[
-      {key:'brand-visual-img', desc:'37년이 증명한다 원형 사진'},
-      {key:'suitable-bg',      desc:'이런분께 딱입니다 배경'},
-      {key:'importance-bg',    desc:'본사 중요성 섹션 배경'},
-      {key:'process-bg',       desc:'창업 절차 배경'},
+      {key:'hero_video',       desc:'★ 메인 배경 영상 또는 이미지'},
+      {key:'brand-visual-img', desc:'37년이 증명한다 — 원형 대표 사진'},
     ]
   },
   {
-    title:'🍲 1분 조리 스텝',
+    title:'✅ 이런분께 딱입니다 배경',
+    note:'"처음이든, 경험이 있든 화미옥이 정답" 체크리스트 섹션 배경',
+    items:[
+      {key:'suitable-bg', desc:'★ 이런분께 딱입니다 섹션 배경 (흐릿하게 표시)'},
+    ]
+  },
+  {
+    title:'🍲 단 1분이면 끝 — 조리 스텝',
+    note:'"재료 담고, 육수 붓고, 끓이면 끝" 3단계 카드 사진',
     items:[
       {key:'step-img-0', desc:'STEP 01 — 육수 넣기'},
       {key:'step-img-1', desc:'STEP 02 — 식재료 넣기'},
@@ -80,54 +87,81 @@ var sections = [
     ]
   },
   {
-    title:'☀️🌙 점심 / 저녁',
+    title:'☀️🌙 낮에는 식사 / 밤에는 반주',
+    note:'페이지 중간 점심·저녁 2분할 섹션 배경',
     items:[
-      {key:'lunch-bg',  desc:'점심 섹션 배경'},
-      {key:'dinner-bg', desc:'저녁 섹션 배경'},
+      {key:'lunch-bg',  desc:'★ 점심 섹션 배경 (밝은 톤)'},
+      {key:'dinner-bg', desc:'★ 저녁 섹션 배경 (어두운 톤)'},
     ]
   },
   {
-    title:'🏆 성공 포인트',
+    title:'🏆 화미옥의 성공 포인트',
+    note:'슬라이더 4장 — 왜 김치찌개인가, 왜 37년인가, 왜 원팩인가, 왜 지금인가',
     items:[
-      {key:'why-img-0', desc:'성공포인트 01'},
-      {key:'why-img-1', desc:'성공포인트 02'},
-      {key:'why-img-2', desc:'성공포인트 03'},
-      {key:'why-img-3', desc:'성공포인트 04'},
+      {key:'why-img-0', desc:'카드 01 — 왜 김치찌개인가'},
+      {key:'why-img-1', desc:'카드 02 — 왜 37년인가'},
+      {key:'why-img-2', desc:'카드 03 — 왜 원팩인가'},
+      {key:'why-img-3', desc:'카드 04 — 왜 지금인가'},
     ]
   },
   {
     title:'🥘 메뉴 이미지',
-    note:'김치찌개(0) · 볶음/돈까스(1) · 김치찜(2) · 사이드(3)',
+    note:'탭별 메뉴 원형 사진 — 김치찌개(0), 볶음/돈까스(1), 김치찜(2), 사이드(3)',
     items:[
-      {key:'hm-0-0',desc:'돼지 김치찌개'},{key:'hm-0-1',desc:'부대 김치찌개'},
-      {key:'hm-0-2',desc:'참치 김치찌개'},{key:'hm-0-3',desc:'돈까스 김치찌개'},
-      {key:'hm-1-0',desc:'고추장 제육볶음'},{key:'hm-1-1',desc:'간장 돼지불고기'},{key:'hm-1-2',desc:'등심돈까스'},
-      {key:'hm-2-0',desc:'돼지 김치찜'},{key:'hm-2-1',desc:'부대 김치찜'},
-      {key:'hm-3-0',desc:'햄구이'},{key:'hm-3-1',desc:'계란말이'},
-      {key:'hm-3-2',desc:'김치말이국수'},{key:'hm-3-3',desc:'주먹밥'},
+      {key:'hm-0-0',desc:'김치찌개 탭 — 돼지 김치찌개'},
+      {key:'hm-0-1',desc:'김치찌개 탭 — 부대 김치찌개'},
+      {key:'hm-0-2',desc:'김치찌개 탭 — 참치 김치찌개'},
+      {key:'hm-0-3',desc:'김치찌개 탭 — 돈까스 김치찌개'},
+      {key:'hm-1-0',desc:'볶음 탭 — 고추장 제육볶음'},
+      {key:'hm-1-1',desc:'볶음 탭 — 간장 돼지불고기'},
+      {key:'hm-1-2',desc:'볶음 탭 — 등심돈까스'},
+      {key:'hm-2-0',desc:'김치찜 탭 — 돼지 김치찜'},
+      {key:'hm-2-1',desc:'김치찜 탭 — 부대 김치찜'},
+      {key:'hm-3-0',desc:'사이드 탭 — 햄구이'},
+      {key:'hm-3-1',desc:'사이드 탭 — 계란말이'},
+      {key:'hm-3-2',desc:'사이드 탭 — 김치말이국수'},
+      {key:'hm-3-3',desc:'사이드 탭 — 주먹밥'},
     ]
   },
   {
-    title:'🏠 인테리어',
+    title:'🏠 화미옥의 공간 (인테리어)',
+    note:'자동 롤링되는 매장 인테리어 사진',
     items:[
-      {key:'interior-main',  desc:'인테리어 메인'},
-      {key:'interior-sub-0', desc:'인테리어 서브 1'},
-      {key:'interior-sub-1', desc:'인테리어 서브 2'},
-      {key:'interior-sub-2', desc:'인테리어 서브 3'},
+      {key:'interior-main',  desc:'인테리어 메인 대표 사진'},
+      {key:'interior-sub-0', desc:'인테리어 서브 사진 1'},
+      {key:'interior-sub-1', desc:'인테리어 서브 사진 2'},
+      {key:'interior-sub-2', desc:'인테리어 서브 사진 3'},
     ]
   },
   {
-    title:'⭐ 리뷰 사진',
-    note:'모바일 슬라이더 4장',
+    title:'⭐ 소비자가 증명한 솔직 후기',
+    note:'모바일 슬라이더 리뷰 카드 사진 4장',
     items:[
-      {key:'review-img-0',desc:'리뷰 1'},{key:'review-img-1',desc:'리뷰 2'},
-      {key:'review-img-2',desc:'리뷰 3'},{key:'review-img-3',desc:'리뷰 4'},
+      {key:'review-img-0',desc:'리뷰 카드 1번'},
+      {key:'review-img-1',desc:'리뷰 카드 2번'},
+      {key:'review-img-2',desc:'리뷰 카드 3번'},
+      {key:'review-img-3',desc:'리뷰 카드 4번'},
     ]
   },
   {
-    title:'🔥 브랜드',
+    title:'🔥 37년이 증명한다 (브랜드 스토리)',
+    note:'"1987년부터 끓여온 그 맛" 브랜드 섹션 배경',
     items:[
-      {key:'brandA-bg', desc:'37년 증명한다 배경'},
+      {key:'brandA-bg', desc:'★ 37년 증명한다 섹션 배경 (흐릿하게 표시)'},
+    ]
+  },
+  {
+    title:'🏢 막막한 창업 초기, 본사가 함께합니다',
+    note:'본사 지원 중요성 섹션 배경',
+    items:[
+      {key:'importance-bg', desc:'★ 본사 중요성 섹션 배경 (흐릿하게 표시)'},
+    ]
+  },
+  {
+    title:'📋 창업 절차',
+    note:'10단계 창업 절차 섹션 배경',
+    items:[
+      {key:'process-bg', desc:'★ 창업 절차 섹션 배경 (흐릿하게 표시)'},
     ]
   },
 ];

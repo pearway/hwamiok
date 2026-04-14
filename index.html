@@ -418,10 +418,13 @@ body{padding-bottom:120px;}
 
 <!-- HERO -->
 <section id="hero">
+  <video id="hero-video" autoplay muted loop playsinline style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.2s;"></video>
+  <img id="hero-img-bg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.2s;">
+  <div id="hero-overlay" style="display:none;position:absolute;inset:0;background:rgba(10,10,10,.6);z-index:1;pointer-events:none;"></div>
   <div class="hero-grid"></div>
   <div class="hero-spot"></div>
   <div class="hero-spot2"></div>
-  <div class="hero-body">
+  <div class="hero-body" style="position:relative;z-index:2;">
     <p class="hero-since">SINCE 1987 · 석관동 원조 · 한식의 대가</p>
     <h1 class="hero-h">
       <span class="line1">석관동에서</span>
@@ -912,6 +915,22 @@ body{padding-bottom:120px;}
       if(grad) grad.style.display='none';
     }
   });
+})();
+
+
+// 히어로 배경 영상/이미지
+(function(){
+  if(!window.imagesData) return;
+  var v = window.imagesData.hero_video;
+  if(!v) return;
+  var isVideo = v.startsWith('data:video') || v.match(/\.(mp4|webm|mov)/i);
+  if(isVideo){
+    var vid = document.getElementById('hero-video');
+    if(vid){vid.src=v;vid.style.display='block';vid.addEventListener('canplay',function(){vid.style.opacity='1';});var ov=document.getElementById('hero-overlay');if(ov)ov.style.display='block';}
+  } else {
+    var img = document.getElementById('hero-img-bg');
+    if(img){img.src=v;img.style.display='block';setTimeout(function(){img.style.opacity='1';},100);var ov=document.getElementById('hero-overlay');if(ov)ov.style.display='block';}
+  }
 })();
 
 // NAV
