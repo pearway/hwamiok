@@ -3,329 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>화미옥 어드민 — 이미지 관리</title>
+<title>화미옥 어드민</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--r:#D4001A;--blk:#0A0A0A;--blk2:#111;--blk3:#1A1A1A;}
+:root{--r:#D4001A;--blk:#0A0A0A;}
 body{background:#f5f5f5;font-family:'Noto Sans KR',sans-serif;font-weight:300;color:#1a1a1a;}
 header{background:var(--r);color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(212,0,26,.3);}
-.header-title{font-size:18px;font-weight:700;letter-spacing:-.01em;}
-.header-sub{font-size:11px;opacity:.7;margin-top:2px;}
-.save-btn{background:#fff;color:var(--r);border:none;padding:10px 24px;border-radius:4px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;}
-.save-btn:hover{background:var(--blk);color:#fff;}
-.container{max-width:1100px;margin:0 auto;padding:24px 20px 60px;}
-.section{background:#fff;border-radius:10px;margin-bottom:20px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);}
-.section-head{padding:16px 20px;background:var(--blk);display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;}
-.section-head h2{color:#fff;font-size:14px;font-weight:700;letter-spacing:.5px;}
-.section-head .count{background:var(--r);color:#fff;font-size:10px;padding:2px 8px;border-radius:100px;font-weight:700;}
-.section-head .arrow{color:rgba(255,255,255,.5);margin-left:auto;transition:transform .3s;}
-.section-head.open .arrow{transform:rotate(180deg);}
-.section-body{padding:20px;display:none;}
-.section-body.open{display:block;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
-.img-item{border:2px solid #e8e8e8;border-radius:8px;overflow:hidden;transition:border-color .2s;}
-.img-item:hover{border-color:var(--r);}
-.img-preview{width:100%;aspect-ratio:1;background:#f0f0f0;position:relative;overflow:hidden;cursor:pointer;}
-.img-preview img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
-.img-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#bbb;}
-.img-placeholder svg{opacity:.4;}
-.img-placeholder span{font-size:10px;letter-spacing:1px;}
-.img-has{border-color:#4caf50 !important;}
-.img-has .img-placeholder{display:none;}
-.img-meta{padding:10px 12px;}
-.img-key{font-size:11px;font-weight:700;color:var(--r);margin-bottom:3px;font-family:monospace;}
-.img-desc{font-size:11px;color:#888;line-height:1.5;}
-.img-actions{display:flex;gap:6px;margin-top:8px;}
-.btn-upload{flex:1;background:var(--r);color:#fff;border:none;padding:7px;font-size:11px;border-radius:3px;cursor:pointer;font-family:inherit;}
-.btn-remove{background:#f5f5f5;color:#888;border:1px solid #ddd;padding:7px 10px;font-size:11px;border-radius:3px;cursor:pointer;font-family:inherit;}
-.btn-remove:hover{background:#fee;color:var(--r);border-color:var(--r);}
+.ht{font-size:18px;font-weight:700;}.hs{font-size:11px;opacity:.7;margin-top:2px;}
+.save-btn{background:#fff;color:var(--r);border:none;padding:10px 24px;border-radius:4px;font-size:13px;font-weight:700;cursor:pointer;}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px 80px;}
+.section{background:#fff;border-radius:10px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.sh{padding:14px 20px;background:var(--blk);display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;}
+.sh h2{color:#fff;font-size:14px;font-weight:700;}
+.sh .cnt{background:var(--r);color:#fff;font-size:10px;padding:2px 8px;border-radius:100px;font-weight:700;}
+.sh .arr{color:rgba(255,255,255,.4);margin-left:auto;transition:transform .3s;}
+.sh.open .arr{transform:rotate(180deg);}
+.sb{padding:20px;display:none;}
+.sb.open{display:block;}
+.note{font-size:11px;color:#999;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f0f0f0;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;}
+.ii{border:2px solid #e8e8e8;border-radius:8px;overflow:hidden;transition:border-color .2s;}
+.ii:hover{border-color:var(--r);}
+.ii.has{border-color:#4caf50;}
+.prev{width:100%;aspect-ratio:1;background:#f0f0f0;position:relative;overflow:hidden;cursor:pointer;}
+.prev img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#ccc;}
+.ph span{font-size:9px;letter-spacing:1px;}
+.ii.has .ph{display:none;}
+.meta{padding:9px 11px;}
+.key{font-size:10px;font-weight:700;color:var(--r);margin-bottom:2px;font-family:monospace;}
+.desc{font-size:10px;color:#888;}
+.acts{display:flex;gap:5px;margin-top:7px;}
+.bu{flex:1;background:var(--r);color:#fff;border:none;padding:6px;font-size:10px;border-radius:3px;cursor:pointer;font-family:inherit;}
+.br{background:#f5f5f5;color:#999;border:1px solid #ddd;padding:6px 9px;font-size:10px;border-radius:3px;cursor:pointer;font-family:inherit;}
+.br:hover{background:#fee;color:var(--r);}
 input[type=file]{display:none;}
-.toast{position:fixed;bottom:24px;right:24px;background:var(--blk);color:#fff;padding:12px 20px;border-radius:6px;font-size:13px;z-index:9999;transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;}
+.toast{position:fixed;bottom:80px;right:20px;background:var(--blk);color:#fff;padding:10px 18px;border-radius:5px;font-size:12px;z-index:9999;transform:translateY(60px);opacity:0;transition:all .3s;pointer-events:none;}
 .toast.show{transform:none;opacity:1;}
-.save-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:3px solid var(--r);padding:12px 24px;display:flex;align-items:center;justify-content:between;gap:16px;box-shadow:0 -4px 20px rgba(0,0,0,.1);z-index:50;}
-.save-bar-info{flex:1;font-size:12px;color:#888;}
-.save-bar-info strong{color:var(--r);}
-.preview-modal{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;}
-.preview-modal.show{display:flex;}
-.pm-img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:6px;}
-.pm-close{position:absolute;top:20px;right:24px;color:#fff;font-size:32px;cursor:pointer;line-height:1;}
-.section-note{font-size:11px;color:#999;padding:0 20px 12px;border-bottom:1px solid #f0f0f0;margin-bottom:16px;}
-@media(min-width:768px){.grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}}
+.savebar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:3px solid var(--r);padding:10px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 -4px 16px rgba(0,0,0,.08);z-index:50;}
+.sb-info{flex:1;font-size:12px;color:#888;}.sb-info strong{color:var(--r);}
+@media(min-width:768px){.grid{grid-template-columns:repeat(auto-fill,minmax:220px,1fr));}}
 </style>
 </head>
 <body>
 <header>
-  <div><div class="header-title">화미옥 어드민</div><div class="header-sub">이미지 관리 · images.json 생성</div></div>
+  <div><div class="ht">화미옥 어드민</div><div class="hs">이미지 관리 · images.json 생성</div></div>
   <button class="save-btn" onclick="saveAll()">💾 JSON 저장</button>
 </header>
-
-<div class="container">
-
-<!-- 히어로 -->
-<div class="section">
-  <div class="section-head open" onclick="toggleSection(this)">
-    <h2>🎬 히어로 & 공통</h2><span class="count">3</span><span class="arrow">▼</span>
-  </div>
-  <div class="section-body open">
-    <p class="section-note">히어로 배경 영상, 브랜드 대표 이미지</p>
-    <div class="grid">
-      <div class="img-item" id="item-hero_video"><div class="img-preview" onclick="triggerUpload('hero_video')"><img id="prev-hero_video" src="" style="display:none;"><div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><span>VIDEO / IMAGE</span></div></div><div class="img-meta"><div class="img-key">hero_video</div><div class="img-desc">히어로 배경 영상 또는 이미지</div><div class="img-actions"><button class="btn-upload" onclick="triggerUpload('hero_video')">업로드</button><button class="btn-remove" onclick="removeImg('hero_video')">삭제</button></div></div><input type="file" id="file-hero_video" accept="image/*,video/*" onchange="handleFile(this,'hero_video')"></div>
-      <div class="img-item" id="item-brand-visual-img"><div class="img-preview" onclick="triggerUpload('brand-visual-img')"><img id="prev-brand-visual-img" src="" style="display:none;"><div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>BRAND IMAGE</span></div></div><div class="img-meta"><div class="img-key">brand-visual-img</div><div class="img-desc">37년이 증명한다 원형 사진</div><div class="img-actions"><button class="btn-upload" onclick="triggerUpload('brand-visual-img')">업로드</button><button class="btn-remove" onclick="removeImg('brand-visual-img')">삭제</button></div></div><input type="file" id="file-brand-visual-img" accept="image/*" onchange="handleFile(this,'brand-visual-img')"></div>
-      <div class="img-item" id="item-suitable-bg"><div class="img-preview" onclick="triggerUpload('suitable-bg')"><img id="prev-suitable-bg" src="" style="display:none;"><div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>BG IMAGE</span></div></div><div class="img-meta"><div class="img-key">suitable-bg</div><div class="img-desc">이런분께 딱입니다 배경</div><div class="img-actions"><button class="btn-upload" onclick="triggerUpload('suitable-bg')">업로드</button><button class="btn-remove" onclick="removeImg('suitable-bg')">삭제</button></div></div><input type="file" id="file-suitable-bg" accept="image/*" onchange="handleFile(this,'suitable-bg')"></div>
-    </div>
-  </div>
+<div class="container" id="app"></div>
+<div class="savebar">
+  <div class="sb-info">변경: <strong id="cc">0</strong>개 · JSON 저장 후 Vercel 루트에 업로드</div>
+  <button class="save-btn" style="background:var(--r);color:#fff;" onclick="saveAll()">💾 JSON 저장</button>
 </div>
-
-<!-- 단계별 조리 -->
-<div class="section">
-  <div class="section-head" onclick="toggleSection(this)">
-    <h2>🍲 1분 조리 스텝</h2><span class="count">3</span><span class="arrow">▼</span>
-  </div>
-  <div class="section-body">
-    <div class="grid" id="grid-steps"></div>
-  </div>
-</div>
-
-<!-- 낮밤 -->
-<div class="section">
-  <div class="section-head" onclick="toggleSection(this)">
-    <h2>☀️🌙 점심 / 저녁</h2><span class="count">4</span><span class="arrow">▼</span>
-  </div>
-  <div class="section-body">
-    <div class="grid" id="grid-lunchdin"></div>
-  </div>
-</div>
-
-<!-- 성공포인트 -->
-<div class="section">
-  <div class="section-head" onclick="toggleSection(this)">
-    <h2>🏆 화미옥의 성공 포인트</h2><span class="count">4</span><span class="arrow">▼</span>
-  </div>
-  <div class="section-body">
-    <div class="grid" id="grid-why"></div>
-  </div>
-</div>
-
-<!-- 메뉴 -->
-<div class="section">
-  <div class="section-head" onclick="toggleSection(this)">
-    <h2>🥘 메뉴 이미지</h2><span class="count">12</span><span class="arrow">▼</span>
-  </div>
-  <div class="section-body">
-    <p class="section-note">hm-카테고리-번호 형식 (0=김치찌개, 1=볶음, 2=김치찜, 3=사이드)</p>
-    <div class="grid" id="grid-menu"></div>
-  </div>
-</div>
-
-<!-- 인테리어 -->
-<div class="section">
-  <div class="section-head" onclick="toggleSection(this)">
-    <h2>🏠 인테리어</h2><span class="count">4</span><span class="arrow">▼</span>
-  </div>
-  <div class="section-body">
-    <div class="grid" id="grid-interior"></div>
-  </div>
-</div>
-
-<!-- 리뷰 -->
-<div class="section">
-  <div class="section-head" onclick="toggleSection(this)">
-    <h2>⭐ 리뷰 사진</h2><span class="count">7</span><span class="arrow">▼</span>
-  </div>
-  <div class="section-body">
-    <div class="grid" id="grid-reviews"></div>
-  </div>
-</div>
-
-<!-- 브랜드 -->
-<div class="section">
-  <div class="section-head" onclick="toggleSection(this)">
-    <h2>🔥 브랜드 배경</h2><span class="count">4</span><span class="arrow">▼</span>
-  </div>
-  <div class="section-body">
-    <div class="grid" id="grid-brand"></div>
-  </div>
-</div>
-
-<!-- 본사 -->
-<div class="section">
-  <div class="section-head" onclick="toggleSection(this)">
-    <h2>🏢 본사 & 창업 절차</h2><span class="count">2</span><span class="arrow">▼</span>
-  </div>
-  <div class="section-body">
-    <div class="grid" id="grid-process"></div>
-  </div>
-</div>
-
-</div><!-- /container -->
-
-<div class="save-bar">
-  <div class="save-bar-info">변경된 이미지: <strong id="change-count">0</strong>개 · 저장하면 images.json 다운로드됩니다</div>
-  <button class="save-btn" onclick="saveAll()" style="background:var(--r);color:#fff;">💾 JSON 저장</button>
-</div>
-
 <div class="toast" id="toast"></div>
-<div class="preview-modal" id="previewModal" onclick="closePreview()">
-  <span class="pm-close">×</span>
-  <img class="pm-img" id="previewImg" src="">
-</div>
 
 <script>
-var images = {};
-var changeCount = 0;
+var imgs = {};
+var changes = 0;
 
-// 이미지 키 목록 정의
-var imgDefs = {
-  steps: [
-    {key:'step-img-0', desc:'STEP 01 육수 넣기'},
-    {key:'step-img-1', desc:'STEP 02 식재료 넣기'},
-    {key:'step-img-2', desc:'STEP 03 끓이기 완료'},
-  ],
-  lunchdin: [
-    {key:'lunch-bg',   desc:'점심 섹션 배경'},
-    {key:'lunch-img-0',desc:'점심 대표 사진'},
-    {key:'dinner-bg',  desc:'저녁 섹션 배경'},
-    {key:'dinner-img-0',desc:'저녁 대표 사진'},
-  ],
-  why: [
-    {key:'why-img-0', desc:'성공포인트 01'},
-    {key:'why-img-1', desc:'성공포인트 02'},
-    {key:'why-img-2', desc:'성공포인트 03'},
-    {key:'why-img-3', desc:'성공포인트 04'},
-  ],
-  menu: [
-    {key:'hm-0-0', desc:'돼지 김치찌개'},{key:'hm-0-1', desc:'부대 김치찌개'},{key:'hm-0-2', desc:'참치 김치찌개'},{key:'hm-0-3', desc:'돈까스 김치찌개'},
-    {key:'hm-1-0', desc:'고추장 제육볶음'},{key:'hm-1-1', desc:'간장 돼지불고기'},{key:'hm-1-2', desc:'등심돈까스'},
-    {key:'hm-2-0', desc:'돼지 김치찜'},{key:'hm-2-1', desc:'부대 김치찜'},
-    {key:'hm-3-0', desc:'햄구이'},{key:'hm-3-1', desc:'계란말이'},{key:'hm-3-2', desc:'김치말이국수'},
-  ],
-  interior: [
-    {key:'interior-main', desc:'인테리어 메인'},
-    {key:'interior-sub-0', desc:'인테리어 서브 1'},
-    {key:'interior-sub-1', desc:'인테리어 서브 2'},
-    {key:'interior-sub-2', desc:'인테리어 서브 3'},
-  ],
-  reviews: [
-    {key:'review-img-0', desc:'리뷰 사진 1'},{key:'review-img-1', desc:'리뷰 사진 2'},
-    {key:'review-img-2', desc:'리뷰 사진 3'},{key:'review-img-3', desc:'리뷰 사진 4'},
-    {key:'review-img-4', desc:'리뷰 사진 5'},{key:'review-img-5', desc:'리뷰 사진 6'},
-    {key:'review-img-6', desc:'리뷰 사진 7'},
-  ],
-  brand: [
-    {key:'brandA-bg',  desc:'37년 증명 배경'},
-    {key:'brandb-bg',  desc:'오래가는 길 배경'},
-    {key:'brandb-img-0', desc:'철학 카드 01'},
-    {key:'importance-bg', desc:'본사 중요성 배경'},
-  ],
-  process: [
-    {key:'process-bg', desc:'창업 절차 배경'},
-    {key:'store-hero-img', desc:'이런분께 매장 사진'},
-  ],
-};
+var sections = [
+  {
+    title:'🎬 히어로 & 배경',
+    items:[
+      {key:'brand-visual-img', desc:'37년이 증명한다 원형 사진'},
+      {key:'suitable-bg',      desc:'이런분께 딱입니다 배경'},
+      {key:'importance-bg',    desc:'본사 중요성 섹션 배경'},
+      {key:'process-bg',       desc:'창업 절차 배경'},
+    ]
+  },
+  {
+    title:'🍲 1분 조리 스텝',
+    items:[
+      {key:'step-img-0', desc:'STEP 01 — 육수 넣기'},
+      {key:'step-img-1', desc:'STEP 02 — 식재료 넣기'},
+      {key:'step-img-2', desc:'STEP 03 — 완성'},
+    ]
+  },
+  {
+    title:'☀️🌙 점심 / 저녁',
+    items:[
+      {key:'lunch-bg',  desc:'점심 섹션 배경'},
+      {key:'dinner-bg', desc:'저녁 섹션 배경'},
+    ]
+  },
+  {
+    title:'🏆 성공 포인트',
+    items:[
+      {key:'why-img-0', desc:'성공포인트 01'},
+      {key:'why-img-1', desc:'성공포인트 02'},
+      {key:'why-img-2', desc:'성공포인트 03'},
+      {key:'why-img-3', desc:'성공포인트 04'},
+    ]
+  },
+  {
+    title:'🥘 메뉴 이미지',
+    note:'김치찌개(0) · 볶음/돈까스(1) · 김치찜(2) · 사이드(3)',
+    items:[
+      {key:'hm-0-0',desc:'돼지 김치찌개'},{key:'hm-0-1',desc:'부대 김치찌개'},
+      {key:'hm-0-2',desc:'참치 김치찌개'},{key:'hm-0-3',desc:'돈까스 김치찌개'},
+      {key:'hm-1-0',desc:'고추장 제육볶음'},{key:'hm-1-1',desc:'간장 돼지불고기'},{key:'hm-1-2',desc:'등심돈까스'},
+      {key:'hm-2-0',desc:'돼지 김치찜'},{key:'hm-2-1',desc:'부대 김치찜'},
+      {key:'hm-3-0',desc:'햄구이'},{key:'hm-3-1',desc:'계란말이'},
+      {key:'hm-3-2',desc:'김치말이국수'},{key:'hm-3-3',desc:'주먹밥'},
+    ]
+  },
+  {
+    title:'🏠 인테리어',
+    items:[
+      {key:'interior-main',  desc:'인테리어 메인'},
+      {key:'interior-sub-0', desc:'인테리어 서브 1'},
+      {key:'interior-sub-1', desc:'인테리어 서브 2'},
+      {key:'interior-sub-2', desc:'인테리어 서브 3'},
+    ]
+  },
+  {
+    title:'⭐ 리뷰 사진',
+    note:'모바일 슬라이더 4장',
+    items:[
+      {key:'review-img-0',desc:'리뷰 1'},{key:'review-img-1',desc:'리뷰 2'},
+      {key:'review-img-2',desc:'리뷰 3'},{key:'review-img-3',desc:'리뷰 4'},
+    ]
+  },
+  {
+    title:'🔥 브랜드',
+    items:[
+      {key:'brandA-bg', desc:'37년 증명한다 배경'},
+    ]
+  },
+];
 
-function buildGrid(gridId, defs) {
-  var g = document.getElementById(gridId);
-  if(!g) return;
-  defs.forEach(function(def) {
-    var keyId = def.key.replace(/-/g,'_').replace(/\./g,'_');
-    g.innerHTML += '<div class="img-item" id="item-'+def.key+'">' +
-      '<div class="img-preview" onclick="triggerUpload(\''+def.key+'\')"><img id="prev-'+def.key+'" src="" style="display:none;"><div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>이미지</span></div></div>' +
-      '<div class="img-meta"><div class="img-key">'+def.key+'</div><div class="img-desc">'+def.desc+'</div>' +
-      '<div class="img-actions"><button class="btn-upload" onclick="triggerUpload(\''+def.key+'\')">업로드</button><button class="btn-remove" onclick="removeImg(\''+def.key+'\')">삭제</button></div></div>' +
-      '<input type="file" id="file-'+def.key+'" accept="image/*" onchange="handleFile(this,\''+def.key+'\')">' +
-    '</div>';
+function build() {
+  var app = document.getElementById('app');
+  sections.forEach(function(sec, si) {
+    var isFirst = si === 0;
+    var html = '<div class="section"><div class="sh'+(isFirst?' open':'')+'" onclick="toggle(this)"><h2>'+sec.title+'</h2><span class="cnt">'+sec.items.length+'</span><span class="arr">▼</span></div>';
+    html += '<div class="sb'+(isFirst?' open':'')+'">'; 
+    if(sec.note) html += '<p class="note">'+sec.note+'</p>';
+    html += '<div class="grid">';
+    sec.items.forEach(function(item) {
+      var k = item.key;
+      html += '<div class="ii" id="ii-'+k+'">'
+        +'<div class="prev" onclick="pick(\''+k+'\')">'
+        +'<img id="p-'+k+'" src="" style="display:none;">'
+        +'<div class="ph"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>업로드</span></div>'
+        +'</div>'
+        +'<div class="meta"><div class="key">'+k+'</div><div class="desc">'+item.desc+'</div>'
+        +'<div class="acts"><button class="bu" onclick="pick(\''+k+'\')">업로드</button><button class="br" onclick="del(\''+k+'\')">삭제</button></div>'
+        +'</div>'
+        +'<input type="file" id="f-'+k+'" accept="image/*" onchange="load(this,\''+k+'\')">'
+        +'</div>';
+    });
+    html += '</div></div></div>';
+    app.innerHTML += html;
   });
 }
-buildGrid('grid-steps', imgDefs.steps);
-buildGrid('grid-lunchdin', imgDefs.lunchdin);
-buildGrid('grid-why', imgDefs.why);
-buildGrid('grid-menu', imgDefs.menu);
-buildGrid('grid-interior', imgDefs.interior);
-buildGrid('grid-reviews', imgDefs.reviews);
-buildGrid('grid-brand', imgDefs.brand);
-buildGrid('grid-process', imgDefs.process);
 
-// 기존 images.json 로드
-try {
-  fetch('images.json').then(function(r){return r.json();}).then(function(data){
-    images = data;
-    Object.keys(images).forEach(function(key){
-      var keyDash = key.replace(/_/g,'-');
-      var prev = document.getElementById('prev-'+keyDash) || document.getElementById('prev-'+key);
-      var item = document.getElementById('item-'+keyDash) || document.getElementById('item-'+key);
-      if(prev && images[key]){prev.src=images[key];prev.style.display='block';}
-      if(item) item.classList.add('img-has');
-    });
-    showToast('기존 images.json 로드 완료');
-  }).catch(function(){});
-} catch(e){}
-
-function triggerUpload(key) {
-  var el = document.getElementById('file-'+key);
-  if(el) el.click();
+function toggle(el){
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
 }
-
-function handleFile(input, key) {
-  var file = input.files[0];
-  if(!file) return;
-  var reader = new FileReader();
-  reader.onload = function(e) {
+function pick(k){ document.getElementById('f-'+k).click(); }
+function load(inp, k) {
+  var f = inp.files[0]; if(!f) return;
+  var r = new FileReader();
+  r.onload = function(e){
     var data = e.target.result;
-    images[key.replace(/-/g,'_')] = data;
-    var prev = document.getElementById('prev-'+key);
-    var item = document.getElementById('item-'+key);
-    if(prev){prev.src=data;prev.style.display='block';}
-    if(item) item.classList.add('img-has');
-    changeCount++;
-    document.getElementById('change-count').textContent = changeCount;
-    showToast('✓ ' + key + ' 업로드 완료');
+    imgs[k.replace(/-/g,'_')] = data;
+    var p = document.getElementById('p-'+k);
+    if(p){p.src=data;p.style.display='block';}
+    document.getElementById('ii-'+k).classList.add('has');
+    changes++;
+    document.getElementById('cc').textContent=changes;
+    toast('✓ '+k+' 업로드');
   };
-  reader.readAsDataURL(file);
+  r.readAsDataURL(f);
+}
+function del(k){
+  delete imgs[k.replace(/-/g,'_')];
+  var p=document.getElementById('p-'+k);
+  if(p){p.src='';p.style.display='none';}
+  document.getElementById('ii-'+k).classList.remove('has');
+  document.getElementById('f-'+k).value='';
+  changes++;document.getElementById('cc').textContent=changes;
+  toast('삭제: '+k);
+}
+function saveAll(){
+  var blob=new Blob([JSON.stringify(imgs,null,2)],{type:'application/json'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='images.json';a.click();
+  changes=0;document.getElementById('cc').textContent='0';
+  toast('💾 images.json 저장 완료!');
+}
+function toast(msg){
+  var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2000);
 }
 
-function removeImg(key) {
-  var storageKey = key.replace(/-/g,'_');
-  delete images[storageKey];
-  var prev = document.getElementById('prev-'+key);
-  var item = document.getElementById('item-'+key);
-  var fileInput = document.getElementById('file-'+key);
-  if(prev){prev.src='';prev.style.display='none';}
-  if(item) item.classList.remove('img-has');
-  if(fileInput) fileInput.value='';
-  changeCount++;
-  document.getElementById('change-count').textContent = changeCount;
-  showToast('✓ ' + key + ' 삭제됨');
-}
+build();
 
-function saveAll() {
-  var json = JSON.stringify(images, null, 2);
-  var blob = new Blob([json], {type:'application/json'});
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url; a.download = 'images.json';
-  a.click();
-  URL.revokeObjectURL(url);
-  changeCount = 0;
-  document.getElementById('change-count').textContent = '0';
-  showToast('💾 images.json 저장 완료!');
-}
-
-function toggleSection(head) {
-  head.classList.toggle('open');
-  var body = head.nextElementSibling;
-  body.classList.toggle('open');
-}
-
-function showToast(msg) {
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show');}, 2200);
-}
-
-function closePreview() {
-  document.getElementById('previewModal').classList.remove('show');
-}
+// 기존 images.json 로드 시도
+fetch('images.json').then(function(r){return r.json();}).then(function(data){
+  imgs=data;
+  Object.keys(imgs).forEach(function(k){
+    var kd=k.replace(/_/g,'-');
+    var p=document.getElementById('p-'+kd);
+    var ii=document.getElementById('ii-'+kd);
+    if(p&&imgs[k]){p.src=imgs[k];p.style.display='block';}
+    if(ii)ii.classList.add('has');
+  });
+  toast('기존 images.json 로드 완료');
+}).catch(function(){});
 </script>
 </body>
 </html>
