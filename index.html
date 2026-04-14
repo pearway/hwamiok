@@ -572,9 +572,13 @@ function submitTabBar(){var agree=document.getElementById('bt-agree');if(!agree|
 
 // ── images.json 로더 ──
 (function(){
-  fetch('images.json?v='+Date.now())
-    .then(function(r){ return r.json(); })
+  fetch('./images.json?v='+Date.now())
+    .then(function(r){
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      return r.json();
+    })
     .then(function(imgs){
+      console.log('[화미옥] images.json 로드 완료, 키 수:', Object.keys(imgs).length);
 
       // 키(언더스코어) → ID(하이픈) 변환 후 이미지 적용
       function applyImg(key){
@@ -621,7 +625,9 @@ function submitTabBar(){var agree=document.getElementById('bt-agree');if(!agree|
       }
 
     })
-    .catch(function(){ /* images.json 없으면 그냥 기본 그라디언트 표시 */ });
+    .catch(function(e){
+      console.warn('[화미옥] images.json 로드 실패:', e.message);
+    });
 })();
 
 </body>
