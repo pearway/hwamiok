@@ -24,6 +24,7 @@
 
 @keyframes check-slide{0%,100%{transform:translateX(-110%);opacity:0}10%{transform:translateX(0);opacity:1}75%{transform:translateX(0);opacity:1}90%{transform:translateX(110%);opacity:0}}
 
+@keyframes spin-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -291,7 +292,7 @@
     <span class="sec-tag rv" style="color:var(--r);">브랜드 히스토리</span>
     <h2 class="rv d1" style="font-family:var(--d);font-size:clamp(34px,9vw,60px);line-height:1.1;margin-bottom:18px;color:#fff;"><span id="ba-37" style="color:var(--r);animation:glow 1.8s ease-in-out infinite;">37년</span>이<br><span id="ba-proof" style="display:inline-block;clip-path:inset(0 100% 0 0);transition:clip-path 1.1s cubic-bezier(.22,1,.36,1);">증명한다</span></h2>
     <p class="sec-sub rv d2">화미옥 김치찌개는 화려한 주요 상권이 아닌,<br>동네의 일상 속에서 고객 한 분 한 분과 함께 성장해 온 브랜드입니다.</p>
-    <div style="position:relative;width:min(80vw,320px);height:min(80vw,320px);margin:32px auto 0;overflow:hidden;border-radius:50%;"><img id="brand-visual-img" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div id="bvi-ph" style="position:absolute;inset:0;background:linear-gradient(135deg,var(--blk),var(--r2));display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--d);font-size:56px;color:rgba(255,255,255,.1);">화미옥</span></div></div>
+    <div style="position:relative;width:min(80vw,320px);height:min(80vw,320px);margin:32px auto 0;overflow:hidden;border-radius:50%;animation:spin-slow 12s linear infinite;"><img id="brand-visual-img" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"><div id="bvi-ph" style="position:absolute;inset:0;background:linear-gradient(135deg,var(--blk),var(--r2));display:flex;align-items:center;justify-content:center;"><span style="font-family:var(--d);font-size:56px;color:rgba(255,255,255,.1);">화미옥</span></div></div>
   </div>
 </section>
 
