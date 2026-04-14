@@ -623,7 +623,9 @@ window.HM_IMGS = window.HM_IMGS || {};
   // 히어로 영상/이미지
   var hv = imgs.hero_video;
   if(hv){
-    if(hv.startsWith('data:video')){
+    var isUrl = hv.startsWith('http');
+    var isVideo = hv.startsWith('data:video') || (isUrl && hv.match(/\.(mp4|webm|mov)/i));
+    if(isVideo){
       var vid = document.getElementById('hero-video');
       if(vid){ vid.src=hv; vid.style.display='block'; vid.style.opacity='1'; }
     } else {

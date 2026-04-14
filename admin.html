@@ -52,7 +52,7 @@ input[type=file]{display:none;}
 </header>
 <div class="container" id="app"></div>
 <div class="savebar">
-  <div class="sb-info">변경: <strong id="cc">0</strong>개 · 이미지 자동 압축(900px/WebP) · JSON 저장 후 Vercel 루트에 업로드</div>
+  <div class="sb-info">변경: <strong id="cc">0</strong>개 · 이미지 자동 압축(900px/WebP) · images.js 저장 후 GitHub 루트에 업로드</div>
   <button class="save-btn" style="background:var(--r);color:#fff;" onclick="saveAll()">💾 JSON 저장</button>
 </div>
 <div class="toast" id="toast"></div>
@@ -63,10 +63,9 @@ var changes = 0;
 
 var sections = [
   {
-    title:'🎬 히어로 (메인 첫 화면)',
-    note:'페이지 맨 처음 나오는 전체 배경 영상/이미지',
+    title:'🎬 히어로 (메인 첫 화면 배경)',
+    note:'★ 이 섹션이 페이지를 열었을 때 맨 처음 보이는 전체 화면 배경입니다',
     items:[
-      {key:'hero_video',       desc:'★ 메인 배경 영상 또는 이미지'},
       {key:'brand-visual-img', desc:'37년이 증명한다 — 원형 대표 사진'},
     ]
   },
@@ -219,7 +218,8 @@ function load(inp, k) {
   var reader = new FileReader();
   reader.onload = function(e){
     img.onload = function(){
-      var MAX = 900; // 최대 가로/세로 px
+      // 이미지 종류별 최대 크기 설정
+      var MAX = k.includes('bg') ? 1200 : 600; // 배경은 1200, 메뉴/리뷰는 600
       var w = img.width, h = img.height;
       if(w > MAX || h > MAX){
         if(w > h){ h = Math.round(h * MAX/w); w = MAX; }
@@ -228,9 +228,10 @@ function load(inp, k) {
       var canvas = document.createElement('canvas');
       canvas.width = w; canvas.height = h;
       canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-      var quality = 0.78;
-      var data = canvas.toDataURL('image/webp', quality) ||
-                 canvas.toDataURL('image/jpeg', quality);
+      // WebP 우선, 없으면 JPEG — 배경 0.7, 기타 0.65
+      var quality = k.includes('bg') || k.includes('brand') ? 0.72 : 0.65;
+      var data = canvas.toDataURL('image/webp', quality);
+      if(!data || data === 'data:,') data = canvas.toDataURL('image/jpeg', quality);
       var kb = Math.round(data.length * 0.75 / 1024);
       imgs[k.replace(/-/g,'_')] = data;
       var p = document.getElementById('p-'+k);
@@ -255,15 +256,77 @@ function del(k){
 function saveAll(){
   var json = JSON.stringify(imgs);
   var kb = Math.round(json.length * 0.75 / 1024);
-  var blob=new Blob([json],{type:'application/json'});
+  // images.js 로 저장 — <script src> 방식으로 확실하게 로드됨
+  var js = 'window.HM_IMGS=' + json + ';';
+  var blob=new Blob([js],{type:'application/javascript'});
   var a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);a.download='images.json';a.click();
+  a.href=URL.createObjectURL(blob);a.download='images.js';a.click();
   changes=0;document.getElementById('cc').textContent='0';
-  toast('💾 images.json 저장 완료! (~'+kb+'KB)');
+  toast('💾 images.js 저장 완료! (~'+kb+'KB) → GitHub에 올리세요');
 }
 function toast(msg){
   var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
   setTimeout(function(){t.classList.remove('show');},2000);
+}
+
+// 히어로 영상 URL 섹션 별도 삽입
+(function(){
+  var div = document.createElement('div');
+  div.className = 'section';
+  div.style.cssText = 'border:3px solid var(--r);';
+  div.innerHTML = [
+    '<div class="sh open" onclick="toggle(this)" style="background:var(--r);">',
+      '<h2>🎬 메인 첫 화면 배경 영상</h2>',
+      '<span class="cnt" style="background:rgba(0,0,0,.3);">★ 여기에 등록</span>',
+      '<span class="arr" style="color:rgba(255,255,255,.6);">▼</span>',
+    '</div>',
+    '<div class="sb open" style="padding:20px;">',
+      '<p class="note" style="color:var(--r);font-weight:700;">',
+        '⚠️ 영상은 URL 방식으로 등록하세요<br>',
+        'Cloudinary/구글드라이브 등에 올린 후 직접 링크(mp4) 입력',
+      '</p>',
+      '<div style="margin-bottom:16px;">',
+        '<label style="font-size:12px;font-weight:700;color:var(--r);display:block;margin-bottom:6px;">영상 URL (mp4 직접 링크)</label>',
+        '<input id="heroVideoUrl" type="url" placeholder="https://...video.mp4" ',
+          'style="width:100%;padding:10px;border:2px solid var(--r);border-radius:4px;font-size:13px;outline:none;">',
+        '<p style="font-size:10px;color:#aaa;margin-top:4px;">예: https://res.cloudinary.com/xxx/video/upload/xxx.mp4</p>',
+      '</div>',
+      '<div>',
+        '<label style="font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:6px;">또는 배경 이미지 업로드 (영상 대신)</label>',
+        '<div class="ii" id="ii-hero_video" style="max-width:260px;">',
+          '<div class="prev" id="prev-hero-click"><img id="p-hero_video" src="" style="display:none;">',
+            '<div class="ph"><span>이미지 업로드</span></div>',
+          '</div>',
+          '<div class="meta"><div class="key">hero_video</div>',
+            '<div class="acts">',
+              '<button class="bu" id="btn-hero-upload">이미지 업로드</button>',
+              '<button class="br" id="btn-hero-del">삭제</button>',
+            '</div>',
+          '</div>',
+          '<input type="file" id="f-hero_video" accept="image/*">',
+        '</div>',
+      '</div>',
+    '</div>'
+  ].join('');
+  document.getElementById('app').insertAdjacentElement('afterbegin', div);
+
+  // 이벤트 바인딩
+  document.getElementById('prev-hero-click').onclick = function(){ document.getElementById('f-hero_video').click(); };
+  document.getElementById('btn-hero-upload').onclick = function(){ document.getElementById('f-hero_video').click(); };
+  document.getElementById('btn-hero-del').onclick = function(){ del('hero_video'); };
+  document.getElementById('f-hero_video').onchange = function(){ load(this,'hero_video'); };
+  document.getElementById('heroVideoUrl').addEventListener('input', saveVideoUrl);
+  // 헤더 클릭
+  div.querySelector('.sh').onclick = function(){ toggle(this); };
+})();
+
+function saveVideoUrl(){
+  var url = document.getElementById('heroVideoUrl').value.trim();
+  if(url){
+    imgs['hero_video'] = url;
+    document.getElementById('ii-hero_video').classList.add('has');
+    changes++;document.getElementById('cc').textContent=changes;
+  }
 }
 
 build();
@@ -275,10 +338,15 @@ fetch('images.json').then(function(r){return r.json();}).then(function(data){
     var kd=k.replace(/_/g,'-');
     var p=document.getElementById('p-'+kd);
     var ii=document.getElementById('ii-'+kd);
-    if(p&&imgs[k]){p.src=imgs[k];p.style.display='block';}
+    if(p&&imgs[k]&&!imgs[k].startsWith('http')){p.src=imgs[k];p.style.display='block';}
     if(ii)ii.classList.add('has');
   });
-  toast('기존 images.json 로드 완료');
+  // 영상 URL 복원
+  if(imgs.hero_video && imgs.hero_video.startsWith('http')){
+    var urlInput = document.getElementById('heroVideoUrl');
+    if(urlInput) urlInput.value = imgs.hero_video;
+  }
+  toast('기존 images.js 로드 완료');
 }).catch(function(){});
 </script>
 </body>
