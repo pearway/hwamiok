@@ -52,7 +52,7 @@ input[type=file]{display:none;}
 </header>
 <div class="container" id="app"></div>
 <div class="savebar">
-  <div class="sb-info">변경: <strong id="cc">0</strong>개 · JSON 저장 후 Vercel 루트에 업로드</div>
+  <div class="sb-info">변경: <strong id="cc">0</strong>개 · 이미지 자동 압축(900px/WebP) · JSON 저장 후 Vercel 루트에 업로드</div>
   <button class="save-btn" style="background:var(--r);color:#fff;" onclick="saveAll()">💾 JSON 저장</button>
 </div>
 <div class="toast" id="toast"></div>
@@ -199,18 +199,49 @@ function toggle(el){
 function pick(k){ document.getElementById('f-'+k).click(); }
 function load(inp, k) {
   var f = inp.files[0]; if(!f) return;
-  var r = new FileReader();
-  r.onload = function(e){
-    var data = e.target.result;
-    imgs[k.replace(/-/g,'_')] = data;
-    var p = document.getElementById('p-'+k);
-    if(p){p.src=data;p.style.display='block';}
-    document.getElementById('ii-'+k).classList.add('has');
-    changes++;
-    document.getElementById('cc').textContent=changes;
-    toast('✓ '+k+' 업로드');
+  // 영상은 압축 없이 그대로
+  if(f.type.startsWith('video/')){
+    var r = new FileReader();
+    r.onload = function(e){
+      var data = e.target.result;
+      imgs[k.replace(/-/g,'_')] = data;
+      var p = document.getElementById('p-'+k);
+      if(p){p.src='';p.style.display='none';} // 영상은 미리보기 없음
+      document.getElementById('ii-'+k).classList.add('has');
+      changes++;document.getElementById('cc').textContent=changes;
+      toast('✓ '+k+' 영상 업로드 ('+Math.round(f.size/1024)+'KB)');
+    };
+    r.readAsDataURL(f);
+    return;
+  }
+  // 이미지: Canvas로 리사이즈 + WebP 압축
+  var img = new Image();
+  var reader = new FileReader();
+  reader.onload = function(e){
+    img.onload = function(){
+      var MAX = 900; // 최대 가로/세로 px
+      var w = img.width, h = img.height;
+      if(w > MAX || h > MAX){
+        if(w > h){ h = Math.round(h * MAX/w); w = MAX; }
+        else      { w = Math.round(w * MAX/h); h = MAX; }
+      }
+      var canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      var quality = 0.78;
+      var data = canvas.toDataURL('image/webp', quality) ||
+                 canvas.toDataURL('image/jpeg', quality);
+      var kb = Math.round(data.length * 0.75 / 1024);
+      imgs[k.replace(/-/g,'_')] = data;
+      var p = document.getElementById('p-'+k);
+      if(p){p.src=data;p.style.display='block';}
+      document.getElementById('ii-'+k).classList.add('has');
+      changes++;document.getElementById('cc').textContent=changes;
+      toast('✓ '+k+' ('+w+'×'+h+', ~'+kb+'KB)');
+    };
+    img.src = e.target.result;
   };
-  r.readAsDataURL(f);
+  reader.readAsDataURL(f);
 }
 function del(k){
   delete imgs[k.replace(/-/g,'_')];
@@ -222,11 +253,13 @@ function del(k){
   toast('삭제: '+k);
 }
 function saveAll(){
-  var blob=new Blob([JSON.stringify(imgs,null,2)],{type:'application/json'});
+  var json = JSON.stringify(imgs);
+  var kb = Math.round(json.length * 0.75 / 1024);
+  var blob=new Blob([json],{type:'application/json'});
   var a=document.createElement('a');
   a.href=URL.createObjectURL(blob);a.download='images.json';a.click();
   changes=0;document.getElementById('cc').textContent='0';
-  toast('💾 images.json 저장 완료!');
+  toast('💾 images.json 저장 완료! (~'+kb+'KB)');
 }
 function toast(msg){
   var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
