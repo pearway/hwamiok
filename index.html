@@ -13,6 +13,14 @@
 @keyframes num-blink{0%,49%{opacity:1;}50%,100%{opacity:.2;}}
 .num-blink{animation:num-blink .9s step-end infinite;}
 
+
+@media(min-width:768px){
+  #lunchdin{display:flex;flex-direction:row;}
+  #lunchdin > div{flex:1;height:min(50vw,560px)!important;}
+  #lunchdin > div:first-child{border-right:4px solid var(--r);}
+  #lunchdin > div[style*="height:4px"]{display:none;}
+}
+
 </style>
 </head>
 <body>
@@ -585,65 +593,55 @@ function submitContact(){var agree=document.getElementById('cf-agree');if(!agree
 function submitTabBar(){var agree=document.getElementById('bt-agree');if(!agree||!agree.checked){alert('개인정보 동의가 필요합니다.');return;}var name=document.getElementById('bt-name').value.trim();var phone=document.getElementById('bt-phone').value.trim();if(!name||!phone){alert('이름과 연락처를 입력해주세요.');return;}alert('신청이 접수되었습니다. 빠르게 연락드리겠습니다.');}
 </script>
 
-<script>// ── images.json 로더 ──
+
+
+<!-- 이미지 로더: images.js 없으면 그냥 그라디언트 표시 -->
+<script>
+window.HM_IMGS = window.HM_IMGS || {};
+</script>
+<script src="/images.js" onerror="console.log('[화미옥] images.js 미업로드 상태')"></script>
+<script>
 (function(){
-  fetch('/images.json?v='+Date.now())
-    .then(function(r){
-      if(!r.ok) throw new Error('HTTP '+r.status);
-      return r.json();
-    })
-    .then(function(imgs){
-      console.log('[화미옥] images.json 로드 완료, 키 수:', Object.keys(imgs).length);
+  var imgs = window.HM_IMGS || {};
+  if(!Object.keys(imgs).length) return;
+  console.log('[화미옥] 이미지 로드:', Object.keys(imgs).length + '개');
 
-      // 키(언더스코어) → ID(하이픈) 변환 후 이미지 적용
-      function applyImg(key){
-        var id = key.replace(/_/g,'-');
-        var src = imgs[key];
-        if(!src) return;
-        var el = document.getElementById(id);
-        if(!el) return;
-        if(el.tagName === 'IMG'){
-          el.src = src;
-          el.style.display = 'block';
-          // 배경 그라디언트 숨기기
-          var grad = document.getElementById(id+'-grad');
-          if(grad) grad.style.display = 'none';
-        }
-      }
+  // 모든 이미지 적용
+  Object.keys(imgs).forEach(function(key){
+    var id = key.replace(/_/g,'-');
+    var src = imgs[key];
+    if(!src) return;
+    var el = document.getElementById(id);
+    if(el && el.tagName === 'IMG'){
+      el.src = src;
+      el.style.display = 'block';
+      var grad = document.getElementById(id+'-grad');
+      if(grad) grad.style.display = 'none';
+    }
+  });
 
-      Object.keys(imgs).forEach(applyImg);
+  // 히어로 영상/이미지
+  var hv = imgs.hero_video;
+  if(hv){
+    if(hv.startsWith('data:video')){
+      var vid = document.getElementById('hero-video');
+      if(vid){ vid.src=hv; vid.style.display='block'; vid.style.opacity='1'; }
+    } else {
+      var himg = document.getElementById('hero-img-bg');
+      if(himg){ himg.src=hv; himg.style.display='block'; setTimeout(function(){himg.style.opacity='1';},100); }
+    }
+    var ov = document.getElementById('hero-overlay');
+    if(ov) ov.style.display='block';
+  }
 
-      // 히어로 영상 특별 처리
-      var hv = imgs.hero_video;
-      if(hv){
-        var isVideo = hv.startsWith('data:video');
-        if(isVideo){
-          var vid = document.getElementById('hero-video');
-          if(vid){ vid.src=hv; vid.style.display='block'; vid.style.opacity='1'; }
-        } else {
-          var himg = document.getElementById('hero-img-bg');
-          if(himg){ himg.src=hv; himg.style.display='block'; setTimeout(function(){himg.style.opacity='1';},100); }
-        }
-        var ov = document.getElementById('hero-overlay');
-        if(ov) ov.style.display = 'block';
-      }
-
-      // brandA-bg 배경
-      var ba = imgs.brandA_bg;
-      if(ba){
-        var baSec = document.getElementById('brandA');
-        if(baSec){
-          baSec.style.backgroundImage = 'url('+ba+')';
-          baSec.style.backgroundSize = 'cover';
-          baSec.style.backgroundPosition = 'center';
-        }
-      }
-
-    })
-    .catch(function(e){
-      console.log('[화미옥] images.json 없음 (사진 미업로드 상태):', e.message);
-    });
+  // brandA 배경
+  var ba = imgs.brandA_bg;
+  if(ba){
+    var sec = document.getElementById('brandA');
+    if(sec){ sec.style.backgroundImage='url('+ba+')'; sec.style.backgroundSize='cover'; sec.style.backgroundPosition='center'; }
+  }
 })();
 </script>
+
 </body>
 </html>
