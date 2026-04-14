@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" style="opacity:0;transition:opacity .3s;">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,6 +34,23 @@
     },
     h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
   })(document);
+</script>
+<script>
+  // 폰트 로드 완료 시 html opacity 복원
+  (function(){
+    var h = document.documentElement;
+    function show(){ h.style.opacity = '1'; }
+    // 이미 로드된 경우
+    if(h.classList.contains('wf-active') || h.classList.contains('wf-inactive')){ show(); return; }
+    var obs = new MutationObserver(function(){
+      if(h.classList.contains('wf-active') || h.classList.contains('wf-inactive')){
+        obs.disconnect(); show();
+      }
+    });
+    obs.observe(h, { attributes:true, attributeFilter:['class'] });
+    // 최대 3초 후 강제 표시
+    setTimeout(function(){ obs.disconnect(); show(); }, 3000);
+  })();
 </script>
 <style>
 /*
@@ -784,6 +801,9 @@ footer{background:#070103;padding:56px 64px;display:flex;justify-content:space-b
 .ftel{font-family:var(--display-font);font-size:26px;font-weight:900;color:var(--ivory);margin-bottom:6px;}
 .fcp{font-size:10px;color:rgba(252,231,216,.18);margin-top:18px;}
 
+html.wf-loading body > *:not(#loader) {
+  visibility: hidden;
+}
 /* ── LOADER ── */
 #loader{
   position:fixed;inset:0;z-index:99999;
