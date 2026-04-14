@@ -48,10 +48,10 @@ button{font-family:inherit;cursor:pointer;}
 @keyframes orbit-ccw{from{transform:rotate(0deg);}to{transform:rotate(-360deg);}}
 
 /* NAV */
-#nav{position:fixed;top:0;left:0;right:0;z-index:9000;height:54px;background:var(--r);display:flex;align-items:center;justify-content:space-between;padding:0 20px;transition:height .3s;}
-#nav.scrolled{background:rgba(212,0,26,.96);backdrop-filter:blur(12px);height:50px;}
-.nav-logo{font-family:var(--d);font-size:17px;color:#fff;}
-.nav-tel{font-family:var(--d);font-size:15px;color:#fff;opacity:.9;}
+#nav{position:fixed;top:0;left:0;right:0;z-index:9000;height:54px;background:#fff;border-bottom:2px solid var(--r);display:flex;align-items:center;justify-content:space-between;padding:0 20px;transition:height .3s;}
+#nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);height:50px;}
+.nav-logo{font-family:var(--d);font-size:17px;color:var(--r);}
+.nav-tel{font-family:var(--d);font-size:15px;color:var(--r);font-weight:700;}
 
 /* HERO */
 #hero{min-height:100svh;background:var(--blk);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:80px 0 60px;}
@@ -332,9 +332,7 @@ footer{background:#050505;padding:44px 20px 140px;border-top:1px solid rgba(212,
 .ft-hours{font-size:11px;color:rgba(255,255,255,.35);margin-top:4px;}
 
 /* BOTTOM TAB */
-#promoBar{position:fixed;top:54px;left:0;right:0;z-index:8999;background:#fff;border-bottom:2px solid var(--r);padding:6px 16px;text-align:center;display:flex;align-items:center;justify-content:center;gap:8px;}
-#promoBar span.label{font-size:11px;font-weight:700;color:var(--r);white-space:nowrap;}
-#promoBar span.desc{font-size:11px;color:var(--r);opacity:.7;white-space:nowrap;}
+
 #bottomTab{position:fixed;bottom:0;left:0;right:0;z-index:9000;background:var(--r2);border-top:3px solid var(--r);padding:10px 12px;display:flex;flex-direction:column;gap:8px;box-shadow:0 -4px 24px rgba(212,0,26,.35);}
 .bt-row{display:flex;gap:7px;align-items:center;}
 .bt-inp{flex:1;min-width:0;background:#fff;border:1px solid #e0e0e0;color:var(--blk);padding:0 10px;font-size:12px;font-family:inherit;height:36px;border-radius:3px;outline:none;}::placeholder{color:rgba(255,255,255,.5);}
@@ -364,7 +362,7 @@ body{padding-bottom:120px;}
 @media(min-width:768px){
   #nav{padding:0 40px;}.nav-logo{font-size:20px;}
   body{padding-bottom:0;}
-  #promoBar{display:none;}
+
   #bottomTab{flex-direction:row;align-items:center;height:60px;bottom:0;padding:0 24px;gap:10px;}
   #bottomTab>.bt-row,#bottomTab>.bt-agree-row{display:contents;}
   footer{display:flex;justify-content:space-between;align-items:flex-start;padding:52px 48px 80px;}
@@ -882,7 +880,7 @@ body{padding-bottom:120px;}
 </footer>
 
 <!-- 하단 탭바 -->
-<div id="promoBar"><span class="label">🔥 선착순 가맹비·교육비 면제</span><span class="desc">· 최대 1,000만원 절약 가능!</span></div>
+
 <div id="bottomTab">
   <div class="bt-row">
     <input class="bt-inp" type="text" placeholder="이름" id="bt-name">
