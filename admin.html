@@ -61,6 +61,22 @@ input[type=file]{display:none;}
 var imgs = {};
 var changes = 0;
 
+// localStorage에서 복원
+try {
+  var saved = localStorage.getItem('hm_imgs');
+  if(saved) {
+    imgs = JSON.parse(saved);
+    console.log('[어드민] 저장된 이미지 복원:', Object.keys(imgs).length + '개');
+  }
+} catch(e) {}
+
+// 이미지 변경 시 자동 localStorage 저장
+function persistImgs() {
+  try { localStorage.setItem('hm_imgs', JSON.stringify(imgs)); } catch(e) {
+    console.warn('localStorage 용량 초과, 일부만 저장됩니다');
+  }
+}
+
 var sections = [
   {
     title:'🎬 히어로 (메인 첫 화면 배경)',
@@ -238,6 +254,7 @@ function load(inp, k) {
       if(p){p.src=data;p.style.display='block';}
       document.getElementById('ii-'+k).classList.add('has');
       changes++;document.getElementById('cc').textContent=changes;
+      persistImgs();
       toast('✓ '+k+' ('+w+'×'+h+', ~'+kb+'KB)');
     };
     img.src = e.target.result;
@@ -251,6 +268,7 @@ function del(k){
   document.getElementById('ii-'+k).classList.remove('has');
   document.getElementById('f-'+k).value='';
   changes++;document.getElementById('cc').textContent=changes;
+  persistImgs();
   toast('삭제: '+k);
 }
 function saveAll(){
@@ -326,13 +344,36 @@ function saveVideoUrl(){
     imgs['hero_video'] = url;
     document.getElementById('ii-hero_video').classList.add('has');
     changes++;document.getElementById('cc').textContent=changes;
+    persistImgs();
   }
 }
 
 build();
 
-// 기존 images.json 로드 시도
-fetch('images.json').then(function(r){return r.json();}).then(function(data){
+// localStorage에서 불러온 이미지를 UI에 반영
+setTimeout(function(){
+  Object.keys(imgs).forEach(function(k){
+    var kd = k.replace(/_/g,'-');
+    var p = document.getElementById('p-'+kd);
+    var ii = document.getElementById('ii-'+kd);
+    var src = imgs[k];
+    if(p && src && !src.startsWith('http')){ p.src=src; p.style.display='block'; }
+    if(ii) ii.classList.add('has');
+  });
+  if(imgs.hero_video && imgs.hero_video.startsWith('http')){
+    var urlInput = document.getElementById('heroVideoUrl');
+    if(urlInput) urlInput.value = imgs.hero_video;
+    var ii = document.getElementById('ii-hero_video');
+    if(ii) ii.classList.add('has');
+  }
+  if(Object.keys(imgs).length > 0){
+    document.getElementById('cc').textContent = '저장됨';
+    toast('이전 작업 복원 완료: ' + Object.keys(imgs).length + '개');
+  }
+}, 300);
+
+// 기존 images.js 로드 시도 (GitHub에 올라간 것)
+fetch('images.js').then(function(r){return r.json();}).then(function(data){
   imgs=data;
   Object.keys(imgs).forEach(function(k){
     var kd=k.replace(/_/g,'-');
