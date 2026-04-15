@@ -944,10 +944,9 @@
 <!-- 플로팅 -->
 <div id="floatTel"><a href="tel:18993283" class="float-tel-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.6a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>전화 상담</a></div>
 
-<script>window.HM_IMGS=window.HM_IMGS||{};</script>
-<script src="/images.js" onerror=""></script>
 <script>
-(function(){
+window.HM_IMGS=window.HM_IMGS||{};
+function applyHMImgs(){
   var imgs = window.HM_IMGS || {};
   if(!Object.keys(imgs).length) return;
   console.log('[화미옥] 이미지 로드:', Object.keys(imgs).length + '개');
@@ -989,6 +988,14 @@
     if(bviEl){ bviEl.src=bvi; bviEl.style.display='block'; }
     if(bviPh){ bviPh.style.display='none'; }
   }
+}
+// images.js 동적 로드
+(function(){
+  var s = document.createElement('script');
+  s.src = '/images.js?v=' + Date.now();
+  s.onload = function(){ applyHMImgs(); };
+  s.onerror = function(){ console.log('images.js 없음'); };
+  document.head.appendChild(s);
 })();
 </script>
 
