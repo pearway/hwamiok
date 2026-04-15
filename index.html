@@ -357,17 +357,13 @@
   }
 }
 
-.hero-vimeo{position:absolute;top:50%;left:50%;width:177.78vh;height:100vh;min-width:100%;min-height:90.25vw;transform:translate(-50%,-50%);}
+.hero-vimeo-mob{display:none;}
 @media(max-width:767px){
-  .hero-vimeo{
-    width:177.78vh;
-    height:90svh;
-    min-width:100%;
-    top:0;
-    left:50%;
-    transform:translateX(-50%);
-  }
+  .hero-vimeo-pc{display:none;}
+  .hero-vimeo-mob{display:block;position:absolute;top:0;left:0;width:100%;height:100%;min-width:unset;min-height:unset;transform:none;}
 }
+
+.hero-vimeo-pc{position:absolute;top:50%;left:50%;width:177.78vh;height:100svh;min-width:100%;min-height:56.25vw;transform:translate(-50%,-50%);}
 
 .gold{
   display: inline-block;
@@ -376,6 +372,19 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: none;
+}
+
+
+/* pc영상 */
+@media(min-width:768px){
+  .hero-body{margin-top:200px;}
+}
+
+
+/* 모바일 영상 */
+@media(max-width:767px){
+  .hero-vimeo-pc{display:none;}
+  .hero-vimeo-mob{display:block;position:absolute;top:50%;left:50%;width:56.25vh;height:100vh;min-width:100%;transform:translate(-50%,-50%);}
 }
 
 </style>
@@ -388,7 +397,11 @@
 </nav>
 
 <section id="hero">
-  <iframe class="hero-vimeo" src="https://player.vimeo.com/video/1183382592?autoplay=1&muted=1&loop=1&background=1" style="border:0;z-index:0;" allow="autoplay; fullscreen"></iframe>
+  <!-- 가로형 PC용 -->
+<iframe class="hero-vimeo hero-vimeo-pc" src="https://player.vimeo.com/video/1183382592?autoplay=1&muted=1&loop=1&background=1" style="border:0;z-index:0;" allow="autoplay; fullscreen"></iframe>
+
+<!-- 세로형 모바일용 -->
+<iframe class="hero-vimeo hero-vimeo-mob" src="https://player.vimeo.com/video/1183556440?autoplay=1&muted=1&loop=1&background=1" style="border:0;z-index:0;" allow="autoplay; fullscreen"></iframe>
   <div style="position:absolute;inset:0;background:rgba(0,0,0,0.7);z-index:1;pointer-events:none;"></div>
   <img id="hero-img-bg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.2s;">
   <div id="hero-overlay" style="display:none;position:absolute;inset:0;background:rgba(10,10,10,.6);z-index:1;pointer-events:none;"></div>
@@ -774,13 +787,13 @@
       <div class="rv d2" style="background:var(--blk2);border-left:4px solid var(--r);padding:22px 20px;position:relative;border-radius:3px;"><div style="position:absolute;top:14px;right:14px;background:var(--r);color:#fff;font-size:9px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:100px;">NO.1</div><h3 class="gold" style="font-family:var(--d);font-size:clamp(17px,4.5vw,21px);margin-bottom:7px;">완벽한 동선 설계</h3><p style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;font-weight:300;">처음 창업이어도 누구나 쉽게 운영할 수 있습니다.</p></div>
     </div>
     <div class="rv d3" style="background:#fff;border-radius:8px;overflow:hidden;margin-top:24px;">
-      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;background:#f2f2f2;padding:10px 12px;"><span style="font-size:10px;color:#888;font-weight:700;letter-spacing:1px;">항목</span><span style="font-size:10px;color:#888;font-weight:700;letter-spacing:1px;text-align:center;">비고</span><span style="font-size:10px;color:#888;font-weight:700;letter-spacing:1px;text-align:right;">금액</span><span style="font-size:9px;color:#aaa;font-weight:700;text-align:right;">단위:만원</span></div>
-      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;padding:11px 12px;border-bottom:1px solid #f0f0f0;align-items:center;"><span style="font-size:12px;color:#333;font-weight:600;">가맹비</span><span style="font-size:11px;color:var(--r);text-align:center;font-weight:700;">20호점까지 면제</span><span style="font-size:11px;color:#bbb;text-align:right;text-decoration:line-through;">1,000</span><span style="font-size:16px;color:var(--r);text-align:right;font-weight:900;">0</span></div>
-      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;padding:11px 12px;border-bottom:1px solid #f0f0f0;align-items:center;"><span style="font-size:12px;color:#333;font-weight:600;">교육비</span><span style="font-size:12px;color:#aaa;text-align:center;">—</span><span style="font-size:12px;color:#333;text-align:right;">300</span><span style="font-size:14px;color:#333;text-align:right;font-weight:700;">300</span></div>
-      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;padding:11px 12px;border-bottom:1px solid #f0f0f0;align-items:center;"><span style="font-size:12px;color:#333;font-weight:600;">보증금</span><span style="font-size:12px;color:#aaa;text-align:center;">—</span><span style="font-size:12px;color:#333;text-align:right;">200</span><span style="font-size:14px;color:#333;text-align:right;font-weight:700;">200</span></div>
-      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;padding:11px 12px;border-bottom:1px solid #f0f0f0;align-items:center;"><span style="font-size:12px;color:#333;font-weight:600;">로열티</span><span style="font-size:11px;color:var(--r);text-align:center;font-weight:700;">20호점까지 할인</span><span style="font-size:11px;color:#bbb;text-align:right;text-decoration:line-through;">40</span><span style="font-size:16px;color:var(--r);text-align:right;font-weight:900;">25</span></div>
-      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;padding:11px 12px;align-items:center;"><span style="font-size:12px;color:#333;font-weight:600;">인테리어</span><span style="font-size:10px;color:#999;text-align:center;">본사 시공시 최저가</span><span style="font-size:12px;color:#aaa;text-align:right;">—</span><span style="font-size:11px;color:#aaa;text-align:right;">자율</span></div>
-      <p style="font-size:10px;color:#aaa;padding:10px 12px 14px;line-height:1.6;">※ 상권·규모에 따라 변동될 수 있습니다. 정확한 견적은 상담을 통해 안내드립니다.</p>
+      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;background:#f2f2f2;padding:10px 12px;"><span style="font-size:14px;color:#888;font-weight:700;letter-spacing:1px;">항목</span><span style="font-size:14px;color:#888;font-weight:700;letter-spacing:1px;text-align:center;">비고</span><span style="font-size:14px;color:#888;font-weight:700;letter-spacing:1px;text-align:right;">금액</span><span style="font-size:14px;color:#aaa;font-weight:700;text-align:right;">단위:만원</span></div>
+      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;padding:11px 12px;border-bottom:1px solid #f0f0f0;align-items:center;"><span style="font-size:20px;color:#333;font-weight:600;">가맹비</span><span style="font-size:14px;color:var(--r);text-align:center;font-weight:700;">20호점까지 면제</span><span style="font-size:16px;color:#bbb;text-align:right;text-decoration:line-through;">1,000</span><span style="font-size:16px;color:var(--r);text-align:right;font-weight:900;">0</span></div>
+      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;padding:11px 12px;border-bottom:1px solid #f0f0f0;align-items:center;"><span style="font-size:20px;color:#333;font-weight:600;">교육비</span><span style="font-size:14px;color:#aaa;text-align:center;">—</span><span style="font-size:16px;color:#333;text-align:right;">300</span><span style="font-size:16px;color:#333;text-align:right;font-weight:700;">300</span></div>
+      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;padding:11px 12px;border-bottom:1px solid #f0f0f0;align-items:center;"><span style="font-size:20px;color:#333;font-weight:600;">보증금</span><span style="font-size:14px;color:#aaa;text-align:center;">—</span><span style="font-size:16px;color:#333;text-align:right;">200</span><span style="font-size:16px;color:#333;text-align:right;font-weight:700;">200</span></div>
+      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;padding:11px 12px;border-bottom:1px solid #f0f0f0;align-items:center;"><span style="font-size:20px;color:#333;font-weight:600;">로열티</span><span style="font-size:14px;color:var(--r);text-align:center;font-weight:700;">20호점까지 할인</span><span style="font-size:16px;color:#bbb;text-align:right;text-decoration:line-through;">40</span><span style="font-size:16px;color:var(--r);text-align:right;font-weight:900;">25</span></div>
+      <div style="display:grid;grid-template-columns:1.2fr 1.8fr 1fr 60px;padding:11px 12px;align-items:center;"><span style="font-size:20px;color:#333;font-weight:600;">인테리어</span><span style="font-size:14px;color:#999;text-align:center;">본사 시공시 최저가</span><span style="font-size:16px;color:#aaa;text-align:right;">—</span><span style="font-size:16px;color:#aaa;text-align:right;">자율</span></div>
+      <p style="font-size:14px;color:#aaa;padding:10px 12px 14px;line-height:1.6;">※ 상권·규모에 따라 변동될 수 있습니다. 정확한 견적은 상담을 통해 안내드립니다.</p>
     </div>
   </div>
 </section>
