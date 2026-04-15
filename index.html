@@ -958,6 +958,22 @@ function applyHMImgs(){
     if(el && el.tagName === 'IMG'){
       el.src = src;
       el.style.display = 'block';
+      el.style.zIndex = '2';
+      // 같은 부모 안의 플레이스홀더 숨기기
+      var parent = el.parentElement;
+      if(parent){
+        var children = parent.children;
+        for(var i=0;i<children.length;i++){
+          var ch = children[i];
+          if(ch !== el && (
+            ch.className.indexOf('ph') !== -1 ||
+            ch.className.indexOf('-ph') !== -1 ||
+            ch.className.indexOf('grad') !== -1
+          )){
+            ch.style.display = 'none';
+          }
+        }
+      }
       var grad = document.getElementById(id+'-grad');
       if(grad) grad.style.display = 'none';
     }
