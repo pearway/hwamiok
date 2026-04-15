@@ -357,6 +357,18 @@
   }
 }
 
+.hero-vimeo{position:absolute;top:50%;left:50%;width:177.78vh;height:100vh;min-width:100%;min-height:90.25vw;transform:translate(-50%,-50%);}
+@media(max-width:767px){
+  .hero-vimeo{
+    width:177.78vh;
+    height:75svh;
+    min-width:100%;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+  }
+}
+
 </style>
 </head>
 <body>
@@ -367,7 +379,7 @@
 </nav>
 
 <section id="hero">
-  <iframe src="https://player.vimeo.com/video/1183382592?autoplay=1&muted=1&loop=1&background=1" style="position:absolute;top:50%;left:50%;width:177.78vh;height:100vh;min-width:100%;min-height:56.25vw;transform:translate(-50%,-50%);border:0;z-index:0;" allow="autoplay; fullscreen"></iframe>
+  <iframe class="hero-vimeo" src="https://player.vimeo.com/video/1183382592?autoplay=1&muted=1&loop=1&background=1" style="border:0;z-index:0;" allow="autoplay; fullscreen"></iframe>
   <div style="position:absolute;inset:0;background:rgba(0,0,0,0.7);z-index:1;pointer-events:none;"></div>
   <img id="hero-img-bg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.2s;">
   <div id="hero-overlay" style="display:none;position:absolute;inset:0;background:rgba(10,10,10,.6);z-index:1;pointer-events:none;"></div>
