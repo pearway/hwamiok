@@ -931,6 +931,7 @@
     width: 100%; height: 100%;
     object-fit: cover;
     display: none;
+    image-rendering: auto;
   }
   .menu-img-placeholder {
     position: absolute; inset: 0;
@@ -1816,6 +1817,32 @@
     margin-bottom: 24px;
     font-size: 13px;
     opacity: 0.85;
+  }
+  .footer-corp {
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 12px;
+    line-height: 1.9;
+    opacity: 0.7;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 0.01em;
+  }
+  .footer-corp-row {
+    word-break: keep-all;
+  }
+  .footer-corp-label {
+    color: var(--gold-light);
+    font-weight: 600;
+    margin-right: 4px;
+    opacity: 0.85;
+  }
+  .footer-corp-sep {
+    opacity: 0.3;
+    margin: 0 6px;
   }
   .footer-copy {
     border-top: 1px solid rgba(255,255,255,0.08);
@@ -2763,6 +2790,10 @@
     창업 문의 1899-3283<br>
     운영시간 평일 09:00 - 18:00<br>
     본사 홈페이지에서 창업설명회 일정 확인
+  </div>
+  <div class="footer-corp">
+    <div class="footer-corp-row"><span class="footer-corp-label">법인명</span> (주)솔든코리아 <span class="footer-corp-sep">·</span> <span class="footer-corp-label">대표</span> 홍현우</div>
+    <div class="footer-corp-row"><span class="footer-corp-label">사업자등록번호</span> 599-32-00608</div>
   </div>
   <div class="footer-copy">
     © 1987-2026 화미옥김치찌개 · SOLDEUNKOREA. All rights reserved.
