@@ -2,1184 +2,394 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>화미옥 관리자 · Admin</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-<!-- Adobe Fonts (산돌 광야) -->
-<script>
-  (function(d) {
-    var config = {
-      kitId: 'fln7lts',
-      scriptTimeout: 1500,
-      async: true
-    },
-    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-  })(document);
-</script>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>화미옥 어드민</title>
 <style>
-  @font-face {
-    font-family: 'SDGwangya';
-    src:
-      local('SDGwangyaBold'), local('SD Gwangya'), local('산돌 광야'),
-      url('./fonts/SDGwangyaBold.woff2') format('woff2'),
-      url('./fonts/SDGwangyaBold.woff') format('woff'),
-      url('./fonts/SDGwangyaBold.otf') format('opentype'),
-      url('./fonts/SDGwangyaBold.ttf') format('truetype');
-    font-weight: 700;
-    font-display: swap;
-  }
-
-  :root {
-    --red: #A41E22;
-    --cream: #F7F0E0;
-    --ink: #1F1A15;
-    --ink-soft: #4A3E32;
-    --gold-dark: #A8841E;
-    --gold: #D4AF37;
-    --gold-bright: #E8C35B;
-    --gold-light: #F2D572;
-    --paper: #FDFAF1;
-    --line: #D9CBAE;
-    --bg: #F4EFE2;
-    --display: 'sandoll-kwangya', 'sandoll-gwangya', 'SDGwangya', 'Black Han Sans', sans-serif;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  .topbar-title, .panel-title {
-    transition: opacity 0.3s ease-out;
-  }
-  html.wf-loading .topbar-title,
-  html.wf-loading .panel-title { opacity: 0; }
-
-  .topbar {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 16px 24px;
-    display: flex; justify-content: space-between; align-items: center;
-    position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-  .topbar-title {
-    font-family: var(--display);
-    font-size: 20px; font-weight: 900;
-    color: var(--paper); letter-spacing: -0.02em;
-  }
-  .topbar-title small {
-    color: var(--gold);
-    font-family: 'Noto Sans KR';
-    font-size: 12px; font-weight: 500;
-    letter-spacing: 0.2em; margin-left: 10px;
-  }
-  .topbar-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-  .topbar-btn {
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 13px; font-weight: 700;
-    text-decoration: none; cursor: pointer;
-    border: none; transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .topbar-btn.view { background: var(--gold); color: var(--ink); }
-  .topbar-btn.view:hover { background: var(--gold-bright); }
-  .topbar-btn.danger {
-    background: transparent;
-    color: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.3);
-  }
-  .topbar-btn.danger:hover { background: rgba(255,100,100,0.15); color: #ffb0b0; border-color: rgba(255,100,100,0.5); }
-
-  .container { max-width: 1100px; margin: 0 auto; padding: 28px 20px 80px; }
-  .panel {
-    background: var(--paper);
-    border-radius: 12px;
-    padding: 28px 24px;
-    margin-bottom: 20px;
-    border: 1px solid var(--line);
-  }
-  .panel.panel-export {
-    background: linear-gradient(135deg, #2D2420, #1F1A15);
-    border: none; color: var(--paper);
-  }
-  .panel.panel-export .panel-title { color: var(--gold-light); }
-  .panel.panel-export .panel-sub { color: rgba(255,255,255,0.7); }
-
-  .panel-title {
-    font-family: var(--display);
-    font-size: 22px; font-weight: 900;
-    color: var(--ink);
-    margin-bottom: 6px;
-    letter-spacing: -0.02em;
-  }
-  .panel-sub {
-    font-size: 13px; color: var(--ink-soft);
-    margin-bottom: 24px; line-height: 1.7;
-  }
-
-  .export-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-  .export-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 14px 24px;
-    background: var(--gold); color: var(--ink);
-    border: none; border-radius: 8px;
-    font-size: 14px; font-weight: 800;
-    cursor: pointer; transition: all 0.2s;
-    font-family: var(--display);
-    letter-spacing: 0.02em;
-  }
-  .export-btn:hover { background: var(--gold-bright); transform: translateY(-1px); }
-  .export-btn.secondary {
-    background: transparent;
-    color: var(--paper);
-    border: 1.5px solid rgba(255,255,255,0.4);
-  }
-  .export-btn.secondary:hover { background: rgba(255,255,255,0.08); border-color: var(--gold-light); color: var(--gold-light); }
-
-  .upload {
-    display: flex; gap: 18px;
-    align-items: flex-start; flex-wrap: wrap;
-  }
-  .upload-preview {
-    width: 140px; height: 140px;
-    border-radius: 12px;
-    border: 2px dashed var(--line);
-    background: var(--cream);
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden; position: relative;
-    flex-shrink: 0;
-  }
-  .upload-preview.round { border-radius: 50%; }
-  .upload-preview img { width: 100%; height: 100%; object-fit: cover; }
-  .upload-preview.contain img { object-fit: contain; padding: 10px; }
-  .upload-preview-empty {
-    color: var(--ink-soft); font-size: 12px;
-    text-align: center; padding: 8px;
-  }
-  .upload-body { flex: 1; min-width: 220px; }
-  .upload-label {
-    font-family: var(--display);
-    font-size: 15px; font-weight: 900;
-    color: var(--ink); margin-bottom: 4px;
-  }
-  .upload-hint {
-    font-size: 12px; color: var(--ink-soft);
-    margin-bottom: 12px;
-  }
-  .upload-input { display: none; }
-  .upload-btn {
-    display: inline-block;
-    padding: 10px 18px;
-    background: var(--ink); color: var(--paper);
-    border-radius: 6px;
-    font-size: 13px; font-weight: 700;
-    cursor: pointer; margin-right: 8px;
-    transition: background 0.2s;
-  }
-  .upload-btn:hover { background: #000; }
-  .upload-btn.secondary {
-    background: transparent; color: var(--ink-soft);
-    border: 1px solid var(--line);
-  }
-  .upload-btn.secondary:hover { background: var(--cream); }
-  .upload-status {
-    display: inline-block; margin-left: 8px;
-    font-size: 12px; color: var(--gold-dark);
-    font-weight: 600;
-  }
-  .upload-status.saved { color: #2a7a3a; }
-
-  .icon-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 14px;
-  }
-  .icon-card {
-    background: var(--cream); border-radius: 10px;
-    padding: 16px; border: 1px solid var(--line);
-    display: flex; gap: 14px; align-items: center;
-  }
-  .icon-card .upload-preview {
-    width: 70px; height: 70px;
-    border-radius: 50%;
-  }
-  .icon-card .upload-preview.square { border-radius: 8px; }
-  .icon-card-body { flex: 1; min-width: 0; }
-  .icon-card-name {
-    font-family: var(--display);
-    font-size: 14px; font-weight: 900;
-    color: var(--ink); margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-  .icon-card-key {
-    font-size: 10px; color: var(--ink-soft);
-    font-family: monospace;
-    margin-bottom: 8px; opacity: 0.6;
-  }
-  .icon-card-btns { display: flex; gap: 4px; flex-wrap: wrap; }
-  .icon-btn {
-    padding: 6px 10px;
-    background: var(--ink); color: var(--paper);
-    border-radius: 5px;
-    font-size: 11px; font-weight: 700;
-    cursor: pointer; border: none;
-    font-family: inherit;
-    display: inline-block;
-  }
-  .icon-btn.del {
-    background: transparent; color: #b03030;
-    border: 1px solid #b03030;
-  }
-  .icon-btn.del:hover { background: #b03030; color: white; }
-
-  .menu-upload-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 14px;
-  }
-  .menu-upload-card {
-    background: var(--cream); border-radius: 10px;
-    padding: 14px; text-align: center;
-    border: 1px solid var(--line);
-  }
-  .menu-upload-card .upload-preview {
-    width: 90px; height: 90px;
-    border-radius: 50%; margin: 0 auto 10px;
-    border: 2px dashed rgba(168,132,30,0.35);
-    background: var(--paper);
-  }
-  .menu-upload-card .upload-preview-empty {
-    font-size: 11px;
-    color: rgba(168,132,30,0.6);
-    font-family: var(--display);
-    font-weight: 900;
-  }
-  .menu-upload-name {
-    font-family: var(--display);
-    font-size: 14px; font-weight: 900;
-    color: var(--ink); margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-  .menu-upload-key {
-    font-size: 10px; color: var(--ink-soft);
-    font-family: monospace;
-    margin-bottom: 10px; opacity: 0.6;
-  }
-  .menu-upload-btn {
-    display: inline-block;
-    padding: 7px 14px;
-    background: var(--ink); color: var(--paper);
-    border-radius: 5px;
-    font-size: 11px; font-weight: 700;
-    cursor: pointer; margin: 0 2px;
-    transition: background 0.2s;
-  }
-  .menu-upload-btn:hover { background: #000; }
-  .menu-upload-btn.del {
-    background: transparent; color: #b03030;
-    border: 1px solid #b03030;
-  }
-  .menu-upload-btn.del:hover { background: #b03030; color: white; }
-
-  .partner-admin-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 14px;
-  }
-  .partner-admin-card {
-    background: var(--cream); border-radius: 10px;
-    padding: 16px; border: 1px solid var(--line);
-    text-align: center;
-  }
-  .partner-admin-card .upload-preview {
-    width: 100%; height: 80px;
-    border-radius: 8px; background: var(--paper);
-    margin-bottom: 10px;
-  }
-  .partner-admin-card .upload-preview img {
-    object-fit: contain; padding: 8px;
-  }
-  .partner-admin-card input {
-    width: 100%; padding: 8px 10px;
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    font-size: 13px; margin-bottom: 10px;
-    background: var(--paper);
-    font-family: inherit;
-  }
-  .partner-admin-card input:focus {
-    outline: none; border-color: var(--gold);
-  }
-  .partner-slot-num {
-    font-size: 10px; color: var(--ink-soft);
-    letter-spacing: 0.15em;
-    font-weight: 700; margin-bottom: 8px;
-    font-family: var(--display);
-  }
-
-  .review-form {
-    background: var(--cream); padding: 20px;
-    border-radius: 10px; margin-bottom: 20px;
-    display: grid; gap: 12px;
-  }
-  .review-form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-  }
-  @media (max-width: 600px) {
-    .review-form-row { grid-template-columns: 1fr; }
-  }
-  .review-form label {
-    font-size: 12px; font-weight: 700;
-    color: var(--ink); display: block; margin-bottom: 4px;
-  }
-  .review-form input,
-  .review-form textarea,
-  .review-form select {
-    width: 100%; padding: 10px 12px;
-    border: 1px solid var(--line);
-    border-radius: 6px; background: var(--paper);
-    font-size: 14px; font-family: inherit;
-    color: var(--ink);
-  }
-  .review-form input:focus,
-  .review-form textarea:focus,
-  .review-form select:focus {
-    outline: none; border-color: var(--gold);
-  }
-  .review-form textarea { min-height: 70px; resize: vertical; }
-  .review-form-submit {
-    justify-self: start;
-    padding: 10px 24px;
-    background: var(--gold-dark); color: var(--paper);
-    border: none; border-radius: 6px;
-    font-size: 13px; font-weight: 700;
-    cursor: pointer;
-    font-family: var(--display);
-    letter-spacing: 0.02em;
-  }
-  .review-form-submit:hover { background: var(--gold); color: var(--ink); }
-
-  .review-list { display: grid; gap: 10px; }
-  .review-row {
-    background: var(--cream); padding: 16px 18px;
-    border-radius: 8px; border: 1px solid var(--line);
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 16px; align-items: start;
-  }
-  .review-row-stars {
-    color: var(--gold); font-size: 15px;
-    letter-spacing: 1px;
-  }
-  .review-row-body { font-size: 14px; line-height: 1.55; }
-  .review-row-meta {
-    font-size: 11px; color: var(--ink-soft);
-    margin-top: 6px;
-  }
-  .review-row-meta strong { color: var(--ink); margin-right: 6px; }
-  .review-row-actions { display: flex; gap: 6px; }
-  .review-del {
-    background: transparent; color: #b03030;
-    border: 1px solid #b03030;
-    padding: 6px 10px; border-radius: 5px;
-    font-size: 11px; font-weight: 700; cursor: pointer;
-  }
-  .review-del:hover { background: #b03030; color: white; }
-  .review-empty {
-    text-align: center; padding: 30px;
-    color: var(--ink-soft); font-size: 13px;
-  }
-
-  .toast {
-    position: fixed;
-    bottom: 30px; left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: var(--ink); color: var(--paper);
-    padding: 14px 24px;
-    border-radius: 100px;
-    font-size: 13px; font-weight: 600;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    opacity: 0; pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    z-index: 200; max-width: 90%;
-    text-align: center;
-  }
-  .toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  .toast.error { background: #b03030; }
-
-  .quota-info {
-    background: #FFF4D6;
-    border: 1px solid #E8C865;
-    border-radius: 8px;
-    padding: 14px 16px;
-    margin-bottom: 20px;
-    font-size: 13px;
-    color: #6B5020;
-    line-height: 1.65;
-  }
-  .quota-info strong { color: #5A3E10; }
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--r:#D4001A;--blk:#0A0A0A;}
+body{background:#f5f5f5;font-family:'Noto Sans KR',sans-serif;font-weight:300;color:#1a1a1a;}
+header{background:var(--r);color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(212,0,26,.3);}
+.ht{font-size:18px;font-weight:700;}.hs{font-size:11px;opacity:.7;margin-top:2px;}
+.save-btn{background:#fff;color:var(--r);border:none;padding:10px 24px;border-radius:4px;font-size:13px;font-weight:700;cursor:pointer;}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px 80px;}
+.section{background:#fff;border-radius:10px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.sh{padding:14px 20px;background:var(--blk);display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;}
+.sh h2{color:#fff;font-size:14px;font-weight:700;}
+.sh .cnt{background:var(--r);color:#fff;font-size:10px;padding:2px 8px;border-radius:100px;font-weight:700;}
+.sh .arr{color:rgba(255,255,255,.4);margin-left:auto;transition:transform .3s;}
+.sh.open .arr{transform:rotate(180deg);}
+.sb{padding:20px;display:none;}
+.sb.open{display:block;}
+.note{font-size:11px;color:#999;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f0f0f0;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;}
+.ii{border:2px solid #e8e8e8;border-radius:8px;overflow:hidden;transition:border-color .2s;}
+.ii:hover{border-color:var(--r);}
+.ii.has{border-color:#4caf50;}
+.prev{width:100%;aspect-ratio:1;background:#f0f0f0;position:relative;overflow:hidden;cursor:pointer;}
+.prev img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#ccc;}
+.ph span{font-size:9px;letter-spacing:1px;}
+.ii.has .ph{display:none;}
+.meta{padding:9px 11px;}
+.key{font-size:10px;font-weight:700;color:var(--r);margin-bottom:2px;font-family:monospace;}
+.desc{font-size:10px;color:#888;}
+.acts{display:flex;gap:5px;margin-top:7px;}
+.bu{flex:1;background:var(--r);color:#fff;border:none;padding:6px;font-size:10px;border-radius:3px;cursor:pointer;font-family:inherit;}
+.br{background:#f5f5f5;color:#999;border:1px solid #ddd;padding:6px 9px;font-size:10px;border-radius:3px;cursor:pointer;font-family:inherit;}
+.br:hover{background:#fee;color:var(--r);}
+input[type=file]{display:none;}
+.toast{position:fixed;bottom:80px;right:20px;background:var(--blk);color:#fff;padding:10px 18px;border-radius:5px;font-size:12px;z-index:9999;transform:translateY(60px);opacity:0;transition:all .3s;pointer-events:none;}
+.toast.show{transform:none;opacity:1;}
+.savebar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:3px solid var(--r);padding:10px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 -4px 16px rgba(0,0,0,.08);z-index:50;}
+.sb-info{flex:1;font-size:12px;color:#888;}.sb-info strong{color:var(--r);}
+@media(min-width:768px){.grid{grid-template-columns:repeat(auto-fill,minmax:220px,1fr));}}
 </style>
 </head>
 <body>
-
-<div class="topbar">
-  <div class="topbar-title">화미옥 <small>ADMIN</small></div>
-  <div class="topbar-actions">
-    <a href="./index.html" class="topbar-btn view" target="_blank">홈페이지 보기</a>
-    <button class="topbar-btn danger" onclick="resetAll()">전체 초기화</button>
-  </div>
+<header>
+  <div><div class="ht">화미옥 어드민</div><div class="hs">이미지 관리 · images.json 생성</div></div>
+  <button class="save-btn" onclick="saveAll()">💾 JSON 저장</button>
+</header>
+<div class="container" id="app"></div>
+<div class="savebar">
+  <div class="sb-info">변경: <strong id="cc">0</strong>개 · 이미지 자동 압축(900px/WebP) · images.js 저장 후 GitHub 루트에 업로드</div>
+  <button class="save-btn" style="background:var(--r);color:#fff;" onclick="saveAll()">💾 JSON 저장</button>
 </div>
-
-<div class="container">
-
-  <!-- 데이터 백업/복원 -->
-  <div class="panel panel-export">
-    <h2 class="panel-title">데이터 백업 & 복원</h2>
-    <p class="panel-sub">
-      업로드한 이미지·후기·파트너 정보를 <strong style="color:var(--gold-light)">JSON 파일</strong>로 다운받아
-      다른 컴퓨터나 브라우저로 옮길 수 있습니다. 저장한 JSON 파일을 다시 불러오면 그대로 복원됩니다.
-    </p>
-    <div class="export-actions">
-      <button class="export-btn" onclick="exportData()">
-        전체 데이터 내보내기 (.json)
-      </button>
-      <label class="export-btn secondary">
-        JSON 파일 불러오기
-        <input type="file" accept=".json,application/json" style="display:none"
-          onchange="importData(this)">
-      </label>
-    </div>
-  </div>
-
-  <div class="quota-info">
-    <strong>사용 안내.</strong> 업로드한 이미지는 현재 브라우저에만 저장됩니다(localStorage).
-    실제 서버 연동 전 데모·프로토타입 용도이므로, 작업이 끝나면 <strong>반드시 JSON으로 내보내기</strong>를 해두세요.
-    <br><span id="quotaUsage" style="font-weight:600;"></span>
-  </div>
-
-  <!-- 로고 -->
-  <div class="panel">
-    <h2 class="panel-title">로고</h2>
-    <p class="panel-sub">상단 네비게이션에 표시됩니다. (비워두면 "화미옥" 텍스트로 표시)</p>
-    <div class="upload">
-      <div class="upload-preview contain" id="logoPreview">
-        <span class="upload-preview-empty">미등록</span>
-      </div>
-      <div class="upload-body">
-        <div class="upload-label">브랜드 로고</div>
-        <div class="upload-hint">PNG 권장 (투명 배경) · 가로 폭 자동 조정</div>
-        <label class="upload-btn">
-          이미지 선택
-          <input type="file" class="upload-input" accept="image/*" onchange="uploadImage(this, 'logo', 'logoPreview', 600)">
-        </label>
-        <button class="upload-btn secondary" onclick="deleteImage('logo', 'logoPreview')">삭제</button>
-        <span class="upload-status" id="logoStatus"></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 히어로 -->
-  <div class="panel">
-    <h2 class="panel-title">메인 히어로 이미지</h2>
-    <p class="panel-sub">첫 화면 중앙의 대표 사진입니다. 김치찌개 그릇 사진을 업로드하세요.</p>
-    <div class="upload">
-      <div class="upload-preview round" id="heroPreview">
-        <span class="upload-preview-empty">미등록</span>
-      </div>
-      <div class="upload-body">
-        <div class="upload-label">메인 사진</div>
-        <div class="upload-hint">정사각형 권장 · 권장 크기 1500x1500px 이상 · 최대 1800px 자동 리사이즈</div>
-        <label class="upload-btn">
-          이미지 선택
-          <input type="file" class="upload-input" accept="image/*" onchange="uploadImage(this, 'hero', 'heroPreview', 1800)">
-        </label>
-        <button class="upload-btn secondary" onclick="deleteImage('hero', 'heroPreview')">삭제</button>
-        <span class="upload-status" id="heroStatus"></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 브랜드 영상 (YouTube) -->
-  <div class="panel">
-    <h2 class="panel-title">브랜드 영상 <span style="font-size:13px; color:var(--ink-soft); font-weight:500;">(YouTube)</span></h2>
-    <p class="panel-sub">
-      히어로 바로 아래에 삽입되는 브랜드 영상입니다. YouTube 주소를 그대로 붙여넣으면 자동으로 삽입됩니다.
-      URL을 비우면 해당 섹션은 홈페이지에 표시되지 않습니다.
-      <br><span style="opacity:0.7;">지원 형식: <code style="background:var(--cream); padding:2px 6px; border-radius:3px;">youtube.com/watch?v=...</code>, <code style="background:var(--cream); padding:2px 6px; border-radius:3px;">youtu.be/...</code>, <code style="background:var(--cream); padding:2px 6px; border-radius:3px;">youtube.com/shorts/...</code></span>
-    </p>
-
-    <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: stretch;">
-      <input type="text" id="youtubeInput"
-        placeholder="예) https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-        style="flex: 1; min-width: 260px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; background: var(--paper); font-family: inherit; color: var(--ink);">
-      <button class="upload-btn" style="padding: 12px 22px;" onclick="saveYoutube()">저장</button>
-      <button class="upload-btn secondary" style="padding: 12px 16px;" onclick="deleteYoutube()">삭제</button>
-    </div>
-    <div id="youtubePreview" style="margin-top: 16px; display: none;">
-      <div style="font-size: 12px; color: var(--ink-soft); margin-bottom: 8px;">현재 등록된 영상 썸네일</div>
-      <div style="max-width: 420px; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: #000;">
-        <img id="youtubePreviewImg" alt="" style="width: 100%; height: 100%; object-fit: cover;">
-      </div>
-      <div id="youtubePreviewId" style="font-size: 11px; color: var(--ink-soft); margin-top: 6px; font-family: monospace;"></div>
-    </div>
-  </div>
-
-  <!-- 메뉴 사진 -->
-  <div class="panel">
-    <h2 class="panel-title">메뉴 사진 <span style="font-size:13px; color:var(--ink-soft); font-weight:500;">(총 13종)</span></h2>
-    <p class="panel-sub">각 메뉴별로 사진을 업로드하세요. 정사각형 1200x1200px 이상 권장 · 최대 1600px 자동 리사이즈. 정사각형 사진이 자연스럽게 표시됩니다.</p>
-    <div class="menu-upload-grid" id="menuGrid"></div>
-  </div>
-
-  <!-- 품질 아이콘 -->
-  <div class="panel">
-    <h2 class="panel-title">품질 섹션 아이콘 · HACCP 인증</h2>
-    <p class="panel-sub">
-      "식재료의 진심" 섹션의 4개 아이콘과 HACCP 인증 배지를 직접 올릴 수 있습니다.
-      업로드하지 않으면 기본 디자인이 유지됩니다.
-    </p>
-
-    <div class="icon-grid" id="qualityIconGrid"></div>
-
-    <div style="margin-top: 16px;">
-      <div class="icon-card">
-        <div class="upload-preview square" id="haccpPreview" style="width:100px; height:80px; background:#00674A;">
-          <span class="upload-preview-empty" style="color:rgba(255,255,255,0.85); font-weight:900; font-size:11px;">HACCP<br>인증</span>
-        </div>
-        <div class="icon-card-body">
-          <div class="icon-card-name">HACCP 인증 배지</div>
-          <div class="icon-card-key">haccp_badge · 투명 PNG 권장</div>
-          <div class="icon-card-btns">
-            <label class="icon-btn">
-              업로드
-              <input type="file" class="upload-input" accept="image/*" onchange="uploadHaccp(this)">
-            </label>
-            <button class="icon-btn del" onclick="deleteHaccp()">삭제</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 파트너 로고 -->
-  <div class="panel">
-    <h2 class="panel-title">물류·식자재 파트너 로고</h2>
-    <p class="panel-sub">
-      협력사 로고와 이름을 등록하면 홈페이지에 "함께하는 물류 파트너" 섹션이 자동으로 표시됩니다.
-      (예: 동원홈푸드, CJ프레시웨이, 현대그린푸드 등) 최대 6개까지 등록 가능.
-      등록된 파트너가 없으면 해당 섹션은 자동으로 숨겨집니다.
-    </p>
-    <div class="partner-admin-grid" id="partnerGrid"></div>
-  </div>
-
-  <!-- 후기 -->
-  <div class="panel">
-    <h2 class="panel-title">후기 관리</h2>
-    <p class="panel-sub">홈페이지 후기 섹션에 흐르는 리뷰를 관리합니다. 6개 이상 등록하면 자연스럽게 무한 순환됩니다.</p>
-
-    <div class="review-form">
-      <div class="review-form-row">
-        <div>
-          <label>별점</label>
-          <select id="reviewStars">
-            <option value="5">★★★★★ 5점</option>
-            <option value="4">★★★★☆ 4점</option>
-            <option value="3">★★★☆☆ 3점</option>
-          </select>
-        </div>
-        <div>
-          <label>작성자 (익명 권장)</label>
-          <input type="text" id="reviewAuthor" placeholder="예) 김**">
-        </div>
-        <div>
-          <label>지점 / 위치</label>
-          <input type="text" id="reviewLoc" placeholder="예) 석관점">
-        </div>
-      </div>
-      <div>
-        <label>후기 내용</label>
-        <textarea id="reviewText" placeholder="예) 국물이 정말 진하고 깊어요."></textarea>
-      </div>
-      <button class="review-form-submit" onclick="addReview()">후기 추가</button>
-    </div>
-
-    <div class="review-list" id="reviewList"></div>
-  </div>
-
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
-  const MENU_LIST = [
-    { key: 'dwaeji_kimchi',    name: '돼지 김치찌개',   placeholder: '돼지' },
-    { key: 'budae_kimchi',     name: '부대 김치찌개',   placeholder: '부대' },
-    { key: 'chamchi_kimchi',   name: '참치 김치찌개',   placeholder: '참치' },
-    { key: 'donkkas_kimchi',   name: '돈까스 김치찌개', placeholder: '돈까스' },
-    { key: 'gochujang_jeyuk',  name: '고추장 제육볶음', placeholder: '제육' },
-    { key: 'ganjang_bulgogi',  name: '간장 돼지불고기', placeholder: '불고기' },
-    { key: 'deungsim_donkkas', name: '등심돈까스',      placeholder: '돈까스' },
-    { key: 'dwaeji_kimchijjim', name: '돼지고기 김치찜', placeholder: '돼지찜' },
-    { key: 'budae_kimchijjim',  name: '부대 김치찜',     placeholder: '부대찜' },
-    { key: 'hamgui',           name: '햄구이',         placeholder: '햄구이' },
-    { key: 'gyeranmari',       name: '계란말이',       placeholder: '계란' },
-    { key: 'kimchi_guksu',     name: '김치말이국수',   placeholder: '국수' },
-    { key: 'jumukbap',         name: '주먹밥',         placeholder: '주먹밥' }
-  ];
-  const QUALITY_ICONS = [
-    { key: 'q_icon_1', name: '국내산 배추김치', placeholder: '菜' },
-    { key: 'q_icon_2', name: '국내산 돼지고기', placeholder: '肉' },
-    { key: 'q_icon_3', name: '특제비법 육수',   placeholder: '湯' },
-    { key: 'q_icon_4', name: '콜드체인 물류',   placeholder: '鮮' }
-  ];
-  const PARTNER_COUNT = 6;
-  const STORAGE_PREFIX = 'hwamiok_';
-  const DEFAULT_REVIEWS = [
-    { stars: 5, text: "국물이 정말 진하고 깊어요. 김치가 제대로 숙성돼서 이 맛이 나는구나 싶어요.", author: "김**", loc: "석관점" },
-    { stars: 5, text: "오래된 맛집 느낌 제대로! 계란말이도 정말 맛있어요. 또 올거에요.", author: "이**", loc: "수도권점" },
-    { stars: 5, text: "김치찜 먹으러 일부러 찾아왔는데 기대 이상이네요. 고기가 부드럽고 양이 많음.", author: "박**", loc: "강남점" },
-    { stars: 5, text: "낮엔 점심 든든하게, 밤엔 소주 한 잔. 동네에 이런 가게 있으면 정말 행복.", author: "최**", loc: "석관점" },
-    { stars: 5, text: "돼지고기가 부드럽고 양념이 깊어요. 밥도둑이라는 표현이 딱.", author: "정**", loc: "수원점" },
-    { stars: 5, text: "원팩 시스템이라 직원 교육 편하고 맛도 똑같아요. (점주 후기)", author: "장**", loc: "가맹점주" },
-    { stars: 5, text: "30년 가까이 된 맛집이라길래 왔는데 이유가 있네요. 재방문 의사 100%.", author: "윤**", loc: "본점" },
-    { stars: 5, text: "부대 김치찌개 햄이 정말 많이 들어있고 김치 숙성도가 예술.", author: "한**", loc: "일산점" }
-  ];
+var imgs = {};
+var changes = 0;
 
-  const toast = document.getElementById('toast');
-  let toastTimer;
-  function showToast(msg, isError) {
-    toast.textContent = msg;
-    toast.className = 'toast show' + (isError ? ' error' : '');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+// localStorage에서 복원
+try {
+  var saved = localStorage.getItem('hm_imgs');
+  if(saved) {
+    imgs = JSON.parse(saved);
+    console.log('[어드민] 저장된 이미지 복원:', Object.keys(imgs).length + '개');
   }
+} catch(e) {}
 
-  function getItem(key) {
-    try { return localStorage.getItem(STORAGE_PREFIX + key); } catch(e) { return null; }
+// 이미지 변경 시 자동 localStorage 저장
+function persistImgs() {
+  try { localStorage.setItem('hm_imgs', JSON.stringify(imgs)); } catch(e) {
+    console.warn('localStorage 용량 초과, 일부만 저장됩니다');
   }
-  function setItem(key, value) {
-    try { localStorage.setItem(STORAGE_PREFIX + key, value); return true; }
-    catch(e) {
-      showToast('저장 공간이 부족합니다. JSON으로 내보낸 뒤 초기화하고 다시 업로드해주세요.', true);
-      return false;
-    }
-  }
-  function removeItem(key) {
-    try { localStorage.removeItem(STORAGE_PREFIX + key); } catch(e) {}
-  }
+}
 
-  function resizeImage(file, maxSize, quality) {
-    // quality: 0~1 사이 JPEG 압축 품질 (기본 0.95)
-    const q = typeof quality === 'number' ? quality : 0.95;
-    return new Promise((resolve, reject) => {
-      if (!file.type.startsWith('image/')) {
-        reject(new Error('이미지 파일만 업로드할 수 있습니다.'));
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = e => {
-        const img = new Image();
-        img.onload = () => {
-          let { width, height } = img;
-          // 원본이 maxSize보다 작으면 확대하지 않고 원본 크기 유지
-          if (width > maxSize || height > maxSize) {
-            if (width > height) {
-              height = Math.round(height * maxSize / width); width = maxSize;
-            } else {
-              width = Math.round(width * maxSize / height); height = maxSize;
-            }
-          }
-          const canvas = document.createElement('canvas');
-          canvas.width = width; canvas.height = height;
-          const ctx = canvas.getContext('2d');
-          // 고품질 리샘플링
-          ctx.imageSmoothingEnabled = true;
-          ctx.imageSmoothingQuality = 'high';
-          ctx.drawImage(img, 0, 0, width, height);
-          const type = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
-          resolve(canvas.toDataURL(type, q));
-        };
-        img.onerror = () => reject(new Error('이미지 로드 실패'));
-        img.src = e.target.result;
-      };
-      reader.onerror = () => reject(new Error('파일 읽기 실패'));
-      reader.readAsDataURL(file);
+var sections = [
+  {
+    title:'① 메인 첫 화면 (히어로)',
+    note:'페이지를 열면 가장 먼저 보이는 전체 배경. 영상은 위 URL 입력란 사용.',
+    items:[
+      {key:'hero_video', desc:'메인 배경 이미지 (영상 대신 사진 사용 시)'},
+    ]
+  },
+  {
+    title:'② 37년이 증명한다',
+    note:'히어로 바로 아래 — 브랜드 스토리 섹션',
+    items:[
+      {key:'brandA-bg',       desc:'섹션 전체 배경 이미지 (흐릿하게 깔림)'},
+      {key:'brand-visual-img',desc:'가운데 빙글빙글 돌아가는 원형 대표 사진'},
+    ]
+  },
+  {
+    title:'③ 매일 찾게 되는 그 한 그릇 / 하루 끝 한 잔의 마무리',
+    note:'점심·저녁 2분할 카드 섹션',
+    items:[
+      {key:'lunch-bg',  desc:'왼쪽 점심 카드 배경 사진'},
+      {key:'dinner-bg', desc:'오른쪽 저녁 카드 배경 사진'},
+    ]
+  },
+  {
+    title:'④ 이런 분께 딱입니다',
+    note:'처음이든, 경험이 있든 화미옥이 정답 — 체크리스트 섹션',
+    items:[
+      {key:'suitable-bg', desc:'섹션 배경 이미지 (흐릿하게 깔림)'},
+    ]
+  },
+  {
+    title:'⑤ 단 1분이면 끝 — 조리 스텝',
+    note:'STEP 01·02·DONE 3단계 카드 사진',
+    items:[
+      {key:'step-img-0', desc:'STEP 01 카드 — 육수 넣기'},
+      {key:'step-img-1', desc:'STEP 02 카드 — 식재료 넣기'},
+      {key:'step-img-2', desc:'DONE 카드 — 완성'},
+    ]
+  },
+  {
+    title:'⑥ 화미옥의 성공 포인트',
+    note:'슬라이더 4장 — 각 카드 배경 사진',
+    items:[
+      {key:'why-img-0', desc:'슬라이드 01 — 왜 김치찌개인가'},
+      {key:'why-img-1', desc:'슬라이드 02 — 왜 37년인가'},
+      {key:'why-img-2', desc:'슬라이드 03 — 왜 원팩인가'},
+      {key:'why-img-3', desc:'슬라이드 04 — 왜 지금인가'},
+    ]
+  },
+  {
+    title:'⑦ 메뉴 이미지',
+    note:'탭별 원형 메뉴 사진 — 탭 클릭 시 전환됨',
+    items:[
+      {key:'hm-0-0',desc:'[김치찌개] 돼지 김치찌개'},
+      {key:'hm-0-1',desc:'[김치찌개] 부대 김치찌개'},
+      {key:'hm-0-2',desc:'[김치찌개] 참치 김치찌개'},
+      {key:'hm-0-3',desc:'[김치찌개] 돈까스 김치찌개'},
+      {key:'hm-1-0',desc:'[볶음·돈까스] 고추장 제육볶음'},
+      {key:'hm-1-1',desc:'[볶음·돈까스] 간장 돼지불고기'},
+      {key:'hm-1-2',desc:'[볶음·돈까스] 등심돈까스'},
+      {key:'hm-2-0',desc:'[김치찜] 돼지 김치찜'},
+      {key:'hm-2-1',desc:'[김치찜] 부대 김치찜'},
+      {key:'hm-3-0',desc:'[사이드] 햄구이'},
+      {key:'hm-3-1',desc:'[사이드] 계란말이'},
+      {key:'hm-3-2',desc:'[사이드] 김치말이국수'},
+      {key:'hm-3-3',desc:'[사이드] 주먹밥'},
+    ]
+  },
+  {
+    title:'⑧ 화미옥의 공간 (인테리어)',
+    note:'자동으로 흘러가는 인테리어 롤링 사진 4장',
+    items:[
+      {key:'interior-main',  desc:'메인 대표 인테리어 사진'},
+      {key:'interior-sub-0', desc:'서브 사진 1'},
+      {key:'interior-sub-1', desc:'서브 사진 2'},
+      {key:'interior-sub-2', desc:'서브 사진 3'},
+    ]
+  },
+  {
+    title:'⑨ 소비자가 증명한 솔직 후기',
+    note:'모바일 슬라이더 리뷰 카드 4장 사진',
+    items:[
+      {key:'review-img-0',desc:'리뷰 카드 1번'},
+      {key:'review-img-1',desc:'리뷰 카드 2번'},
+      {key:'review-img-2',desc:'리뷰 카드 3번'},
+      {key:'review-img-3',desc:'리뷰 카드 4번'},
+    ]
+  },
+  {
+    title:'⑩ 본사 지원 시스템',
+    note:'막막한 창업 초기, 본사가 함께합니다 섹션 배경',
+    items:[
+      {key:'importance-bg', desc:'섹션 배경 이미지 (흐릿하게 깔림)'},
+    ]
+  },
+  {
+    title:'⑪ 창업 절차',
+    note:'10단계 창업 절차 섹션 배경',
+    items:[
+      {key:'process-bg', desc:'섹션 배경 이미지 (흐릿하게 깔림)'},
+    ]
+  },
+];
+
+function build() {
+  var app = document.getElementById('app');
+  sections.forEach(function(sec, si) {
+    var isFirst = si === 0;
+    var html = '<div class="section"><div class="sh'+(isFirst?' open':'')+'" onclick="toggle(this)"><h2>'+sec.title+'</h2><span class="cnt">'+sec.items.length+'</span><span class="arr">▼</span></div>';
+    html += '<div class="sb'+(isFirst?' open':'')+'">'; 
+    if(sec.note) html += '<p class="note">'+sec.note+'</p>';
+    html += '<div class="grid">';
+    sec.items.forEach(function(item) {
+      var k = item.key;
+      html += '<div class="ii" id="ii-'+k+'">'
+        +'<div class="prev" onclick="pick(\''+k+'\')">'
+        +'<img id="p-'+k+'" src="" style="display:none;">'
+        +'<div class="ph"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>업로드</span></div>'
+        +'</div>'
+        +'<div class="meta"><div class="key">'+k+'</div><div class="desc">'+item.desc+'</div>'
+        +'<div class="acts"><button class="bu" onclick="pick(\''+k+'\')">업로드</button><button class="br" onclick="del(\''+k+'\')">삭제</button></div>'
+        +'</div>'
+        +'<input type="file" id="f-'+k+'" accept="image/*" onchange="load(this,\''+k+'\')">'
+        +'</div>';
     });
-  }
+    html += '</div></div></div>';
+    app.innerHTML += html;
+  });
+}
 
-  async function uploadImage(input, key, previewId, maxSize) {
-    const file = input.files[0];
-    if (!file) return;
-    try {
-      const dataUrl = await resizeImage(file, maxSize);
-      if (!setItem(key, dataUrl)) return;
-      updatePreview(previewId, dataUrl);
-      const s = document.getElementById(key + 'Status');
-      if (s) { s.textContent = '✓ 저장됨'; s.className = 'upload-status saved'; }
-      showToast('저장되었습니다.');
-      updateQuota();
-    } catch (err) { showToast(err.message, true); }
-    input.value = '';
-  }
-  function deleteImage(key, previewId) {
-    if (!confirm('삭제하시겠습니까?')) return;
-    removeItem(key);
-    document.getElementById(previewId).innerHTML = '<span class="upload-preview-empty">미등록</span>';
-    const s = document.getElementById(key + 'Status');
-    if (s) s.textContent = '';
-    showToast('삭제되었습니다.');
-    updateQuota();
-  }
-  function updatePreview(previewId, dataUrl) {
-    document.getElementById(previewId).innerHTML = `<img src="${dataUrl}" alt="">`;
-  }
-
-  function renderMenuGrid() {
-    const grid = document.getElementById('menuGrid');
-    grid.innerHTML = MENU_LIST.map(m => `
-      <div class="menu-upload-card">
-        <div class="upload-preview" id="menuPrev_${m.key}">
-          <span class="upload-preview-empty">${m.placeholder}</span>
-        </div>
-        <div class="menu-upload-name">${m.name}</div>
-        <div class="menu-upload-key">${m.key}</div>
-        <label class="menu-upload-btn">
-          업로드
-          <input type="file" class="upload-input" accept="image/*"
-            onchange="uploadMenuImage(this, '${m.key}')">
-        </label>
-        <button class="menu-upload-btn del" onclick="deleteMenuImage('${m.key}', '${m.placeholder}')">삭제</button>
-      </div>
-    `).join('');
-    MENU_LIST.forEach(m => {
-      const data = getItem('menu_' + m.key);
-      if (data) updatePreview('menuPrev_' + m.key, data);
-    });
-  }
-  async function uploadMenuImage(input, key) {
-    const file = input.files[0];
-    if (!file) return;
-    try {
-      const dataUrl = await resizeImage(file, 1600, 0.95);
-      if (!setItem('menu_' + key, dataUrl)) return;
-      updatePreview('menuPrev_' + key, dataUrl);
-      showToast('저장되었습니다.');
-      updateQuota();
-    } catch (err) { showToast(err.message, true); }
-    input.value = '';
-  }
-  function deleteMenuImage(key, placeholder) {
-    if (!confirm('삭제하시겠습니까?')) return;
-    removeItem('menu_' + key);
-    document.getElementById('menuPrev_' + key).innerHTML =
-      `<span class="upload-preview-empty">${placeholder}</span>`;
-    showToast('삭제되었습니다.');
-    updateQuota();
-  }
-
-  function renderQualityIconGrid() {
-    const grid = document.getElementById('qualityIconGrid');
-    grid.innerHTML = QUALITY_ICONS.map(q => `
-      <div class="icon-card">
-        <div class="upload-preview" id="qPrev_${q.key}" style="background: linear-gradient(135deg, var(--gold-bright), var(--gold-dark));">
-          <span class="upload-preview-empty" style="color:white; font-size:22px; font-weight:900; font-family:serif;">${q.placeholder}</span>
-        </div>
-        <div class="icon-card-body">
-          <div class="icon-card-name">${q.name}</div>
-          <div class="icon-card-key">${q.key} · 정사각형 투명 PNG 권장</div>
-          <div class="icon-card-btns">
-            <label class="icon-btn">
-              업로드
-              <input type="file" class="upload-input" accept="image/*"
-                onchange="uploadQualityIcon(this, '${q.key}', '${q.placeholder}')">
-            </label>
-            <button class="icon-btn del" onclick="deleteQualityIcon('${q.key}', '${q.placeholder}')">삭제</button>
-          </div>
-        </div>
-      </div>
-    `).join('');
-    QUALITY_ICONS.forEach(q => {
-      const data = getItem(q.key);
-      if (data) {
-        const prev = document.getElementById('qPrev_' + q.key);
-        prev.style.background = 'var(--paper)';
-        prev.innerHTML = `<img src="${data}" alt="" style="object-fit:contain;">`;
-      }
-    });
-  }
-  async function uploadQualityIcon(input, key, placeholder) {
-    const file = input.files[0];
-    if (!file) return;
-    try {
-      const dataUrl = await resizeImage(file, 512, 0.95);
-      if (!setItem(key, dataUrl)) return;
-      const prev = document.getElementById('qPrev_' + key);
-      prev.style.background = 'var(--paper)';
-      prev.innerHTML = `<img src="${dataUrl}" alt="" style="object-fit:contain;">`;
-      showToast('저장되었습니다.');
-      updateQuota();
-    } catch (err) { showToast(err.message, true); }
-    input.value = '';
-  }
-  function deleteQualityIcon(key, placeholder) {
-    if (!confirm('삭제하시겠습니까?')) return;
-    removeItem(key);
-    const prev = document.getElementById('qPrev_' + key);
-    prev.style.background = 'linear-gradient(135deg, var(--gold-bright), var(--gold-dark))';
-    prev.innerHTML = `<span class="upload-preview-empty" style="color:white; font-size:22px; font-weight:900; font-family:serif;">${placeholder}</span>`;
-    showToast('삭제되었습니다.');
-    updateQuota();
-  }
-
-  async function uploadHaccp(input) {
-    const file = input.files[0];
-    if (!file) return;
-    try {
-      const dataUrl = await resizeImage(file, 800, 0.95);
-      if (!setItem('haccp_badge', dataUrl)) return;
-      const prev = document.getElementById('haccpPreview');
-      prev.style.background = 'var(--paper)';
-      prev.innerHTML = `<img src="${dataUrl}" alt="" style="object-fit:contain; padding:4px;">`;
-      showToast('저장되었습니다.');
-      updateQuota();
-    } catch (err) { showToast(err.message, true); }
-    input.value = '';
-  }
-  function deleteHaccp() {
-    if (!confirm('삭제하시겠습니까?')) return;
-    removeItem('haccp_badge');
-    const prev = document.getElementById('haccpPreview');
-    prev.style.background = '#00674A';
-    prev.innerHTML = `<span class="upload-preview-empty" style="color:rgba(255,255,255,0.85); font-weight:900; font-size:11px;">HACCP<br>인증</span>`;
-    showToast('삭제되었습니다.');
-    updateQuota();
-  }
-
-  /* ============ YouTube 영상 ============ */
-  function extractYoutubeId(url) {
-    if (!url) return null;
-    const patterns = [
-      /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/|youtube\.com\/live\/)([A-Za-z0-9_-]{11})/,
-      /^([A-Za-z0-9_-]{11})$/
-    ];
-    for (const p of patterns) {
-      const m = url.trim().match(p);
-      if (m) return m[1];
-    }
-    return null;
-  }
-
-  function renderYoutubePreview() {
-    const box = document.getElementById('youtubePreview');
-    const img = document.getElementById('youtubePreviewImg');
-    const idTxt = document.getElementById('youtubePreviewId');
-    const input = document.getElementById('youtubeInput');
-    const raw = getItem('youtube_url');
-    if (!raw) {
-      box.style.display = 'none';
-      input.value = '';
-      return;
-    }
-    const id = extractYoutubeId(raw);
-    if (!id) {
-      box.style.display = 'none';
-      input.value = raw;
-      return;
-    }
-    input.value = raw;
-    img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
-    idTxt.textContent = 'video ID: ' + id;
-    box.style.display = '';
-  }
-
-  function saveYoutube() {
-    const input = document.getElementById('youtubeInput');
-    const url = input.value.trim();
-    if (!url) {
-      showToast('URL을 입력하세요.', true);
-      return;
-    }
-    const id = extractYoutubeId(url);
-    if (!id) {
-      showToast('올바른 YouTube URL이 아닙니다.', true);
-      return;
-    }
-    setItem('youtube_url', url);
-    renderYoutubePreview();
-    showToast('영상이 저장되었습니다.');
-    updateQuota();
-  }
-
-  function deleteYoutube() {
-    if (!confirm('등록된 영상을 삭제하시겠습니까?')) return;
-    removeItem('youtube_url');
-    renderYoutubePreview();
-    showToast('삭제되었습니다.');
-    updateQuota();
-  }
-
-  function renderPartnerGrid() {
-    const grid = document.getElementById('partnerGrid');
-    let html = '';
-    for (let i = 1; i <= PARTNER_COUNT; i++) {
-      html += `
-        <div class="partner-admin-card">
-          <div class="partner-slot-num">SLOT ${String(i).padStart(2,'0')}</div>
-          <div class="upload-preview contain" id="partPrev_${i}">
-            <span class="upload-preview-empty">미등록</span>
-          </div>
-          <input type="text" id="partName_${i}" placeholder="회사명 (예: 동원홈푸드)">
-          <div class="icon-card-btns" style="justify-content: center;">
-            <label class="icon-btn">
-              로고 업로드
-              <input type="file" class="upload-input" accept="image/*"
-                onchange="uploadPartnerLogo(this, ${i})">
-            </label>
-            <button class="icon-btn" style="background:var(--gold-dark);" onclick="savePartnerName(${i})">이름 저장</button>
-            <button class="icon-btn del" onclick="deletePartner(${i})">삭제</button>
-          </div>
-        </div>
-      `;
-    }
-    grid.innerHTML = html;
-    for (let i = 1; i <= PARTNER_COUNT; i++) {
-      const raw = getItem('partner_' + i);
-      if (!raw) continue;
-      try {
-        const p = JSON.parse(raw);
-        if (p.image) updatePreview('partPrev_' + i, p.image);
-        if (p.name) document.getElementById('partName_' + i).value = p.name;
-      } catch(e) {}
-    }
-  }
-  function getPartnerData(idx) {
-    const raw = getItem('partner_' + idx);
-    if (!raw) return {};
-    try { return JSON.parse(raw); } catch(e) { return {}; }
-  }
-  async function uploadPartnerLogo(input, idx) {
-    const file = input.files[0];
-    if (!file) return;
-    try {
-      const dataUrl = await resizeImage(file, 800, 0.95);
-      const existing = getPartnerData(idx);
-      existing.image = dataUrl;
-      if (!setItem('partner_' + idx, JSON.stringify(existing))) return;
-      updatePreview('partPrev_' + idx, dataUrl);
-      showToast('로고가 저장되었습니다.');
-      updateQuota();
-    } catch (err) { showToast(err.message, true); }
-    input.value = '';
-  }
-  function savePartnerName(idx) {
-    const name = document.getElementById('partName_' + idx).value.trim();
-    const existing = getPartnerData(idx);
-    existing.name = name;
-    if (!name && !existing.image) removeItem('partner_' + idx);
-    else setItem('partner_' + idx, JSON.stringify(existing));
-    showToast(name ? '이름이 저장되었습니다.' : '이름이 비워졌습니다.');
-  }
-  function deletePartner(idx) {
-    if (!confirm('이 파트너를 삭제하시겠습니까?')) return;
-    removeItem('partner_' + idx);
-    document.getElementById('partPrev_' + idx).innerHTML =
-      '<span class="upload-preview-empty">미등록</span>';
-    document.getElementById('partName_' + idx).value = '';
-    showToast('삭제되었습니다.');
-    updateQuota();
-  }
-
-  function getReviews() {
-    const data = getItem('reviews');
-    if (!data) return [...DEFAULT_REVIEWS];
-    try {
-      const parsed = JSON.parse(data);
-      return Array.isArray(parsed) ? parsed : [...DEFAULT_REVIEWS];
-    } catch(e) { return [...DEFAULT_REVIEWS]; }
-  }
-  function saveReviews(list) { setItem('reviews', JSON.stringify(list)); }
-  function renderReviewList() {
-    const list = getReviews();
-    const el = document.getElementById('reviewList');
-    if (list.length === 0) {
-      el.innerHTML = '<div class="review-empty">등록된 후기가 없습니다.</div>';
-      return;
-    }
-    el.innerHTML = list.map((r, i) => `
-      <div class="review-row">
-        <div class="review-row-stars">${'★'.repeat(r.stars || 5)}${'☆'.repeat(5 - (r.stars || 5))}</div>
-        <div>
-          <div class="review-row-body">${escapeHtml(r.text)}</div>
-          <div class="review-row-meta">
-            <strong>${escapeHtml(r.author || '익명')}</strong> · ${escapeHtml(r.loc || '-')}
-          </div>
-        </div>
-        <div class="review-row-actions">
-          <button class="review-del" onclick="deleteReview(${i})">삭제</button>
-        </div>
-      </div>
-    `).join('');
-  }
-  function addReview() {
-    const stars = parseInt(document.getElementById('reviewStars').value, 10) || 5;
-    const author = document.getElementById('reviewAuthor').value.trim();
-    const loc = document.getElementById('reviewLoc').value.trim();
-    const text = document.getElementById('reviewText').value.trim();
-    if (!text) { showToast('후기 내용을 입력하세요.', true); return; }
-    if (!author) { showToast('작성자를 입력하세요.', true); return; }
-    const list = getReviews();
-    list.unshift({ stars, author, loc: loc || '방문고객', text });
-    saveReviews(list);
-    renderReviewList();
-    document.getElementById('reviewAuthor').value = '';
-    document.getElementById('reviewLoc').value = '';
-    document.getElementById('reviewText').value = '';
-    showToast('후기가 추가되었습니다.');
-  }
-  function deleteReview(i) {
-    if (!confirm('이 후기를 삭제하시겠습니까?')) return;
-    const list = getReviews();
-    list.splice(i, 1);
-    saveReviews(list);
-    renderReviewList();
-    showToast('삭제되었습니다.');
-  }
-  function escapeHtml(s) {
-    return String(s || '').replace(/[&<>"']/g, c => ({
-      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-    }[c]));
-  }
-
-  function exportData() {
-    const data = {};
-    let count = 0;
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (k && k.startsWith(STORAGE_PREFIX)) {
-        data[k] = localStorage.getItem(k);
-        count++;
-      }
-    }
-    if (count === 0) { showToast('내보낼 데이터가 없습니다.', true); return; }
-    const payload = {
-      _meta: { brand: '화미옥 김치찌개', version: 1, exported_at: new Date().toISOString() },
-      data: data
+function toggle(el){
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+function pick(k){ document.getElementById('f-'+k).click(); }
+function load(inp, k) {
+  var f = inp.files[0]; if(!f) return;
+  // 영상은 압축 없이 그대로
+  if(f.type.startsWith('video/')){
+    var r = new FileReader();
+    r.onload = function(e){
+      var data = e.target.result;
+      imgs[k.replace(/-/g,'_')] = data;
+      var p = document.getElementById('p-'+k);
+      if(p){p.src='';p.style.display='none';} // 영상은 미리보기 없음
+      document.getElementById('ii-'+k).classList.add('has');
+      changes++;document.getElementById('cc').textContent=changes;
+      toast('✓ '+k+' 영상 업로드 ('+Math.round(f.size/1024)+'KB)');
     };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    const today = new Date().toISOString().slice(0, 10);
-    a.href = url;
-    a.download = `hwamiok_backup_${today}.json`;
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
-    showToast(`${count}개 항목을 내보냈습니다.`);
+    r.readAsDataURL(f);
+    return;
   }
-
-  function importData(input) {
-    const file = input.files[0];
-    if (!file) return;
-    if (!confirm('JSON 파일을 불러오면 현재 데이터를 덮어씁니다.\n계속하시겠습니까?')) {
-      input.value = '';
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        const json = JSON.parse(e.target.result);
-        const data = json.data && typeof json.data === 'object' ? json.data : json;
-        if (typeof data !== 'object' || data === null) throw new Error('잘못된 JSON 형식입니다.');
-        const oldKeys = [];
-        for (let i = 0; i < localStorage.length; i++) {
-          const k = localStorage.key(i);
-          if (k && k.startsWith(STORAGE_PREFIX)) oldKeys.push(k);
-        }
-        oldKeys.forEach(k => localStorage.removeItem(k));
-        let count = 0;
-        Object.entries(data).forEach(([k, v]) => {
-          if (k.startsWith(STORAGE_PREFIX) && typeof v === 'string') {
-            try { localStorage.setItem(k, v); count++; } catch(err) {}
-          }
-        });
-        showToast(`${count}개 항목을 불러왔습니다. 새로고침합니다…`);
-        setTimeout(() => location.reload(), 1200);
-      } catch(err) {
-        showToast('불러오기 실패: ' + err.message, true);
+  // 이미지: Canvas로 리사이즈 + WebP 압축
+  var img = new Image();
+  var reader = new FileReader();
+  reader.onload = function(e){
+    img.onload = function(){
+      // 이미지 종류별 최대 크기 설정
+      var MAX = k.includes('bg') ? 1200 : 600; // 배경은 1200, 메뉴/리뷰는 600
+      var w = img.width, h = img.height;
+      if(w > MAX || h > MAX){
+        if(w > h){ h = Math.round(h * MAX/w); w = MAX; }
+        else      { w = Math.round(w * MAX/h); h = MAX; }
       }
+      var canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      // WebP 우선, 없으면 JPEG — 배경 0.7, 기타 0.65
+      var quality = k.includes('bg') || k.includes('brand') ? 0.72 : 0.65;
+      var data = canvas.toDataURL('image/webp', quality);
+      if(!data || data === 'data:,') data = canvas.toDataURL('image/jpeg', quality);
+      var kb = Math.round(data.length * 0.75 / 1024);
+      imgs[k.replace(/-/g,'_')] = data;
+      var p = document.getElementById('p-'+k);
+      if(p){p.src=data;p.style.display='block';}
+      document.getElementById('ii-'+k).classList.add('has');
+      changes++;document.getElementById('cc').textContent=changes;
+      persistImgs();
+      toast('✓ '+k+' ('+w+'×'+h+', ~'+kb+'KB)');
     };
-    reader.onerror = () => showToast('파일 읽기 실패', true);
-    reader.readAsText(file);
-    input.value = '';
-  }
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(f);
+}
+function del(k){
+  delete imgs[k.replace(/-/g,'_')];
+  var p=document.getElementById('p-'+k);
+  if(p){p.src='';p.style.display='none';}
+  document.getElementById('ii-'+k).classList.remove('has');
+  document.getElementById('f-'+k).value='';
+  changes++;document.getElementById('cc').textContent=changes;
+  persistImgs();
+  toast('삭제: '+k);
+}
+function saveAll(){
+  var json = JSON.stringify(imgs);
+  var kb = Math.round(json.length * 0.75 / 1024);
+  // images.js 로 저장 — <script src> 방식으로 확실하게 로드됨
+  var js = 'window.HM_IMGS=' + json + ';';
+  var blob=new Blob([js],{type:'application/javascript'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download='images.js';a.click();
+  changes=0;document.getElementById('cc').textContent='0';
+  toast('💾 images.js 저장 완료! (~'+kb+'KB) → GitHub에 올리세요');
+}
+function toast(msg){
+  var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2000);
+}
 
-  function resetAll() {
-    if (!confirm('모든 데이터를 초기화합니다.\n먼저 JSON으로 내보내기 하셨나요? 정말 진행할까요?')) return;
-    const keys = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (k && k.startsWith(STORAGE_PREFIX)) keys.push(k);
-    }
-    keys.forEach(k => localStorage.removeItem(k));
-    showToast('초기화 완료. 페이지를 새로고침합니다.');
-    setTimeout(() => location.reload(), 900);
-  }
+// 히어로 영상 URL 섹션 별도 삽입
+(function(){
+  var div = document.createElement('div');
+  div.className = 'section';
+  div.style.cssText = 'border:3px solid var(--r);';
+  div.innerHTML = [
+    '<div class="sh open" onclick="toggle(this)" style="background:var(--r);">',
+      '<h2>🎬 메인 첫 화면 배경 영상</h2>',
+      '<span class="cnt" style="background:rgba(0,0,0,.3);">★ 여기에 등록</span>',
+      '<span class="arr" style="color:rgba(255,255,255,.6);">▼</span>',
+    '</div>',
+    '<div class="sb open" style="padding:20px;">',
+      '<p class="note" style="color:var(--r);font-weight:700;">',
+        '⚠️ 영상은 URL 방식으로 등록하세요<br>',
+        'Cloudinary/구글드라이브 등에 올린 후 직접 링크(mp4) 입력',
+      '</p>',
+      '<div style="margin-bottom:16px;">',
+        '<label style="font-size:12px;font-weight:700;color:var(--r);display:block;margin-bottom:6px;">영상 URL (mp4 직접 링크)</label>',
+        '<input id="heroVideoUrl" type="url" placeholder="https://...video.mp4" ',
+          'style="width:100%;padding:10px;border:2px solid var(--r);border-radius:4px;font-size:13px;outline:none;">',
+        '<p style="font-size:10px;color:#aaa;margin-top:4px;">예: https://res.cloudinary.com/xxx/video/upload/xxx.mp4</p>',
+      '</div>',
+      '<div>',
+        '<label style="font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:6px;">또는 배경 이미지 업로드 (영상 대신)</label>',
+        '<div class="ii" id="ii-hero_video" style="max-width:260px;">',
+          '<div class="prev" id="prev-hero-click"><img id="p-hero_video" src="" style="display:none;">',
+            '<div class="ph"><span>이미지 업로드</span></div>',
+          '</div>',
+          '<div class="meta"><div class="key">hero_video</div>',
+            '<div class="acts">',
+              '<button class="bu" id="btn-hero-upload">이미지 업로드</button>',
+              '<button class="br" id="btn-hero-del">삭제</button>',
+            '</div>',
+          '</div>',
+          '<input type="file" id="f-hero_video" accept="image/*">',
+        '</div>',
+      '</div>',
+    '</div>'
+  ].join('');
+  document.getElementById('app').insertAdjacentElement('afterbegin', div);
 
-  function updateQuota() {
-    let total = 0;
-    for (let i = 0; i < localStorage.length; i++) {
-      const k = localStorage.key(i);
-      if (k && k.startsWith(STORAGE_PREFIX)) {
-        total += (localStorage.getItem(k) || '').length;
-      }
-    }
-    const mb = (total / 1024 / 1024).toFixed(2);
-    document.getElementById('quotaUsage').textContent =
-      `현재 사용량: 약 ${mb}MB (브라우저 한도 일반적으로 5–10MB)`;
-  }
+  // 이벤트 바인딩
+  document.getElementById('prev-hero-click').onclick = function(){ document.getElementById('f-hero_video').click(); };
+  document.getElementById('btn-hero-upload').onclick = function(){ document.getElementById('f-hero_video').click(); };
+  document.getElementById('btn-hero-del').onclick = function(){ del('hero_video'); };
+  document.getElementById('f-hero_video').onchange = function(){ load(this,'hero_video'); };
+  document.getElementById('heroVideoUrl').addEventListener('input', saveVideoUrl);
+  // 헤더 클릭
+  div.querySelector('.sh').onclick = function(){ toggle(this); };
+})();
 
-  function init() {
-    const logo = getItem('logo');
-    if (logo) {
-      updatePreview('logoPreview', logo);
-      const s = document.getElementById('logoStatus');
-      s.textContent = '✓ 저장됨'; s.className = 'upload-status saved';
-    }
-    const hero = getItem('hero');
-    if (hero) {
-      updatePreview('heroPreview', hero);
-      const s = document.getElementById('heroStatus');
-      s.textContent = '✓ 저장됨'; s.className = 'upload-status saved';
-    }
-    const haccp = getItem('haccp_badge');
-    if (haccp) {
-      const prev = document.getElementById('haccpPreview');
-      prev.style.background = 'var(--paper)';
-      prev.innerHTML = `<img src="${haccp}" alt="" style="object-fit:contain; padding:4px;">`;
-    }
-    renderMenuGrid();
-    renderQualityIconGrid();
-    renderPartnerGrid();
-    renderReviewList();
-    renderYoutubePreview();
-    updateQuota();
+function saveVideoUrl(){
+  var url = document.getElementById('heroVideoUrl').value.trim();
+  if(url){
+    imgs['hero_video'] = url;
+    document.getElementById('ii-hero_video').classList.add('has');
+    changes++;document.getElementById('cc').textContent=changes;
+    persistImgs();
   }
-  init();
+}
+
+build();
+
+// localStorage에서 불러온 이미지를 UI에 반영
+setTimeout(function(){
+  Object.keys(imgs).forEach(function(k){
+    var kd = k.replace(/_/g,'-');
+    var p = document.getElementById('p-'+kd);
+    var ii = document.getElementById('ii-'+kd);
+    var src = imgs[k];
+    if(p && src && !src.startsWith('http')){ p.src=src; p.style.display='block'; }
+    if(ii) ii.classList.add('has');
+  });
+  if(imgs.hero_video && imgs.hero_video.startsWith('http')){
+    var urlInput = document.getElementById('heroVideoUrl');
+    if(urlInput) urlInput.value = imgs.hero_video;
+    var ii = document.getElementById('ii-hero_video');
+    if(ii) ii.classList.add('has');
+  }
+  if(Object.keys(imgs).length > 0){
+    document.getElementById('cc').textContent = '저장됨';
+    toast('이전 작업 복원 완료: ' + Object.keys(imgs).length + '개');
+  }
+}, 300);
+
+// 기존 images.js 로드 시도 (GitHub에 올라간 것)
+fetch('images.js').then(function(r){return r.json();}).then(function(data){
+  imgs=data;
+  Object.keys(imgs).forEach(function(k){
+    var kd=k.replace(/_/g,'-');
+    var p=document.getElementById('p-'+kd);
+    var ii=document.getElementById('ii-'+kd);
+    if(p&&imgs[k]&&!imgs[k].startsWith('http')){p.src=imgs[k];p.style.display='block';}
+    if(ii)ii.classList.add('has');
+  });
+  // 영상 URL 복원
+  if(imgs.hero_video && imgs.hero_video.startsWith('http')){
+    var urlInput = document.getElementById('heroVideoUrl');
+    if(urlInput) urlInput.value = imgs.hero_video;
+  }
+  toast('기존 images.js 로드 완료');
+}).catch(function(){});
 </script>
-
 </body>
 </html>
