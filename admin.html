@@ -2,394 +2,713 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>화미옥 어드민</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>화미옥 김치찌개 · 어드민</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{--r:#D4001A;--blk:#0A0A0A;}
-body{background:#f5f5f5;font-family:'Noto Sans KR',sans-serif;font-weight:300;color:#1a1a1a;}
-header{background:var(--r);color:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(212,0,26,.3);}
-.ht{font-size:18px;font-weight:700;}.hs{font-size:11px;opacity:.7;margin-top:2px;}
-.save-btn{background:#fff;color:var(--r);border:none;padding:10px 24px;border-radius:4px;font-size:13px;font-weight:700;cursor:pointer;}
-.container{max-width:1100px;margin:0 auto;padding:24px 20px 80px;}
-.section{background:#fff;border-radius:10px;margin-bottom:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);}
-.sh{padding:14px 20px;background:var(--blk);display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;}
-.sh h2{color:#fff;font-size:14px;font-weight:700;}
-.sh .cnt{background:var(--r);color:#fff;font-size:10px;padding:2px 8px;border-radius:100px;font-weight:700;}
-.sh .arr{color:rgba(255,255,255,.4);margin-left:auto;transition:transform .3s;}
-.sh.open .arr{transform:rotate(180deg);}
-.sb{padding:20px;display:none;}
-.sb.open{display:block;}
-.note{font-size:11px;color:#999;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f0f0f0;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;}
-.ii{border:2px solid #e8e8e8;border-radius:8px;overflow:hidden;transition:border-color .2s;}
-.ii:hover{border-color:var(--r);}
-.ii.has{border-color:#4caf50;}
-.prev{width:100%;aspect-ratio:1;background:#f0f0f0;position:relative;overflow:hidden;cursor:pointer;}
-.prev img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
-.ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#ccc;}
-.ph span{font-size:9px;letter-spacing:1px;}
-.ii.has .ph{display:none;}
-.meta{padding:9px 11px;}
-.key{font-size:10px;font-weight:700;color:var(--r);margin-bottom:2px;font-family:monospace;}
-.desc{font-size:10px;color:#888;}
-.acts{display:flex;gap:5px;margin-top:7px;}
-.bu{flex:1;background:var(--r);color:#fff;border:none;padding:6px;font-size:10px;border-radius:3px;cursor:pointer;font-family:inherit;}
-.br{background:#f5f5f5;color:#999;border:1px solid #ddd;padding:6px 9px;font-size:10px;border-radius:3px;cursor:pointer;font-family:inherit;}
-.br:hover{background:#fee;color:var(--r);}
-input[type=file]{display:none;}
-.toast{position:fixed;bottom:80px;right:20px;background:var(--blk);color:#fff;padding:10px 18px;border-radius:5px;font-size:12px;z-index:9999;transform:translateY(60px);opacity:0;transition:all .3s;pointer-events:none;}
-.toast.show{transform:none;opacity:1;}
-.savebar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:3px solid var(--r);padding:10px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 -4px 16px rgba(0,0,0,.08);z-index:50;}
-.sb-info{flex:1;font-size:12px;color:#888;}.sb-info strong{color:var(--r);}
-@media(min-width:768px){.grid{grid-template-columns:repeat(auto-fill,minmax:220px,1fr));}}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --r: #D4001A; --r2: #C0001A;
+    --blk: #0A0A0A; --blk2: #111; --blk3: #1A1A1A;
+    --paper: #F7F0E0; --line: #2a2a2a;
+    --gold: #D4AF37; --gold-light: #F2D572;
+    --d: 'Black Han Sans', sans-serif;
+  }
+  html, body { background: var(--blk); color: #fff; font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; }
+  body { min-height: 100vh; }
+
+  .topbar {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--blk2); border-bottom: 2px solid var(--r);
+    padding: 14px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .topbar-title { font-family: var(--d); font-size: 18px; color: #fff; }
+  .topbar-title small { color: var(--r); font-size: 11px; letter-spacing: 3px; margin-left: 10px; font-family: 'Noto Sans KR'; font-weight: 500; }
+  .topbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tb-btn {
+    padding: 8px 14px; border-radius: 4px; font-size: 12px; font-weight: 700;
+    border: none; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+  }
+  .tb-btn.primary { background: var(--gold); color: var(--blk); }
+  .tb-btn.primary:hover { background: var(--gold-light); }
+  .tb-btn.secondary { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.2); }
+  .tb-btn.secondary:hover { background: rgba(255,255,255,0.05); color: #fff; }
+  .tb-btn.danger { background: transparent; color: rgba(255,140,140,0.7); border: 1px solid rgba(255,80,80,0.3); }
+  .tb-btn.danger:hover { background: rgba(255,80,80,0.1); color: #ffb0b0; }
+  .tb-btn a, .tb-btn label { display: inline-block; cursor: pointer; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px 80px; }
+
+  .info-banner {
+    background: linear-gradient(135deg, #2a0810, #1a0608);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 8px;
+    padding: 16px 18px; margin-bottom: 20px;
+    font-size: 13px; line-height: 1.75;
+  }
+  .info-banner strong { color: var(--gold-light); }
+  .info-banner code { background: rgba(0,0,0,0.4); padding: 1px 6px; border-radius: 3px; font-family: monospace; font-size: 12px; color: var(--gold-light); }
+
+  .panel {
+    background: var(--blk2);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 22px 20px;
+    margin-bottom: 18px;
+  }
+  .panel-title {
+    font-family: var(--d);
+    font-size: 19px; color: #fff;
+    margin-bottom: 4px; letter-spacing: -0.01em;
+  }
+  .panel-title small {
+    font-family: 'Noto Sans KR';
+    font-size: 11px; letter-spacing: 3px;
+    color: var(--r); margin-left: 10px;
+    font-weight: 500;
+  }
+  .panel-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 18px; line-height: 1.7;
+  }
+  .panel-sub code { background: rgba(212,175,55,0.12); padding: 1px 6px; border-radius: 3px; font-family: monospace; font-size: 11px; color: var(--gold-light); }
+
+  /* 업로드 카드 그리드 */
+  .upload-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .upload-card {
+    background: var(--blk3);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+  }
+  .upload-card.compact { padding: 10px; }
+  .upload-preview {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #1a0608, #2a0810);
+    border: 1px dashed rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .upload-preview.wide { aspect-ratio: 16/9; }
+  .upload-preview img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .upload-preview.contain img { object-fit: contain; padding: 6px; }
+  .preview-empty {
+    color: rgba(255,255,255,0.25);
+    font-size: 10px; letter-spacing: 1.5px;
+    font-family: var(--d); text-align: center;
+    padding: 6px;
+  }
+  .upload-name {
+    font-family: var(--d);
+    font-size: 12px; color: #fff;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+  }
+  .upload-key {
+    font-size: 9px;
+    font-family: monospace;
+    color: rgba(212,175,55,0.6);
+    margin-bottom: 8px;
+    word-break: break-all;
+  }
+  .upload-btns { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; }
+  .up-btn {
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    display: inline-block;
+  }
+  .up-btn.primary { background: var(--r); color: #fff; }
+  .up-btn.primary:hover { background: var(--r2); }
+  .up-btn.del {
+    background: transparent;
+    color: rgba(255,140,140,0.7);
+    border: 1px solid rgba(255,80,80,0.3);
+  }
+  .up-btn.del:hover { background: rgba(255,80,80,0.15); color: #ffb0b0; }
+  .up-btn input[type=file] { display: none; }
+
+  /* 단일 큰 업로드 (히어로 등) */
+  .upload-large {
+    display: flex;
+    gap: 16px; align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .upload-large .upload-preview {
+    width: 200px; height: 200px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .upload-large .upload-preview.round { border-radius: 50%; }
+  .upload-large-body { flex: 1; min-width: 200px; }
+
+  /* 토스트 */
+  .toast {
+    position: fixed;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--blk3);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    padding: 12px 22px;
+    border-radius: 100px;
+    font-size: 12px; font-weight: 700;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 200;
+    max-width: 90%;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.error { border-color: #ff5050; color: #ffb0b0; }
+
+  /* 영상/유튜브 입력 */
+  .video-input-row {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .video-input-row input {
+    flex: 1; min-width: 200px;
+    padding: 10px 12px;
+    background: var(--blk3);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: #fff;
+    font-size: 13px;
+    font-family: inherit;
+  }
+  .video-input-row input:focus { outline: none; border-color: var(--gold); }
+
+  .quota-info {
+    background: rgba(212,175,55,0.1);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: rgba(212,175,55,0.85);
+    line-height: 1.65;
+  }
+  .quota-info strong { color: var(--gold-light); }
+
+  .ic-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: rgba(255,255,255,0.3);
+    font-size: 12px;
+  }
+
+  /* 섹션 구분 라벨 */
+  .group-label {
+    font-family: var(--d);
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin: 24px 0 10px;
+    padding: 0 4px;
+    border-left: 3px solid var(--gold);
+    padding-left: 10px;
+  }
+  .group-label:first-child { margin-top: 0; }
+
+  /* 텍스트 컨텐츠 입력용 (선택) */
+  .text-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .text-label { font-size: 11px; letter-spacing: 1px; color: var(--gold); font-weight: 700; }
+  .text-input {
+    background: var(--blk3); border: 1px solid var(--line);
+    border-radius: 4px; padding: 10px 12px;
+    color: #fff; font-size: 13px; font-family: inherit;
+    width: 100%; resize: vertical;
+  }
+  .text-input:focus { outline: none; border-color: var(--gold); }
 </style>
 </head>
 <body>
-<header>
-  <div><div class="ht">화미옥 어드민</div><div class="hs">이미지 관리 · images.json 생성</div></div>
-  <button class="save-btn" onclick="saveAll()">💾 JSON 저장</button>
-</header>
-<div class="container" id="app"></div>
-<div class="savebar">
-  <div class="sb-info">변경: <strong id="cc">0</strong>개 · 이미지 자동 압축(900px/WebP) · images.js 저장 후 GitHub 루트에 업로드</div>
-  <button class="save-btn" style="background:var(--r);color:#fff;" onclick="saveAll()">💾 JSON 저장</button>
+
+<div class="topbar">
+  <div class="topbar-title">화미옥 <small>ADMIN</small></div>
+  <div class="topbar-actions">
+    <button class="tb-btn primary" onclick="downloadImagesJs()">📥 images.js 다운로드</button>
+    <label class="tb-btn secondary">
+      📂 images.js 불러오기
+      <input type="file" accept=".js,.json,application/javascript,application/json" style="display:none" onchange="loadImagesJs(this)">
+    </label>
+    <a href="./index.html" class="tb-btn secondary" target="_blank">홈페이지 보기</a>
+    <button class="tb-btn danger" onclick="resetAll()">전체 초기화</button>
+  </div>
 </div>
+
+<div class="container">
+
+  <div class="info-banner">
+    <strong>📌 사용 안내</strong><br>
+    이미지를 업로드하고 <strong>"images.js 다운로드"</strong>를 누르세요. 받은 파일을 <code>index.html</code>과 같은 폴더에 두면 사이트에 적용됩니다.
+    <br>다른 컴퓨터에서 작업하실 때는 <strong>"images.js 불러오기"</strong>로 기존 파일을 가져올 수 있습니다.
+  </div>
+
+  <div class="quota-info" id="quotaInfo">
+    💾 <strong>저장 용량:</strong> 이미지는 브라우저 임시저장소(localStorage)에 저장됩니다. 한도는 5–10MB. 작업 끝나면 반드시 <strong>images.js로 다운로드</strong> 받아두세요.
+    <br><span id="quotaUsage" style="font-weight:600;"></span>
+  </div>
+
+  <!-- ============ HERO 영상/이미지 ============ -->
+  <div class="panel">
+    <div class="panel-title">메인 영상 / 배경<small>HERO</small></div>
+    <p class="panel-sub">
+      Hero 영역의 배경. <strong>YouTube URL, 영상 직접 링크(.mp4), 이미지 URL</strong> 모두 가능. 비워두면 기본 검정 배경 사용.<br>
+      키: <code>hero_video</code>
+    </p>
+    <div class="video-input-row">
+      <input type="text" id="heroVideoInput" placeholder="https://... 또는 YouTube 링크">
+      <button class="up-btn primary" style="padding:10px 18px;" onclick="saveText('hero_video', 'heroVideoInput')">저장</button>
+      <button class="up-btn del" style="padding:10px 14px;" onclick="deleteText('hero_video', 'heroVideoInput')">삭제</button>
+    </div>
+  </div>
+
+  <!-- ============ 메인 비주얼 (큰 원형 사진) ============ -->
+  <div class="panel">
+    <div class="panel-title">메인 비주얼 (큰 원형 사진)<small>BRAND VISUAL</small></div>
+    <p class="panel-sub">
+      Hero 영역 중앙의 큰 원형 사진. 김치찌개 전체샷 권장.
+      <br>키: <code>brand_visual_img</code>
+    </p>
+    <div class="upload-large">
+      <div class="upload-preview round" id="prev_brand_visual_img">
+        <span class="preview-empty">미등록</span>
+      </div>
+      <div class="upload-large-body">
+        <div class="upload-name">브랜드 메인 사진</div>
+        <div class="upload-key">brand_visual_img · 정사각형 권장 1500x1500</div>
+        <div class="upload-btns" style="justify-content: flex-start; margin-top:10px;">
+          <label class="up-btn primary" style="padding:8px 18px;font-size:12px;">
+            이미지 업로드
+            <input type="file" accept="image/*" onchange="uploadImage(this, 'brand_visual_img', 1800)">
+          </label>
+          <button class="up-btn del" style="padding:8px 14px;font-size:12px;" onclick="deleteImage('brand_visual_img')">삭제</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 사진 띠 (풀와이드) ============ -->
+  <div class="panel">
+    <div class="panel-title">풀와이드 사진 띠<small>PHOTO BANDS</small></div>
+    <p class="panel-sub">
+      섹션 사이에 들어가는 가로 풀와이드 사진. 가로형 사진(16:9 이상) 권장.
+      <br>1번: Brand Story 직후 / 2번: 창업 절차 직후
+    </p>
+    <div class="upload-grid" id="bandGrid"></div>
+  </div>
+
+  <!-- ============ 갤러리 자동 흐름 (6장) ============ -->
+  <div class="panel">
+    <div class="panel-title">자동 흐르는 갤러리<small>GALLERY · 6장</small></div>
+    <p class="panel-sub">
+      메뉴 섹션 직후 좌우로 자동 흐르는 갤러리 띠. 매장 사진, 메뉴 사진, 손님 사진 등 자유롭게 6장.<br>
+      등록 안 한 슬롯은 빈 자리로 표시됩니다.
+    </p>
+    <div class="upload-grid" id="galleryGrid"></div>
+  </div>
+
+  <!-- ============ 배경 이미지 (은은하게) ============ -->
+  <div class="panel">
+    <div class="panel-title">섹션 배경 이미지<small>BG · 은은한 배경</small></div>
+    <p class="panel-sub">
+      섹션 전체에 18% 투명도로 깔리는 은은한 배경 사진. 분위기 컷에 적합.
+    </p>
+    <div class="upload-grid" id="bgGrid"></div>
+  </div>
+
+  <!-- ============ 메뉴 사진 13종 ============ -->
+  <div class="panel">
+    <div class="panel-title">메뉴 사진<small>MENU · 총 13종</small></div>
+    <p class="panel-sub">각 메뉴별로 사진을 업로드하세요. 정사각형 1200x1200 이상 권장 · 자동 1600px 리사이즈.</p>
+    <div class="upload-grid" id="menuGrid"></div>
+  </div>
+
+  <!-- ============ 1분 조리 3단계 ============ -->
+  <div class="panel">
+    <div class="panel-title">1분 조리 시스템<small>STEP · 3장</small></div>
+    <p class="panel-sub">원팩 조리 3단계 이미지. 가로형(16:9 권장).</p>
+    <div class="upload-grid" id="stepGrid"></div>
+  </div>
+
+  <!-- ============ 왜 화미옥 4카드 ============ -->
+  <div class="panel">
+    <div class="panel-title">왜 화미옥인가<small>WHY · 4장</small></div>
+    <p class="panel-sub">"왜 김치찌개인가, 왜 37년인가, 왜 원팩인가, 왜 콜드체인인가" 카드 4장.</p>
+    <div class="upload-grid" id="whyGrid"></div>
+  </div>
+
+  <!-- ============ 후기 사진 4장 ============ -->
+  <div class="panel">
+    <div class="panel-title">후기 카드 사진<small>REVIEW · 4장</small></div>
+    <p class="panel-sub">고객 후기 카드의 사진. 음식·매장·고객 컷.</p>
+    <div class="upload-grid" id="reviewGrid"></div>
+  </div>
+
+  <!-- ============ 점심/저녁 ============ -->
+  <div class="panel">
+    <div class="panel-title">낮밤 매출 배경<small>LUNCH & DINNER</small></div>
+    <p class="panel-sub">"낮에는 밥심, 밤에는 술심" 영역의 분위기 배경.</p>
+    <div class="upload-grid" id="lunchDinGrid"></div>
+  </div>
+
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-var imgs = {};
-var changes = 0;
+const STORAGE_PREFIX = 'hwamiok_';
 
-// localStorage에서 복원
-try {
-  var saved = localStorage.getItem('hm_imgs');
-  if(saved) {
-    imgs = JSON.parse(saved);
-    console.log('[어드민] 저장된 이미지 복원:', Object.keys(imgs).length + '개');
-  }
-} catch(e) {}
-
-// 이미지 변경 시 자동 localStorage 저장
-function persistImgs() {
-  try { localStorage.setItem('hm_imgs', JSON.stringify(imgs)); } catch(e) {
-    console.warn('localStorage 용량 초과, 일부만 저장됩니다');
-  }
-}
-
-var sections = [
-  {
-    title:'① 메인 첫 화면 (히어로)',
-    note:'페이지를 열면 가장 먼저 보이는 전체 배경. 영상은 위 URL 입력란 사용.',
-    items:[
-      {key:'hero_video', desc:'메인 배경 이미지 (영상 대신 사진 사용 시)'},
-    ]
-  },
-  {
-    title:'② 37년이 증명한다',
-    note:'히어로 바로 아래 — 브랜드 스토리 섹션',
-    items:[
-      {key:'brandA-bg',       desc:'섹션 전체 배경 이미지 (흐릿하게 깔림)'},
-      {key:'brand-visual-img',desc:'가운데 빙글빙글 돌아가는 원형 대표 사진'},
-    ]
-  },
-  {
-    title:'③ 매일 찾게 되는 그 한 그릇 / 하루 끝 한 잔의 마무리',
-    note:'점심·저녁 2분할 카드 섹션',
-    items:[
-      {key:'lunch-bg',  desc:'왼쪽 점심 카드 배경 사진'},
-      {key:'dinner-bg', desc:'오른쪽 저녁 카드 배경 사진'},
-    ]
-  },
-  {
-    title:'④ 이런 분께 딱입니다',
-    note:'처음이든, 경험이 있든 화미옥이 정답 — 체크리스트 섹션',
-    items:[
-      {key:'suitable-bg', desc:'섹션 배경 이미지 (흐릿하게 깔림)'},
-    ]
-  },
-  {
-    title:'⑤ 단 1분이면 끝 — 조리 스텝',
-    note:'STEP 01·02·DONE 3단계 카드 사진',
-    items:[
-      {key:'step-img-0', desc:'STEP 01 카드 — 육수 넣기'},
-      {key:'step-img-1', desc:'STEP 02 카드 — 식재료 넣기'},
-      {key:'step-img-2', desc:'DONE 카드 — 완성'},
-    ]
-  },
-  {
-    title:'⑥ 화미옥의 성공 포인트',
-    note:'슬라이더 4장 — 각 카드 배경 사진',
-    items:[
-      {key:'why-img-0', desc:'슬라이드 01 — 왜 김치찌개인가'},
-      {key:'why-img-1', desc:'슬라이드 02 — 왜 37년인가'},
-      {key:'why-img-2', desc:'슬라이드 03 — 왜 원팩인가'},
-      {key:'why-img-3', desc:'슬라이드 04 — 왜 지금인가'},
-    ]
-  },
-  {
-    title:'⑦ 메뉴 이미지',
-    note:'탭별 원형 메뉴 사진 — 탭 클릭 시 전환됨',
-    items:[
-      {key:'hm-0-0',desc:'[김치찌개] 돼지 김치찌개'},
-      {key:'hm-0-1',desc:'[김치찌개] 부대 김치찌개'},
-      {key:'hm-0-2',desc:'[김치찌개] 참치 김치찌개'},
-      {key:'hm-0-3',desc:'[김치찌개] 돈까스 김치찌개'},
-      {key:'hm-1-0',desc:'[볶음·돈까스] 고추장 제육볶음'},
-      {key:'hm-1-1',desc:'[볶음·돈까스] 간장 돼지불고기'},
-      {key:'hm-1-2',desc:'[볶음·돈까스] 등심돈까스'},
-      {key:'hm-2-0',desc:'[김치찜] 돼지 김치찜'},
-      {key:'hm-2-1',desc:'[김치찜] 부대 김치찜'},
-      {key:'hm-3-0',desc:'[사이드] 햄구이'},
-      {key:'hm-3-1',desc:'[사이드] 계란말이'},
-      {key:'hm-3-2',desc:'[사이드] 김치말이국수'},
-      {key:'hm-3-3',desc:'[사이드] 주먹밥'},
-    ]
-  },
-  {
-    title:'⑧ 화미옥의 공간 (인테리어)',
-    note:'자동으로 흘러가는 인테리어 롤링 사진 4장',
-    items:[
-      {key:'interior-main',  desc:'메인 대표 인테리어 사진'},
-      {key:'interior-sub-0', desc:'서브 사진 1'},
-      {key:'interior-sub-1', desc:'서브 사진 2'},
-      {key:'interior-sub-2', desc:'서브 사진 3'},
-    ]
-  },
-  {
-    title:'⑨ 소비자가 증명한 솔직 후기',
-    note:'모바일 슬라이더 리뷰 카드 4장 사진',
-    items:[
-      {key:'review-img-0',desc:'리뷰 카드 1번'},
-      {key:'review-img-1',desc:'리뷰 카드 2번'},
-      {key:'review-img-2',desc:'리뷰 카드 3번'},
-      {key:'review-img-3',desc:'리뷰 카드 4번'},
-    ]
-  },
-  {
-    title:'⑩ 본사 지원 시스템',
-    note:'막막한 창업 초기, 본사가 함께합니다 섹션 배경',
-    items:[
-      {key:'importance-bg', desc:'섹션 배경 이미지 (흐릿하게 깔림)'},
-    ]
-  },
-  {
-    title:'⑪ 창업 절차',
-    note:'10단계 창업 절차 섹션 배경',
-    items:[
-      {key:'process-bg', desc:'섹션 배경 이미지 (흐릿하게 깔림)'},
-    ]
-  },
+/* ============ 데이터 정의 ============ */
+const MENU_LIST = [
+  // 김치찌개 4종 (cat 0)
+  { key: 'hm_0_0', name: '돼지 김치찌개', placeholder: '돼지' },
+  { key: 'hm_0_1', name: '부대 김치찌개', placeholder: '부대' },
+  { key: 'hm_0_2', name: '참치 김치찌개', placeholder: '참치' },
+  { key: 'hm_0_3', name: '돈까스 김치찌개', placeholder: '돈까스' },
+  // 볶음·돈까스 (cat 1)
+  { key: 'hm_1_0', name: '고추장 제육볶음', placeholder: '제육' },
+  { key: 'hm_1_1', name: '간장 돼지불고기', placeholder: '불고기' },
+  { key: 'hm_1_2', name: '등심돈까스', placeholder: '돈까스' },
+  // 김치찜 (cat 2)
+  { key: 'hm_2_0', name: '돼지고기 김치찜', placeholder: '돼지찜' },
+  { key: 'hm_2_1', name: '부대 김치찜', placeholder: '부대찜' },
+  // 곁차림 (cat 3)
+  { key: 'hm_3_0', name: '햄구이', placeholder: '햄구이' },
+  { key: 'hm_3_1', name: '계란말이', placeholder: '계란' },
+  { key: 'hm_3_2', name: '김치말이국수', placeholder: '국수' },
+  { key: 'hm_3_3', name: '주먹밥', placeholder: '주먹밥' }
 ];
 
-function build() {
-  var app = document.getElementById('app');
-  sections.forEach(function(sec, si) {
-    var isFirst = si === 0;
-    var html = '<div class="section"><div class="sh'+(isFirst?' open':'')+'" onclick="toggle(this)"><h2>'+sec.title+'</h2><span class="cnt">'+sec.items.length+'</span><span class="arr">▼</span></div>';
-    html += '<div class="sb'+(isFirst?' open':'')+'">'; 
-    if(sec.note) html += '<p class="note">'+sec.note+'</p>';
-    html += '<div class="grid">';
-    sec.items.forEach(function(item) {
-      var k = item.key;
-      html += '<div class="ii" id="ii-'+k+'">'
-        +'<div class="prev" onclick="pick(\''+k+'\')">'
-        +'<img id="p-'+k+'" src="" style="display:none;">'
-        +'<div class="ph"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>업로드</span></div>'
-        +'</div>'
-        +'<div class="meta"><div class="key">'+k+'</div><div class="desc">'+item.desc+'</div>'
-        +'<div class="acts"><button class="bu" onclick="pick(\''+k+'\')">업로드</button><button class="br" onclick="del(\''+k+'\')">삭제</button></div>'
-        +'</div>'
-        +'<input type="file" id="f-'+k+'" accept="image/*" onchange="load(this,\''+k+'\')">'
-        +'</div>';
-    });
-    html += '</div></div></div>';
-    app.innerHTML += html;
+const BANDS = [
+  { key: 'band_img_1', name: 'Story 직후 띠', placeholder: '매장 분위기' },
+  { key: 'band_img_2', name: '창업절차 직후 띠', placeholder: '오픈 매장' }
+];
+
+const GALLERY = [
+  { key: 'gallery_1', name: '갤러리 1' },
+  { key: 'gallery_2', name: '갤러리 2' },
+  { key: 'gallery_3', name: '갤러리 3' },
+  { key: 'gallery_4', name: '갤러리 4' },
+  { key: 'gallery_5', name: '갤러리 5' },
+  { key: 'gallery_6', name: '갤러리 6' }
+];
+
+const BG_IMAGES = [
+  { key: 'brandA_bg', name: '37년이 증명한다 배경', placeholder: '오래된 매장' },
+  { key: 'suitable_bg', name: '이런 분께 딱 배경', placeholder: '점주 분위기' }
+];
+
+const STEP_IMAGES = [
+  { key: 'step_img_0', name: 'STEP 01 · 원팩 넣고' },
+  { key: 'step_img_1', name: 'STEP 02 · 재료 넣고' },
+  { key: 'step_img_2', name: 'STEP 03 · 끓이면 끝' }
+];
+
+const WHY_IMAGES = [
+  { key: 'why_img_0', name: '왜 김치찌개인가' },
+  { key: 'why_img_1', name: '왜 37년인가' },
+  { key: 'why_img_2', name: '왜 원팩인가' },
+  { key: 'why_img_3', name: '왜 콜드체인인가' }
+];
+
+const REVIEW_IMAGES = [
+  { key: 'review_img_0', name: '후기 1' },
+  { key: 'review_img_1', name: '후기 2' },
+  { key: 'review_img_2', name: '후기 3' },
+  { key: 'review_img_3', name: '후기 4' }
+];
+
+const LUNCH_DIN_IMAGES = [
+  { key: 'lunch_bg', name: '낮 매출 배경' },
+  { key: 'dinner_bg', name: '밤 매출 배경' }
+];
+
+/* ============ TOAST ============ */
+const toast = document.getElementById('toast');
+let toastTimer;
+function showToast(msg, isError) {
+  toast.textContent = msg;
+  toast.className = 'toast show' + (isError ? ' error' : '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+}
+
+/* ============ 스토리지 ============ */
+function getItem(key) {
+  try { return localStorage.getItem(STORAGE_PREFIX + key); } catch(e) { return null; }
+}
+function setItem(key, value) {
+  try { localStorage.setItem(STORAGE_PREFIX + key, value); return true; }
+  catch(e) {
+    showToast('저장 공간이 부족합니다. images.js 다운로드 후 초기화하세요.', true);
+    return false;
+  }
+}
+function removeItem(key) {
+  try { localStorage.removeItem(STORAGE_PREFIX + key); } catch(e) {}
+}
+
+/* ============ 이미지 리사이즈 ============ */
+function resizeImage(file, maxSize, quality) {
+  const q = typeof quality === 'number' ? quality : 0.9;
+  return new Promise((resolve, reject) => {
+    if (!file.type.startsWith('image/')) {
+      reject(new Error('이미지 파일만 업로드할 수 있습니다.')); return;
+    }
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > maxSize || height > maxSize) {
+          if (width > height) { height = Math.round(height * maxSize / width); width = maxSize; }
+          else { width = Math.round(width * maxSize / height); height = maxSize; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, 0, 0, width, height);
+        const type = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+        resolve(canvas.toDataURL(type, q));
+      };
+      img.onerror = () => reject(new Error('이미지 로드 실패'));
+      img.src = e.target.result;
+    };
+    reader.onerror = () => reject(new Error('파일 읽기 실패'));
+    reader.readAsDataURL(file);
   });
 }
 
-function toggle(el){
-  el.classList.toggle('open');
-  el.nextElementSibling.classList.toggle('open');
+/* ============ 공통 업로드 ============ */
+async function uploadImage(input, key, maxSize) {
+  const file = input.files[0];
+  if (!file) return;
+  const size = maxSize || 1400;
+  try {
+    const dataUrl = await resizeImage(file, size, 0.9);
+    if (!setItem(key, dataUrl)) return;
+    updatePreview(key, dataUrl);
+    showToast('저장됨: ' + key);
+    updateQuota();
+  } catch (err) { showToast(err.message, true); }
+  input.value = '';
 }
-function pick(k){ document.getElementById('f-'+k).click(); }
-function load(inp, k) {
-  var f = inp.files[0]; if(!f) return;
-  // 영상은 압축 없이 그대로
-  if(f.type.startsWith('video/')){
-    var r = new FileReader();
-    r.onload = function(e){
-      var data = e.target.result;
-      imgs[k.replace(/-/g,'_')] = data;
-      var p = document.getElementById('p-'+k);
-      if(p){p.src='';p.style.display='none';} // 영상은 미리보기 없음
-      document.getElementById('ii-'+k).classList.add('has');
-      changes++;document.getElementById('cc').textContent=changes;
-      toast('✓ '+k+' 영상 업로드 ('+Math.round(f.size/1024)+'KB)');
-    };
-    r.readAsDataURL(f);
-    return;
+function deleteImage(key) {
+  if (!confirm('삭제하시겠습니까?')) return;
+  removeItem(key);
+  resetPreview(key);
+  showToast('삭제됨: ' + key);
+  updateQuota();
+}
+function updatePreview(key, dataUrl) {
+  const prev = document.getElementById('prev_' + key);
+  if (!prev) return;
+  prev.innerHTML = `<img src="${dataUrl}" alt="">`;
+}
+function resetPreview(key) {
+  const prev = document.getElementById('prev_' + key);
+  if (!prev) return;
+  prev.innerHTML = '<span class="preview-empty">미등록</span>';
+}
+
+/* ============ 텍스트 (URL 등) 저장 ============ */
+function saveText(key, inputId) {
+  const v = document.getElementById(inputId).value.trim();
+  if (!v) { showToast('값을 입력하세요.', true); return; }
+  setItem(key, v);
+  showToast('저장됨: ' + key);
+  updateQuota();
+}
+function deleteText(key, inputId) {
+  removeItem(key);
+  document.getElementById(inputId).value = '';
+  showToast('삭제됨: ' + key);
+  updateQuota();
+}
+
+/* ============ 카드 렌더 (공통) ============ */
+function renderCardGrid(gridId, items, sizeHint) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  grid.innerHTML = items.map(it => `
+    <div class="upload-card">
+      <div class="upload-preview ${sizeHint === 'wide' ? 'wide' : ''}" id="prev_${it.key}">
+        <span class="preview-empty">${it.placeholder || '미등록'}</span>
+      </div>
+      <div class="upload-name">${it.name}</div>
+      <div class="upload-key">${it.key}</div>
+      <div class="upload-btns">
+        <label class="up-btn primary">
+          업로드
+          <input type="file" accept="image/*" onchange="uploadImage(this, '${it.key}', ${sizeHint === 'wide' ? 1800 : 1400})">
+        </label>
+        <button class="up-btn del" onclick="deleteImage('${it.key}')">삭제</button>
+      </div>
+    </div>
+  `).join('');
+  // 저장된 데이터 불러와서 미리보기
+  items.forEach(it => {
+    const data = getItem(it.key);
+    if (data) updatePreview(it.key, data);
+  });
+}
+
+/* ============ images.js 다운로드 ============ */
+function downloadImagesJs() {
+  const data = {};
+  let count = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const fullKey = localStorage.key(i);
+    if (fullKey && fullKey.startsWith(STORAGE_PREFIX)) {
+      const k = fullKey.replace(STORAGE_PREFIX, '');
+      data[k] = localStorage.getItem(fullKey);
+      count++;
+    }
   }
-  // 이미지: Canvas로 리사이즈 + WebP 압축
-  var img = new Image();
-  var reader = new FileReader();
-  reader.onload = function(e){
-    img.onload = function(){
-      // 이미지 종류별 최대 크기 설정
-      var MAX = k.includes('bg') ? 1200 : 600; // 배경은 1200, 메뉴/리뷰는 600
-      var w = img.width, h = img.height;
-      if(w > MAX || h > MAX){
-        if(w > h){ h = Math.round(h * MAX/w); w = MAX; }
-        else      { w = Math.round(w * MAX/h); h = MAX; }
+  if (count === 0) { showToast('저장된 데이터가 없습니다.', true); return; }
+  const json = JSON.stringify(data, null, 2);
+  const js =
+    '// 화미옥 김치찌개 - 이미지/영상 데이터\n' +
+    '// 생성일: ' + new Date().toISOString() + '\n' +
+    '// 키 개수: ' + count + '\n' +
+    '// 이 파일을 index.html과 같은 폴더에 두세요.\n\n' +
+    'window.HM_IMGS = ' + json + ';\n';
+  const blob = new Blob([js], { type: 'application/javascript' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'images.js';
+  document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 100);
+  showToast(count + '개 항목을 images.js로 내보냈습니다.');
+}
+
+/* ============ images.js 불러오기 ============ */
+function loadImagesJs(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (!confirm('파일을 불러오면 현재 저장된 데이터를 덮어씁니다.\n계속하시겠습니까?')) {
+    input.value = ''; return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      let txt = e.target.result;
+      let data;
+      // images.js 형식이면 window.HM_IMGS = {...} 추출
+      const m = txt.match(/window\.HM_IMGS\s*=\s*(\{[\s\S]*?\})\s*;?\s*$/m);
+      if (m) {
+        // JSON.parse 시도, 실패하면 안전하게 평가
+        try { data = JSON.parse(m[1]); }
+        catch (err) { data = (new Function('return ' + m[1]))(); }
+      } else {
+        // 순수 JSON 시도
+        data = JSON.parse(txt);
       }
-      var canvas = document.createElement('canvas');
-      canvas.width = w; canvas.height = h;
-      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-      // WebP 우선, 없으면 JPEG — 배경 0.7, 기타 0.65
-      var quality = k.includes('bg') || k.includes('brand') ? 0.72 : 0.65;
-      var data = canvas.toDataURL('image/webp', quality);
-      if(!data || data === 'data:,') data = canvas.toDataURL('image/jpeg', quality);
-      var kb = Math.round(data.length * 0.75 / 1024);
-      imgs[k.replace(/-/g,'_')] = data;
-      var p = document.getElementById('p-'+k);
-      if(p){p.src=data;p.style.display='block';}
-      document.getElementById('ii-'+k).classList.add('has');
-      changes++;document.getElementById('cc').textContent=changes;
-      persistImgs();
-      toast('✓ '+k+' ('+w+'×'+h+', ~'+kb+'KB)');
-    };
-    img.src = e.target.result;
+      if (!data || typeof data !== 'object') throw new Error('잘못된 형식입니다.');
+      // 기존 키 삭제
+      const oldKeys = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith(STORAGE_PREFIX)) oldKeys.push(k);
+      }
+      oldKeys.forEach(k => localStorage.removeItem(k));
+      // 새 데이터 저장
+      let count = 0;
+      Object.entries(data).forEach(([k, v]) => {
+        if (typeof v !== 'string') return;
+        try { localStorage.setItem(STORAGE_PREFIX + k, v); count++; }
+        catch (err) { console.warn('저장 실패:', k); }
+      });
+      showToast(count + '개 항목을 불러왔습니다. 새로고침합니다…');
+      setTimeout(() => location.reload(), 1000);
+    } catch (err) {
+      showToast('불러오기 실패: ' + err.message, true);
+    }
   };
-  reader.readAsDataURL(f);
-}
-function del(k){
-  delete imgs[k.replace(/-/g,'_')];
-  var p=document.getElementById('p-'+k);
-  if(p){p.src='';p.style.display='none';}
-  document.getElementById('ii-'+k).classList.remove('has');
-  document.getElementById('f-'+k).value='';
-  changes++;document.getElementById('cc').textContent=changes;
-  persistImgs();
-  toast('삭제: '+k);
-}
-function saveAll(){
-  var json = JSON.stringify(imgs);
-  var kb = Math.round(json.length * 0.75 / 1024);
-  // images.js 로 저장 — <script src> 방식으로 확실하게 로드됨
-  var js = 'window.HM_IMGS=' + json + ';';
-  var blob=new Blob([js],{type:'application/javascript'});
-  var a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);a.download='images.js';a.click();
-  changes=0;document.getElementById('cc').textContent='0';
-  toast('💾 images.js 저장 완료! (~'+kb+'KB) → GitHub에 올리세요');
-}
-function toast(msg){
-  var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show');},2000);
+  reader.onerror = () => showToast('파일 읽기 실패', true);
+  reader.readAsText(file);
+  input.value = '';
 }
 
-// 히어로 영상 URL 섹션 별도 삽입
-(function(){
-  var div = document.createElement('div');
-  div.className = 'section';
-  div.style.cssText = 'border:3px solid var(--r);';
-  div.innerHTML = [
-    '<div class="sh open" onclick="toggle(this)" style="background:var(--r);">',
-      '<h2>🎬 메인 첫 화면 배경 영상</h2>',
-      '<span class="cnt" style="background:rgba(0,0,0,.3);">★ 여기에 등록</span>',
-      '<span class="arr" style="color:rgba(255,255,255,.6);">▼</span>',
-    '</div>',
-    '<div class="sb open" style="padding:20px;">',
-      '<p class="note" style="color:var(--r);font-weight:700;">',
-        '⚠️ 영상은 URL 방식으로 등록하세요<br>',
-        'Cloudinary/구글드라이브 등에 올린 후 직접 링크(mp4) 입력',
-      '</p>',
-      '<div style="margin-bottom:16px;">',
-        '<label style="font-size:12px;font-weight:700;color:var(--r);display:block;margin-bottom:6px;">영상 URL (mp4 직접 링크)</label>',
-        '<input id="heroVideoUrl" type="url" placeholder="https://...video.mp4" ',
-          'style="width:100%;padding:10px;border:2px solid var(--r);border-radius:4px;font-size:13px;outline:none;">',
-        '<p style="font-size:10px;color:#aaa;margin-top:4px;">예: https://res.cloudinary.com/xxx/video/upload/xxx.mp4</p>',
-      '</div>',
-      '<div>',
-        '<label style="font-size:12px;font-weight:700;color:#555;display:block;margin-bottom:6px;">또는 배경 이미지 업로드 (영상 대신)</label>',
-        '<div class="ii" id="ii-hero_video" style="max-width:260px;">',
-          '<div class="prev" id="prev-hero-click"><img id="p-hero_video" src="" style="display:none;">',
-            '<div class="ph"><span>이미지 업로드</span></div>',
-          '</div>',
-          '<div class="meta"><div class="key">hero_video</div>',
-            '<div class="acts">',
-              '<button class="bu" id="btn-hero-upload">이미지 업로드</button>',
-              '<button class="br" id="btn-hero-del">삭제</button>',
-            '</div>',
-          '</div>',
-          '<input type="file" id="f-hero_video" accept="image/*">',
-        '</div>',
-      '</div>',
-    '</div>'
-  ].join('');
-  document.getElementById('app').insertAdjacentElement('afterbegin', div);
-
-  // 이벤트 바인딩
-  document.getElementById('prev-hero-click').onclick = function(){ document.getElementById('f-hero_video').click(); };
-  document.getElementById('btn-hero-upload').onclick = function(){ document.getElementById('f-hero_video').click(); };
-  document.getElementById('btn-hero-del').onclick = function(){ del('hero_video'); };
-  document.getElementById('f-hero_video').onchange = function(){ load(this,'hero_video'); };
-  document.getElementById('heroVideoUrl').addEventListener('input', saveVideoUrl);
-  // 헤더 클릭
-  div.querySelector('.sh').onclick = function(){ toggle(this); };
-})();
-
-function saveVideoUrl(){
-  var url = document.getElementById('heroVideoUrl').value.trim();
-  if(url){
-    imgs['hero_video'] = url;
-    document.getElementById('ii-hero_video').classList.add('has');
-    changes++;document.getElementById('cc').textContent=changes;
-    persistImgs();
+/* ============ 전체 초기화 ============ */
+function resetAll() {
+  if (!confirm('저장된 모든 이미지/데이터를 초기화합니다.\nimages.js로 다운로드 받으셨나요? 진행할까요?')) return;
+  const keys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith(STORAGE_PREFIX)) keys.push(k);
   }
+  keys.forEach(k => localStorage.removeItem(k));
+  showToast('초기화 완료. 새로고침합니다.');
+  setTimeout(() => location.reload(), 800);
 }
 
-build();
+/* ============ 사용량 표시 ============ */
+function updateQuota() {
+  let total = 0, count = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith(STORAGE_PREFIX)) {
+      total += (localStorage.getItem(k) || '').length;
+      count++;
+    }
+  }
+  const mb = (total / 1024 / 1024).toFixed(2);
+  document.getElementById('quotaUsage').textContent =
+    '저장된 항목 ' + count + '개 · 용량 약 ' + mb + 'MB';
+}
 
-// localStorage에서 불러온 이미지를 UI에 반영
-setTimeout(function(){
-  Object.keys(imgs).forEach(function(k){
-    var kd = k.replace(/_/g,'-');
-    var p = document.getElementById('p-'+kd);
-    var ii = document.getElementById('ii-'+kd);
-    var src = imgs[k];
-    if(p && src && !src.startsWith('http')){ p.src=src; p.style.display='block'; }
-    if(ii) ii.classList.add('has');
-  });
-  if(imgs.hero_video && imgs.hero_video.startsWith('http')){
-    var urlInput = document.getElementById('heroVideoUrl');
-    if(urlInput) urlInput.value = imgs.hero_video;
-    var ii = document.getElementById('ii-hero_video');
-    if(ii) ii.classList.add('has');
-  }
-  if(Object.keys(imgs).length > 0){
-    document.getElementById('cc').textContent = '저장됨';
-    toast('이전 작업 복원 완료: ' + Object.keys(imgs).length + '개');
-  }
-}, 300);
+/* ============ 초기화 ============ */
+function init() {
+  // Hero video URL 복구
+  const hv = getItem('hero_video');
+  if (hv) document.getElementById('heroVideoInput').value = hv;
 
-// 기존 images.js 로드 시도 (GitHub에 올라간 것)
-fetch('images.js').then(function(r){return r.json();}).then(function(data){
-  imgs=data;
-  Object.keys(imgs).forEach(function(k){
-    var kd=k.replace(/_/g,'-');
-    var p=document.getElementById('p-'+kd);
-    var ii=document.getElementById('ii-'+kd);
-    if(p&&imgs[k]&&!imgs[k].startsWith('http')){p.src=imgs[k];p.style.display='block';}
-    if(ii)ii.classList.add('has');
-  });
-  // 영상 URL 복원
-  if(imgs.hero_video && imgs.hero_video.startsWith('http')){
-    var urlInput = document.getElementById('heroVideoUrl');
-    if(urlInput) urlInput.value = imgs.hero_video;
-  }
-  toast('기존 images.js 로드 완료');
-}).catch(function(){});
+  // 메인 비주얼 미리보기
+  const bv = getItem('brand_visual_img');
+  if (bv) updatePreview('brand_visual_img', bv);
+
+  // 각 그리드 렌더
+  renderCardGrid('bandGrid', BANDS, 'wide');
+  renderCardGrid('galleryGrid', GALLERY, 'wide');
+  renderCardGrid('bgGrid', BG_IMAGES, 'wide');
+  renderCardGrid('menuGrid', MENU_LIST);
+  renderCardGrid('stepGrid', STEP_IMAGES, 'wide');
+  renderCardGrid('whyGrid', WHY_IMAGES);
+  renderCardGrid('reviewGrid', REVIEW_IMAGES);
+  renderCardGrid('lunchDinGrid', LUNCH_DIN_IMAGES, 'wide');
+
+  updateQuota();
+}
+init();
 </script>
+
 </body>
 </html>

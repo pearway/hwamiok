@@ -422,6 +422,49 @@
   .hero-h .line3{font-size:clamp(34px,9vw,50px);}
 }
 
+/* === 사진 슬롯 (점주 직접 업로드 영역) === */
+.photo-slot{position:relative;overflow:hidden;background:linear-gradient(135deg,#1a0608,var(--blk2))}
+.photo-slot img{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0}
+.photo-slot .ps-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:rgba(255,255,255,.18);font-family:var(--d);font-size:12px;letter-spacing:3px;text-align:center;padding:16px}
+.photo-slot .ps-ph::before{content:'';width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.35)' stroke-width='1.5'%3E%3Crect x='3' y='5' width='18' height='14' rx='2'/%3E%3Ccircle cx='9' cy='11' r='2'/%3E%3Cpath d='M3 17l5-4 4 3 5-5 4 3v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/%3E%3C/svg%3E") center/contain no-repeat;opacity:.6}
+
+/* A. 풀와이드 띠 */
+.photo-band{width:100%;height:clamp(180px,38vw,320px);position:relative;overflow:hidden;background:#0a0a0a}
+.photo-band img{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;filter:saturate(1.05)}
+.photo-band .ps-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.15);font-family:var(--d);font-size:14px;letter-spacing:4px;background:linear-gradient(135deg,#1a0608,var(--blk),#2a0810)}
+.photo-band-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.45) 100%);pointer-events:none}
+.photo-band-cap{position:absolute;left:24px;bottom:18px;color:#fff;font-family:var(--d);font-size:clamp(13px,3.2vw,17px);letter-spacing:.02em;z-index:2;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.photo-band-cap small{display:block;font-size:10px;letter-spacing:3px;color:var(--r3);font-weight:300;margin-bottom:3px;text-transform:uppercase}
+
+/* B. 폴라로이드 액센트 (어디든 떠 있는 작은 사진) */
+.polaroid{display:inline-block;background:#fff;padding:8px 8px 24px;box-shadow:0 8px 24px rgba(0,0,0,.4);border-radius:2px;transform:rotate(-2deg);position:relative}
+.polaroid.tilt-r{transform:rotate(2.5deg)}
+.polaroid .pol-photo{width:clamp(120px,32vw,180px);aspect-ratio:1;background:linear-gradient(135deg,#2a0810,var(--blk));position:relative;overflow:hidden}
+.polaroid .pol-photo img{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0}
+.polaroid .pol-photo .ps-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-family:var(--d);font-size:11px;letter-spacing:2px}
+.polaroid .pol-cap{font-family:var(--d);font-size:11px;color:#333;text-align:center;margin-top:6px;letter-spacing:1px}
+
+/* C. 좌우 스플릿 (PC) / 위아래 (모바일) */
+.split-photo{display:grid;grid-template-columns:1fr;gap:0;align-items:stretch;background:var(--blk2)}
+.split-photo .sp-text{padding:48px 28px;display:flex;flex-direction:column;justify-content:center}
+.split-photo .sp-photo{aspect-ratio:4/3;position:relative;overflow:hidden;background:linear-gradient(135deg,#1a0608,var(--r2))}
+.split-photo .sp-photo img{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0}
+.split-photo .sp-photo .ps-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.2);font-family:var(--d);font-size:13px;letter-spacing:3px}
+@media(min-width:768px){.split-photo{grid-template-columns:1fr 1fr}.split-photo.reverse .sp-photo{order:2}.split-photo .sp-text{padding:72px 56px}.split-photo .sp-photo{aspect-ratio:auto;min-height:520px}}
+
+/* D. 배경 사진 (은은한 텍스처 위에 텍스트) */
+.bg-photo{position:relative;overflow:hidden}
+.bg-photo>.bg-photo-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.18;filter:grayscale(.3) saturate(.85);display:none;z-index:0;pointer-events:none}
+.bg-photo>*:not(.bg-photo-img){position:relative;z-index:1}
+.bg-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.2),rgba(10,10,10,.7));pointer-events:none;z-index:0}
+
+/* E. 갤러리 띠 (여러장 자동 흐름) */
+.gallery-strip{display:flex;gap:8px;overflow:hidden;width:100%;padding:24px 0;background:var(--blk)}
+.gallery-strip-track{display:flex;gap:8px;width:max-content;animation:roll-l 28s linear infinite}
+.gallery-strip-item{flex-shrink:0;width:240px;height:160px;border-radius:6px;overflow:hidden;position:relative;background:linear-gradient(135deg,#1a0608,var(--blk2))}
+.gallery-strip-item img{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0}
+.gallery-strip-item .ps-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.18);font-family:var(--d);font-size:11px;letter-spacing:2px}
+@media(min-width:768px){.gallery-strip-item{width:320px;height:220px}}
 </style>
 </head>
 <body>
@@ -573,6 +616,25 @@
     <div class="mi"><div class="mi-circ"><img id="hm-3-3" src="" alt=""><div class="mi-ph" style="background:linear-gradient(135deg,#2a1a18,#5a3028);"></div></div><div class="mi-name">주먹밥</div><div class="mi-desc">한입 주먹밥</div></div>
   </div></div>
 </section>
+
+<!-- === GALLERY STRIP : 메뉴/매장 갤러리 자동 흐름 === -->
+<div class="gallery-strip">
+  <div class="gallery-strip-track">
+    <div class="gallery-strip-item"><img id="gallery-1" src="" alt=""><div class="ps-ph">PHOTO 1</div></div>
+    <div class="gallery-strip-item"><img id="gallery-2" src="" alt=""><div class="ps-ph">PHOTO 2</div></div>
+    <div class="gallery-strip-item"><img id="gallery-3" src="" alt=""><div class="ps-ph">PHOTO 3</div></div>
+    <div class="gallery-strip-item"><img id="gallery-4" src="" alt=""><div class="ps-ph">PHOTO 4</div></div>
+    <div class="gallery-strip-item"><img id="gallery-5" src="" alt=""><div class="ps-ph">PHOTO 5</div></div>
+    <div class="gallery-strip-item"><img id="gallery-6" src="" alt=""><div class="ps-ph">PHOTO 6</div></div>
+    <!-- 자연스러운 무한 루프를 위해 동일 항목 반복 -->
+    <div class="gallery-strip-item"><img id="gallery-1-r" src="" alt=""><div class="ps-ph">PHOTO 1</div></div>
+    <div class="gallery-strip-item"><img id="gallery-2-r" src="" alt=""><div class="ps-ph">PHOTO 2</div></div>
+    <div class="gallery-strip-item"><img id="gallery-3-r" src="" alt=""><div class="ps-ph">PHOTO 3</div></div>
+    <div class="gallery-strip-item"><img id="gallery-4-r" src="" alt=""><div class="ps-ph">PHOTO 4</div></div>
+    <div class="gallery-strip-item"><img id="gallery-5-r" src="" alt=""><div class="ps-ph">PHOTO 5</div></div>
+    <div class="gallery-strip-item"><img id="gallery-6-r" src="" alt=""><div class="ps-ph">PHOTO 6</div></div>
+  </div>
+</div>
 
 <div id="lunchdin">
   <div class="lunch-card" style="position:relative;height:min(75vw,460px);overflow:hidden;background:var(--blk);">
@@ -936,6 +998,14 @@
   </div>
 </section>
 
+<!-- === PHOTO BAND 01 : 매장·요리 분위기 === -->
+<div class="photo-band">
+  <img id="band-img-1" src="" alt="">
+  <div class="ps-ph">PHOTO · 매장 또는 요리 분위기 컷</div>
+  <div class="photo-band-overlay"></div>
+  <div class="photo-band-cap"><small>SINCE 1987</small>한 그릇씩 정성껏</div>
+</div>
+
 <section id="suitable" style="background:var(--blk);padding:72px 24px;overflow:hidden;position:relative;border-top:3px solid var(--r);">
   <img id="suitable-bg" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.08;">
   <div style="max-width:560px;margin:0 auto;position:relative;z-index:2;text-align:center;">
@@ -1006,6 +1076,14 @@
     </div>
   </div>
 </section>
+
+<!-- === PHOTO BAND 02 : 오픈 매장·점주 분위기 === -->
+<div class="photo-band">
+  <img id="band-img-2" src="" alt="">
+  <div class="ps-ph">PHOTO · 매장 오픈 또는 점주 분위기 컷</div>
+  <div class="photo-band-overlay"></div>
+  <div class="photo-band-cap"><small>WITH HWAMIOK</small>당신의 매장이 열리는 순간</div>
+</div>
 
 <section id="cta">
   <div class="cta-inner">
@@ -1078,6 +1156,46 @@
 
 <script>
 window.HM_IMGS=window.HM_IMGS||{};
+/* ==================== images.js 작성 가이드 ====================
+같은 폴더에 images.js 파일을 만들고 아래 형식으로 작성하세요.
+이미지는 (1) 절대 URL ('https://...'), (2) 같은 폴더 상대경로 ('./img/photo.jpg'),
+또는 (3) base64 데이터 URL 모두 가능합니다.
+
+▣ 새로 추가된 사진 슬롯 (점주 직접 업로드용)
+  - band_img_1     : Brand Story 4블록 직후 풀와이드 띠 (매장/요리 분위기)
+  - band_img_2     : 창업 절차 직후 풀와이드 띠 (오픈 매장/점주)
+  - gallery_1 ~ 6  : 메뉴 섹션 직후 자동 흐르는 갤러리 6장
+
+▣ 배경 이미지 슬롯 (_bg 접미사 → 자동으로 섹션 배경에 은은하게 깔림)
+  - brandA_bg      : "37년이 증명한다" 섹션 배경
+  - suitable_bg    : "이런 분께 딱 맞습니다" 섹션 배경
+
+▣ 기존 슬롯 (이미 있던 것들)
+  - hero_video     : Hero 영상/배경 이미지
+  - brand_visual_img : Hero 큰 원형 사진
+  - hm_0_0 ~ 0_3   : 메뉴 김치찌개 4종
+  - hm_1_0 ~ 1_2   : 메뉴 볶음·돈까스 3종
+  - hm_2_0 ~ 2_1   : 메뉴 김치찜 2종
+  - hm_3_0 ~ 3_3   : 메뉴 곁차림 4종
+  - step_img_0~2   : 1분 조리 3단계 이미지
+  - why_img_0~3    : 왜 화미옥 4카드
+  - review_img_0~3 : 후기 카드 사진
+  - lunch_bg       : 낮 매출 배경
+  - dinner_bg      : 밤 매출 배경
+
+▣ 예시 (images.js 파일 안)
+  window.HM_IMGS = {
+    hero_video: 'https://example.com/hero.mp4',
+    brand_visual_img: './img/main.jpg',
+    band_img_1: './img/store-mood.jpg',
+    band_img_2: './img/opening.jpg',
+    gallery_1: './img/g1.jpg',
+    gallery_2: './img/g2.jpg',
+    brandA_bg: './img/old-store.jpg',
+    suitable_bg: './img/people.jpg',
+    hm_0_0: './img/dwaeji-kimchi.jpg'
+  };
+================================================================ */
 function applyHMImgs(){
   var imgs = window.HM_IMGS || {};
   if(!Object.keys(imgs).length) return;
@@ -1086,6 +1204,40 @@ function applyHMImgs(){
     var id = key.replace(/_/g,'-');
     var src = imgs[key];
     if(!src) return;
+
+    // gallery-N 키는 자동으로 -r(반복) 사본도 채움
+    if(/^gallery_\d+$/.test(key)){
+      var num = key.match(/^gallery_(\d+)$/)[1];
+      var repeatId = 'gallery-' + num + '-r';
+      var rEl = document.getElementById(repeatId);
+      if(rEl && rEl.tagName === 'IMG'){
+        rEl.src = src;
+        rEl.style.display = 'block';
+        rEl.style.zIndex = '2';
+        var rPh = rEl.parentElement && rEl.parentElement.querySelector('.ps-ph');
+        if(rPh) rPh.style.display = 'none';
+      }
+    }
+
+    // _bg 접미사: 해당 ID 요소의 배경 이미지로 적용 (은은한 배경용)
+    if(key.endsWith('_bg')){
+      var bgId = key.replace(/_bg$/,'').replace(/_/g,'-');
+      var sec = document.getElementById(bgId);
+      if(sec){
+        sec.style.backgroundImage = 'url('+src+')';
+        sec.style.backgroundSize = 'cover';
+        sec.style.backgroundPosition = 'center';
+        sec.style.backgroundBlendMode = 'soft-light';
+      }
+      // 같은 ID의 <img>가 있으면 그것도 채우기 (#suitable-bg 같은 케이스)
+      var bgImg = document.getElementById(key.replace(/_/g,'-'));
+      if(bgImg && bgImg.tagName === 'IMG'){
+        bgImg.src = src;
+        bgImg.style.display = 'block';
+      }
+      return;
+    }
+
     var el = document.getElementById(id);
     if(el && el.tagName === 'IMG'){
       el.src = src;
@@ -1100,7 +1252,8 @@ function applyHMImgs(){
           if(ch !== el && (
             ch.className.indexOf('ph') !== -1 ||
             ch.className.indexOf('-ph') !== -1 ||
-            ch.className.indexOf('grad') !== -1
+            ch.className.indexOf('grad') !== -1 ||
+            ch.className.indexOf('ps-ph') !== -1
           )){
             ch.style.display = 'none';
           }
