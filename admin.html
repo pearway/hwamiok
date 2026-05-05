@@ -269,7 +269,7 @@
   </div>
 
   <div class="quota-info" id="quotaInfo">
-    💾 <strong>저장 용량:</strong> 이미지는 브라우저 임시저장소(localStorage)에 저장됩니다. 한도는 5–10MB. 작업 끝나면 반드시 <strong>images.js로 다운로드</strong> 받아두세요.
+    💾 <strong>저장 용량:</strong> IndexedDB에 저장됩니다 (한도 수 GB로 충분). 작업 끝나면 <strong>images.js로 다운로드</strong> 받아 백업해두세요.
     <br><span id="quotaUsage" style="font-weight:600;"></span>
   </div>
 
@@ -304,7 +304,7 @@
         <div class="upload-btns" style="justify-content: flex-start; margin-top:10px;">
           <label class="up-btn primary" style="padding:8px 18px;font-size:12px;">
             이미지 업로드
-            <input type="file" accept="image/*" onchange="uploadImage(this, 'brand_visual_img', 1800)">
+            <input type="file" accept="image/*" onchange="uploadImage(this, 'brand_visual_img', 1500)">
           </label>
           <button class="up-btn del" style="padding:8px 14px;font-size:12px;" onclick="deleteImage('brand_visual_img')">삭제</button>
         </div>
@@ -458,19 +458,129 @@ function showToast(msg, isError) {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
 }
 
-/* ============ 스토리지 ============ */
-function getItem(key) {
-  try { return localStorage.getItem(STORAGE_PREFIX + key); } catch(e) { return null; }
+/* ============ IndexedDB 스토리지 ============ */
+// localStorage(5–10MB) 한도 회피용 IndexedDB 래퍼.
+// 키-값 단순 저장. 메모리 캐시로 동기 조회도 지원.
+const DB_NAME = 'hwamiok_admin';
+const DB_STORE = 'kv';
+const DB_VER = 1;
+let _db = null;
+const _cache = {};
+
+function openDB() {
+  return new Promise((resolve, reject) => {
+    if (_db) return resolve(_db);
+    const req = indexedDB.open(DB_NAME, DB_VER);
+    req.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains(DB_STORE)) {
+        db.createObjectStore(DB_STORE);
+      }
+    };
+    req.onsuccess = (e) => { _db = e.target.result; resolve(_db); };
+    req.onerror = () => reject(req.error);
+  });
 }
-function setItem(key, value) {
-  try { localStorage.setItem(STORAGE_PREFIX + key, value); return true; }
-  catch(e) {
-    showToast('저장 공간이 부족합니다. images.js 다운로드 후 초기화하세요.', true);
+
+async function dbSet(key, value) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(DB_STORE, 'readwrite');
+    tx.objectStore(DB_STORE).put(value, key);
+    tx.oncomplete = () => { _cache[key] = value; resolve(true); };
+    tx.onerror = () => reject(tx.error);
+  });
+}
+async function dbGet(key) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(DB_STORE, 'readonly');
+    const r = tx.objectStore(DB_STORE).get(key);
+    r.onsuccess = () => resolve(r.result);
+    r.onerror = () => reject(r.error);
+  });
+}
+async function dbDelete(key) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(DB_STORE, 'readwrite');
+    tx.objectStore(DB_STORE).delete(key);
+    tx.oncomplete = () => { delete _cache[key]; resolve(true); };
+    tx.onerror = () => reject(tx.error);
+  });
+}
+async function dbAll() {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(DB_STORE, 'readonly');
+    const store = tx.objectStore(DB_STORE);
+    const r = store.openCursor();
+    const out = {};
+    r.onsuccess = (e) => {
+      const c = e.target.result;
+      if (c) { out[c.key] = c.value; c.continue(); }
+      else resolve(out);
+    };
+    r.onerror = () => reject(r.error);
+  });
+}
+async function dbClear() {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(DB_STORE, 'readwrite');
+    tx.objectStore(DB_STORE).clear();
+    tx.oncomplete = () => { Object.keys(_cache).forEach(k => delete _cache[k]); resolve(true); };
+    tx.onerror = () => reject(tx.error);
+  });
+}
+
+// localStorage 호환 동기 API (캐시 기반)
+function getItem(key) {
+  return _cache[key] !== undefined ? _cache[key] : null;
+}
+async function setItem(key, value) {
+  try {
+    await dbSet(key, value);
+    return true;
+  } catch (e) {
+    console.error('IndexedDB 저장 실패:', e);
+    showToast('저장 실패: ' + (e.message || '알 수 없는 오류'), true);
     return false;
   }
 }
-function removeItem(key) {
-  try { localStorage.removeItem(STORAGE_PREFIX + key); } catch(e) {}
+async function removeItem(key) {
+  try { await dbDelete(key); } catch (e) {}
+}
+
+// 기존 localStorage 데이터 마이그레이션 (한 번만)
+async function migrateFromLocalStorage() {
+  const PREFIX = 'hwamiok_';
+  const keys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith(PREFIX)) keys.push(k);
+  }
+  if (keys.length === 0) return 0;
+  let moved = 0;
+  for (const fullKey of keys) {
+    const k = fullKey.replace(PREFIX, '');
+    const v = localStorage.getItem(fullKey);
+    if (v != null) {
+      try {
+        await dbSet(k, v);
+        localStorage.removeItem(fullKey);
+        moved++;
+      } catch (e) { console.warn('마이그레이션 실패:', k, e); }
+    }
+  }
+  if (moved > 0) console.log('[마이그레이션] ' + moved + '개 항목을 IndexedDB로 이전');
+  return moved;
+}
+
+// 캐시 워밍업
+async function loadAllToCache() {
+  const all = await dbAll();
+  Object.keys(all).forEach(k => { _cache[k] = all[k]; });
 }
 
 /* ============ 이미지 리사이즈 ============ */
@@ -510,19 +620,20 @@ function resizeImage(file, maxSize, quality) {
 async function uploadImage(input, key, maxSize) {
   const file = input.files[0];
   if (!file) return;
-  const size = maxSize || 1400;
+  const size = maxSize || 1200;
   try {
-    const dataUrl = await resizeImage(file, size, 0.9);
-    if (!setItem(key, dataUrl)) return;
+    const dataUrl = await resizeImage(file, size, 0.85);
+    const ok = await setItem(key, dataUrl);
+    if (!ok) return;
     updatePreview(key, dataUrl);
     showToast('저장됨: ' + key);
     updateQuota();
   } catch (err) { showToast(err.message, true); }
   input.value = '';
 }
-function deleteImage(key) {
+async function deleteImage(key) {
   if (!confirm('삭제하시겠습니까?')) return;
-  removeItem(key);
+  await removeItem(key);
   resetPreview(key);
   showToast('삭제됨: ' + key);
   updateQuota();
@@ -539,15 +650,15 @@ function resetPreview(key) {
 }
 
 /* ============ 텍스트 (URL 등) 저장 ============ */
-function saveText(key, inputId) {
+async function saveText(key, inputId) {
   const v = document.getElementById(inputId).value.trim();
   if (!v) { showToast('값을 입력하세요.', true); return; }
-  setItem(key, v);
+  await setItem(key, v);
   showToast('저장됨: ' + key);
   updateQuota();
 }
-function deleteText(key, inputId) {
-  removeItem(key);
+async function deleteText(key, inputId) {
+  await removeItem(key);
   document.getElementById(inputId).value = '';
   showToast('삭제됨: ' + key);
   updateQuota();
@@ -567,7 +678,7 @@ function renderCardGrid(gridId, items, sizeHint) {
       <div class="upload-btns">
         <label class="up-btn primary">
           업로드
-          <input type="file" accept="image/*" onchange="uploadImage(this, '${it.key}', ${sizeHint === 'wide' ? 1800 : 1400})">
+          <input type="file" accept="image/*" onchange="uploadImage(this, '${it.key}', ${sizeHint === 'wide' ? 1500 : 1200})">
         </label>
         <button class="up-btn del" onclick="deleteImage('${it.key}')">삭제</button>
       </div>
@@ -581,17 +692,9 @@ function renderCardGrid(gridId, items, sizeHint) {
 }
 
 /* ============ images.js 다운로드 ============ */
-function downloadImagesJs() {
-  const data = {};
-  let count = 0;
-  for (let i = 0; i < localStorage.length; i++) {
-    const fullKey = localStorage.key(i);
-    if (fullKey && fullKey.startsWith(STORAGE_PREFIX)) {
-      const k = fullKey.replace(STORAGE_PREFIX, '');
-      data[k] = localStorage.getItem(fullKey);
-      count++;
-    }
-  }
+async function downloadImagesJs() {
+  const data = await dbAll();
+  const count = Object.keys(data).length;
   if (count === 0) { showToast('저장된 데이터가 없습니다.', true); return; }
   const json = JSON.stringify(data, null, 2);
   const js =
@@ -617,35 +720,28 @@ function loadImagesJs(input) {
     input.value = ''; return;
   }
   const reader = new FileReader();
-  reader.onload = e => {
+  reader.onload = async (e) => {
     try {
       let txt = e.target.result;
       let data;
-      // images.js 형식이면 window.HM_IMGS = {...} 추출
       const m = txt.match(/window\.HM_IMGS\s*=\s*(\{[\s\S]*?\})\s*;?\s*$/m);
       if (m) {
-        // JSON.parse 시도, 실패하면 안전하게 평가
         try { data = JSON.parse(m[1]); }
         catch (err) { data = (new Function('return ' + m[1]))(); }
       } else {
-        // 순수 JSON 시도
         data = JSON.parse(txt);
       }
       if (!data || typeof data !== 'object') throw new Error('잘못된 형식입니다.');
-      // 기존 키 삭제
-      const oldKeys = [];
-      for (let i = 0; i < localStorage.length; i++) {
-        const k = localStorage.key(i);
-        if (k && k.startsWith(STORAGE_PREFIX)) oldKeys.push(k);
-      }
-      oldKeys.forEach(k => localStorage.removeItem(k));
+      // 기존 데이터 클리어
+      await dbClear();
       // 새 데이터 저장
       let count = 0;
-      Object.entries(data).forEach(([k, v]) => {
-        if (typeof v !== 'string') return;
-        try { localStorage.setItem(STORAGE_PREFIX + k, v); count++; }
+      const entries = Object.entries(data);
+      for (const [k, v] of entries) {
+        if (typeof v !== 'string') continue;
+        try { await dbSet(k, v); count++; }
         catch (err) { console.warn('저장 실패:', k); }
-      });
+      }
       showToast(count + '개 항목을 불러왔습니다. 새로고침합니다…');
       setTimeout(() => location.reload(), 1000);
     } catch (err) {
@@ -658,14 +754,16 @@ function loadImagesJs(input) {
 }
 
 /* ============ 전체 초기화 ============ */
-function resetAll() {
+async function resetAll() {
   if (!confirm('저장된 모든 이미지/데이터를 초기화합니다.\nimages.js로 다운로드 받으셨나요? 진행할까요?')) return;
-  const keys = [];
+  await dbClear();
+  // 혹시 남아있는 localStorage 데이터도 함께 정리
+  const lsKeys = [];
   for (let i = 0; i < localStorage.length; i++) {
     const k = localStorage.key(i);
-    if (k && k.startsWith(STORAGE_PREFIX)) keys.push(k);
+    if (k && k.startsWith(STORAGE_PREFIX)) lsKeys.push(k);
   }
-  keys.forEach(k => localStorage.removeItem(k));
+  lsKeys.forEach(k => localStorage.removeItem(k));
   showToast('초기화 완료. 새로고침합니다.');
   setTimeout(() => location.reload(), 800);
 }
@@ -673,20 +771,29 @@ function resetAll() {
 /* ============ 사용량 표시 ============ */
 function updateQuota() {
   let total = 0, count = 0;
-  for (let i = 0; i < localStorage.length; i++) {
-    const k = localStorage.key(i);
-    if (k && k.startsWith(STORAGE_PREFIX)) {
-      total += (localStorage.getItem(k) || '').length;
-      count++;
-    }
-  }
+  Object.keys(_cache).forEach(k => {
+    total += (_cache[k] || '').length;
+    count++;
+  });
   const mb = (total / 1024 / 1024).toFixed(2);
   document.getElementById('quotaUsage').textContent =
-    '저장된 항목 ' + count + '개 · 용량 약 ' + mb + 'MB';
+    '저장된 항목 ' + count + '개 · 용량 약 ' + mb + 'MB · IndexedDB 사용 중 (한도 수 GB)';
 }
 
 /* ============ 초기화 ============ */
-function init() {
+async function init() {
+  try {
+    await openDB();
+    // 기존 localStorage 데이터를 IndexedDB로 자동 이전 (한 번만)
+    const moved = await migrateFromLocalStorage();
+    if (moved > 0) showToast(moved + '개 항목을 IndexedDB로 자동 이전했습니다.');
+    // 캐시 워밍업 (이후 동기 getItem 사용 가능)
+    await loadAllToCache();
+  } catch (e) {
+    console.error('IndexedDB 초기화 실패:', e);
+    showToast('데이터베이스 초기화 실패. 브라우저를 새로고침해보세요.', true);
+  }
+
   // Hero video URL 복구
   const hv = getItem('hero_video');
   if (hv) document.getElementById('heroVideoInput').value = hv;
