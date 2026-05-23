@@ -2116,48 +2116,58 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   100%{transform:scale(2.6);opacity:0;}
 }
 /* =====================================
-   POPUP MODALS — 이미지 기반 (PC 나란히 / 모바일 cascading)
+   POPUP MODALS — PC: 가운데 그룹 / 모바일: cascading 스택
    ===================================== */
 .popups{
-  position:fixed;inset:0;z-index:1000;
-  display:none;pointer-events:none;
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:none;
+  pointer-events:none;
 }
-.popups.show{display:block;}
 .popups::before{
-  content:'';position:fixed;inset:0;
+  content:'';
+  position:absolute;inset:0;
   background:rgba(10,8,7,.55);
   backdrop-filter:blur(3px);
   -webkit-backdrop-filter:blur(3px);
-  z-index:-1;pointer-events:auto;
+  pointer-events:auto;
+  z-index:-1;
 }
 
-/* === 통일 구조: 모든 팝업 동일 폭/구조 === */
+/* === PC: 가운데 기준 3개 나란히 (flex 그룹) === */
+.popups.show{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:20px;
+  padding:40px 16px;
+}
+
+/* === 통일 구조 === */
 .popup{
-  position:fixed;
-  width:340px;
-  max-height:calc(100vh - 60px);
+  position:relative;
   pointer-events:auto;
-  box-shadow:0 30px 70px rgba(0,0,0,.55);
+  width:320px;
+  max-height:calc(100vh - 80px);
+  display:flex;
+  flex-direction:column;
+  background:#0a0807;
   border-radius:8px;
   overflow:hidden;
-  display:flex;flex-direction:column;
-  background:#0a0807;
+  box-shadow:0 30px 70px rgba(0,0,0,.55);
   animation:popupIn .55s cubic-bezier(.2,.8,.2,1.05) backwards;
 }
-.popup[data-popup-index="0"]{top:40px;left:24px;animation-delay:.05s;}
-.popup[data-popup-index="1"]{top:40px;left:50%;transform:translateX(-50%);animation-delay:.18s;}
-.popup[data-popup-index="2"]{top:40px;right:24px;animation-delay:.3s;}
+.popup[data-popup-index="0"]{animation-delay:.05s;}
+.popup[data-popup-index="1"]{animation-delay:.18s;}
+.popup[data-popup-index="2"]{animation-delay:.3s;}
+
 @keyframes popupIn{
   from{opacity:0;transform:translateY(20px) scale(.96);}
   to{opacity:1;transform:translateY(0) scale(1);}
 }
-.popup[data-popup-index="1"]{animation-name:popupInCenter;}
-@keyframes popupInCenter{
-  from{opacity:0;transform:translateX(-50%) translateY(20px) scale(.96);}
-  to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
-}
 
-/* X 닫기 버튼 (이미지 위 우상단) */
+/* X 닫기 버튼 */
 .popup__close{
   position:absolute;top:10px;right:10px;
   width:32px;height:32px;
@@ -2176,9 +2186,7 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   overflow:hidden;
 }
 .popup__image{
-  display:block;
-  width:100%;height:auto;
-  object-fit:cover;
+  display:block;width:100%;height:auto;object-fit:cover;
 }
 
 /* footer bar */
@@ -2191,7 +2199,7 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   flex:1;background:transparent;border:none;
   padding:13px 6px;
   font-family:var(--sans);font-size:13px;font-weight:600;
-  color:rgba(247,241,227,.8);cursor:pointer;
+  color:rgba(247,241,227,.85);cursor:pointer;
   transition:background .15s, color .15s;
 }
 .popup__footer-bar button:first-child{
@@ -2201,29 +2209,42 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   background:rgba(212,21,26,.15);color:#fff;
 }
 
-/* === 반응형 === */
+/* === PC 반응형 (가운데 그룹 유지, 너비만 줄임) === */
 @media(max-width:1200px){
-  .popup{width:320px;}
-  .popup[data-popup-index="0"]{left:16px;}
-  .popup[data-popup-index="2"]{right:16px;}
+  .popup{width:300px;}
+  .popups.show{gap:14px;}
 }
 @media(max-width:1080px){
-  .popup{width:300px;}
+  .popup{width:280px;}
+  .popups.show{gap:10px;padding:30px 12px;}
 }
+
+/* === 모바일: cascading 스택, viewport에 딱 핏 === */
 @media(max-width:960px){
-  /* 모바일: 3개 다 가운데에 cascading으로 겹쳐서 표시 */
-  .popup{
-    width:calc(100vw - 32px);
-    max-width:380px;
-    left:50%;right:auto;
-    transform:translateX(-50%);
-    max-height:calc(100vh - 100px);
-    animation-name:popupInCenter;
+  .popups.show{
+    display:block;
+    padding:0;
   }
-  /* cascading 오프셋 — 위 팝업이 가장 앞 */
+  .popup,
+  .popup[data-popup-index="0"],
+  .popup[data-popup-index="1"],
+  .popup[data-popup-index="2"]{
+    position:absolute;
+    width:calc(100vw - 24px);
+    max-width:380px;
+    left:50%;
+    transform:translateX(-50%);
+    max-height:calc(100vh - 80px);
+    animation:popupInMobile .55s cubic-bezier(.2,.8,.2,1.05) backwards;
+  }
   .popup[data-popup-index="0"]{top:30px;z-index:3;}
-  .popup[data-popup-index="1"]{top:50px;z-index:2;}
-  .popup[data-popup-index="2"]{top:70px;z-index:1;}
+  .popup[data-popup-index="1"]{top:48px;z-index:2;}
+  .popup[data-popup-index="2"]{top:66px;z-index:1;}
+}
+
+@keyframes popupInMobile{
+  from{opacity:0;transform:translateX(-50%) translateY(20px) scale(.96);}
+  to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
 }
 </style>
 </head>

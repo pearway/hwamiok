@@ -224,8 +224,13 @@ function initPopups(popups) {
 function closePopup(el) {
   el.style.transition = 'opacity .25s, transform .25s';
   el.style.opacity = '0';
-  const isCenter = el.dataset.popupIndex === '1';
-  el.style.transform = (isCenter ? 'translateX(-50%) ' : '') + 'translateY(20px) scale(.95)';
+  // 모바일에서는 translateX(-50%)를 유지하면서 Y만 이동
+  const isMobile = window.matchMedia('(max-width: 960px)').matches;
+  if (isMobile) {
+    el.style.transform = 'translateX(-50%) translateY(20px) scale(.95)';
+  } else {
+    el.style.transform = 'translateY(20px) scale(.95)';
+  }
   setTimeout(() => {
     el.style.display = 'none';
     const container = document.getElementById('popups');
