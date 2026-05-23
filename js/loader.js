@@ -23,6 +23,8 @@
           iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
           iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
           iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;';
+          videoWrap.setAttribute('data-video-aspect', '16/9');
+          videoWrap.insertBefore(iframe, videoWrap.firstChild);
           videoWrap.insertBefore(iframe, videoWrap.firstChild);
         }
       } else if (placeholder && c.hero.fallbackImage) {
@@ -95,23 +97,23 @@
       c.signature.forEach((item, i) => {
         const img = document.querySelector(`[data-img="signature-${i}"]`);
         if (img) img.src = item.image;
-        // Vimeo 영상 슬롯
+        // Vimeo 영상 슬롯 (시그니처 01: 가로 16:9)
         if (item.vimeoId) {
-          injectVimeo(`[data-vimeo-slot="signature-${i}"]`, item.vimeoId);
+          injectVimeo(`[data-vimeo-slot="signature-${i}"]`, item.vimeoId, '16/9');
         }
       });
     }
 
-    // === INGREDIENT VIMEO (셀별로) ===
+    // === INGREDIENT VIMEO (셀별로 - 세로 9:16) ===
     if (Array.isArray(c.ingredient)) {
       c.ingredient.forEach((item, i) => {
         if (item.vimeoId) {
-          injectVimeo(`[data-vimeo-slot="ingredient-${i}"]`, item.vimeoId);
+          injectVimeo(`[data-vimeo-slot="ingredient-${i}"]`, item.vimeoId, '9/16');
         }
       });
     }
 
-    // === STRIP VIDEO (full-bleed) ===
+    // === STRIP VIDEO (세로 9:16) ===
     if (c.stripVideo) {
       // poster image
       const poster = document.querySelector('.strip-video__poster');
@@ -120,13 +122,12 @@
       const line = document.querySelector('.strip-video__line');
       if (line && c.stripVideo.lineText) line.textContent = c.stripVideo.lineText;
       // title
-      const sh = document.querySelector('.strip-video__caption h3');
+      const sh = document.querySelector('.strip-video__media + .strip-video__text h3, .strip-video__text h3');
       if (sh && c.stripVideo.titleLine1) {
         sh.innerHTML = `${esc(c.stripVideo.titleLine1)}<br><em>${esc(c.stripVideo.titleLine2)}</em>`;
       }
-      // Vimeo iframe
       if (c.stripVideo.vimeoId) {
-        injectVimeo('[data-vimeo-slot="stripVideo"]', c.stripVideo.vimeoId);
+        injectVimeo('[data-vimeo-slot="stripVideo"]', c.stripVideo.vimeoId, '9/16');
       }
     }
 
@@ -226,12 +227,14 @@ function closePopup(el) {
 }
 
 // ===== Helpers =====
-function injectVimeo(selector, vimeoId) {
+function injectVimeo(selector, vimeoId, aspect) {
   if (!vimeoId) return;
   document.querySelectorAll(selector).forEach(container => {
     // 기존 iframe 있으면 제거
     const old = container.querySelector('iframe.vimeo-bg');
     if (old) old.remove();
+    // 컨테이너에 video aspect 부여 (CSS가 받아서 비율 맞춤)
+    if (aspect) container.setAttribute('data-video-aspect', aspect);
     const iframe = document.createElement('iframe');
     iframe.className = 'vimeo-bg';
     iframe.src = `https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&byline=0&title=0&portrait=0&controls=0&badge=0&autopause=0&player_id=0&app_id=58479`;

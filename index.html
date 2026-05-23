@@ -1351,6 +1351,32 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   z-index:2;
 }
 
+/* === Vimeo 영상 비율에 맞춰 컨테이너 비율 강제 (짤림 방지) === */
+/* 가로 16:9 영상 → 컨테이너도 16:9 */
+.signature__media[data-video-aspect="16/9"]{
+  aspect-ratio:16/9 !important;
+}
+/* 세로 9:16 영상 → 컨테이너에 letterbox (검은 배경 + 가운데 정렬) */
+.ingredient__cell[data-video-aspect="9/16"]{
+  background:#0a0807;
+}
+.ingredient__cell[data-video-aspect="9/16"] iframe.vimeo-bg{
+  /* 높이 100%로 맞추고 너비는 비율 따라 (양 옆 검은 여백) */
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  height:100%;
+  width:auto;
+  aspect-ratio:9/16;
+  max-width:none;
+  inset:auto;
+}
+/* hero video도 같은 처리 (16:9 가로) */
+.hero__video-wrap[data-video-aspect="16/9"]{
+  aspect-ratio:16/9 !important;
+}
+
 .signature{padding:100px 0 160px;background:var(--bg);}
 .signature__head{text-align:center;margin-bottom:80px;}
 .signature__head h2{
@@ -2368,14 +2394,19 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   .popup{width:300px;}
 }
 @media(max-width:960px){
-  /* PC에서 안 보이면 가운데 1개만 */
-  .popup[data-popup-index="0"]{display:none!important;}
-  .popup[data-popup-index="2"]{display:none!important;}
-  .popup[data-popup-index="1"]{
-    width:calc(100vw - 32px);max-width:380px;
-    top:40px;
-    max-height:calc(100vh - 80px);
+  /* 모바일: 3개 다 가운데에 겹쳐서 cascading 표시 (완미족발 스타일) */
+  .popup{
+    width:calc(100vw - 32px);
+    max-width:380px;
+    left:50%;right:auto;
+    transform:translateX(-50%);
+    max-height:calc(100vh - 140px);
+    animation-name:popupInCenter;
   }
+  /* 각 팝업 z-index/top offset으로 cascading (위에서 아래로 살짝 어긋남) */
+  .popup[data-popup-index="0"]{top:30px;z-index:3;}
+  .popup[data-popup-index="1"]{top:50px;z-index:2;}
+  .popup[data-popup-index="2"]{top:70px;z-index:1;}
 }
 </style>
 </head>
