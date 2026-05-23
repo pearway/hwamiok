@@ -169,42 +169,41 @@
 function initPopups(popups) {
   const container = document.getElementById('popups');
   if (!container) return;
-  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  const today = new Date().toISOString().slice(0, 10);
 
   let visibleCount = 0;
-  popups.forEach((data, i) => {
-    if (!data || data.enabled === false) return;
-    // "오늘 하루 열지 않기" 체크
+  const allPopups = container.querySelectorAll('.popup');
+  allPopups.forEach((el, i) => {
+    const data = popups[i] || {enabled: true};
+    if (data.enabled === false) return;
+
     const hideKey = `hwamiok-popup-hide-${i}`;
     if (localStorage.getItem(hideKey) === today) return;
 
-    const el = container.querySelector(`.popup[data-popup-index="${i}"]`);
-    if (!el) return;
-
-    // 콘텐츠 채우기
-    const img = el.querySelector('.popup__image img');
-    if (img && data.image) { img.src = data.image; img.alt = data.title || ''; }
-    setIfExists(el, '.popup__eyebrow', data.eyebrow);
-    setIfExists(el, '.popup__title', data.title, true);
-    setIfExists(el, '.popup__text', data.body, true);
-    const cta = el.querySelector('.popup__cta');
-    if (cta) {
-      if (data.ctaText) {
-        cta.textContent = data.ctaText;
-        cta.href = data.ctaLink || '#';
-      } else {
-        cta.style.display = 'none';
-      }
-    }
-
-    // 닫기 버튼 이벤트
+    // X 닫기 버튼 + 닫기 버튼
     el.querySelectorAll('.popup__close, .popup__close-btn').forEach(btn => {
-      btn.addEventListener('click', () => closePopup(el));
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // 체크박스로 "오늘 하루 열지 않기" 체크돼있으면 저장 (팝업 1)
+        const checkbox = el.querySelector('.popup__hide-checkbox');
+        if (checkbox && checkbox.checked) {
+          localStorage.setItem(hideKey, today);
+        }
+        closePopup(el);
+      });
     });
-    // 오늘 하루 열지 않기
-    el.querySelector('.popup__hide-today').addEventListener('click', () => {
-      localStorage.setItem(hideKey, today);
-      closePopup(el);
+    // 24시간 닫기 / 오늘 하루 열지 않기 버튼
+    el.querySelectorAll('.popup__hide-today').forEach(btn => {
+      btn.addEventListener('click', () => {
+        localStorage.setItem(hideKey, today);
+        closePopup(el);
+      });
+    });
+    // 팝업전체닫기 버튼 (팝업 2에 있음)
+    el.querySelectorAll('.popup__close-all').forEach(btn => {
+      btn.addEventListener('click', () => {
+        container.querySelectorAll('.popup').forEach(p => closePopup(p));
+      });
     });
 
     el.style.display = 'block';
@@ -213,7 +212,6 @@ function initPopups(popups) {
 
   if (visibleCount > 0) {
     container.classList.add('show');
-    // 백드롭 클릭 시 모든 팝업 닫기 (선택사항)
     container.addEventListener('click', (e) => {
       if (e.target === container) {
         container.querySelectorAll('.popup').forEach(p => closePopup(p));
@@ -224,23 +222,17 @@ function initPopups(popups) {
 function closePopup(el) {
   el.style.transition = 'opacity .25s, transform .25s';
   el.style.opacity = '0';
-  el.style.transform = (el.dataset.popupIndex === '1' ? 'translateX(-50%) ' : '') + 'translateY(20px)';
+  const isCenter = el.dataset.popupIndex === '1';
+  el.style.transform = (isCenter ? 'translateX(-50%) ' : '') + 'translateY(20px) scale(.95)';
   setTimeout(() => {
     el.style.display = 'none';
     const container = document.getElementById('popups');
-    const remaining = container.querySelectorAll('.popup[style*="display: block"], .popup:not([style*="display: none"])');
     let hasVisible = false;
     container.querySelectorAll('.popup').forEach(p => {
       if (p.style.display !== 'none' && p !== el) hasVisible = true;
     });
     if (!hasVisible) container.classList.remove('show');
   }, 250);
-}
-function setIfExists(root, sel, val, preserveNewlines) {
-  const el = root.querySelector(sel);
-  if (!el || val == null) return;
-  if (preserveNewlines) el.textContent = val;
-  else el.textContent = val;
 }
 
 // ===== Helpers =====
@@ -252,9 +244,10 @@ function injectVimeo(selector, vimeoId) {
     if (old) old.remove();
     const iframe = document.createElement('iframe');
     iframe.className = 'vimeo-bg';
-    iframe.src = `https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&byline=0&title=0&portrait=0&controls=0`;
+    iframe.src = `https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&byline=0&title=0&portrait=0&controls=0&badge=0&autopause=0&player_id=0&app_id=58479`;
     iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('allow', 'autoplay; fullscreen');
+    iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+    iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
     iframe.setAttribute('loading', 'lazy');
     container.appendChild(iframe);
   });

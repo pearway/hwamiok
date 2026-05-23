@@ -26,29 +26,93 @@
     "body": "국내산 돼지고기를 넣어 진한 담백함이 일품인 김치찌개.\n1987년 석관동에서 끓이기 시작한 그 한 그릇입니다."
   },
   "menuCarousel": [
-    {"image": "images/p26.jpg", "name": "부대 김치찌개"},
-    {"image": "images/p28.jpg", "name": "참치 김치찌개"},
-    {"image": "images/p24.jpg", "name": "돈까스 김치찌개"},
-    {"image": "images/p18.jpg", "name": "고추장 제육볶음"},
-    {"image": "images/p16.jpg", "name": "간장 돼지불고기"},
-    {"image": "images/p32.jpg", "name": "등심돈까스"},
-    {"image": "images/p30.jpg", "name": "묵은지 돼지 김치찜"},
-    {"image": "images/p17.jpg", "name": "묵은지 부대 김치찜"},
-    {"image": "images/p12.jpg", "name": "햄구이"},
-    {"image": "images/p5.jpg", "name": "(치즈)계란말이"},
-    {"image": "images/p34.jpg", "name": "김치어묵칼국수"},
-    {"image": "images/p22.jpg", "name": "주먹밥"}
+    {
+      "image": "images/p26.jpg",
+      "name": "부대 김치찌개"
+    },
+    {
+      "image": "images/p28.jpg",
+      "name": "참치 김치찌개"
+    },
+    {
+      "image": "images/p24.jpg",
+      "name": "돈까스 김치찌개"
+    },
+    {
+      "image": "images/p18.jpg",
+      "name": "고추장 제육볶음"
+    },
+    {
+      "image": "images/p16.jpg",
+      "name": "간장 돼지불고기"
+    },
+    {
+      "image": "images/p32.jpg",
+      "name": "등심돈까스"
+    },
+    {
+      "image": "images/p30.jpg",
+      "name": "묵은지 돼지 김치찜"
+    },
+    {
+      "image": "images/p17.jpg",
+      "name": "묵은지 부대 김치찜"
+    },
+    {
+      "image": "images/p12.jpg",
+      "name": "햄구이"
+    },
+    {
+      "image": "images/p5.jpg",
+      "name": "(치즈)계란말이"
+    },
+    {
+      "image": "images/p34.jpg",
+      "name": "김치어묵칼국수"
+    },
+    {
+      "image": "images/p22.jpg",
+      "name": "주먹밥"
+    }
   ],
   "ingredient": [
-    {"image": "images/p3.jpg", "vimeoId": "", "name": "국내산 돼지고기"},
-    {"image": "images/p49.jpg", "vimeoId": "1194719858", "name": "국내산 배추"},
-    {"image": "images/p4.jpg", "vimeoId": "", "name": "특제비법 육수 (HACCP)"},
-    {"image": "images/p2.jpg", "vimeoId": "", "name": "매일 직접 손질"}
+    {
+      "image": "images/p3.jpg",
+      "vimeoId": "",
+      "name": "국내산 돼지고기"
+    },
+    {
+      "image": "images/p49.jpg",
+      "vimeoId": "1194719858",
+      "name": "국내산 배추"
+    },
+    {
+      "image": "images/p4.jpg",
+      "vimeoId": "",
+      "name": "특제비법 육수 (HACCP)"
+    },
+    {
+      "image": "images/p2.jpg",
+      "vimeoId": "",
+      "name": "매일 직접 손질"
+    }
   ],
   "signature": [
-    {"image": "images/p6.jpg", "vimeoId": "1194719878", "alt": "돼지김치찌개"},
-    {"image": "images/p19.jpg", "vimeoId": "", "alt": "고추장 제육볶음"},
-    {"image": "images/p5.jpg", "vimeoId": "", "alt": "치즈계란말이"}
+    {
+      "image": "images/p6.jpg",
+      "vimeoId": "1194719878",
+      "alt": "돼지김치찌개"
+    },
+    {
+      "image": "images/p19.jpg",
+      "vimeoId": "",
+      "alt": "고추장 제육볶음"
+    },
+    {
+      "image": "images/p5.jpg",
+      "vimeoId": "",
+      "alt": "치즈계란말이"
+    }
   ],
   "stripVideo": {
     "vimeoId": "1194719879",
@@ -80,30 +144,15 @@
   "popups": [
     {
       "enabled": true,
-      "image": "images/p10.jpg",
-      "eyebrow": "1987, 한식의 대가",
-      "title": "화미옥 가맹점\n신규 모집",
-      "body": "석관동에서 시작된 김치찌개,\n37년 한결같은 그 맛으로 함께하세요.",
-      "ctaText": "지금 문의 1899-3283",
-      "ctaLink": "tel:1899-3283"
+      "name": "팝업 1: 업종변경 매출 3배 UP (빨간 배경)"
     },
     {
       "enabled": true,
-      "image": "images/p7.jpg",
-      "eyebrow": "선착순 한정 혜택",
-      "title": "창업비용\n총 1,950만원 지원",
-      "body": "가맹비 · 물류보증금 · 감리비 · 재가맹비 0원\n교육비 400만원 할인 (10호점 한시)",
-      "ctaText": "혜택 자세히 보기",
-      "ctaLink": "#countdown"
+      "name": "팝업 2: 가맹점 현황 (검정 배경)"
     },
     {
       "enabled": true,
-      "image": "images/p1.jpg",
-      "eyebrow": "창업설명회 안내",
-      "title": "예비 점주님과의\n1:1 맞춤 상담",
-      "body": "일정 · 장소: 본사 홈페이지 공지\n신청 방법: 1899-3283 전화 문의",
-      "ctaText": "상담 신청하기",
-      "ctaLink": "#cta"
+      "name": "팝업 3: 창업설명회 안내 (크림 배경)"
     }
   ]
 }

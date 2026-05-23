@@ -178,39 +178,27 @@ function populateForm() {
 function makePopupCard(index, item) {
   const card = document.createElement('div');
   card.className = 'popup-card';
-  card.style.cssText = 'border:1px solid rgba(212,21,26,.2); border-radius:4px; padding:20px; margin-bottom:18px; background:#fafafa;';
+  card.style.cssText = 'border:1px solid rgba(212,21,26,.2); border-radius:4px; padding:18px 20px; margin-bottom:14px; background:#fafafa; display:flex; align-items:center; justify-content:space-between; gap:16px;';
 
+  const name = item.name || `팝업 ${index + 1}`;
+  const descriptions = [
+    '빨간 배경 — 업종변경 매출 3배 UP, 가맹비 0원 혜택 4개',
+    '검정 배경 — 가맹점 현황 (가맹상담중 20 / 오픈예정 5)',
+    '크림 배경 — 창업설명회 안내 (일정/장소/신청)'
+  ];
   card.innerHTML = `
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-      <strong style="color:#d4151a;font-size:15px;">팝업 ${index + 1}</strong>
-      <label style="font-size:13px;cursor:pointer;">
-        <input type="checkbox" class="popup-enabled" ${item.enabled !== false ? 'checked' : ''}> 사용
-      </label>
+    <div>
+      <strong style="color:#d4151a;font-size:15px;display:block;margin-bottom:4px;">팝업 ${index + 1}</strong>
+      <span style="color:#666;font-size:13px;">${descriptions[index] || ''}</span>
     </div>
-    <div class="field" style="margin-bottom:12px;">
-      <label>이미지 (팝업 상단)</label>
-      <div class="img-slot" data-key="popups[${index}].image" style="aspect-ratio:16/9;max-width:280px;"></div>
-    </div>
-    <div class="field" style="margin-bottom:10px;"><label>윗말 (작은 빨간 글씨)</label><input class="popup-eyebrow" type="text" value="${escAttr(item.eyebrow)}"></div>
-    <div class="field" style="margin-bottom:10px;"><label>타이틀 (\\n 줄바꿈)</label><input class="popup-title" type="text" value="${escAttr((item.title||'').replace(/\n/g,'\\n'))}"></div>
-    <div class="field" style="margin-bottom:10px;"><label>본문 (\\n 줄바꿈)</label><textarea class="popup-body" rows="3">${escAttr((item.body||'').replace(/\n/g,'\\n'))}</textarea></div>
-    <div class="field" style="margin-bottom:10px;"><label>버튼 텍스트</label><input class="popup-cta-text" type="text" value="${escAttr(item.ctaText)}"></div>
-    <div class="field" style="margin-bottom:0;"><label>버튼 링크 (예: tel:1899-3283, #cta)</label><input class="popup-cta-link" type="text" value="${escAttr(item.ctaLink)}"></div>
+    <label style="font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;">
+      <input type="checkbox" class="popup-enabled" ${item.enabled !== false ? 'checked' : ''} style="margin-right:6px;"> 표시
+    </label>
   `;
 
-  // bind input changes
   card.querySelector('.popup-enabled').addEventListener('change', e => {
     content.popups[index].enabled = e.target.checked;
   });
-  card.querySelector('.popup-eyebrow').addEventListener('input', e => content.popups[index].eyebrow = e.target.value);
-  card.querySelector('.popup-title').addEventListener('input', e => content.popups[index].title = e.target.value.replace(/\\n/g,'\n'));
-  card.querySelector('.popup-body').addEventListener('input', e => content.popups[index].body = e.target.value.replace(/\\n/g,'\n'));
-  card.querySelector('.popup-cta-text').addEventListener('input', e => content.popups[index].ctaText = e.target.value);
-  card.querySelector('.popup-cta-link').addEventListener('input', e => content.popups[index].ctaLink = e.target.value);
-
-  // render image slot
-  const imgSlot = card.querySelector('.img-slot');
-  renderImgSlot(imgSlot, item.image);
 
   return card;
 }
