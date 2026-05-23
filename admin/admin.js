@@ -178,27 +178,44 @@ function populateForm() {
 function makePopupCard(index, item) {
   const card = document.createElement('div');
   card.className = 'popup-card';
-  card.style.cssText = 'border:1px solid rgba(212,21,26,.2); border-radius:4px; padding:18px 20px; margin-bottom:14px; background:#fafafa; display:flex; align-items:center; justify-content:space-between; gap:16px;';
+  card.style.cssText = 'border:1px solid rgba(212,21,26,.2); border-radius:4px; padding:18px 20px; margin-bottom:14px; background:#fafafa;';
 
-  const name = item.name || `팝업 ${index + 1}`;
-  const descriptions = [
-    '빨간 배경 — 업종변경 매출 3배 UP, 가맹비 0원 혜택 4개',
-    '검정 배경 — 가맹점 현황 (가맹상담중 20 / 오픈예정 5)',
-    '크림 배경 — 창업설명회 안내 (일정/장소/신청)'
+  const defaultPaths = ['images/popup-1.gif', 'images/popup-2.gif', 'images/popup-3.png'];
+  const labels = [
+    '팝업 1 — 업종변경 매출 3배 UP',
+    '팝업 2 — 전국 매장 오픈 현황',
+    '팝업 3 — 창업 설명회 안내'
   ];
+  if (!item.image) item.image = defaultPaths[index];
+  content.popups[index].image = item.image;
+
   card.innerHTML = `
-    <div>
-      <strong style="color:#d4151a;font-size:15px;display:block;margin-bottom:4px;">팝업 ${index + 1}</strong>
-      <span style="color:#666;font-size:13px;">${descriptions[index] || ''}</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:14px;">
+      <strong style="color:#d4151a;font-size:15px;">${labels[index] || '팝업 ' + (index+1)}</strong>
+      <label style="font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;">
+        <input type="checkbox" class="popup-enabled" ${item.enabled !== false ? 'checked' : ''} style="margin-right:6px;"> 표시
+      </label>
     </div>
-    <label style="font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;">
-      <input type="checkbox" class="popup-enabled" ${item.enabled !== false ? 'checked' : ''} style="margin-right:6px;"> 표시
-    </label>
+    <div class="field" style="margin-bottom:10px;">
+      <label>팝업 이미지 (GIF/PNG/JPG, 추천 비율 860×1200 = 2:3)</label>
+      <div class="img-slot" data-key="popups[${index}].image" style="aspect-ratio:860/1200;max-width:220px;"></div>
+    </div>
+    <div class="field" style="margin-bottom:0;">
+      <label>클릭 시 이동 링크 (선택)</label>
+      <input type="text" class="popup-cta-link" value="${escAttr(item.ctaLink || (index===2?'tel:1899-3283':'#cta'))}" placeholder="#cta 또는 tel:1899-3283">
+    </div>
   `;
 
   card.querySelector('.popup-enabled').addEventListener('change', e => {
     content.popups[index].enabled = e.target.checked;
   });
+  card.querySelector('.popup-cta-link').addEventListener('input', e => {
+    content.popups[index].ctaLink = e.target.value;
+  });
+
+  // image slot render
+  const imgSlot = card.querySelector('.img-slot');
+  if (typeof renderImgSlot === 'function') renderImgSlot(imgSlot, item.image);
 
   return card;
 }

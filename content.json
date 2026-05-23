@@ -144,15 +144,18 @@
   "popups": [
     {
       "enabled": true,
-      "name": "팝업 1: 업종변경 매출 3배 UP (빨간 배경)"
+      "image": "images/popup-1.gif",
+      "ctaLink": "#cta"
     },
     {
       "enabled": true,
-      "name": "팝업 2: 가맹점 현황 (검정 배경)"
+      "image": "images/popup-2.gif",
+      "ctaLink": "#cta"
     },
     {
       "enabled": true,
-      "name": "팝업 3: 창업설명회 안내 (크림 배경)"
+      "image": "images/popup-3.png",
+      "ctaLink": "tel:1899-3283"
     }
   ]
 }

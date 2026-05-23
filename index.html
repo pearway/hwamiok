@@ -363,7 +363,9 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
 .hero__caption-r small{font-size:10px;letter-spacing:.4em;color:var(--gold);}
 
 @media(max-width:860px){
+  .hero{min-height:auto;padding:120px 0 60px;}
   .hero__video-wrap{aspect-ratio:9/12;}
+  .hero__video-wrap[data-video-aspect="16/9"]{aspect-ratio:16/9;}
   .hero__corner-seal{width:84px;height:84px;top:16px;left:16px;}
   .hero__caption{left:18px;right:18px;bottom:20px;flex-direction:column;align-items:flex-start;gap:14px;}
   .hero__corner-label{top:18px;right:18px;font-size:9px;}
@@ -2114,7 +2116,7 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   100%{transform:scale(2.6);opacity:0;}
 }
 /* =====================================
-   POPUP MODALS — 3개 통일 (PC: 나란히 / 모바일: 가운데 1개)
+   POPUP MODALS — 이미지 기반 (PC 나란히 / 모바일 cascading)
    ===================================== */
 .popups{
   position:fixed;inset:0;z-index:1000;
@@ -2129,16 +2131,17 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   z-index:-1;pointer-events:auto;
 }
 
-/* ===== 통일 구조 ===== */
+/* === 통일 구조: 모든 팝업 동일 폭/구조 === */
 .popup{
   position:fixed;
   width:340px;
-  max-height:calc(100vh - 80px);
+  max-height:calc(100vh - 60px);
   pointer-events:auto;
   box-shadow:0 30px 70px rgba(0,0,0,.55);
   border-radius:8px;
   overflow:hidden;
   display:flex;flex-direction:column;
+  background:#0a0807;
   animation:popupIn .55s cubic-bezier(.2,.8,.2,1.05) backwards;
 }
 .popup[data-popup-index="0"]{top:40px;left:24px;animation-delay:.05s;}
@@ -2153,236 +2156,50 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   from{opacity:0;transform:translateX(-50%) translateY(20px) scale(.96);}
   to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
 }
+
+/* X 닫기 버튼 (이미지 위 우상단) */
 .popup__close{
   position:absolute;top:10px;right:10px;
-  width:28px;height:28px;
-  background:rgba(0,0,0,.4);color:#fff;
+  width:32px;height:32px;
+  background:rgba(0,0,0,.55);color:#fff;
   border:none;border-radius:50%;
-  font-size:18px;font-weight:300;line-height:1;
+  font-size:20px;font-weight:300;line-height:1;
   cursor:pointer;z-index:10;
   display:flex;align-items:center;justify-content:center;
   transition:background .2s;
 }
-.popup__close:hover{background:rgba(0,0,0,.7);}
+.popup__close:hover{background:rgba(0,0,0,.85);}
 
-/* 통일 hero zone */
-.popup__hero{
-  padding:30px 22px 18px;
-  text-align:center;
-  flex-shrink:0;
+/* 이미지 영역 */
+.popup__image-link{
+  display:block;flex:1 1 auto;min-height:0;
+  overflow:hidden;
 }
-.popup__hero-eyebrow{
-  display:inline-block;
-  font-family:var(--display);font-weight:700;
-  font-size:11px;letter-spacing:.18em;
-  padding:5px 12px;border-radius:2px;
-  margin-bottom:14px;
-}
-.popup__hero-title{font-family:var(--display-title);}
-
-/* 통일 CTA 버튼 */
-.popup__cta-button{
+.popup__image{
   display:block;
-  margin:0 18px 16px;
-  padding:13px;
-  text-align:center;
-  font-family:var(--display-title);font-size:16px;
-  border-radius:4px;
-  transition:transform .2s, box-shadow .2s;
-  flex-shrink:0;
+  width:100%;height:auto;
+  object-fit:cover;
 }
-.popup__cta-button:hover{transform:translateY(-1px);}
 
-/* 통일 footer */
+/* footer bar */
 .popup__footer-bar{
-  display:flex;
-  flex-shrink:0;
-  margin-top:auto;
+  display:flex;flex-shrink:0;
+  background:#1a1410;
+  border-top:1px solid rgba(255,255,255,.06);
 }
 .popup__footer-bar button{
   flex:1;background:transparent;border:none;
   padding:13px 6px;
-  font-family:var(--sans);font-size:12px;font-weight:600;
-  cursor:pointer;
+  font-family:var(--sans);font-size:13px;font-weight:600;
+  color:rgba(247,241,227,.8);cursor:pointer;
   transition:background .15s, color .15s;
 }
-
-/* ========== POPUP 1: 업종변경 매출 3배 UP (빨강) ========== */
-.popup--v1{background:linear-gradient(180deg, #d4151a 0%, #a31012 100%);color:var(--cream);}
-.popup--v1 .popup__hero-eyebrow{
-  background:rgba(0,0,0,.35);color:var(--cream);
+.popup__footer-bar button:first-child{
+  border-right:1px solid rgba(255,255,255,.08);
 }
-.popup--v1__line{
-  font-size:20px;letter-spacing:-.01em;
-  color:rgba(255,255,255,.92);margin-bottom:4px;
+.popup__footer-bar button:hover{
+  background:rgba(212,21,26,.15);color:#fff;
 }
-.popup--v1__big{
-  font-size:42px;line-height:1;letter-spacing:-.03em;
-  color:#ffec99;
-  text-shadow:0 4px 12px rgba(0,0,0,.4);
-}
-.popup--v1__big span{color:var(--cream);}
-.popup__benefits-grid{
-  margin:6px 18px 18px;
-  display:grid;grid-template-columns:1fr 1fr;gap:8px;
-  flex-shrink:0;
-}
-.benefit-card{
-  background:rgba(0,0,0,.28);
-  border-radius:4px;padding:11px 10px;
-  text-align:center;
-}
-.benefit-card__name{
-  font-family:var(--display);font-weight:600;font-size:11px;
-  color:rgba(247,241,227,.85);
-  margin-bottom:2px;
-}
-.benefit-card__strike{
-  font-family:var(--display);font-weight:500;font-size:11px;
-  color:rgba(247,241,227,.4);
-  text-decoration:line-through;
-  margin-bottom:4px;
-}
-.benefit-card__val{
-  font-family:var(--display-title);font-size:22px;
-  color:#ffec99;line-height:1;
-}
-.popup--v1 .popup__cta-button{background:var(--cream);color:#a31012;}
-.popup--v1 .popup__footer-bar{background:rgba(0,0,0,.3);}
-.popup--v1 .popup__footer-bar button{color:rgba(247,241,227,.8);}
-.popup--v1 .popup__footer-bar button:first-child{border-right:1px solid rgba(247,241,227,.2);}
-.popup--v1 .popup__footer-bar button:hover{background:rgba(0,0,0,.25);color:var(--cream);}
-
-/* ========== POPUP 2: 매장 오픈 현황 (검정) ========== */
-.popup--v2{background:#0a0807;color:var(--cream);}
-.popup--v2__hero{position:relative;padding-top:26px;}
-.popup--v2__badge{
-  background:transparent;
-  border:2px solid #ffec99;color:#ffec99;
-  font-family:var(--display-title);font-weight:400;
-  font-size:13px;letter-spacing:.05em;
-  padding:5px 16px;
-}
-.popup--v2__line{
-  font-size:14px;letter-spacing:.02em;
-  font-family:var(--display);font-weight:600;
-  color:rgba(255,236,153,.85);margin-bottom:6px;
-}
-.popup--v2__big{
-  font-size:30px;line-height:1.1;letter-spacing:-.02em;
-  color:var(--cream);
-}
-.popup--v2__summary{
-  display:flex;gap:10px;justify-content:center;
-  padding:0 18px 12px;flex-shrink:0;
-}
-.summary-pill{
-  display:flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,.06);
-  border-radius:99px;padding:6px 14px;
-  font-family:var(--display);font-weight:600;font-size:12px;
-  color:rgba(247,241,227,.85);
-}
-.summary-pill__dot{
-  display:inline-block;width:8px;height:8px;border-radius:50%;
-}
-.summary-pill__dot--soon{background:#d4515a;}
-.summary-pill__dot--talk{background:#5a9d5a;}
-.summary-pill strong{
-  font-family:var(--display-title);font-size:15px;
-  color:#ffec99;margin-left:2px;
-}
-.popup--v2__scroll{
-  flex:1 1 auto;
-  overflow-y:auto;
-  margin:0 14px;
-  padding:0 4px;
-  min-height:0;
-}
-.popup--v2__scroll::-webkit-scrollbar{width:6px;}
-.popup--v2__scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.04);}
-.popup--v2__scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:3px;}
-.popup--v2__grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
-  padding-bottom:14px;
-}
-.store-card{border-radius:3px;overflow:hidden;}
-.store-card__status{
-  padding:5px 4px;
-  font-size:10px;font-weight:700;color:#fff;text-align:center;
-  letter-spacing:.02em;
-  font-family:var(--display);
-}
-.store-card__name{
-  padding:6px 4px;
-  font-size:11px;font-weight:600;color:#fff;text-align:center;
-  font-family:var(--display);
-}
-.store-card--soon .store-card__status{background:#d4515a;}
-.store-card--soon .store-card__name{background:rgba(212,81,90,.18);color:#ffec99;}
-.store-card--talk .store-card__status{background:#5a9d5a;}
-.store-card--talk .store-card__name{background:rgba(90,157,90,.15);}
-.popup--v2__msg{
-  text-align:center;padding:14px 18px 10px;
-  font-family:var(--display);font-weight:600;font-size:12px;line-height:1.5;
-  color:#ffec99;flex-shrink:0;
-}
-.popup--v2 .popup__cta-button{background:var(--red);color:var(--cream);}
-.popup--v2 .popup__cta-button:hover{background:var(--red-deep);}
-.popup--v2 .popup__footer-bar{background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.06);}
-.popup--v2 .popup__footer-bar button{color:rgba(247,241,227,.7);}
-.popup--v2 .popup__footer-bar button:first-child{border-right:1px solid rgba(255,255,255,.08);}
-.popup--v2 .popup__footer-bar button:hover{background:rgba(212,21,26,.15);color:var(--red);}
-
-/* ========== POPUP 3: 창업설명회 안내 (크림) ========== */
-.popup--v3{background:#f7f1e3;color:#1a0707;}
-.popup--v3 .popup__close{background:rgba(0,0,0,.2);color:#1a0707;}
-.popup--v3 .popup__close:hover{background:rgba(0,0,0,.4);color:#fff;}
-.popup--v3__eyebrow{
-  background:transparent;color:#5a4a3a;
-  font-family:var(--display);font-weight:500;
-  letter-spacing:.02em;
-  border:0;padding:0;
-}
-.popup--v3__big{
-  font-size:30px;line-height:1.15;letter-spacing:-.02em;
-  color:#1a0707;font-family:var(--display-title);
-}
-.popup--v3__info{
-  margin:0 18px 16px;
-  background:#fff;border-radius:6px;
-  padding:6px 16px;
-  flex-shrink:0;
-}
-.info-row{
-  display:flex;padding:11px 0;
-  border-bottom:1px dashed rgba(0,0,0,.08);
-  align-items:center;
-}
-.info-row:last-child{border-bottom:none;}
-.info-row__label{
-  flex:0 0 70px;
-  font-family:var(--display);font-weight:700;font-size:12px;
-  color:var(--red);
-}
-.info-row__val{
-  flex:1;
-  font-family:var(--display);font-weight:500;font-size:14px;
-  color:#1a0707;
-}
-.info-row__val--accent{
-  font-family:var(--display-title);font-weight:400;font-size:18px;
-}
-.info-row__val--phone{
-  font-family:var(--display-title);font-size:20px;
-  color:var(--red);
-}
-.popup--v3 .popup__cta-button{background:var(--red);color:var(--cream);}
-.popup--v3 .popup__cta-button:hover{background:var(--red-deep);}
-.popup--v3 .popup__footer-bar{background:#fff;border-top:1px solid rgba(0,0,0,.06);}
-.popup--v3 .popup__footer-bar button{color:#5a4a3a;}
-.popup--v3 .popup__footer-bar button:first-child{border-right:1px solid rgba(0,0,0,.08);}
-.popup--v3 .popup__footer-bar button:hover{background:rgba(212,21,26,.06);color:var(--red);}
 
 /* === 반응형 === */
 @media(max-width:1200px){
@@ -2394,16 +2211,16 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   .popup{width:300px;}
 }
 @media(max-width:960px){
-  /* 모바일: 3개 다 가운데에 겹쳐서 cascading 표시 (완미족발 스타일) */
+  /* 모바일: 3개 다 가운데에 cascading으로 겹쳐서 표시 */
   .popup{
     width:calc(100vw - 32px);
     max-width:380px;
     left:50%;right:auto;
     transform:translateX(-50%);
-    max-height:calc(100vh - 140px);
+    max-height:calc(100vh - 100px);
     animation-name:popupInCenter;
   }
-  /* 각 팝업 z-index/top offset으로 cascading (위에서 아래로 살짝 어긋남) */
+  /* cascading 오프셋 — 위 팝업이 가장 앞 */
   .popup[data-popup-index="0"]{top:30px;z-index:3;}
   .popup[data-popup-index="1"]{top:50px;z-index:2;}
   .popup[data-popup-index="2"]{top:70px;z-index:1;}
@@ -3276,129 +3093,41 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 </script>
-<!-- 팝업 모달 (홈 진입 시 표시) — PPT/브로셔 콘텐츠 + 통일 디자인 -->
+<!-- 팝업 모달 (홈 진입 시 표시) — 이미지 기반 팝업 3개 -->
 <div class="popups" id="popups" aria-hidden="true">
 
-  <!-- 팝업 1: 업종변경 매출 3배 UP (브로셔 카피) -->
-  <div class="popup popup--v1" data-popup-index="0" style="display:none;">
+  <!-- 팝업 1: 매출 3배 UP -->
+  <div class="popup" data-popup-index="0" style="display:none;">
     <button class="popup__close" aria-label="닫기">×</button>
-    <div class="popup__hero popup--v1__hero">
-      <div class="popup__hero-eyebrow">신규창업 · 업종변경</div>
-      <div class="popup__hero-title">
-        <div class="popup--v1__line">업종변경으로</div>
-        <div class="popup--v1__big">매출 3배 <span>UP!</span></div>
-      </div>
-    </div>
-    <div class="popup__benefits-grid">
-      <div class="benefit-card">
-        <div class="benefit-card__name">가맹비</div>
-        <div class="benefit-card__strike">500만원</div>
-        <div class="benefit-card__val">0원</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-card__name">물류보증금</div>
-        <div class="benefit-card__strike">500만원</div>
-        <div class="benefit-card__val">0원</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-card__name">감리비</div>
-        <div class="benefit-card__strike">300만원</div>
-        <div class="benefit-card__val">0원</div>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-card__name">재가맹비</div>
-        <div class="benefit-card__strike">250만원</div>
-        <div class="benefit-card__val">0원</div>
-      </div>
-    </div>
-    <a href="tel:1899-3283" class="popup__cta-button">창업 문의 1899-3283</a>
+    <a href="#cta" class="popup__image-link">
+      <img src="images/popup-1.gif" alt="업종변경으로 매출 3배 UP" class="popup__image">
+    </a>
     <div class="popup__footer-bar">
-      <button class="popup__hide-today">오늘 하루 열지 않기</button>
+      <button class="popup__hide-today">24시간 닫기</button>
       <button class="popup__close-btn">닫기</button>
     </div>
   </div>
 
-  <!-- 팝업 2: 매장 오픈 현황 (그리드 스크롤) -->
-  <div class="popup popup--v2" data-popup-index="1" style="display:none;">
+  <!-- 팝업 2: 전국 매장 오픈 현황 -->
+  <div class="popup" data-popup-index="1" style="display:none;">
     <button class="popup__close" aria-label="닫기">×</button>
-    <div class="popup__hero popup--v2__hero">
-      <div class="popup__hero-eyebrow popup--v2__badge">비교불가</div>
-      <div class="popup__hero-title">
-        <div class="popup--v2__line">37년 한식의 대가</div>
-        <div class="popup--v2__big">매장 오픈 현황</div>
-      </div>
-    </div>
-    <div class="popup--v2__summary">
-      <div class="summary-pill"><span class="summary-pill__dot summary-pill__dot--soon"></span>오픈예정 <strong>5</strong></div>
-      <div class="summary-pill"><span class="summary-pill__dot summary-pill__dot--talk"></span>상담중 <strong>20</strong></div>
-    </div>
-    <div class="popup--v2__scroll">
-      <div class="popup--v2__grid">
-        <div class="store-card store-card--soon"><div class="store-card__status">오픈예정</div><div class="store-card__name">서울 강남점</div></div>
-        <div class="store-card store-card--soon"><div class="store-card__status">오픈예정</div><div class="store-card__name">경기 분당점</div></div>
-        <div class="store-card store-card--soon"><div class="store-card__status">오픈예정</div><div class="store-card__name">인천 송도점</div></div>
-        <div class="store-card store-card--soon"><div class="store-card__status">오픈예정</div><div class="store-card__name">부산 해운대점</div></div>
-        <div class="store-card store-card--soon"><div class="store-card__status">오픈예정</div><div class="store-card__name">대구 수성점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">서울 마곡점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">서울 노원점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">서울 강서점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">서울 종로점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">서울 신촌점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">경기 동탄점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">경기 일산점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">경기 수원점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">경기 광교점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">인천 부평점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">부산 서면점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">부산 동래점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">대구 동성로점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">대전 둔산점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">광주 충장로점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">울산 삼산점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">청주 성안길점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">천안 두정점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">창원 상남점</div></div>
-        <div class="store-card store-card--talk"><div class="store-card__status">상담중</div><div class="store-card__name">제주 시청점</div></div>
-      </div>
-    </div>
-    <div class="popup--v2__msg">좋은 상권은 빠르게 마감됩니다.<br>지금이 선점할 기회입니다.</div>
-    <a href="#cta" class="popup__cta-button">상담 신청하기 →</a>
+    <a href="#cta" class="popup__image-link">
+      <img src="images/popup-2.gif" alt="전국 매장 오픈 현황" class="popup__image">
+    </a>
     <div class="popup__footer-bar">
-      <button class="popup__hide-today">오늘 하루 열지 않기</button>
+      <button class="popup__hide-today">24시간 닫기</button>
       <button class="popup__close-btn">닫기</button>
     </div>
   </div>
 
-  <!-- 팝업 3: 창업설명회 안내 -->
-  <div class="popup popup--v3" data-popup-index="2" style="display:none;">
+  <!-- 팝업 3: 창업 설명회 안내 -->
+  <div class="popup" data-popup-index="2" style="display:none;">
     <button class="popup__close" aria-label="닫기">×</button>
-    <div class="popup__hero popup--v3__hero">
-      <div class="popup__hero-eyebrow popup--v3__eyebrow">37년 한식의 대가가 직접 설명하는</div>
-      <div class="popup__hero-title">
-        <div class="popup--v3__big">창업설명회<br>안내</div>
-      </div>
-    </div>
-    <div class="popup--v3__info">
-      <div class="info-row">
-        <div class="info-row__label">일정</div>
-        <div class="info-row__val">본사 홈페이지 공지</div>
-      </div>
-      <div class="info-row">
-        <div class="info-row__label">장소</div>
-        <div class="info-row__val">본사 홈페이지 공지</div>
-      </div>
-      <div class="info-row">
-        <div class="info-row__label">창업혜택</div>
-        <div class="info-row__val info-row__val--accent">총 1,950만원 지원</div>
-      </div>
-      <div class="info-row">
-        <div class="info-row__label">신청방법</div>
-        <div class="info-row__val info-row__val--phone">1899-3283</div>
-      </div>
-    </div>
-    <a href="tel:1899-3283" class="popup__cta-button">지금 전화 신청</a>
+    <a href="tel:1899-3283" class="popup__image-link">
+      <img src="images/popup-3.png" alt="창업 설명회 안내" class="popup__image">
+    </a>
     <div class="popup__footer-bar">
-      <button class="popup__hide-today">오늘 하루 열지 않기</button>
+      <button class="popup__hide-today">24시간 닫기</button>
       <button class="popup__close-btn">닫기</button>
     </div>
   </div>

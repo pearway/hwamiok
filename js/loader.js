@@ -182,14 +182,25 @@ function initPopups(popups) {
     const hideKey = `hwamiok-popup-hide-${i}`;
     if (localStorage.getItem(hideKey) === today) return;
 
-    // X / 닫기 버튼 → 닫기만
+    // 이미지 src 적용 (content.json에서 교체 가능)
+    if (data.image) {
+      const img = el.querySelector('.popup__image');
+      if (img) img.src = data.image;
+    }
+    // 링크 적용
+    if (data.ctaLink) {
+      const link = el.querySelector('.popup__image-link');
+      if (link) link.href = data.ctaLink;
+    }
+
+    // X / 닫기 버튼
     el.querySelectorAll('.popup__close, .popup__close-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         closePopup(el);
       });
     });
-    // 오늘 하루 열지 않기 → 24시간 비표시 + 닫기
+    // 24시간 닫기
     el.querySelectorAll('.popup__hide-today').forEach(btn => {
       btn.addEventListener('click', () => {
         localStorage.setItem(hideKey, today);
