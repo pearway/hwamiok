@@ -18,9 +18,10 @@
         if (!existingVideo) {
           const iframe = document.createElement('iframe');
           iframe.className = 'hero__video';
-          iframe.src = `https://player.vimeo.com/video/${c.hero.vimeoId}?background=1&autoplay=1&loop=1&muted=1&byline=0&title=0&portrait=0`;
+          iframe.src = `https://player.vimeo.com/video/${c.hero.vimeoId}?background=1&autoplay=1&loop=1&muted=1&byline=0&title=0&portrait=0&controls=0&badge=0&autopause=0&player_id=0&app_id=58479`;
           iframe.setAttribute('frameborder', '0');
-          iframe.setAttribute('allow', 'autoplay; fullscreen');
+          iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+          iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
           iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;';
           videoWrap.insertBefore(iframe, videoWrap.firstChild);
         }
@@ -180,33 +181,22 @@ function initPopups(popups) {
     const hideKey = `hwamiok-popup-hide-${i}`;
     if (localStorage.getItem(hideKey) === today) return;
 
-    // X 닫기 버튼 + 닫기 버튼
+    // X / 닫기 버튼 → 닫기만
     el.querySelectorAll('.popup__close, .popup__close-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        // 체크박스로 "오늘 하루 열지 않기" 체크돼있으면 저장 (팝업 1)
-        const checkbox = el.querySelector('.popup__hide-checkbox');
-        if (checkbox && checkbox.checked) {
-          localStorage.setItem(hideKey, today);
-        }
         closePopup(el);
       });
     });
-    // 24시간 닫기 / 오늘 하루 열지 않기 버튼
+    // 오늘 하루 열지 않기 → 24시간 비표시 + 닫기
     el.querySelectorAll('.popup__hide-today').forEach(btn => {
       btn.addEventListener('click', () => {
         localStorage.setItem(hideKey, today);
         closePopup(el);
       });
     });
-    // 팝업전체닫기 버튼 (팝업 2에 있음)
-    el.querySelectorAll('.popup__close-all').forEach(btn => {
-      btn.addEventListener('click', () => {
-        container.querySelectorAll('.popup').forEach(p => closePopup(p));
-      });
-    });
 
-    el.style.display = 'block';
+    el.style.display = 'flex';
     visibleCount++;
   });
 
