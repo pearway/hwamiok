@@ -280,8 +280,90 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   padding:0 80px;
 }
 @media(max-width:860px){
-  .hero__inner{padding:0 28px;}
-  .hero__side-label,.hero__side-since{display:none;}
+  /* === 모바일 hero — 동근이숯불 스타일 풀스크린 영상 === */
+  .hero{
+    min-height:100vh!important;
+    height:100vh;
+    padding:0!important;
+    position:relative;overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .hero__inner{
+    padding:0;
+    height:100%;
+    display:flex;flex-direction:column;
+    justify-content:flex-end;
+  }
+  /* 영상이 hero 전체 채움 */
+  .hero__video-wrap{
+    position:absolute!important;
+    inset:0!important;
+    width:100%!important;height:100%!important;
+    aspect-ratio:auto!important;
+    margin:0!important;border-radius:0!important;
+    border:none!important;
+    z-index:1;
+  }
+  /* iframe도 cover 처럼 viewport 꽉 채움 */
+  .hero__video-wrap iframe,
+  .hero__video-wrap iframe.hero__video{
+    position:absolute!important;
+    top:50%!important;left:50%!important;
+    transform:translate(-50%,-50%)!important;
+    /* 16:9 영상을 viewport에 cover 적용: 둘 중 큰 값 사용 */
+    width:max(100vw, 177.78vh)!important;
+    height:max(100vh, 56.25vw)!important;
+    inset:auto!important;
+  }
+  /* 어두운 그라데이션 오버레이 (텍스트 가독성) */
+  .hero__video-wrap::after{
+    content:'';
+    position:absolute;inset:0;
+    z-index:3;pointer-events:none;
+    background:linear-gradient(180deg,
+      rgba(10,8,7,.55) 0%,
+      rgba(10,8,7,.25) 35%,
+      rgba(10,8,7,.55) 65%,
+      rgba(10,8,7,.92) 100%);
+  }
+  /* 영상 위 좌상단 도장 (로고) — 약간 키워서 강조 */
+  .hero__corner-seal{
+    width:74px;height:74px;top:90px!important;left:18px!important;
+    z-index:5;
+  }
+  /* 큰 타이틀 — 영상 위에 오버레이 */
+  .hero__title-zone{
+    position:relative;
+    z-index:5;
+    margin:0;
+    padding:0 24px 80px;
+  }
+  .hero__title{
+    font-size:clamp(56px, 13vw, 84px)!important;
+    text-shadow:0 4px 24px rgba(0,0,0,.45);
+  }
+  .hero__sub{
+    text-shadow:0 2px 8px rgba(0,0,0,.6);
+    color:rgba(247,241,227,.92)!important;
+  }
+  /* 영상 위 캡션 — 상단으로 이동 */
+  .hero__caption{
+    position:absolute!important;
+    top:120px!important;bottom:auto!important;
+    left:24px!important;right:24px!important;
+    z-index:5;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:8px!important;
+  }
+  .hero__caption-l{
+    text-shadow:0 2px 8px rgba(0,0,0,.6);
+  }
+  /* placeholder 숨김 — 영상 로드 안 됐을 때만 fallback 이미지 */
+  .placeholder-video{
+    background:url('images/p11.jpg') center/cover no-repeat;
+  }
+  .hero__corner-label{top:90px!important;right:18px!important;z-index:5;font-size:9px;}
 }
 
 /* 상단 캡션 */
@@ -378,12 +460,8 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
 .hero__caption-r small{font-size:10px;letter-spacing:.4em;color:var(--gold);}
 
 @media(max-width:860px){
-  .hero{min-height:auto;padding:120px 0 60px;}
-  .hero__video-wrap{aspect-ratio:9/12;}
-  .hero__video-wrap[data-video-aspect="16/9"]{aspect-ratio:16/9;}
-  .hero__corner-seal{width:84px;height:84px;top:16px;left:16px;}
-  .hero__caption{left:18px;right:18px;bottom:20px;flex-direction:column;align-items:flex-start;gap:14px;}
-  .hero__corner-label{top:18px;right:18px;font-size:9px;}
+  /* 풀스크린 hero — 위의 media query에서 처리 */
+  .hero__corner-seal{width:74px;height:74px;}
 }
 
 /* 영상 아래 큰 타이틀 */
@@ -2434,7 +2512,7 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
       </div>
       <div class="menu-show__hero-text">
         <h3 class="reveal reveal--d1" data-text="menuHero.title">원조 <em>김치찌개</em></h3>
-        <p>국자로 휘저으면 묵은지 한 점, 돼지 목살 한 덩이.1987년 석관동에서 끓이기 시작한 그 한 그릇입니다.</p>
+        <p>국자로 휘저으면 묵은지 한 점, 돼지 목살 한 덩이.<br>1987년 석관동에서 끓이기 시작한 그 한 그릇입니다.</p>
       </div>
     </div>
 
