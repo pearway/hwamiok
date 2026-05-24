@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://화미옥김치찌개.kr/sitemap.xml
+Sitemap: https://www.화미옥김치찌개.kr/sitemap.xml
