@@ -46,6 +46,9 @@ body{
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
+  /* 한글 단어 단위 줄바꿈 (글자 잘림 방지) */
+  word-break:keep-all;
+  overflow-wrap:break-word;
 }
 /* === 동근이숯불 스타일 타이틀 폰트 (Black Han Sans) === */
 h1, h2, h3,
@@ -220,15 +223,27 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   padding:11px 22px;
   font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.04em;
   transition:background .25s,transform .25s;
+  white-space:nowrap;  /* 줄바꿈 방지 */
 }
 .nav__cta::after{display:none !important;}
 .nav__cta:hover{background:var(--red-deep);transform:translateY(-1px);}
 @media(max-width:860px){
-  .nav,.nav.scrolled{padding:10px 18px;}
+  .nav,.nav.scrolled{padding:10px 14px;}
   .nav__menu{gap:14px;}
   .nav__menu a:not(.nav__cta){display:none;}
-  .nav__seal{height:50px;}
-  .nav.scrolled .nav__seal{height:42px;}
+  /* 로고 크기 축소 */
+  .nav__seal{height:42px;}
+  .nav.scrolled .nav__seal{height:38px;}
+  .nav__logo{font-size:16px;}
+  .nav__logo small{font-size:8px;letter-spacing:.22em;}
+  /* 가맹문의 버튼 축소 */
+  .nav__cta{padding:9px 16px;font-size:12px;}
+}
+@media(max-width:380px){
+  .nav__seal{height:36px;}
+  .nav__logo{font-size:14px;}
+  .nav__logo small{display:none;}
+  .nav__cta{padding:8px 12px;font-size:11px;}
 }
 
 /* =====================================
