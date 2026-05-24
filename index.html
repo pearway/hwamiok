@@ -2,1101 +2,3303 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THISISPEARWAY — Designer Seoul</title>
-
-<meta name="description" content="서울 기반 브랜드 디자이너 THISISPEARWAY의 포트폴리오. Brand, Graphic, Spatial, Type.">
-<meta name="keywords" content="디스이즈페어웨이, thisispearway, 브랜드 디자이너, 로고 디자인, 서울 디자이너">
-<meta name="author" content="THISISPEARWAY">
-<meta name="google-site-verification" content="v6Rr_eNrXPQ4uCe9w3zBydVGey0wrflSztb3m6UqTh0">
-<meta name="naver-site-verification" content="4e4c9c72ee42dd8ae6e03cc188e34dc50e64ec45">
-
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.pearway.kr">
-<meta property="og:title" content="THISISPEARWAY — Designer">
-<meta property="og:description" content="서울 기반 브랜드 디자이너 THISISPEARWAY의 포트폴리오.">
-<meta property="og:image" content="https://www.pearway.kr/images/og-thumbnail.jpg">
-
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>화미옥 김치찌개 — 1987, 한식의 대가</title>
+<meta name="description" content="1987년 석관동에서 시작된 김치찌개 본가. 화미옥 김치찌개 가맹 안내.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-
-<link rel="stylesheet" as="style" crossorigin
-  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&family=Noto+Serif+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 
 <style>
-:root {
-  --bg: #FAFAF7;
-  --bg-alt: #F2F2ED;
-  --ink: #0C0C0B;
-  --ink-2: #4A4A47;
-  --ink-3: #8A8A85;
-  --line: #DEDED8;
-  --line-soft: #ECECE6;
+/* =====================================
+   COLOR — 화미옥 실제 브랜드 톤
+   ===================================== */
+:root{
+  --bg:        #0a0807;
+  --bg-2:      #14100d;
+  --paper:     #f7f1e3;
+  --paper-2:   #ebe2cc;
+  --ink:       #f7f1e3;
+  --ink-dark:  #1a1310;
+  --sub:       #8a7e6e;
+  --sub-dark:  #6b5b48;
+  --line:      #2a2018;
+  --line-light:#d6c7a8;
+  --red:       #d4151a;
+  --red-deep:  #9b0d11;
+  --red-soft:  rgba(212,21,26,.15);
+  --cream:     #f7f1e3;
+  --gold:      #c8a665;
 
-  --font-display: 'Geist', 'Pretendard Variable', sans-serif;
-  --font-sans: 'Pretendard Variable', 'Geist', 'Pretendard', system-ui, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --display:   'Noto Serif KR', serif;
+  --display-title: 'Black Han Sans', 'Noto Serif KR', sans-serif;
+  --serif-en:  'Cormorant Garamond', serif;
+  --sans:      'Pretendard Variable', Pretendard, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  /* 한글 단어 단위 줄바꿈 (글자 잘림 방지) */
+  word-break:keep-all;
+  overflow-wrap:break-word;
+}
+/* === 동근이숯불 스타일 타이틀 폰트 (Black Han Sans) === */
+h1, h2, h3,
+.hero__title,
+.menu-show__head h2,
+.menu-show__hero-text h3,
+.ingredient__head h2,
+.receipts__head h2,
+.signature__head h2,
+.signature__title,
+.atmosphere__head h2,
+.profit-chart__head h2,
+.feature__head h2,
+.pricing__head h2,
+.process__head h2,
+.contact__head h2,
+.countdown h2,
+.strip-video__caption h3,
+.popup__title{
+  font-family:var(--display-title) !important;
+  font-weight:400 !important;
+  letter-spacing:-.02em;
+}
+img,video{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+.wrap{max-width:1280px;margin:0 auto;padding:0 28px;}
+section{position:relative;}
 
-  --max: 1440px;
-  --gutter: clamp(1.25rem, 3.5vw, 2.75rem);
-  --section-y: clamp(5rem, 10vw, 9rem);
-
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --t-fast: 0.2s;
-  --t-med: 0.4s;
-  --t-slow: 0.8s;
+/* eyebrow 공통 */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:14px;
+  font-family:var(--serif-en);font-style:italic;
+  font-size:14px;letter-spacing:.3em;
+  color:var(--red);
+  text-transform:uppercase;font-weight:500;
 }
-
-/* ---------- LOADER ---------- */
-#loader {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: var(--bg);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: var(--gutter);
-  transition: opacity 0.6s var(--ease), visibility 0.6s var(--ease);
+.eyebrow::before{
+  content:'';width:32px;height:1px;background:var(--red);
 }
-#loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
-
-#loader .top, #loader .bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-}
-
-#loader .middle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  position: relative;
-}
-
-#loader .counter {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.25rem, 7.5vw, 5.5rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-  text-align: center;
-}
-
-#loader .progress-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  background: var(--ink);
-  width: 0%;
-  transition: width 0.3s var(--ease);
-}
-#loader .bottom { border-top: 1px solid var(--line); padding-top: 1rem; position: relative; }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.55;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  overflow-x: hidden;
-}
-body.modal-open { overflow: hidden; }
-::selection { background: var(--ink); color: var(--bg); }
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
-
-/* ---------- TYPE ---------- */
-.mono {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  font-weight: 400;
-}
-.section-marker {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-.section-marker::before { content: "—"; font-family: var(--font-sans); font-weight: 300; }
-
-/* ---------- LAYOUT ---------- */
-.wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
-.section {
-  padding-top: var(--section-y);
-  padding-bottom: var(--section-y);
-  border-top: 1px solid var(--line);
-}
-.section-head {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: clamp(1.5rem, 4vw, 4rem);
-  margin-bottom: clamp(2.5rem, 6vw, 5rem);
-  align-items: start;
-}
-@media (max-width: 720px) { .section-head { grid-template-columns: 1fr; gap: 1.25rem; } }
-
-/* ---------- HEADER ---------- */
-header.site {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 1.1rem var(--gutter);
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--t-med) var(--ease);
-}
-header.site.scrolled { border-bottom-color: var(--line); }
-header.site .inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-header.site .brand {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-header.site nav { display: flex; gap: clamp(1rem, 2.5vw, 2.25rem); align-items: center; }
-header.site nav a {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  transition: color var(--t-fast) var(--ease);
-}
-header.site nav a:hover { color: var(--ink); }
-header.site nav a.ext::after { content: " ↗"; transition: transform var(--t-fast) var(--ease); display: inline-block; }
-header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
-@media (max-width: 720px) {
-  header.site nav a:not(.primary) { display: none; }
+.eyebrow--center::after{
+  content:'';width:32px;height:1px;background:var(--red);
 }
 
-/* ---------- HERO ---------- */
-.hero {
-  min-height: 100svh;
-  padding-top: clamp(7rem, 14vh, 11rem);
-  padding-bottom: clamp(3rem, 8vh, 6rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+/* 텍스트 등장 효과 — 라인 마스크 */
+.t-mask{
+  display:inline-block;overflow:hidden;
+  vertical-align:bottom;
 }
-.hero-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: clamp(3rem, 8vh, 5rem);
+.t-mask__inner{
+  display:inline-block;
+  transform:translateY(110%);
+  transition:transform 1.1s cubic-bezier(.2,.8,.2,1);
 }
-.hero-title {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(3.8rem, 13.5vw, 12.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-}
-.hero-title .row { display: block; overflow: hidden; }
-.hero-title .row span {
-  display: inline-block;
-  transform: translateY(110%);
-  animation: rise 1.2s var(--ease) both;
-  animation-play-state: paused;
-}
-body.loaded .hero-title .row span { animation-play-state: running; }
-.hero-title .row:nth-child(2) span { animation-delay: 0.12s; }
-@keyframes rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
+.t-mask.is-in .t-mask__inner{transform:translateY(0);}
+.t-mask--d1 .t-mask__inner{transition-delay:.1s;}
+.t-mask--d2 .t-mask__inner{transition-delay:.22s;}
+.t-mask--d3 .t-mask__inner{transition-delay:.34s;}
+.t-mask--d4 .t-mask__inner{transition-delay:.46s;}
 
-/* Hero meta / scroll 도 로더 끝난 후 페이드 인 */
-.hero-meta, .hero-bottom {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.8s var(--ease) 0.4s, transform 0.8s var(--ease) 0.4s;
-}
-body.loaded .hero-meta, body.loaded .hero-bottom {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1);}
+.reveal.is-in{opacity:1;transform:translateY(0);}
+.reveal--d1{transition-delay:.1s;}
+.reveal--d2{transition-delay:.2s;}
+.reveal--d3{transition-delay:.3s;}
+.count{display:inline-block;}
 
-.hero-bottom { display: flex; justify-content: flex-end; align-items: end; margin-top: clamp(3rem, 6vh, 5rem); }
-.hero-bottom .scroll {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
+/* =====================================
+   LOADER — 화미옥 도장 등장
+   ===================================== */
+.loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
 }
-.hero-bottom .scroll .arrow { display: inline-block; animation: scrollHint 1.8s ease-in-out infinite; }
-@keyframes scrollHint { 0%, 100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(4px); opacity: 1; } }
+.loader__panel{
+  position:absolute;top:0;width:50%;height:100%;
+  background:var(--bg);z-index:2;
+  transition:transform 1.3s cubic-bezier(.77,0,.18,1) .4s;
+}
+.loader__panel--l{left:0;}
+.loader__panel--r{right:0;}
+.loader__seal{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(.6);
+  z-index:3;
+  width:260px;height:260px;
+  opacity:0;
+  animation:sealIn 1s .2s cubic-bezier(.2,.8,.2,1.2) forwards;
+}
+.loader__seal img{width:100%;height:100%;object-fit:contain;display:block;}
+.seal{
+  width:100%;height:100%;
+  background:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  color:var(--cream);
+  font-family:var(--display);
+  position:relative;
+  clip-path:polygon(
+    50% 0%, 79% 11%, 98% 35%, 98% 65%, 79% 89%,
+    50% 100%, 21% 89%, 2% 65%, 2% 35%, 21% 11%
+  );
+}
+.seal__han{
+  font-size:64px;font-weight:900;line-height:1;
+  margin-bottom:8px;
+}
+.seal__name{
+  font-size:14px;letter-spacing:.04em;font-weight:700;
+  white-space:nowrap;
+}
+.seal__year{
+  margin-top:6px;
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.3em;opacity:.8;
+}
+@keyframes sealIn{to{opacity:1;transform:translate(-50%,-50%) scale(1);}}
+body.loaded .loader__panel--l{transform:translateX(-101%);}
+body.loaded .loader__panel--r{transform:translateX(101%);}
+body.loaded .loader__seal{opacity:0;transition:opacity .35s;}
+body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
 
-/* ---------- WORKS ---------- */
-.filters {
-  display: flex;
-  gap: clamp(1rem, 2.5vw, 2.25rem);
-  flex-wrap: wrap;
-  margin-bottom: clamp(2rem, 5vw, 3.5rem);
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--line);
+/* =====================================
+   NAV
+   ===================================== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 36px;
+  transition:background .3s, padding .3s, box-shadow .3s, border-color .3s;
+  border-bottom:1px solid transparent;
 }
-.filters button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  padding: 0;
-  position: relative;
-  transition: color var(--t-fast) var(--ease);
+.nav.scrolled{
+  background:rgba(10,8,7,.88);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  padding:10px 36px;
+  border-bottom-color:rgba(212,21,26,.2);
 }
-.filters button:hover { color: var(--ink-2); }
-.filters button.active { color: var(--ink); }
-.filters button.active::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: -1.55rem;
-  height: 1px;
-  background: var(--ink);
+.nav__brand{display:flex;align-items:center;gap:14px;}
+.nav__seal{
+  height:80px;width:auto;flex-shrink:0;
+  transition:height .3s;
 }
-
-.works-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
+.nav__seal img{height:100%;width:auto;object-fit:contain;display:block;}
+.nav.scrolled .nav__seal{height:56px;}
+.nav__logo{
+  font-family:var(--display);font-weight:900;font-size:20px;
+  letter-spacing:-.01em;line-height:1.1;
 }
-@media (max-width: 720px) { .works-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
-
-.work-card {
-  cursor: pointer;
-  display: block;
-  transition: opacity var(--t-med) var(--ease);
+.nav__logo small{
+  display:block;
+  font-family:var(--serif-en);font-style:italic;font-weight:400;
+  font-size:10px;letter-spacing:.28em;
+  color:var(--gold);margin-top:2px;
 }
-.work-card.hidden { display: none; }
-.work-card .cover {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background: var(--bg-alt);
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 1rem;
+.nav__menu{display:flex;gap:32px;align-items:center;}
+.nav__menu a{
+  font-size:14px;font-weight:500;color:rgba(247,241,227,.78);
+  transition:color .25s;position:relative;
 }
-.work-card .cover img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform var(--t-slow) var(--ease);
+.nav__menu a:hover{color:var(--cream);}
+.nav__menu a::after{
+  content:'';position:absolute;left:0;bottom:-6px;
+  width:0;height:1px;background:var(--red);transition:width .3s;
 }
-.work-card:hover .cover img { transform: scale(1.03); }
-.work-card .cover .fallback {
-  position: absolute; inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(2rem, 5vw, 4rem);
-  color: var(--ink-3);
-  background: linear-gradient(135deg, var(--bg-alt) 0%, var(--line-soft) 100%);
+.nav__menu a:hover::after{width:100%;}
+.nav__cta{
+  background:var(--red);color:#fff !important;
+  padding:11px 22px;
+  font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.04em;
+  transition:background .25s,transform .25s;
+  white-space:nowrap;  /* 줄바꿈 방지 */
 }
-.work-card .meta-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.35rem;
-  gap: 1rem;
+.nav__cta::after{display:none !important;}
+.nav__cta:hover{background:var(--red-deep);transform:translateY(-1px);}
+@media(max-width:860px){
+  .nav,.nav.scrolled{padding:10px 14px;}
+  .nav__menu{gap:14px;}
+  .nav__menu a:not(.nav__cta){display:none;}
+  /* 로고 크기 축소 */
+  .nav__seal{height:42px;}
+  .nav.scrolled .nav__seal{height:38px;}
+  .nav__logo{font-size:16px;}
+  .nav__logo small{font-size:8px;letter-spacing:.22em;}
+  /* 가맹문의 버튼 축소 */
+  .nav__cta{padding:9px 16px;font-size:12px;}
 }
-.work-card .num, .work-card .year {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  color: var(--ink-3);
-}
-.work-card .title {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-.work-card .summary {
-  margin-top: 0.5rem;
-  font-size: 0.92rem;
-  color: var(--ink-2);
-  line-height: 1.55;
-  max-width: 44ch;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.work-card .tags {
-  margin-top: 0.85rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 0.85rem;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-3);
+@media(max-width:380px){
+  .nav__seal{height:36px;}
+  .nav__logo{font-size:14px;}
+  .nav__logo small{display:none;}
+  .nav__cta{padding:8px 12px;font-size:11px;}
 }
 
-/* ---------- LOADING ---------- */
-.loading-state {
-  text-align: center;
-  padding: 4rem 1rem;
-  color: var(--ink-3);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+/* =====================================
+   HERO — 디자인된 영상 영역 (파머스 포케 참고)
+   ===================================== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  background:var(--bg);
+  padding:120px 0 80px;
+  overflow:hidden;
 }
-
-/* ---------- CONTACT ---------- */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  padding-top: 2rem;
-  border-top: 1px solid var(--line);
+/* 우측 세로 라벨 */
+.hero__side-label{
+  position:absolute;top:50%;right:30px;
+  transform:translateY(-50%);
+  writing-mode:vertical-rl;
+  font-family:var(--display);font-weight:700;
+  color:var(--gold);font-size:12px;letter-spacing:.5em;
+  opacity:.55;z-index:5;
 }
-.contact-block .label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 0.85rem;
+/* 좌측 세로 SINCE */
+.hero__side-since{
+  position:absolute;top:50%;left:30px;
+  transform:translateY(-50%);
+  writing-mode:vertical-rl;
+  font-family:var(--display);font-weight:700;
+  color:var(--red);font-size:12px;letter-spacing:.5em;
+  z-index:5;
 }
-.contact-block .label::before { content: "— "; }
-.contact-block .value {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-  letter-spacing: -0.015em;
+.hero__inner{
+  position:relative;z-index:2;
+  max-width:1280px;margin:0 auto;
+  padding:0 80px;
 }
-.contact-block a.value {
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--t-fast) var(--ease);
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.3rem;
-}
-.contact-block a.value:hover { border-bottom-color: var(--ink); }
-.contact-block a.value .arrow { font-family: var(--font-sans); font-size: 0.85em; transition: transform var(--t-fast) var(--ease); }
-.contact-block a.value:hover .arrow { transform: translate(2px, -2px); }
-@media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
-
-/* ---------- FOOTER ---------- */
-footer.site {
-  padding: clamp(2.5rem, 5vw, 4rem) var(--gutter) clamp(1.5rem, 3vw, 2rem);
-  border-top: 1px solid var(--line);
-}
-footer.site .inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: end;
-}
-footer.site .left .meta {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-footer.site .left .meta a { border-bottom: 1px dotted var(--ink-3); display: inline-block; width: fit-content; }
-footer.site .left .meta a:hover { border-bottom-style: solid; border-bottom-color: var(--ink); }
-footer.site .right {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  text-align: right;
-  line-height: 1.7;
-}
-footer.site .copyright {
-  margin-top: clamp(2rem, 4vw, 3rem);
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-@media (max-width: 720px) {
-  footer.site .inner { grid-template-columns: 1fr; align-items: start; }
-  footer.site .right { text-align: left; }
-}
-
-/* ---------- PROJECT DETAIL OVERLAY ---------- */
-.detail-overlay {
-  position: fixed; inset: 0;
-  background: var(--bg);
-  z-index: 200;
-  overflow-y: auto;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s var(--ease);
-}
-.detail-overlay.open { opacity: 1; pointer-events: auto; }
-
-.detail-header {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  backdrop-filter: blur(10px);
-  padding: 1rem var(--gutter);
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-.detail-header .title-row {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex: 1;
-  min-width: 0;
-}
-.detail-header .title-row .name {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: var(--ink);
-  letter-spacing: -0.015em;
-  text-transform: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.detail-header .close {
-  background: none;
-  border: 1px solid var(--line);
-  padding: 0.5rem 0.95rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  cursor: pointer;
-  transition: all 0.15s var(--ease);
-  white-space: nowrap;
-}
-.detail-header .close:hover { border-color: var(--ink); color: var(--ink); }
-
-.detail-body { max-width: 1100px; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5rem) var(--gutter) 5rem; }
-.detail-hero { margin-bottom: clamp(3rem, 6vw, 5rem); }
-.detail-hero .meta {
-  display: flex;
-  gap: 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-.detail-hero h1 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 1;
-  letter-spacing: -0.035em;
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-}
-.detail-hero .desc {
-  font-size: clamp(1rem, 1.25vw, 1.1rem);
-  line-height: 1.65;
-  color: var(--ink-2);
-  max-width: 65ch;
-  white-space: pre-line;
-}
-
-.detail-blocks { display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 3.5rem); }
-
-.block-text {
-  max-width: 65ch;
-  margin: 0 auto;
-  padding: clamp(1rem, 2vw, 2rem) 0;
-}
-.block-text h3 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-  color: var(--ink);
-}
-.block-text p {
-  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-  line-height: 1.7;
-  color: var(--ink-2);
-  white-space: pre-line;
-}
-.block-img img { width: 100%; height: auto; display: block; }
-.block-2col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1rem, 2vw, 1.5rem);
-}
-.block-2col img { width: 100%; height: auto; display: block; }
-@media (max-width: 640px) { .block-2col { grid-template-columns: 1fr; } }
-
-/* ---------- REVEAL ---------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
-}
-.reveal.in { opacity: 1; transform: translateY(0); }
-
-/* 작품 카드 stagger — 같은 페이즈 안에서 살짝씩 늦게 */
-.work-card.reveal { transition-delay: 0s; }
-.work-card.reveal.stagger-1 { transition-delay: 0.08s; }
-.work-card.reveal.stagger-2 { transition-delay: 0.16s; }
-.work-card.reveal.stagger-3 { transition-delay: 0.24s; }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+@media(max-width:860px){
+  /* === 모바일 hero — 영상 컨테이너 화면 절반 차지 === */
+  .hero{
+    min-height:auto!important;
+    height:auto;
+    padding:90px 0 50px!important;
+    position:relative;overflow:hidden;
+    background:var(--bg);
   }
+  /* 사이드 세로 글씨 숨김 */
+  .hero__side-label,.hero__side-since{display:none!important;}
+  /* 좌상단 도장 로고 제거 */
+  .hero__corner-seal{display:none!important;}
+  .hero__corner-label{display:none!important;}
+  .hero__inner{padding:0 16px;height:auto;}
+  /* 영상 컨테이너 — 27:40 세로 비율 (PC 16:9는 따로 처리) */
+  .hero__video-wrap{
+    position:relative!important;
+    width:100%!important;
+    height:auto!important;
+    aspect-ratio:27/40!important;
+    margin:0 0 32px!important;
+    border-radius:8px!important;
+    border:none!important;
+    overflow:hidden;
+    z-index:1;
+    background:var(--bg-2);
+    display:block;
+  }
+  /* iframe — 컨테이너 100% 채움 (이미 비율 맞으니 자연 핏) */
+  .hero__video-wrap iframe,
+  .hero__video-wrap iframe.hero__video{
+    position:absolute!important;
+    inset:0!important;
+    top:auto!important;left:auto!important;
+    width:100%!important;
+    height:100%!important;
+    aspect-ratio:auto!important;
+    transform:none!important;
+  }
+  .placeholder-video{
+    position:absolute!important;
+    inset:0!important;
+    background:url('images/p11.jpg') center/cover no-repeat;
+    z-index:0;
+  }
+  /* 어두운 그라데이션 — 캡션 가독성 */
+  .hero__video-overlay,
+  .hero__video-wrap::after{
+    content:'';
+    position:absolute;inset:0;
+    z-index:3;pointer-events:none;
+    background:linear-gradient(180deg,
+      rgba(10,8,7,.3) 0%,
+      rgba(10,8,7,0) 30%,
+      rgba(10,8,7,0) 60%,
+      rgba(10,8,7,.7) 100%)!important;
+  }
+  /* 영상 위 캡션 ("1987년 석관동, 그 한 그릇") - 하단 좌측 */
+  .hero__caption{
+    position:absolute!important;
+    top:auto!important;bottom:18px!important;
+    left:18px!important;right:18px!important;
+    z-index:5;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:6px!important;
+  }
+  .hero__caption-l{
+    text-shadow:0 2px 12px rgba(0,0,0,.85);
+    font-size:18px;
+  }
+  /* 큰 타이틀 - 영상 아래 */
+  .hero__title-zone{
+    position:relative;
+    z-index:5;
+    margin:0;
+    padding:0 8px;
+  }
+  .hero__title{
+    font-size:clamp(48px, 12vw, 76px)!important;
+  }
+}
+
+/* 상단 캡션 */
+.hero__top{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:30px;
+  font-family:var(--serif-en);font-style:italic;
+  font-size:12px;letter-spacing:.3em;
+  color:var(--gold);
+  text-transform:uppercase;
+  opacity:0;animation:fadeIn 1.2s 1.8s forwards;
+}
+.hero__top-l{display:flex;align-items:center;gap:14px;}
+.hero__top-l::before{
+  content:'';width:8px;height:8px;background:var(--red);border-radius:50%;
+  animation:pulseDot 1.6s infinite;
+}
+@keyframes pulseDot{
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:.4;transform:scale(.85);}
+}
+
+/* 영상 컨테이너 — 디자인된 프레임 */
+.hero__video-wrap{
+  position:relative;
+  width:100%;
+  aspect-ratio:21/9;
+  background:var(--bg-2);
+  border:1px solid var(--line);
+  overflow:hidden;
+  opacity:0;transform:translateY(40px);
+  animation:videoIn 1.4s 2s cubic-bezier(.2,.7,.2,1) forwards;
+}
+@keyframes videoIn{to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{to{opacity:1;}}
+
+.hero__video{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+}
+.placeholder-video{
+  width:100%;height:100%;
+  background:
+    linear-gradient(135deg, rgba(10,8,7,.4) 0%, rgba(10,8,7,.2) 50%, rgba(10,8,7,.7) 100%),
+    url('images/p11.jpg') center/cover no-repeat;
+  position:relative;
+}
+.placeholder-video::after{
+  display:none;
+}
+.hero__video-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(0,0,0,.2) 0%, rgba(0,0,0,.05) 30%, rgba(0,0,0,.65) 100%);
+  z-index:2;
+}
+
+/* 영상 위 도장 (좌상단) */
+.hero__corner-seal{
+  position:absolute;top:24px;left:24px;z-index:3;
+  width:130px;height:130px;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.55));
+}
+.hero__corner-seal img{width:100%;height:100%;object-fit:contain;display:block;}
+
+/* 영상 위 우상단 라벨 */
+.hero__corner-label{
+  position:absolute;top:30px;right:30px;z-index:3;
+  display:flex;flex-direction:column;align-items:flex-end;
+  font-family:var(--serif-en);font-style:italic;
+  color:rgba(247,241,227,.7);font-size:11px;
+  letter-spacing:.3em;line-height:1.6;text-align:right;
+}
+
+/* 영상 위 하단 슬로건 (큰 카피) */
+.hero__caption{
+  position:absolute;left:30px;right:30px;bottom:30px;z-index:3;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:24px;color:var(--cream);
+}
+.hero__caption-l{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(28px,5vw,72px);line-height:1.05;
+  letter-spacing:-.025em;
+}
+.hero__caption-l em{font-style:normal;color:var(--gold);}
+.hero__caption-r{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:14px;letter-spacing:.2em;
+  color:rgba(247,241,227,.7);
+  white-space:nowrap;
+  display:flex;flex-direction:column;align-items:flex-end;gap:4px;
+}
+.hero__caption-r small{font-size:10px;letter-spacing:.4em;color:var(--gold);}
+
+@media(max-width:860px){
+  /* 풀스크린 hero — 위의 media query에서 처리 */
+  .hero__corner-seal{width:74px;height:74px;}
+}
+
+/* 영상 아래 큰 타이틀 */
+.hero__title-zone{
+  margin-top:50px;
+}
+.hero__title{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(52px,9vw,130px);
+  line-height:.95;letter-spacing:-.035em;
+  color:var(--cream);
+}
+.hero__title em{font-style:normal;color:var(--red);}
+.hero__title-han{
+  font-size:.45em;color:var(--gold);font-weight:500;
+  margin-left:.1em;letter-spacing:0;
+}
+.hero__sub{
+  font-family:var(--display);font-weight:500;
+  font-size:17px;line-height:1.9;
+  color:rgba(247,241,227,.7);
+  max-width:520px;
+  margin-top:36px;
+}
+.hero__sub::before{
+  content:'';display:block;width:48px;height:2px;
+  background:var(--red);margin-bottom:20px;
+}
+@media(max-width:860px){
+  .hero__sub{font-size:15px;margin-top:28px;}
+}
+
+/* hero scroll indicator */
+.hero__scroll{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  color:rgba(247,241,227,.6);
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.3em;
+  display:flex;flex-direction:column;align-items:center;gap:10px;z-index:6;
+  opacity:0;animation:fadeIn 1s 3.2s forwards;
+}
+.hero__scroll-line{
+  width:1px;height:48px;background:rgba(255,255,255,.2);
+  position:relative;overflow:hidden;
+}
+.hero__scroll-line::after{
+  content:'';position:absolute;top:-48px;left:0;width:100%;height:48px;
+  background:linear-gradient(180deg,transparent,var(--red));
+  animation:scrollLine 2.2s infinite cubic-bezier(.7,0,.3,1);
+}
+@keyframes scrollLine{to{top:100%;}}
+
+/* =====================================
+   MARQUEE
+   ===================================== */
+.marquee{
+  background:var(--red);color:var(--cream);
+  padding:22px 0;overflow:hidden;
+  border-top:1px solid var(--red-deep);
+  border-bottom:1px solid var(--red-deep);
+}
+.marquee__track{
+  display:flex;gap:42px;white-space:nowrap;
+  animation:marquee 16s linear infinite;
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(22px,3vw,36px);letter-spacing:-.01em;
+}
+.marquee__track span{display:inline-flex;align-items:center;gap:42px;}
+.marquee__track span::after{content:'·';color:var(--gold);font-size:1.5em;line-height:.6;}
+.marquee--cream{background:var(--cream);color:var(--ink-dark);border-color:var(--red);}
+.marquee--cream .marquee__track span::after{color:var(--red);}
+.marquee--dark{background:var(--bg);color:var(--cream);border-color:var(--red);}
+.marquee--dark .marquee__track span::after{color:var(--red);}
+@keyframes marquee{to{transform:translateX(-50%);}}
+
+/* =====================================
+   STORE LIST FLOW
+   ===================================== */
+.stores-flow{
+  background:var(--bg);
+  padding:60px 0;border-bottom:1px solid var(--line);
+}
+.stores-flow__head{text-align:center;margin-bottom:32px;}
+.stores-flow__row{
+  display:flex;gap:14px;overflow:hidden;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  margin-bottom:14px;
+}
+.stores-flow__row:last-child{margin-bottom:0;}
+.stores-flow__track{
+  display:flex;gap:14px;animation:marquee 90s linear infinite;
+}
+.stores-flow__row--reverse .stores-flow__track{
+  animation-direction:reverse;animation-duration:100s;
+}
+.store-chip{
+  flex-shrink:0;display:inline-flex;align-items:center;gap:10px;
+  padding:11px 22px;
+  border:1px solid var(--line);
+  background:var(--bg-2);
+  font-family:var(--display);font-size:15px;font-weight:500;
+  color:var(--cream);letter-spacing:-.01em;
+}
+.store-chip__dot{
+  width:6px;height:6px;background:var(--red);border-radius:50%;
+}
+.store-chip__badge{
+  font-family:var(--display);font-weight:600;
+  font-size:11px;letter-spacing:.04em;color:var(--red);
+  padding:2px 8px;border:1px solid var(--red);
+}
+
+/* =====================================
+   STORY — 본점 이야기
+   ===================================== */
+.story{padding:100px 0 160px;background:var(--bg);}
+.story__inner{
+  display:grid;grid-template-columns:1fr 1.1fr;gap:90px;align-items:center;
+}
+.story__media{
+  aspect-ratio:3/4;position:relative;overflow:hidden;
+  border:1px solid var(--line);
+}
+.story__media img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.6s cubic-bezier(.2,.7,.2,1);
+}
+.story__media:hover img{transform:scale(1.05);}
+.story__media-tag{
+  position:absolute;top:24px;left:24px;
+  background:var(--red);color:var(--cream);
+  padding:10px 18px;
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.2em;font-weight:600;
+  z-index:2;
+}
+.story__num{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(120px,18vw,200px);
+  color:var(--red);line-height:.9;letter-spacing:-.04em;
+  display:flex;align-items:baseline;gap:14px;
+}
+.story__num small{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:.18em;color:var(--gold);letter-spacing:.2em;
+  font-weight:400;
+}
+.story h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(38px,5vw,64px);
+  line-height:1.15;letter-spacing:-.025em;
+  margin:24px 0 32px;
+}
+.story h2 em{font-style:normal;color:var(--red);}
+.story p{
+  font-family:var(--display);font-weight:500;
+  font-size:18px;line-height:2;
+  color:rgba(247,241,227,.75);
+  max-width:540px;margin-bottom:24px;
+}
+.story__sign{
+  margin-top:32px;
+  font-family:var(--display);font-weight:500;
+  color:var(--red);font-size:16px;letter-spacing:-.01em;
+}
+@media(max-width:900px){
+  .story{padding:100px 0;}
+  .story__inner{grid-template-columns:1fr;gap:60px;}
+  .story__num{font-size:120px;}
+}
+
+/* =====================================
+   MENU SHOW — 원조 김치찌개 히어로 + 캐러셀
+   ===================================== */
+.menu-show{
+  padding:100px 0 160px;
+  background:var(--bg);
+  position:relative;overflow:hidden;
+}
+.menu-show::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%, rgba(212,21,26,.16), transparent 60%);
+  pointer-events:none;
+}
+.menu-show__head{
+  text-align:center;margin-bottom:88px;
+  position:relative;z-index:2;
+}
+.menu-show__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(40px,5.5vw,76px);
+  line-height:1.1;letter-spacing:-.025em;
+  margin-top:0;color:var(--cream);
+}
+.menu-show__head h2 em{font-style:normal;color:var(--red);}
+
+/* HERO */
+.menu-show__hero{
+  display:grid;grid-template-columns:1.1fr 1fr;
+  gap:80px;align-items:center;
+  position:relative;z-index:2;
+  margin-bottom:120px;
+}
+.menu-show__hero-photo{
+  position:relative;
+  aspect-ratio:1/1;
+  border-radius:50%;overflow:hidden;
+  border:4px solid var(--red);
+  box-shadow:
+    0 36px 90px rgba(212,21,26,.45),
+    0 0 0 12px rgba(10,8,7,.7);
+}
+.menu-show__hero-photo img{
+  width:100%;height:100%;object-fit:cover;
+}
+.menu-show__hero-stamp{
+  position:absolute;bottom:6%;left:50%;
+  transform:translateX(-50%);
+  text-align:center;color:var(--cream);
+  text-shadow:0 2px 12px rgba(0,0,0,.9);
+  z-index:2;
+}
+.menu-show__hero-tag{
+  display:inline-block;
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:11px;letter-spacing:.4em;color:var(--gold);
+  padding:5px 14px;
+  border:1px solid rgba(200,166,101,.6);
+  margin-bottom:10px;
+}
+.menu-show__hero-since{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.35em;
+  color:rgba(247,241,227,.75);
+}
+.menu-show__hero-photo::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 35%, transparent 40%, rgba(0,0,0,.55));
+  pointer-events:none;
+}
+
+.menu-show__hero-text{}
+.menu-show__hero-no{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:13px;letter-spacing:.3em;color:var(--red);
+  margin-bottom:24px;
+}
+.menu-show__hero-text h3{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(40px,5vw,72px);
+  line-height:1.05;letter-spacing:-.03em;
+  color:var(--cream);margin-bottom:28px;
+}
+.menu-show__hero-text h3 em{font-style:normal;color:var(--red);}
+.menu-show__hero-text p{
+  font-family:var(--display);font-weight:500;
+  font-size:17px;line-height:1.85;
+  color:rgba(247,241,227,.78);max-width:480px;
+}
+
+/* CAROUSEL */
+.menu-carousel{
+  position:relative;z-index:2;
+  border-top:1px solid var(--line);
+  padding-top:60px;
+}
+.menu-carousel__head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:36px;
+}
+.menu-carousel__label{
+  font-family:var(--display);font-weight:700;
+  font-size:18px;letter-spacing:-.02em;
+  color:var(--cream);
+}
+.menu-carousel__nav{
+  display:flex;align-items:center;gap:24px;
+}
+.menu-carousel__btn{
+  width:48px;height:48px;
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--cream);
+  font-size:20px;cursor:pointer;
+  transition:all .25s;
+}
+.menu-carousel__btn:hover{
+  background:var(--red);border-color:var(--red);color:var(--cream);
+}
+.menu-carousel__count{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:14px;letter-spacing:.15em;color:var(--red);
+  min-width:64px;text-align:center;
+}
+.menu-carousel__count span{color:var(--cream);font-size:18px;}
+
+.menu-carousel__viewport{
+  overflow:hidden;
+  margin:0 -16px;
+}
+.menu-carousel__track{
+  display:flex;
+  transition:transform .65s cubic-bezier(.22, .8, .26, 1);
+  will-change:transform;
+}
+.menu-carousel__card{
+  flex:0 0 calc(25% - 16px);
+  margin:0 8px;
+  position:relative;
+}
+.menu-carousel__card img{
+  width:100%;aspect-ratio:1/1;object-fit:cover;
+  border:1px solid var(--line);
+  transition:transform .9s cubic-bezier(.2,.7,.2,1);
+}
+.menu-carousel__card:hover img{transform:scale(1.04);}
+.menu-carousel__name{
+  margin-top:18px;
+  font-family:var(--display);font-weight:700;
+  font-size:16px;letter-spacing:-.02em;
+  color:var(--cream);
+}
+
+@media(max-width:980px){
+  .menu-show__hero{grid-template-columns:1fr;gap:48px;margin-bottom:80px;}
+  .menu-show__hero-photo{max-width:380px;margin:0 auto;}
+  .menu-show__hero-text{text-align:center;}
+  .menu-show__hero-text p{margin-left:auto;margin-right:auto;}
+  .menu-carousel__card{flex:0 0 calc(33.333% - 16px);}
+}
+@media(max-width:680px){
+  .menu-show{padding:100px 0;}
+  .menu-show__hero{margin-bottom:60px;}
+  .menu-carousel__card{flex:0 0 calc(50% - 16px);}
+  .menu-carousel__name{font-size:14px;}
+  .menu-carousel__btn{width:40px;height:40px;}
+}
+
+/* =====================================
+   MENU SCROLL WHEEL — 스크롤 진행률에 따라 회전 (legacy, unused)
+   ===================================== */
+.menu-scroll{
+  position:relative;
+  background:var(--bg);
+}
+.menu-scroll__container{
+  height:300vh;
+  position:relative;
+}
+.menu-scroll__sticky{
+  position:sticky;top:0;
+  height:100vh;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.menu-scroll__sticky::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 60%, rgba(212,21,26,.18), transparent 65%);
+  pointer-events:none;
+}
+.menu-scroll__head{
+  text-align:center;padding:80px 24px 0;
+  position:relative;z-index:3;
+}
+.menu-scroll__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(36px,5vw,68px);
+  line-height:1.1;letter-spacing:-.025em;
+  margin-top:18px;color:var(--cream);
+}
+.menu-scroll__head h2 em{font-style:normal;color:var(--red);}
+.menu-scroll__head p{
+  font-family:var(--display);font-size:13px;
+  color:rgba(247,241,227,.5);
+  margin-top:14px;letter-spacing:-.01em;
+}
+
+.menu-scroll__stage{
+  flex:1;position:relative;
+  overflow:hidden;
+}
+.menu-scroll__wheel{
+  position:absolute;top:50%;left:50%;
+  width:min(130vw, 1300px);
+  aspect-ratio:1;
+  transform:translate(-50%,-50%) rotate(var(--rot, 0deg));
+  will-change:transform;
+}
+.menu-scroll__item{
+  position:absolute;top:50%;left:50%;
+  width:clamp(130px, 14vw, 200px);
+  transform:
+    translate(-50%,-50%)
+    rotate(calc(var(--i) * 30deg))
+    translateY(calc(min(54vw, 520px) * -1));
+}
+.menu-scroll__photo{
+  width:100%;aspect-ratio:1/1;
+  border-radius:50%;overflow:hidden;
+  border:3px solid var(--cream);
+  box-shadow:0 18px 44px rgba(0,0,0,.5), 0 0 0 1px rgba(212,21,26,.3);
+}
+.menu-scroll__photo img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s;
+}
+.menu-scroll__name{
+  margin-top:14px;text-align:center;
+  font-family:var(--display);font-weight:700;
+  font-size:14px;color:var(--cream);
+  letter-spacing:-.02em;line-height:1.25;
+  text-shadow:0 2px 8px rgba(0,0,0,.7);
+}
+
+.menu-scroll__center{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:5;text-align:center;
+}
+.menu-scroll__center-photo{
+  width:clamp(260px, 30vw, 380px);
+  aspect-ratio:1/1;
+  border-radius:50%;overflow:hidden;
+  border:4px solid var(--red);
+  box-shadow:
+    0 32px 80px rgba(212,21,26,.5),
+    0 0 0 10px rgba(10,8,7,.85);
+  position:relative;
+}
+.menu-scroll__center-photo img{
+  width:100%;height:100%;object-fit:cover;
+}
+.menu-scroll__center-photo::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 40%, transparent 30%, rgba(0,0,0,.7));
+  pointer-events:none;
+}
+.menu-scroll__center-info{
+  position:absolute;bottom:14%;left:0;right:0;
+  color:var(--cream);
+  text-shadow:0 2px 12px rgba(0,0,0,.8);
+}
+.menu-scroll__center-tag{
+  display:inline-block;
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:11px;letter-spacing:.4em;color:var(--gold);
+  padding:5px 14px;
+  border:1px solid rgba(200,166,101,.6);
+  margin-bottom:12px;
+}
+.menu-scroll__center-name{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(22px,2.6vw,32px);
+  letter-spacing:-.025em;line-height:1.05;
+}
+.menu-scroll__center-name em{font-style:normal;color:var(--red);}
+.menu-scroll__center-since{
+  margin-top:6px;
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.35em;
+  color:rgba(247,241,227,.7);
+}
+
+@media(max-width:760px){
+  .menu-scroll__container{height:220vh;}
+  .menu-scroll__wheel{width:170vw;}
+  .menu-scroll__item{
+    width:clamp(96px, 22vw, 140px);
+    transform:
+      translate(-50%,-50%)
+      rotate(calc(var(--i) * 30deg))
+      translateY(calc(-68vw));
+  }
+  .menu-scroll__name{font-size:11px;margin-top:8px;}
+  .menu-scroll__head{padding:60px 16px 0;}
+}
+
+/* =====================================
+   MENU — 에디토리얼 그리드 (legacy, unused)
+   ===================================== */
+.menu-section{
+  padding:160px 0 180px;
+  background:var(--bg);
+  position:relative;
+}
+.menu-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%, rgba(212,21,26,.12), transparent 60%);
+  pointer-events:none;
+}
+.menu-section__head{
+  text-align:center;margin-bottom:100px;
+  position:relative;z-index:2;
+}
+.menu-section__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(48px, 6.5vw, 92px);
+  line-height:1.05;letter-spacing:-.03em;
+  margin-top:24px;color:var(--cream);
+}
+.menu-section__head h2 em{font-style:normal;color:var(--red);}
+.menu-section__head p{
+  font-family:var(--display);font-weight:500;
+  font-size:17px;color:rgba(247,241,227,.7);
+  margin-top:24px;line-height:1.8;
+}
+
+/* HERO — 시그니처 원조 김치찌개 */
+.menu-section__hero{
+  display:grid;grid-template-columns:1.35fr 1fr;
+  gap:64px;align-items:center;
+  margin-bottom:120px;
+  position:relative;z-index:2;
+}
+.menu-section__hero-photo{
+  position:relative;aspect-ratio:5/4;overflow:hidden;
+  border:1px solid var(--line);
+}
+.menu-section__hero-photo img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.6s cubic-bezier(.2,.7,.2,1);
+}
+.menu-section__hero:hover .menu-section__hero-photo img{transform:scale(1.04);}
+.menu-section__hero-no{
+  position:absolute;top:28px;left:28px;z-index:2;
+  font-family:var(--serif-en);font-style:italic;
+  font-size:13px;letter-spacing:.35em;color:var(--gold);
+  padding:8px 16px;background:rgba(10,8,7,.72);
+  border:1px solid rgba(200,166,101,.4);
+}
+.menu-section__hero-text{padding:24px 0;}
+.menu-section__hero-tag{
+  display:inline-block;
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:11px;letter-spacing:.4em;color:var(--red);
+  padding:6px 16px;border:1px solid var(--red);
+  margin-bottom:28px;
+}
+.menu-section__hero-text h3{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(36px, 4.8vw, 60px);
+  line-height:1.05;letter-spacing:-.025em;
+  margin-bottom:24px;color:var(--cream);
+}
+.menu-section__hero-text h3 em{font-style:normal;color:var(--red);}
+.menu-section__hero-text p{
+  font-family:var(--display);font-size:16px;
+  line-height:1.95;color:rgba(247,241,227,.7);
+}
+
+/* GRID — 12 타일 카테고리별 */
+.menu-cat{
+  margin-bottom:100px;
+  position:relative;z-index:2;
+}
+.menu-cat:last-child{margin-bottom:0;}
+.menu-cat__head{
+  margin-bottom:48px;
+  padding-bottom:24px;
+  border-bottom:1px solid var(--line);
+}
+.menu-cat__name{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(24px, 2.8vw, 36px);
+  letter-spacing:-.025em;color:var(--cream);
+}
+.menu-cat__grid{
+  display:grid;
+  gap:32px 28px;
+}
+.menu-cat__grid--3{grid-template-columns:repeat(3, 1fr);}
+.menu-cat__grid--4{grid-template-columns:repeat(4, 1fr);}
+.menu-cat__grid--5{grid-template-columns:repeat(5, 1fr);}
+
+.menu-tile{position:relative;cursor:default;}
+.menu-tile__photo{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+  border:1px solid var(--line);margin-bottom:18px;
+}
+.menu-tile__photo img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.4s cubic-bezier(.2,.7,.2,1);
+}
+.menu-tile:hover .menu-tile__photo img{transform:scale(1.06);}
+.menu-tile__photo::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(10,8,7,.4));
+  pointer-events:none;
+}
+.menu-tile__meta{
+  display:flex;align-items:baseline;gap:14px;
+  padding:0 4px;
+}
+.menu-tile__no{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:12px;letter-spacing:.3em;color:var(--red);
+  flex-shrink:0;
+}
+.menu-tile__name{
+  font-family:var(--display);font-weight:700;
+  font-size:18px;letter-spacing:-.02em;line-height:1.3;
+  color:var(--cream);
+  transition:color .3s;
+}
+.menu-tile:hover .menu-tile__name{color:var(--red);}
+
+@media(max-width:1100px){
+  .menu-cat__grid--5{grid-template-columns:repeat(4, 1fr);}
+  .menu-cat__grid--4{grid-template-columns:repeat(3, 1fr);}
+}
+@media(max-width:980px){
+  .menu-section__hero{grid-template-columns:1fr;gap:32px;margin-bottom:80px;}
+  .menu-section__hero-photo{aspect-ratio:4/3;}
+  .menu-cat__grid--3,.menu-cat__grid--4,.menu-cat__grid--5{grid-template-columns:repeat(3, 1fr);gap:24px 18px;}
+}
+@media(max-width:640px){
+  .menu-section{padding:120px 0;}
+  .menu-cat{margin-bottom:72px;}
+  .menu-cat__grid--3,.menu-cat__grid--4,.menu-cat__grid--5{grid-template-columns:repeat(2, 1fr);gap:24px 14px;}
+  .menu-tile__name{font-size:16px;}
+  .menu-cat__name{font-size:22px;}
+}
+
+/* =====================================
+   STATS TICKER
+   ===================================== */
+.ticker{
+  background:var(--bg-2);color:var(--cream);
+  padding:90px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.ticker__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+.ticker__cell{border-right:1px solid var(--line);padding:0 16px;}
+.ticker__cell:last-child{border-right:none;}
+.ticker__num{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(48px,6vw,82px);
+  line-height:.95;letter-spacing:-.03em;color:var(--red);
+  font-feature-settings:"tnum";
+}
+.ticker__num--text{
+  font-size:clamp(40px,5vw,68px);
+  letter-spacing:-.025em;
+}
+.ticker__num small{
+  font-family:var(--display);font-weight:500;
+  font-size:.4em;color:var(--cream);margin-left:6px;
+}
+.ticker__label{
+  margin-top:14px;
+  font-family:var(--display);font-weight:500;
+  font-size:13px;letter-spacing:.04em;color:var(--sub);
+}
+@media(max-width:780px){
+  .ticker__grid{grid-template-columns:repeat(2,1fr);gap:48px 16px;}
+  .ticker__cell:nth-child(2){border-right:none;}
+}
+
+/* =====================================
+   INGREDIENT — 재료/정육 (큰 가로 사진)
+   ===================================== */
+.ingredient{padding:100px 0 160px;background:var(--bg);}
+.ingredient__head{
+  text-align:center;margin-bottom:80px;
+}
+.ingredient__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(38px,5.5vw,72px);
+  line-height:1.1;letter-spacing:-.025em;
+  margin-top:0;color:var(--cream);
+}
+.ingredient__head h2 em{font-style:normal;color:var(--red);}
+.ingredient__head p{
+  font-family:var(--display);color:rgba(247,241,227,.65);font-size:16px;
+  margin-top:20px;line-height:1.8;max-width:580px;margin-left:auto;margin-right:auto;
+}
+.ingredient__row{
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px;
+}
+.ingredient__cell{
+  position:relative;aspect-ratio:4/5;overflow:hidden;
+  border:1px solid var(--line);
+}
+.ingredient__cell img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.6s cubic-bezier(.2,.7,.2,1);
+}
+.ingredient__cell:hover img{transform:scale(1.06);}
+.ingredient__cell-label{
+  position:absolute;left:28px;bottom:28px;right:28px;z-index:2;
+  color:var(--cream);
+}
+.ingredient__cell-label::before{
+  content:'';position:absolute;inset:-30px -28px -28px -28px;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.75));
+  z-index:-1;pointer-events:none;
+}
+.ingredient__cell-name{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(22px,2.6vw,32px);
+  letter-spacing:-.025em;line-height:1.15;
+}
+
+.ingredient__row--single{grid-template-columns:1fr;}
+.ingredient__row--single .ingredient__cell{aspect-ratio:21/9;}
+
+@media(max-width:860px){
+  .ingredient__row{grid-template-columns:1fr;gap:16px;}
+}
+
+/* =====================================
+   MENU SPREAD — 전체 메뉴 풀블리드 (Menu Wheel 위)
+   ===================================== */
+.menu-spread{
+  position:relative;
+  height:min(90vh, 880px);
+  min-height:560px;
+  background:var(--bg);
+  overflow:hidden;
+}
+.menu-spread__media{position:absolute;inset:0;}
+.menu-spread__media img{
+  width:100%;height:100%;object-fit:cover;
+  opacity:.78;
+  filter:contrast(1.03) saturate(1.05);
+}
+.menu-spread__overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg, rgba(10,8,7,.5) 0%, rgba(10,8,7,.2) 35%, rgba(10,8,7,.95) 100%),
+    radial-gradient(ellipse at 50% 100%, rgba(212,21,26,.25), transparent 70%);
+}
+.menu-spread__caption{
+  position:absolute;left:0;right:0;bottom:80px;
+  text-align:center;padding:0 24px;z-index:2;
+  color:var(--cream);
+}
+.menu-spread__caption h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(44px,7vw,96px);
+  line-height:1.05;letter-spacing:-.03em;
+  margin:24px 0 22px;
+}
+.menu-spread__caption p{
+  font-family:var(--display);font-weight:500;
+  font-size:17px;line-height:1.9;
+  color:rgba(247,241,227,.78);
+  max-width:520px;margin:0 auto;
+}
+@media(max-width:680px){
+  .menu-spread{height:min(80vh, 600px);}
+  .menu-spread__caption{bottom:48px;}
+}
+
+/* =====================================
+   RECEIPTS — 영수증 인증 후기
+   ===================================== */
+.receipts{
+  padding:90px 0 140px;
+  background:var(--bg-2);
+  border-top:1px solid var(--line);
+  position:relative;overflow:hidden;
+}
+.receipts::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%, rgba(212,21,26,.1), transparent 60%);
+  pointer-events:none;
+}
+.receipts__head{
+  text-align:center;margin-bottom:80px;
+  position:relative;z-index:2;
+}
+.receipts__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(38px,5.5vw,72px);
+  line-height:1.1;letter-spacing:-.025em;
+  margin-top:0;color:var(--cream);
+}
+.receipts__head h2 em{font-style:normal;color:var(--red);}
+.receipts__head p{
+  font-family:var(--display);font-weight:500;
+  color:rgba(247,241,227,.7);font-size:16px;
+  margin-top:20px;line-height:1.8;
+  max-width:520px;margin-left:auto;margin-right:auto;
+}
+.receipts__grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:36px 32px;
+  position:relative;z-index:2;
+  align-items:stretch;
+}
+.receipt{
+  display:flex;flex-direction:column;height:100%;
+}
+.receipt__paper{
+  flex-shrink:0;
+  background:#f5efe1;
+  color:#2a2218;
+  padding:32px 28px 24px;
+  font-family:'Courier New','Nanum Gothic Coding',monospace;
+  font-size:13px;
+  position:relative;
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+  --notch:9px;
+  --notch-bg:var(--bg-2);
+  background:
+    radial-gradient(circle at 50% 0, var(--notch-bg) var(--notch), transparent calc(var(--notch) + 1px)),
+    linear-gradient(180deg, #f7f1e3, #ebe2cb);
+}
+.receipt__paper::before,
+.receipt__paper::after{
+  content:'';position:absolute;left:0;right:0;height:14px;
+  background-image:radial-gradient(circle at 7px 7px, var(--bg-2) 7px, transparent 8px);
+  background-size:14px 14px;background-repeat:repeat-x;
+}
+.receipt__paper::before{top:-7px;}
+.receipt__paper::after{bottom:-7px;}
+.receipt__head{
+  text-align:center;margin-bottom:18px;padding-bottom:14px;
+  border-bottom:1px dashed #7a6a4f;
+}
+.receipt__brand{
+  font-family:var(--display);font-weight:900;
+  font-size:16px;letter-spacing:-.02em;color:#1a1410;
+}
+.receipt__brand-sub{
+  font-size:10px;letter-spacing:.15em;
+  color:#7a6a4f;margin-top:4px;
+}
+.receipt__line{
+  height:0;border-top:1px solid #c8b994;margin:10px 0;
+}
+.receipt__line--dashed{border-top:1px dashed #7a6a4f;margin:14px 0;}
+.receipt__rows{display:flex;flex-direction:column;gap:6px;}
+.receipt__row{
+  display:flex;justify-content:space-between;
+  font-size:13px;color:#2a2218;
+}
+.receipt__row span:last-child{color:#5a4a30;}
+.receipt__total{
+  display:flex;justify-content:space-between;
+  font-weight:900;font-size:14px;
+  color:#a01217;font-family:var(--display);
+}
+.receipt__date{
+  margin-top:14px;text-align:center;
+  font-size:10px;letter-spacing:.06em;
+  color:#7a6a4f;
+}
+.receipt__review{
+  margin-top:32px;padding:0 6px;
+  position:relative;flex:1;
+  display:flex;flex-direction:column;justify-content:flex-start;
+}
+.receipt__review::before{
+  content:'"';position:absolute;left:-6px;top:-22px;
+  font-family:var(--serif-en);font-size:60px;
+  color:var(--red);line-height:1;opacity:.85;
+}
+.receipt__review p{
+  font-family:var(--display);font-weight:500;
+  font-size:16px;line-height:1.7;letter-spacing:-.01em;
+  color:rgba(247,241,227,.92);
+  flex:1;
+}
+.receipt__author{
+  margin-top:14px;
+  font-family:var(--display);font-weight:600;
+  font-size:13px;color:var(--red);letter-spacing:-.01em;
+  flex-shrink:0;
+}
+.receipts__note{
+  margin-top:64px;text-align:center;
+  font-family:var(--display);font-size:12px;
+  color:rgba(247,241,227,.4);letter-spacing:-.01em;
+  position:relative;z-index:2;
+}
+@media(max-width:980px){
+  .receipts__grid{grid-template-columns:repeat(2,1fr);gap:32px 24px;}
+}
+@media(max-width:640px){
+  .receipts__grid{grid-template-columns:1fr;gap:48px;}
+  .receipt{max-width:380px;margin:0 auto;width:100%;}
+}
+
+/* =====================================
+   SIGNATURE — 시그니처 메뉴 (큰 사진 + 텍스트)
+   ===================================== */
+/* =====================================
+   STRIP VIDEO — 세로 영상 + 옆 텍스트 (사진/영상 안 겹침)
+   ===================================== */
+.strip-video{
+  width:100%;
+  background:#0a0807;
+  padding:100px 0;
+  position:relative;
+}
+.strip-video__inner{
+  display:flex;align-items:center;justify-content:center;
+  gap:80px;
+}
+.strip-video__text{
+  flex:1;max-width:480px;
+  color:var(--cream);
+}
+.strip-video__line{
+  display:inline-block;
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:13px;letter-spacing:.4em;color:var(--gold);
+  padding-bottom:12px;border-bottom:1px solid rgba(200,166,101,.4);
+  margin-bottom:24px;
+}
+.strip-video__text h3{
+  font-family:var(--display-title);font-weight:400;
+  font-size:clamp(38px,5vw,64px);
+  line-height:1.1;letter-spacing:-.025em;
+  margin-bottom:24px;
+}
+.strip-video__text h3 em{font-style:normal;color:var(--red);}
+.strip-video__desc{
+  font-family:var(--display);font-weight:500;
+  font-size:15px;line-height:1.8;
+  color:rgba(247,241,227,.78);
+}
+.strip-video__media{
+  flex-shrink:0;
+  width:320px;
+  aspect-ratio:9/16;
+  position:relative;
+  overflow:hidden;  /* CRITICAL */
+  border-radius:6px;
+  box-shadow:0 30px 70px rgba(0,0,0,.5), 0 0 0 1px rgba(247,241,227,.08);
+  background:#000;
+}
+.strip-video__poster{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  z-index:1;
+}
+.strip-video__media iframe.vimeo-bg{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  border:0;z-index:2;
+  pointer-events:none;
+}
+@media(max-width:860px){
+  .strip-video{padding:60px 0;}
+  .strip-video__inner{
+    flex-direction:column;gap:36px;
+    padding:0 24px;
+  }
+  .strip-video__text{text-align:center;max-width:100%;}
+  .strip-video__media{width:260px;}
+}
+
+/* =====================================
+   SIGNATURE MEDIA + INGREDIENT CELL — 영상 overflow 방지
+   ===================================== */
+.signature__media{
+  position:relative;
+  overflow:hidden;  /* CRITICAL — iframe overflow 방지 */
+  background:#0a0807;
+}
+.signature__media iframe.vimeo-bg{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  border:0;
+  pointer-events:none;
+  z-index:2;
+}
+.ingredient__cell{
+  position:relative;
+  overflow:hidden;  /* CRITICAL */
+}
+.ingredient__cell iframe.vimeo-bg{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  border:0;
+  pointer-events:none;
+  z-index:2;
+}
+
+/* === Vimeo 영상 비율에 맞춰 컨테이너 비율 강제 (짤림 방지) === */
+/* 가로 16:9 영상 → 컨테이너도 16:9 */
+.signature__media[data-video-aspect="16/9"]{
+  aspect-ratio:16/9 !important;
+}
+/* 세로 9:16 영상 → 컨테이너에 letterbox (검은 배경 + 가운데 정렬) */
+.ingredient__cell[data-video-aspect="9/16"]{
+  background:#0a0807;
+}
+.ingredient__cell[data-video-aspect="9/16"] iframe.vimeo-bg{
+  /* 높이 100%로 맞추고 너비는 비율 따라 (양 옆 검은 여백) */
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+  height:100%;
+  width:auto;
+  aspect-ratio:9/16;
+  max-width:none;
+  inset:auto;
+}
+/* hero video도 같은 처리 (16:9 가로) */
+.hero__video-wrap[data-video-aspect="16/9"]{
+  aspect-ratio:16/9 !important;
+}
+
+.signature{padding:100px 0 160px;background:var(--bg);}
+.signature__head{text-align:center;margin-bottom:80px;}
+.signature__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(38px,5.5vw,72px);
+  line-height:1.1;letter-spacing:-.025em;
+  margin-top:0;color:var(--cream);
+}
+.signature__head h2 em{font-style:normal;color:var(--red);}
+
+.signature__block{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+  margin-bottom:120px;
+}
+.signature__block:last-child{margin-bottom:0;}
+.signature__block:nth-child(even){direction:rtl;}
+.signature__block:nth-child(even) > *{direction:ltr;}
+.signature__media{
+  position:relative;aspect-ratio:3/4;overflow:hidden;
+  border:1px solid var(--line);
+}
+.signature__media img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.6s cubic-bezier(.2,.7,.2,1);
+}
+.signature__media:hover img{transform:scale(1.05);}
+.signature__media-label{
+  position:absolute;top:24px;left:24px;
+  background:var(--red);color:var(--cream);
+  padding:8px 16px;
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.2em;font-weight:600;
+  z-index:2;
+}
+.signature__no{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:13px;letter-spacing:.3em;color:var(--red);
+  margin-bottom:18px;
+}
+.signature__title{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(36px,4.5vw,56px);
+  line-height:1.15;letter-spacing:-.025em;
+  color:var(--cream);margin-bottom:24px;
+  /* 와이프 등장 — reveal 기본 transform 오버라이드 */
+  position:relative;
+}
+.signature__title.reveal{
+  opacity:1;transform:none;
+  clip-path:inset(0 105% 0 -8px);
+  transition:clip-path 1.4s cubic-bezier(.85,.05,.15,1);
+}
+.signature__title.reveal.is-in{
+  clip-path:inset(0 -8px 0 -8px);
+}
+.signature__title em{font-style:normal;color:var(--red);}
+
+/* 메뉴 히어로 h3도 와이프 등장 */
+.menu-show__hero-text h3.reveal{
+  opacity:1;transform:none;
+  clip-path:inset(0 105% 0 -8px);
+  transition:clip-path 1.4s cubic-bezier(.85,.05,.15,1);
+}
+.menu-show__hero-text h3.reveal.is-in{
+  clip-path:inset(0 -8px 0 -8px);
+}
+.signature__desc{
+  font-family:var(--display);font-weight:500;
+  font-size:17px;line-height:1.9;
+  color:rgba(247,241,227,.75);max-width:480px;
+}
+.signature__points{
+  margin-top:32px;display:flex;flex-direction:column;gap:14px;
+}
+.signature__points li{
+  list-style:none;
+  display:flex;align-items:center;gap:14px;
+  font-family:var(--display);font-weight:500;font-size:15px;
+  color:rgba(247,241,227,.8);
+}
+.signature__points li::before{
+  content:'';width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;
+}
+@media(max-width:860px){
+  .signature__block{grid-template-columns:1fr;gap:40px;margin-bottom:80px;}
+  .signature__block:nth-child(even){direction:ltr;}
+}
+
+/* =====================================
+   ATMOSPHERE — 점심부터 한 잔까지 (4WAY 매출)
+   ===================================== */
+.atmosphere{
+  padding:90px 0 140px;
+  background:var(--bg-2);
+  position:relative;overflow:hidden;
+}
+.atmosphere::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 30%, rgba(212,21,26,.18), transparent 65%);
+  pointer-events:none;
+}
+.atmosphere__head{
+  text-align:center;margin-bottom:72px;position:relative;z-index:2;
+}
+.atmosphere__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(38px,5.5vw,72px);
+  line-height:1.1;letter-spacing:-.025em;
+  margin-top:0;color:var(--cream);
+}
+.atmosphere__head h2 em{font-style:normal;color:var(--red);}
+.atmosphere__head p{
+  font-family:var(--display);font-weight:500;
+  color:rgba(247,241,227,.7);font-size:17px;
+  margin-top:22px;line-height:1.85;
+  max-width:560px;margin-left:auto;margin-right:auto;
+}
+
+.atmosphere__grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  grid-template-rows:auto auto;
+  gap:18px;
+  position:relative;z-index:2;
+}
+.atmosphere__cell{
+  position:relative;overflow:hidden;
+  border:1px solid var(--line);
+}
+.atmosphere__cell--main{
+  grid-row:span 2;
+  aspect-ratio:3/4;
+}
+.atmosphere__cell--top,.atmosphere__cell--bottom{
+  aspect-ratio:5/4;
+}
+.atmosphere__cell img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.6s cubic-bezier(.2,.7,.2,1);
+}
+.atmosphere__cell:hover img{transform:scale(1.04);}
+.atmosphere__cell-label{
+  position:absolute;left:24px;right:24px;bottom:24px;z-index:2;
+  color:var(--cream);
+}
+.atmosphere__cell-label::before{
+  content:'';position:absolute;inset:-30px -30px -30px -30px;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.78));
+  z-index:-1;pointer-events:none;
+}
+.atmosphere__cell-no{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.3em;color:var(--gold);
+  margin-bottom:8px;
+}
+.atmosphere__cell-name{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(20px,2.4vw,30px);
+  letter-spacing:-.02em;line-height:1.2;
+}
+.atmosphere__cell-name em{font-style:normal;color:var(--red);}
+.atmosphere__cell-sub{
+  margin-top:8px;
+  font-family:var(--display);font-weight:500;
+  font-size:13px;color:rgba(247,241,227,.7);
+  letter-spacing:-.01em;
+}
+
+.atmosphere__ways{
+  margin-top:80px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+  position:relative;z-index:2;
+}
+.atmosphere__way{
+  padding:48px 24px;
+  border-right:1px solid var(--line);
+  text-align:center;
+}
+.atmosphere__way:last-child{border-right:none;}
+.atmosphere__way-num{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(44px,5vw,68px);
+  letter-spacing:-.04em;line-height:1;color:var(--red);
+  margin-bottom:18px;
+  font-feature-settings:"tnum";
+}
+.atmosphere__way-title{
+  font-family:var(--display);font-weight:900;font-size:22px;
+  color:var(--cream);letter-spacing:-.02em;margin-bottom:8px;
+}
+.atmosphere__way-desc{
+  font-family:var(--display);font-size:13px;
+  color:rgba(247,241,227,.6);line-height:1.7;
+}
+
+@media(max-width:860px){
+  .atmosphere__grid{grid-template-columns:1fr;}
+  .atmosphere__cell--main{grid-row:auto;aspect-ratio:4/5;}
+  .atmosphere__ways{grid-template-columns:repeat(2,1fr);}
+  .atmosphere__way:nth-child(2){border-right:none;}
+  .atmosphere__way:nth-child(1),.atmosphere__way:nth-child(2){border-bottom:1px solid var(--line);}
+}
+
+/* =====================================
+   STORE DATA — 매출 카드
+   ===================================== */
+.stores-data{padding:160px 0;background:var(--bg-2);}
+.stores-data__head{text-align:center;margin-bottom:72px;}
+.stores-data__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(38px,5.5vw,72px);
+  line-height:1.1;letter-spacing:-.025em;
+  margin-top:24px;color:var(--cream);
+}
+.stores-data__head h2 em{font-style:normal;color:var(--red);}
+.stores-data__head p{
+  font-family:var(--display);color:rgba(247,241,227,.6);font-size:16px;margin-top:20px;
+}
+.stores-data__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;}
+.store-card{
+  background:var(--bg);border:1px solid var(--line);
+  padding:32px;position:relative;
+  transition:transform .35s,border-color .35s;
+}
+.store-card:hover{transform:translateY(-4px);border-color:var(--red);}
+.store-card__meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;}
+.store-card__chip{
+  background:var(--bg-2);color:rgba(247,241,227,.8);
+  padding:5px 12px;
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;font-weight:500;letter-spacing:.05em;
+  border:1px solid var(--line);
+}
+.store-card__chip--red{background:var(--red);color:var(--cream);border-color:var(--red);}
+.store-card__name{
+  font-family:var(--display);font-weight:900;font-size:24px;
+  letter-spacing:-.02em;line-height:1.1;margin-bottom:6px;color:var(--cream);
+}
+.store-card__loc{font-family:var(--display);color:var(--sub);font-size:13px;margin-bottom:24px;}
+.store-card__divider{height:1px;background:var(--line);margin-bottom:18px;}
+.store-card__label{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.2em;color:var(--sub);font-weight:500;margin-bottom:10px;
+}
+.store-card__num{
+  font-family:var(--display);font-weight:900;
+  font-size:38px;color:var(--red);letter-spacing:-.02em;line-height:1;
+}
+.store-card__num small{
+  font-family:var(--display);font-weight:500;
+  font-size:.45em;color:var(--cream);margin-left:6px;
+}
+
+/* =====================================
+   PROFIT CHART — 순이익 파이 차트 인포그래픽
+   ===================================== */
+.profit-chart{
+  padding:100px 0 160px;
+  background:var(--bg);
+  position:relative;overflow:hidden;
+}
+.profit-chart::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(180deg, rgba(10,8,7,.78), rgba(10,8,7,.7)),
+    var(--bg-image, url('images/p7.jpg')) center/cover no-repeat;
+  pointer-events:none;
+}
+.profit-chart::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 50%, rgba(212,21,26,.18), transparent 60%);
+  pointer-events:none;
+}
+.profit-chart__head{
+  text-align:center;margin-bottom:80px;
+  position:relative;z-index:2;
+}
+.profit-chart__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(38px,5.5vw,72px);
+  line-height:1.1;letter-spacing:-.025em;
+  margin-top:0;color:var(--cream);
+}
+.profit-chart__head h2 em{font-style:normal;color:var(--red);}
+.profit-chart__head p{
+  font-family:var(--display);font-weight:500;
+  color:rgba(247,241,227,.7);font-size:16px;
+  margin-top:20px;line-height:1.8;
+}
+
+.profit-chart__inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  position:relative;z-index:2;
+}
+
+.profit-chart__pie-wrap{
+  position:relative;
+  width:min(440px, 100%);
+  aspect-ratio:1/1;
+  margin:0 auto;
+}
+.profit-chart__pie{
+  width:100%;height:100%;
+  border-radius:50%;
+  background:conic-gradient(
+    var(--red)       0%   25%,
+    #9a8a6a         25%   60%,
+    #7a6a52         60%   80%,
+    #5a4a3a         80%   92%,
+    #3d3328         92%  100%
+  );
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+  position:relative;
+}
+.profit-chart__pie::after{
+  content:'';position:absolute;inset:30%;
+  background:var(--bg);
+  border-radius:50%;
+  box-shadow:inset 0 0 0 1px rgba(247,241,227,.22);
+}
+.profit-chart__pie-center{
+  position:absolute;inset:30%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  z-index:2;text-align:center;
+}
+.profit-chart__pie-label{
+  font-family:var(--serif-en);font-style:italic;
+  font-size:11px;letter-spacing:.32em;color:var(--gold);
+  margin-bottom:8px;
+}
+.profit-chart__pie-percent{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(48px,6.5vw,82px);
+  color:var(--red);line-height:.95;
+  letter-spacing:-.04em;
+  font-feature-settings:"tnum";
+}
+.profit-chart__pie-percent small{
+  font-size:.45em;font-weight:700;color:var(--cream);
+  margin-left:2px;
+}
+
+.profit-chart__legend{display:flex;flex-direction:column;}
+.profit-chart__row{
+  display:grid;grid-template-columns:18px 1fr auto;
+  align-items:center;gap:18px;
+  padding:18px 0;border-bottom:1px solid rgba(247,241,227,.22);
+  font-family:var(--display);
+  position:relative;z-index:2;
+}
+.profit-chart__row:last-child{border-bottom:none;}
+.profit-chart__row--main{padding:22px 0;border-bottom:2px solid var(--red);}
+.profit-chart__row .dot{width:18px;height:18px;border-radius:50%;background:#7a6a52;box-shadow:0 0 0 1px rgba(247,241,227,.15);}
+.profit-chart__row--main .dot{background:var(--red);box-shadow:0 0 0 2px rgba(212,21,26,.25);}
+.profit-chart__row .label{font-weight:600;font-size:16px;color:rgba(247,241,227,.92);}
+.profit-chart__row--main .label{font-weight:900;font-size:18px;color:var(--cream);}
+.profit-chart__row .pct{
+  font-family:var(--display);font-weight:900;
+  font-size:22px;color:var(--cream);
+  font-feature-settings:"tnum";letter-spacing:-.02em;
+}
+.profit-chart__row--main .pct{font-size:32px;color:var(--red);}
+.profit-chart__row[data-dot="g1"] .dot{background:#9a8a6a;}
+.profit-chart__row[data-dot="g2"] .dot{background:#7a6a52;}
+.profit-chart__row[data-dot="g3"] .dot{background:#5a4a3a;}
+.profit-chart__row[data-dot="g4"] .dot{background:#3d3328;}
+
+.profit-chart__note{
+  margin-top:48px;text-align:center;
+  font-family:var(--display);font-size:12px;
+  color:rgba(247,241,227,.45);letter-spacing:-.01em;
+  position:relative;z-index:2;
+}
+
+@media(max-width:900px){
+  .profit-chart{padding:100px 0;}
+  .profit-chart__inner{grid-template-columns:1fr;gap:48px;}
+  .profit-chart__pie-wrap{max-width:340px;}
+}
+
+/* =====================================
+   FEATURE — 4가지 이유
+   ===================================== */
+.feature{padding:100px 0 160px;background:var(--bg);}
+.feature__head{text-align:center;margin-bottom:80px;}
+.feature__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(38px,5.5vw,72px);
+  line-height:1.1;letter-spacing:-.025em;
+  margin-top:0;color:var(--cream);
+}
+.feature__head h2 em{font-style:normal;color:var(--red);}
+.feature__grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);border-left:1px solid var(--line);
+}
+.feature__cell{
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:48px 32px;background:var(--bg);position:relative;min-height:280px;
+  display:flex;flex-direction:column;
+  transition:background .3s,color .3s;
+}
+.feature__cell:hover{background:var(--red);}
+.feature__cell:hover .feature__no,
+.feature__cell:hover .feature__big{color:var(--cream);}
+.feature__cell:hover .feature__title::after{background:var(--cream);}
+.feature__no{
+  font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:14px;color:var(--red);letter-spacing:.2em;margin-bottom:48px;
+  transition:color .25s;
+}
+.feature__big{
+  font-family:var(--display);font-weight:900;
+  font-size:64px;line-height:.9;letter-spacing:-.04em;
+  color:var(--red);margin-bottom:18px;transition:color .25s;
+}
+.feature__title{
+  font-family:var(--display);font-weight:700;font-size:22px;
+  color:var(--cream);
+  margin-bottom:14px;line-height:1.2;letter-spacing:-.02em;
+  position:relative;padding-bottom:14px;
+}
+.feature__title::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:28px;height:2px;background:var(--red);transition:background .25s;
+}
+.feature__desc{
+  font-family:var(--display);font-weight:500;font-size:14px;
+  color:rgba(247,241,227,.7);line-height:1.8;margin-top:auto;
+}
+.feature__cell:hover .feature__desc{color:rgba(255,255,255,.85);}
+@media(max-width:980px){.feature__grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.feature__grid{grid-template-columns:1fr;}}
+
+/* =====================================
+   COUNTDOWN
+   ===================================== */
+.countdown{padding:90px 0 140px;background:var(--bg-2);position:relative;overflow:hidden;}
+.countdown::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(180deg, rgba(10,8,7,.7), rgba(10,8,7,.55), rgba(10,8,7,.75)),
+    var(--bg-image, url('images/p9.jpg')) center/cover no-repeat;
+  pointer-events:none;
+}
+.countdown::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 50%,rgba(212,21,26,.18),transparent 60%);pointer-events:none;
+}
+.countdown__inner{text-align:center;position:relative;z-index:2;}
+.countdown h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(36px,5vw,64px);
+  line-height:1.15;letter-spacing:-.025em;
+  margin:0 0 14px;color:var(--cream);
+}
+.countdown h2 em{font-style:normal;color:var(--red);}
+.countdown__desc{
+  font-family:var(--display);font-size:16px;
+  color:rgba(247,241,227,.65);margin-bottom:60px;
+}
+
+/* 새 타이머 — 박스 없이 큰 숫자 + 한글 단위 */
+.countdown__timer{
+  display:flex;justify-content:center;align-items:flex-end;
+  gap:clamp(28px,5vw,72px);
+  margin:0 auto 64px;max-width:760px;
+  padding:48px 24px;
+  position:relative;
+}
+.countdown__timer::before,
+.countdown__timer::after{
+  content:'';position:absolute;left:50%;transform:translateX(-50%);
+  width:clamp(180px, 30vw, 320px);height:1px;
+  background:linear-gradient(90deg, transparent, var(--red), transparent);
+}
+.countdown__timer::before{top:0;}
+.countdown__timer::after{bottom:0;}
+
+.countdown__box{
+  display:flex;flex-direction:column;align-items:center;
+  position:relative;
+  background:transparent;border:none;width:auto;padding:0;
+}
+.countdown__box-num{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(64px,9vw,118px);
+  color:var(--cream);line-height:.92;
+  letter-spacing:-.04em;
+  font-feature-settings:"tnum";
+}
+.countdown__box-label{
+  margin-top:12px;
+  font-family:var(--display);font-weight:600;
+  font-size:14px;letter-spacing:.2em;color:var(--red);
+}
+
+.countdown__sep{
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(40px,6vw,68px);
+  color:var(--red);opacity:.4;line-height:1;
+  padding-bottom:30px;
+  align-self:center;
+}
+
+.countdown__rows{
+  max-width:720px;margin:0 auto 54px;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);
+}
+.countdown__row{
+  background:var(--bg);padding:22px 30px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.countdown__row-l{font-size:15px;color:rgba(247,241,227,.75);}
+.countdown__row-r{font-family:var(--display);font-weight:700;font-size:20px;color:var(--red);}
+.countdown__row-r del{color:var(--sub);margin-right:8px;font-weight:400;font-family:var(--sans);font-size:14px;}
+
+.btn-primary{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--red);color:var(--cream);
+  padding:20px 44px;
+  font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:.02em;
+  transition:background .3s,transform .3s,box-shadow .3s;
+  box-shadow:0 8px 24px rgba(212,21,26,.4);
+}
+.btn-primary:hover{background:var(--red-deep);transform:translateY(-2px);box-shadow:0 14px 32px rgba(212,21,26,.55);}
+.btn-primary svg{transition:transform .3s;}
+.btn-primary:hover svg{transform:translateX(4px);}
+
+@media(max-width:680px){
+  .countdown__timer{gap:14px;padding:36px 12px;}
+  .countdown__box-num{font-size:clamp(46px,14vw,70px);}
+  .countdown__box-label{font-size:12px;letter-spacing:.15em;margin-top:8px;}
+  .countdown__sep{font-size:clamp(28px,8vw,42px);padding-bottom:24px;}
+  .countdown__rows{grid-template-columns:1fr;}
+}
+
+/* =====================================
+   PRICING / PROCESS — 다크 톤
+   ===================================== */
+.pricing{padding:100px 0 160px;background:var(--bg);}
+.pricing__head{text-align:center;margin-bottom:48px;}
+.pricing__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(38px,5.5vw,72px);line-height:1.1;
+  margin-top:0;color:var(--cream);
+}
+.pricing__table{max-width:820px;margin:0 auto;background:var(--bg-2);border:1px solid var(--line);}
+.pricing__row{
+  display:grid;grid-template-columns:1.2fr 2fr 1fr;
+  padding:24px 36px;border-bottom:1px solid var(--line);align-items:center;
+}
+.pricing__row:last-child{border-bottom:none;background:var(--red);color:var(--cream);}
+.pricing__row--head{
+  background:var(--bg);color:var(--cream);
+  font-family:var(--display);font-size:14px;letter-spacing:.1em;font-weight:700;
+  border-bottom-color:var(--red);
+}
+.pricing__row > span:first-child{font-family:var(--display);font-weight:700;font-size:17px;color:var(--cream);}
+.pricing__row > span:nth-child(2){font-family:var(--display);color:var(--sub);font-size:14px;}
+.pricing__row:last-child > span:first-child{color:var(--cream);}
+.pricing__row:last-child > span:nth-child(2){color:rgba(247,241,227,.7);}
+.pricing__row > span:last-child{
+  text-align:right;font-family:var(--display);font-weight:700;font-size:22px;
+  color:var(--red);letter-spacing:-.02em;
+}
+.pricing__row:last-child > span:last-child{color:var(--cream);font-size:28px;}
+.pricing__row > span:last-child del{font-family:var(--sans);font-size:13px;color:var(--sub);margin-right:8px;font-weight:400;}
+.pricing__note{text-align:center;font-size:12px;color:var(--sub);margin-top:20px;font-family:var(--display);}
+@media(max-width:680px){
+  .pricing__row{grid-template-columns:1.2fr 1fr;padding:18px 22px;}
+  .pricing__row > span:nth-child(2){display:none;}
+}
+
+.process{
+  padding:100px 0 160px;background:var(--bg-2);
+  position:relative;overflow:hidden;
+}
+.process::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(180deg, rgba(10,8,7,.78), rgba(10,8,7,.7)),
+    var(--bg-image, url('images/p6.jpg')) center/cover no-repeat;
+  pointer-events:none;
+}
+.process > *{position:relative;z-index:2;}
+.process__head{text-align:center;margin-bottom:72px;}
+.process__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(38px,5.5vw,72px);line-height:1.1;
+  margin-top:0;color:var(--cream);
+}
+.process__list{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border-top:1px solid var(--line);border-left:1px solid var(--line);
+}
+.process__item{
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--bg);padding:36px 24px;
+  transition:background .25s;
+}
+.process__item:hover{background:var(--red);}
+.process__item:hover .process__no{color:var(--cream);}
+.process__no{
+  font-family:var(--display);font-weight:900;font-size:48px;
+  color:var(--red);line-height:.95;margin-bottom:14px;
+  letter-spacing:-.04em;transition:color .25s;
+}
+.process__item h3{font-family:var(--display);font-weight:700;font-size:18px;margin-bottom:10px;letter-spacing:-.02em;color:var(--cream);}
+.process__item p{font-family:var(--display);font-size:13px;line-height:1.7;color:rgba(247,241,227,.65);}
+.process__item:hover h3,.process__item:hover p{color:var(--cream);}
+@media(max-width:980px){.process__list{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.process__list{grid-template-columns:repeat(2,1fr);}}
+
+/* =====================================
+   CONTACT
+   ===================================== */
+.contact{padding:100px 0 160px;background:var(--bg);position:relative;overflow:hidden;}
+.contact::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 75% 70%,rgba(212,21,26,.18),transparent 60%);
+  pointer-events:none;
+}
+.contact__inner{position:relative;display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start;}
+.contact__head h2{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(38px,5vw,64px);line-height:1.15;letter-spacing:-.025em;
+  margin:0 0 28px;color:var(--cream);
+}
+.contact__head h2 em{font-style:normal;color:var(--red);}
+.contact__head p{
+  font-family:var(--display);color:rgba(247,241,227,.7);
+  margin-bottom:48px;line-height:1.9;
+}
+.contact__tel{
+  font-family:var(--display);font-weight:900;font-size:44px;
+  color:var(--red);letter-spacing:-.02em;line-height:1;display:block;
+}
+.contact__time{font-family:var(--serif-en);font-style:italic;font-size:14px;color:var(--sub);margin-top:8px;letter-spacing:.1em;}
+
+.form{display:grid;gap:24px;}
+.form__row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.form__field label{
+  display:block;
+  font-family:var(--display);font-weight:600;
+  font-size:13px;letter-spacing:-.01em;color:var(--red);
+  margin-bottom:10px;
+}
+.form__field input,.form__field select,.form__field textarea{
+  width:100%;background:transparent;border:none;
+  border-bottom:1px solid var(--line);
+  padding:12px 0;font-family:var(--sans);font-size:15px;
+  color:var(--cream);transition:border-color .25s;
+}
+.form__field input:focus,.form__field select:focus,.form__field textarea:focus{
+  outline:none;border-bottom-color:var(--red);
+}
+.form__field input::placeholder,.form__field textarea::placeholder{color:rgba(247,241,227,.3);}
+.form__field select{
+  appearance:none;color:rgba(247,241,227,.5);
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23d4151a' d='M6 8 0 0h12z'/></svg>") no-repeat right center;
+}
+.form__field textarea{resize:vertical;min-height:80px;}
+.form__agree{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(247,241,227,.7);font-family:var(--display);}
+.form__agree input{width:auto;}
+.form__submit{
+  background:var(--red);color:var(--cream);padding:20px;
+  font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.04em;
+  transition:background .3s,transform .3s;
+}
+.form__submit:hover{background:var(--red-deep);transform:translateY(-1px);}
+@media(max-width:860px){
+  .contact__inner{grid-template-columns:1fr;gap:48px;}
+  .form__row{grid-template-columns:1fr;}
+}
+
+/* =====================================
+   FOOTER
+   ===================================== */
+.footer{
+  background:#050403;color:rgba(247,241,227,.5);
+  padding:80px 0 40px;font-size:13px;
+  font-family:var(--display);line-height:1.9;
+}
+.footer__top{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;
+  padding-bottom:48px;border-bottom:1px solid rgba(247,241,227,.08);
+  margin-bottom:32px;
+}
+.footer__brand{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.footer__seal{
+  height:90px;width:auto;flex-shrink:0;
+}
+.footer__seal img{height:100%;width:auto;object-fit:contain;display:block;}
+.footer__name{
+  font-family:var(--display);font-weight:900;font-size:24px;color:var(--cream);
+  letter-spacing:-.02em;line-height:1.1;
+}
+.footer__name small{
+  display:block;
+  font-family:var(--serif-en);font-style:italic;font-weight:400;
+  font-size:11px;color:var(--gold);letter-spacing:.3em;margin-top:4px;
+}
+.footer h4{
+  color:var(--cream);font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:14px;letter-spacing:.2em;margin-bottom:18px;
+}
+.footer__copy{font-size:11px;color:rgba(247,241,227,.3);font-family:var(--serif-en);font-style:italic;letter-spacing:.1em;}
+@media(max-width:860px){.footer__top{grid-template-columns:1fr;gap:32px;}}
+
+/* =====================================
+   FLOATING CTA
+   ===================================== */
+.float-cta{
+  position:fixed;right:24px;bottom:24px;z-index:90;
+  display:flex;align-items:center;gap:12px;
+  background:var(--red);color:#fff;
+  padding:16px 24px;border-radius:0;
+  box-shadow:0 12px 32px rgba(212,21,26,.5);
+  font-family:var(--display);font-weight:700;font-size:15px;
+  transition:transform .3s,background .3s;
+}
+.float-cta:hover{transform:translateY(-3px);background:var(--red-deep);}
+.float-cta__pulse{width:10px;height:10px;background:#fff;border-radius:50%;position:relative;}
+.float-cta__pulse::after{
+  content:'';position:absolute;inset:0;border-radius:50%;background:#fff;
+  animation:pulseExpand 1.6s infinite;
+}
+@keyframes pulseExpand{
+  0%{transform:scale(1);opacity:.7;}
+  100%{transform:scale(2.6);opacity:0;}
+}
+/* =====================================
+   POPUP MODALS — PC: 가운데 그룹 / 모바일: cascading 스택
+   ===================================== */
+.popups{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:none;
+  pointer-events:none;
+}
+.popups::before{
+  content:'';
+  position:absolute;inset:0;
+  background:rgba(10,8,7,.55);
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+  pointer-events:auto;
+  z-index:-1;
+}
+
+/* === PC: 가운데 기준 3개 나란히 (flex 그룹) === */
+.popups.show{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  gap:20px;
+  padding:40px 16px;
+}
+
+/* === 통일 구조 === */
+.popup{
+  position:relative;
+  pointer-events:auto;
+  width:320px;
+  max-height:calc(100vh - 80px);
+  display:flex;
+  flex-direction:column;
+  background:#0a0807;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.55);
+  animation:popupIn .55s cubic-bezier(.2,.8,.2,1.05) backwards;
+}
+.popup[data-popup-index="0"]{animation-delay:.05s;}
+.popup[data-popup-index="1"]{animation-delay:.18s;}
+.popup[data-popup-index="2"]{animation-delay:.3s;}
+
+@keyframes popupIn{
+  from{opacity:0;transform:translateY(20px) scale(.96);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+/* X 닫기 버튼 */
+.popup__close{
+  position:absolute;top:10px;right:10px;
+  width:32px;height:32px;
+  background:rgba(0,0,0,.55);color:#fff;
+  border:none;border-radius:50%;
+  font-size:20px;font-weight:300;line-height:1;
+  cursor:pointer;z-index:10;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.popup__close:hover{background:rgba(0,0,0,.85);}
+
+/* 이미지 영역 */
+.popup__image-link{
+  display:block;flex:1 1 auto;min-height:0;
+  overflow:hidden;
+}
+.popup__image{
+  display:block;width:100%;height:auto;object-fit:cover;
+}
+
+/* footer bar */
+.popup__footer-bar{
+  display:flex;flex-shrink:0;
+  background:#1a1410;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.popup__footer-bar button{
+  flex:1;background:transparent;border:none;
+  padding:13px 6px;
+  font-family:var(--sans);font-size:13px;font-weight:600;
+  color:rgba(247,241,227,.85);cursor:pointer;
+  transition:background .15s, color .15s;
+}
+.popup__footer-bar button:first-child{
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.popup__footer-bar button:hover{
+  background:rgba(212,21,26,.15);color:#fff;
+}
+
+/* === PC 반응형 (가운데 그룹 유지, 너비만 줄임) === */
+@media(max-width:1200px){
+  .popup{width:300px;}
+  .popups.show{gap:14px;}
+}
+@media(max-width:1080px){
+  .popup{width:280px;}
+  .popups.show{gap:10px;padding:30px 12px;}
+}
+
+/* === 모바일: cascading 스택, viewport에 딱 핏 === */
+@media(max-width:960px){
+  .popups.show{
+    display:block;
+    padding:0;
+  }
+  .popup,
+  .popup[data-popup-index="0"],
+  .popup[data-popup-index="1"],
+  .popup[data-popup-index="2"]{
+    position:absolute;
+    width:calc(100vw - 24px);
+    max-width:380px;
+    left:50%;
+    transform:translateX(-50%);
+    max-height:calc(100vh - 80px);
+    animation:popupInMobile .55s cubic-bezier(.2,.8,.2,1.05) backwards;
+  }
+  .popup[data-popup-index="0"]{top:30px;z-index:3;}
+  .popup[data-popup-index="1"]{top:48px;z-index:2;}
+  .popup[data-popup-index="2"]{top:66px;z-index:1;}
+}
+
+@keyframes popupInMobile{
+  from{opacity:0;transform:translateX(-50%) translateY(20px) scale(.96);}
+  to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
 }
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="top">
-    <span>— Loading</span>
-    <span>THISISPEARWAY · 2026</span>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav__brand">
+    <div class="nav__seal"><img src="images/logo2.svg" alt="화미옥 김치찌개"></div>
+  </a>
+  <div class="nav__menu">
+    <a href="#story">브랜드</a>
+    <a href="#menu">메뉴</a>
+    <a href="#signature">시그니처</a>
+    <a href="#stores">실매출</a>
+    <a href="#pricing">창업비용</a>
+    <a href="#cta" class="nav__cta">가맹문의</a>
   </div>
-  <div class="middle">
-    <div class="counter">Make. Mark. Repeat.</div>
-    <div class="progress-bar" id="loader-bar"></div>
+</nav>
+
+<!-- HERO — 디자인된 영상 영역 -->
+<section class="hero">
+  <div class="hero__side-since">SINCE 1987 · 원조 한식</div>
+  <div class="hero__side-label">화미옥 · 가맹점 모집</div>
+
+  <div class="hero__inner">
+    <!-- 영상 자리 -->
+    <div class="hero__video-wrap">
+      <!-- 실제 영상 들어갈 자리 -->
+      <!-- <video class="hero__video" autoplay muted loop playsinline src="VIDEO_LINK_HERE.mp4"></video> -->
+      <div class="placeholder-video"></div>
+      <div class="hero__video-overlay"></div>
+
+      <!-- 영상 위 좌상단 도장 (로고 자리 — 추후 교체 예정) -->
+      <div class="hero__corner-seal">
+        <img src="images/logo.svg" alt="화미옥 김치찌개">
+      </div>
+
+      <!-- 영상 위 하단 캡션 -->
+      <div class="hero__caption">
+        <div class="hero__caption-l">
+          1987년 석관동,<br>
+          <em>그 한 그릇</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- 영상 아래 큰 타이틀 -->
+    <div class="hero__title-zone">
+      <h1 class="hero__title">
+        <span class="t-mask"><span class="t-mask__inner">화미옥<span class="hero__title-han">·味</span></span></span><br>
+        <span class="t-mask t-mask--d2"><span class="t-mask__inner"><em>김치찌개</em></span></span>
+      </h1>
+      <p class="hero__sub">
+        유행과 경기에 휘둘리지 않고<br>
+        한결같이 끓여온 37년,<br>
+        화미옥 가맹점을 모집합니다.
+      </p>
+    </div>
   </div>
-  <div class="bottom">
-    <span>Seoul, KR</span>
-    <span id="loader-status">Initializing…</span>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee__track">
+    <span>SINCE 1987</span><span>한식의 대가</span><span>원조 김치찌개</span>
+    <span>HACCP 인증</span><span>가맹비 면제</span><span>소자본 창업</span>
+    <span>SINCE 1987</span><span>한식의 대가</span><span>원조 김치찌개</span>
+    <span>HACCP 인증</span><span>가맹비 면제</span><span>소자본 창업</span>
   </div>
 </div>
 
-<!-- HEADER -->
-<header class="site">
-  <div class="inner">
-    <a href="#top" class="brand">THISISPEARWAY</a>
-    <nav>
-      <a href="#works">Work</a>
-      <a href="#contact">Contact</a>
-      <a href="https://www.peartype.kr" class="ext" target="_blank" rel="noopener">Peartype</a>
-    </nav>
+<!-- STORE LIST -->
+<div class="stores-flow">
+  <div class="stores-flow__head">
+    <span class="eyebrow eyebrow--center">전국 오픈 예정</span>
   </div>
-</header>
+  <div class="stores-flow__row">
+    <div class="stores-flow__track">
+      <span class="store-chip"><span class="store-chip__dot"></span>석관동본점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>신촌점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>홍대점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>강남점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>여의도점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>잠실점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>건대점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>왕십리점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>분당점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>일산점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>판교점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>수원점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>안양점<span class="store-chip__badge">예정</span></span>
+      <!-- duplicate -->
+      <span class="store-chip"><span class="store-chip__dot"></span>석관동본점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>신촌점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>홍대점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>강남점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>여의도점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>잠실점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>건대점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>왕십리점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>분당점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>일산점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>판교점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>수원점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>안양점<span class="store-chip__badge">예정</span></span>
+    </div>
+  </div>
+  <div class="stores-flow__row stores-flow__row--reverse">
+    <div class="stores-flow__track">
+      <span class="store-chip"><span class="store-chip__dot"></span>부산서면점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>부산해운대점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>대전둔산점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>대구동성로점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>광주충장로점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>인천부평점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>인천송도점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>제주노형점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>울산남구점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>창원상남점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>전주효자점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>청주성안점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>천안두정점<span class="store-chip__badge">예정</span></span>
+      <!-- dup -->
+      <span class="store-chip"><span class="store-chip__dot"></span>부산서면점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>부산해운대점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>대전둔산점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>대구동성로점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>광주충장로점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>인천부평점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>인천송도점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>제주노형점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>울산남구점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>창원상남점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>전주효자점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>청주성안점<span class="store-chip__badge">예정</span></span>
+      <span class="store-chip"><span class="store-chip__dot"></span>천안두정점<span class="store-chip__badge">예정</span></span>
+    </div>
+  </div>
+</div>
 
-<!-- HERO -->
-<section class="hero wrap" id="top">
-  <div class="hero-meta">
-    <span class="mono">— Portfolio · 2026</span>
-    <span class="mono">Seoul, KR</span>
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="wrap story__inner">
+    <div class="story__media">
+      <div class="story__media-tag" data-text="story.tag">1987 · 석관동 본점</div>
+      <img src="images/p1.jpg" alt="화미옥 본점" data-img="story">
+    </div>
+    <div>
+      <h2 class="reveal reveal--d1" data-text="story.title">37년이<br><em>증명한다</em></h2>
+      <p class="reveal reveal--d2">
+        유행과 경기에 휘둘리지 않고 한결같은 자리를 지켜온 브랜드.
+        1987년 석관동 작은 가게에서 시작해, 지금도 그 시절 마음 그대로
+        한 그릇씩 정성껏 끓여냅니다.
+      </p>
+      <div class="story__sign reveal reveal--d3" data-text="story.sign">한식의 대가, 1987년부터 끓여온 그 맛</div>
+    </div>
   </div>
-  <h1 class="hero-title">
-    <span class="row"><span>This is</span></span>
-    <span class="row"><span>Pearway.</span></span>
-  </h1>
-  <div class="hero-bottom">
-    <a href="#works" class="scroll">
-      <span>Scroll</span>
-      <span class="arrow">↓</span>
+</section>
+
+<!-- MENU — 원조 김치찌개 히어로 + 캐러셀 -->
+<section class="menu-show" id="menu">
+  <div class="wrap">
+    <div class="menu-show__head reveal">
+      <h2>화미옥의<br><em>한 그릇</em></h2>
+    </div>
+
+    <!-- HERO: 원조 김치찌개 큰 사진 (살린 거) -->
+    <div class="menu-show__hero reveal">
+      <div class="menu-show__hero-photo">
+        <img src="images/p10.jpg" alt="원조 김치찌개" data-img="menuHero">
+      </div>
+      <div class="menu-show__hero-text">
+        <h3 class="reveal reveal--d1" data-text="menuHero.title">원조 <em>김치찌개</em></h3>
+        <p>국자로 휘저으면 묵은지 한 점, 돼지 목살 한 덩이.<br>1987년 석관동에서 끓이기 시작한 그 한 그릇입니다.</p>
+      </div>
+    </div>
+
+    <!-- 캐러셀: 다른 메뉴를 하나씩 -->
+    <div class="menu-carousel reveal">
+      <div class="menu-carousel__head">
+        <div class="menu-carousel__label">다른 메뉴 12가지</div>
+        <div class="menu-carousel__nav">
+          <button class="menu-carousel__btn" data-dir="prev" aria-label="이전">←</button>
+          <div class="menu-carousel__count"><span id="mcCur">01</span> / 12</div>
+          <button class="menu-carousel__btn" data-dir="next" aria-label="다음">→</button>
+        </div>
+      </div>
+      <div class="menu-carousel__viewport">
+        <div class="menu-carousel__track" id="mcTrack">
+          <div class="menu-carousel__card"><img src="images/p26.jpg" alt=""><div class="menu-carousel__name">부대김치찌개</div></div>
+          <div class="menu-carousel__card"><img src="images/p28.jpg" alt=""><div class="menu-carousel__name">참치김치찌개</div></div>
+          <div class="menu-carousel__card"><img src="images/p24.jpg" alt=""><div class="menu-carousel__name">돈까스김치찌개</div></div>
+          <div class="menu-carousel__card"><img src="images/p30.jpg" alt=""><div class="menu-carousel__name">돼지고기 김치찜</div></div>
+          <div class="menu-carousel__card"><img src="images/p34.jpg" alt=""><div class="menu-carousel__name">김치우동</div></div>
+          <div class="menu-carousel__card"><img src="images/p18.jpg" alt=""><div class="menu-carousel__name">고추장제육</div></div>
+          <div class="menu-carousel__card"><img src="images/p16.jpg" alt=""><div class="menu-carousel__name">간장불고기</div></div>
+          <div class="menu-carousel__card"><img src="images/p17.jpg" alt=""><div class="menu-carousel__name">돼지불고기</div></div>
+          <div class="menu-carousel__card"><img src="images/p21.jpg" alt=""><div class="menu-carousel__name">잡채</div></div>
+          <div class="menu-carousel__card"><img src="images/p32.jpg" alt=""><div class="menu-carousel__name">돈까스 정식</div></div>
+          <div class="menu-carousel__card"><img src="images/p5.jpg" alt=""><div class="menu-carousel__name">치즈계란말이</div></div>
+          <div class="menu-carousel__card"><img src="images/p22.jpg" alt=""><div class="menu-carousel__name">김주먹밥</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="wrap">
+    <div class="ticker__grid">
+      <div class="ticker__cell">
+        <div class="ticker__num"><span class="count" data-target="37">0</span><small>년</small></div>
+        <div class="ticker__label">한식의 길</div>
+      </div>
+      <div class="ticker__cell">
+        <div class="ticker__num ticker__num--text">전국</div>
+        <div class="ticker__label">오픈 예정</div>
+      </div>
+      <div class="ticker__cell">
+        <div class="ticker__num"><span class="count" data-target="1">0</span><small>분</small></div>
+        <div class="ticker__label">한 그릇 조리</div>
+      </div>
+      <div class="ticker__cell">
+        <div class="ticker__num"><span class="count" data-target="25">0</span><small>%</small></div>
+        <div class="ticker__label">평균 마진율</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INGREDIENT — 정육/재료 -->
+<section class="ingredient">
+  <div class="wrap">
+    <div class="ingredient__head">
+      <h2 class="reveal reveal--d1">국내산 재료,<br>매일 손질된 <em>그날의 신선함</em></h2>
+      <p class="reveal reveal--d2">37년간 지켜온 식자재 원칙. HACCP 인증 시설에서 검수·가공된 국내산 돼지 목살과 직접 담근 묵은지.</p>
+    </div>
+
+    <div class="ingredient__row">
+      <div class="ingredient__cell reveal" data-cell="ingredient-0">
+        <img src="images/p3.jpg" alt="국내산 돼지 목살">
+        <div class="ingredient__cell-label">
+          <div class="ingredient__cell-name">국내산 돼지 목살</div>
+        </div>
+      </div>
+      <div class="ingredient__cell reveal reveal--d1" data-cell="ingredient-1">
+        <img src="images/p2.jpg" alt="매일 직접 손질">
+        <div class="ingredient__cell-label">
+          <div class="ingredient__cell-name">매일 직접 손질</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ingredient__row">
+      <div class="ingredient__cell reveal" data-cell="ingredient-2">
+        <img src="images/p4.jpg" alt="직접 만든 푹 고운 육수">
+        <div class="ingredient__cell-label">
+          <div class="ingredient__cell-name">직접 만든 푹 고운 육수</div>
+        </div>
+      </div>
+      <div class="ingredient__cell reveal reveal--d1" data-cell="ingredient-3" data-vimeo-slot="ingredient-3">
+        <img src="images/p49.jpg" alt="손으로 직접 담근 묵은지">
+        <div class="ingredient__cell-label">
+          <div class="ingredient__cell-name">손으로 직접 담근 묵은지</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DYNAMIC STRIP — 세로 영상 + 옆 캡션 -->
+<section class="strip-video">
+  <div class="wrap strip-video__inner">
+    <div class="strip-video__text">
+      <span class="strip-video__line">SINCE 1987</span>
+      <h3>매일 손으로,<br><em>한 솥씩.</em></h3>
+      <p class="strip-video__desc">37년간 한결같이 손으로 담가내는 김치, 직접 우려낸 육수. 매일 한 솥씩, 정성껏 끓여냅니다.</p>
+    </div>
+    <div class="strip-video__media" data-vimeo-slot="stripVideo">
+      <img class="strip-video__poster" src="images/p11.jpg" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- RECEIPT REVIEWS — 영수증 인증 후기 -->
+<section class="receipts">
+  <div class="wrap">
+    <div class="receipts__head reveal">
+      <h2>손님이 남긴<br><em>한 줄</em></h2>
+      <p>본점에서 받은 실제 후기들. 37년간 한결같이 끓여온 그 한 그릇에 대한 평가입니다.</p>
+    </div>
+
+    <div class="receipts__grid">
+      <!-- 후기 1 -->
+      <div class="receipt reveal">
+        <div class="receipt__paper">
+          <div class="receipt__head">
+            <div class="receipt__brand">화미옥 김치찌개</div>
+            <div class="receipt__brand-sub">1987 · 한식의 대가</div>
+          </div>
+          <div class="receipt__line"></div>
+          <div class="receipt__rows">
+            <div class="receipt__row"><span>돼지김치찌개</span><span>9,000</span></div>
+            <div class="receipt__row"><span>치즈계란말이</span><span>8,000</span></div>
+            <div class="receipt__row"><span>공깃밥 2</span><span>2,000</span></div>
+          </div>
+          <div class="receipt__line receipt__line--dashed"></div>
+          <div class="receipt__total"><span>합계</span><span>19,000원</span></div>
+          <div class="receipt__date">2024.11.18 · 석관동 본점</div>
+        </div>
+        <div class="receipt__review">
+          <p>"엄마가 끓여준 김치찌개 그 맛.<br>퇴근하고 한 번씩 들르는 곳이에요."</p>
+          <div class="receipt__author">— 직장인 김OO 님</div>
+        </div>
+      </div>
+
+      <!-- 후기 2 -->
+      <div class="receipt reveal reveal--d1">
+        <div class="receipt__paper">
+          <div class="receipt__head">
+            <div class="receipt__brand">화미옥 김치찌개</div>
+            <div class="receipt__brand-sub">1987 · 한식의 대가</div>
+          </div>
+          <div class="receipt__line"></div>
+          <div class="receipt__rows">
+            <div class="receipt__row"><span>부대김치찌개</span><span>10,000</span></div>
+            <div class="receipt__row"><span>김주먹밥</span><span>5,000</span></div>
+            <div class="receipt__row"><span>참이슬</span><span>5,000</span></div>
+          </div>
+          <div class="receipt__line receipt__line--dashed"></div>
+          <div class="receipt__total"><span>합계</span><span>20,000원</span></div>
+          <div class="receipt__date">2024.11.21 · 석관동 본점</div>
+        </div>
+        <div class="receipt__review">
+          <p>"묵은지 맛이 정말 다릅니다.<br>요즘 보기 드문 진짜 옛날 그 맛."</p>
+          <div class="receipt__author">— 단골손님 이OO 님</div>
+        </div>
+      </div>
+
+      <!-- 후기 3 -->
+      <div class="receipt reveal reveal--d2">
+        <div class="receipt__paper">
+          <div class="receipt__head">
+            <div class="receipt__brand">화미옥 김치찌개</div>
+            <div class="receipt__brand-sub">1987 · 한식의 대가</div>
+          </div>
+          <div class="receipt__line"></div>
+          <div class="receipt__rows">
+            <div class="receipt__row"><span>돈까스 정식</span><span>9,500</span></div>
+            <div class="receipt__row"><span>김치우동</span><span>8,000</span></div>
+            <div class="receipt__row"><span>공깃밥 추가</span><span>1,000</span></div>
+          </div>
+          <div class="receipt__line receipt__line--dashed"></div>
+          <div class="receipt__total"><span>합계</span><span>18,500원</span></div>
+          <div class="receipt__date">2024.11.24 · 석관동 본점</div>
+        </div>
+        <div class="receipt__review">
+          <p>"가족끼리 점심 먹으러 자주 와요.<br>아이도 어른도 다 좋아하는 곳."</p>
+          <div class="receipt__author">— 주부 박OO 님</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE -->
+<section class="signature" id="signature">
+  <div class="wrap">
+    <div class="signature__head">
+      <h2 class="reveal reveal--d1">화미옥의 시그니처,<br><em>한 그릇</em>의 정성</h2>
+    </div>
+
+    <!-- 김치찌개 -->
+    <div class="signature__block">
+      <div class="signature__media reveal" data-vimeo-slot="signature-0">
+        <div class="signature__media-label">시그니처 01</div>
+        <img src="images/p6.jpg" alt="돼지김치찌개" data-img="signature-0">
+      </div>
+      <div>
+        <div class="signature__no reveal">시그니처 01</div>
+        <h3 class="signature__title reveal reveal--d1">진하게 끓여낸<br><em>돼지김치찌개</em></h3>
+        <p class="signature__desc reveal reveal--d2">
+          37년 묵은지와 국내산 돼지 목살, 다시마 멸치 표고로 우려낸 육수.
+          끓일수록 깊어지는 진한 한 그릇.
+        </p>
+        <ul class="signature__points reveal reveal--d3">
+          <li>국내산 돼지 목살 정통 컷</li>
+          <li>직접 담근 묵은지 사용</li>
+          <li>1분 조리 표준 시스템</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 제육볶음 -->
+    <div class="signature__block">
+      <div class="signature__media reveal">
+        <div class="signature__media-label">시그니처 02</div>
+        <img src="images/p19.jpg" alt="고추장 제육볶음" data-img="signature-1">
+      </div>
+      <div>
+        <div class="signature__no reveal">시그니처 02</div>
+        <h3 class="signature__title reveal reveal--d1">불맛 살린<br><em>고추장 제육볶음</em></h3>
+        <p class="signature__desc reveal reveal--d2">
+          매콤달콤한 고추장 양념에 강불로 볶아낸 화미옥의 시그니처 제육.
+          공깃밥과 반주 안주, 양쪽 다 잡는 메뉴.
+        </p>
+        <ul class="signature__points reveal reveal--d3">
+          <li>특제 고추장 양념 (본사 직접 제조)</li>
+          <li>국내산 돼지 앞다리살</li>
+          <li>점심·저녁 4WAY 매출 구조</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 계란말이 -->
+    <div class="signature__block">
+      <div class="signature__media reveal">
+        <div class="signature__media-label">시그니처 03</div>
+        <img src="images/p5.jpg" alt="치즈계란말이" data-img="signature-2">
+      </div>
+      <div>
+        <div class="signature__no reveal">시그니처 03</div>
+        <h3 class="signature__title reveal reveal--d1">치즈 듬뿍<br><em>계란말이</em></h3>
+        <p class="signature__desc reveal reveal--d2">
+          국내산 신선 계란과 모짜렐라 치즈를 한 입에. 김치찌개 사이드로 완벽.
+          저녁 안주 매출의 핵심 메뉴.
+        </p>
+        <ul class="signature__points reveal reveal--d3">
+          <li>국내산 신선 계란</li>
+          <li>모짜렐라 듬뿍 · 늘어지는 치즈</li>
+          <li>객단가 상승 효자 메뉴</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATMOSPHERE — 점심부터 한 잔까지 (4WAY 매출) -->
+<section class="atmosphere">
+  <div class="wrap">
+    <div class="atmosphere__head">
+      <h2 class="reveal reveal--d1">점심부터<br><em>한 잔의 마무리</em>까지</h2>
+      <p class="reveal reveal--d2">화미옥은 한 끼 식사로 끝나지 않습니다. 점심·저녁·반주·배달, 사계절 4WAY 매출 구조로 비수기 없이 안정적인 객단가를 만듭니다.</p>
+    </div>
+
+    <div class="atmosphere__grid">
+      <div class="atmosphere__cell atmosphere__cell--main reveal">
+        <img src="images/p46.jpg" alt="화미옥 식탁 분위기" data-img="atmosphere1">
+        <div class="atmosphere__cell-label">
+          <div class="atmosphere__cell-no">장면 01</div>
+          <div class="atmosphere__cell-name">하루 끝,<br><em>한 잔의 마무리</em></div>
+          <div class="atmosphere__cell-sub">소주·맥주 매출, 김치찌개 한 끼에 함께</div>
+        </div>
+      </div>
+      <div class="atmosphere__cell atmosphere__cell--top reveal reveal--d1">
+        <img src="images/p47.jpg" alt="짠 ─ 술자리" data-img="atmosphere2">
+        <div class="atmosphere__cell-label">
+          <div class="atmosphere__cell-no">장면 02</div>
+          <div class="atmosphere__cell-name">짠.</div>
+          <div class="atmosphere__cell-sub">테이블 회전, 안주 매출 동시에</div>
+        </div>
+      </div>
+      <div class="atmosphere__cell atmosphere__cell--bottom reveal reveal--d2">
+        <img src="images/p48.jpg" alt="테이블 위 모임" data-img="atmosphere3">
+        <div class="atmosphere__cell-label">
+          <div class="atmosphere__cell-no">장면 03</div>
+          <div class="atmosphere__cell-name">함께 둘러앉는<br>한 그릇</div>
+          <div class="atmosphere__cell-sub">단체·회식 수요까지 잡습니다</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="atmosphere__ways">
+      <div class="atmosphere__way">
+        <div class="atmosphere__way-num">01</div>
+        <div class="atmosphere__way-title">점심</div>
+        <div class="atmosphere__way-desc">직장인 정식 객단가</div>
+      </div>
+      <div class="atmosphere__way">
+        <div class="atmosphere__way-num">02</div>
+        <div class="atmosphere__way-title">저녁</div>
+        <div class="atmosphere__way-desc">가족 외식 수요</div>
+      </div>
+      <div class="atmosphere__way">
+        <div class="atmosphere__way-num">03</div>
+        <div class="atmosphere__way-title">반주·안주</div>
+        <div class="atmosphere__way-desc">소주·맥주 동반 매출</div>
+      </div>
+      <div class="atmosphere__way">
+        <div class="atmosphere__way-num">04</div>
+        <div class="atmosphere__way-title">배달·포장</div>
+        <div class="atmosphere__way-desc">홀 외 매출 안정화</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFIT CHART — 매출 구조 인포그래픽 -->
+<section class="profit-chart">
+  <div class="wrap">
+    <div class="profit-chart__head reveal">
+      <h2>적게 일하고<br><em>많이 가져가세요</em></h2>
+      <p>본점 기준 평균 손익 구조. 매출의 25%가 점주 순이익으로 남습니다.</p>
+    </div>
+
+    <div class="profit-chart__inner">
+      <div class="profit-chart__pie-wrap reveal">
+        <div class="profit-chart__pie"></div>
+        <div class="profit-chart__pie-center">
+          <div class="profit-chart__pie-label">순이익률</div>
+          <div class="profit-chart__pie-percent"><span class="count" data-target="25">0</span><small>%</small></div>
+        </div>
+      </div>
+
+      <div class="profit-chart__legend reveal reveal--d1">
+        <div class="profit-chart__row profit-chart__row--main">
+          <span class="dot"></span>
+          <span class="label">영업 순이익</span>
+          <span class="pct">25%</span>
+        </div>
+        <div class="profit-chart__row" data-dot="g1">
+          <span class="dot"></span>
+          <span class="label">재료비</span>
+          <span class="pct">35%</span>
+        </div>
+        <div class="profit-chart__row" data-dot="g2">
+          <span class="dot"></span>
+          <span class="label">인건비</span>
+          <span class="pct">20%</span>
+        </div>
+        <div class="profit-chart__row" data-dot="g3">
+          <span class="dot"></span>
+          <span class="label">임차료</span>
+          <span class="pct">12%</span>
+        </div>
+        <div class="profit-chart__row" data-dot="g4">
+          <span class="dot"></span>
+          <span class="label">기타 운영비</span>
+          <span class="pct">8%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profit-chart__note">※ 상권·점포 규모·운영 방식에 따라 변동 가능. 본점 평균치 기준.</div>
+  </div>
+</section>
+
+<!-- FEATURE -->
+<section class="feature">
+  <div class="wrap">
+    <div class="feature__head">
+      <h2 class="reveal reveal--d1">비수기 없는<br><em>핵심 경쟁력</em></h2>
+    </div>
+    <div class="feature__grid">
+      <div class="feature__cell"><div class="feature__no">01</div><div class="feature__big">火</div><div class="feature__title">왜 김치찌개인가</div><div class="feature__desc">대한민국 국민 소울푸드. 사계절 안정 매출.</div></div>
+      <div class="feature__cell"><div class="feature__no">02</div><div class="feature__big">37</div><div class="feature__title">왜 37년인가</div><div class="feature__desc">1987년 석관동부터 이어온 원조 레시피.</div></div>
+      <div class="feature__cell"><div class="feature__no">03</div><div class="feature__big">1分</div><div class="feature__title">왜 원팩인가</div><div class="feature__desc">37년 비법을 원팩에. 1인 운영 가능 시스템.</div></div>
+      <div class="feature__cell"><div class="feature__no">04</div><div class="feature__big">8</div><div class="feature__title">왜 콜드체인인가</div><div class="feature__desc">전국 8개 물류센터. HACCP 인증 시설.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="countdown">
+  <div class="wrap countdown__inner">
+    <h2 class="reveal reveal--d1">가맹비 <em>1,000만원</em><br>선착순 20호점 전액 면제</h2>
+    <p class="countdown__desc reveal reveal--d2">참여 현황 17 / 20 완료 — 남은 자리 3</p>
+
+    <div class="countdown__timer reveal reveal--d2" id="timer">
+      <div class="countdown__box"><div class="countdown__box-num" data-unit="d">00</div><div class="countdown__box-label">일</div></div>
+      <div class="countdown__sep">:</div>
+      <div class="countdown__box"><div class="countdown__box-num" data-unit="h">00</div><div class="countdown__box-label">시</div></div>
+      <div class="countdown__sep">:</div>
+      <div class="countdown__box"><div class="countdown__box-num" data-unit="m">00</div><div class="countdown__box-label">분</div></div>
+      <div class="countdown__sep">:</div>
+      <div class="countdown__box"><div class="countdown__box-num" data-unit="s">00</div><div class="countdown__box-label">초</div></div>
+    </div>
+
+    <div class="countdown__rows reveal">
+      <div class="countdown__row"><span class="countdown__row-l">가맹비</span><span class="countdown__row-r"><del>500만원</del>0원</span></div>
+      <div class="countdown__row"><span class="countdown__row-l">감리비</span><span class="countdown__row-r"><del>300만원</del>0원</span></div>
+      <div class="countdown__row"><span class="countdown__row-l">물류보증금</span><span class="countdown__row-r"><del>500만원</del>0원</span></div>
+      <div class="countdown__row"><span class="countdown__row-l">교육비</span><span class="countdown__row-r"><del>500만원</del>100만원</span></div>
+    </div>
+
+    <a href="#cta" class="btn-primary reveal reveal--d2">
+      지금 바로 신청하기
+      <svg width="22" height="14" viewBox="0 0 18 14" fill="none"><path d="M1 7H17M17 7L11 1M17 7L11 13" stroke="currentColor" stroke-width="2"/></svg>
     </a>
   </div>
 </section>
 
-<!-- WORKS -->
-<section class="section" id="works">
+<!-- PRICING -->
+<section class="pricing" id="pricing">
   <div class="wrap">
-    <div class="section-head">
-      <span class="section-marker">Selected Works</span>
+    <div class="pricing__head">
+      <h2 class="reveal reveal--d1">올인원으로<br>부담을 줄였습니다</h2>
     </div>
-
-    <div class="filters" role="tablist" id="filters">
-      <button class="active" data-filter="all">All</button>
-      <!-- 다른 필터는 데이터 로드 후 자동 생성 -->
+    <div class="pricing__table reveal">
+      <div class="pricing__row pricing__row--head"><span>항목</span><span>비고</span><span style="text-align:right">금액</span></div>
+      <div class="pricing__row"><span>가맹비</span><span>20호점까지 면제</span><span><del>1,000만원</del> 0원</span></div>
+      <div class="pricing__row"><span>교육비</span><span>20호점까지 면제</span><span>300만원</span></div>
+      <div class="pricing__row"><span>보증금</span><span>—</span><span>200만원</span></div>
+      <div class="pricing__row"><span>로열티</span><span>20호점까지 할인</span><span>40만원/월</span></div>
+      <div class="pricing__row"><span>인테리어</span><span>본사 시공시 최저가</span><span>자율</span></div>
+      <div class="pricing__row"><span>TOTAL</span><span>20호점까지 한정</span><span>500만원 ~</span></div>
     </div>
+    <p class="pricing__note">※ 상권·규모에 따라 변동될 수 있습니다. 정확한 견적은 상담을 통해 안내드립니다.</p>
+  </div>
+</section>
 
-    <div id="works-loading" class="loading-state">— loading works…</div>
-    <div class="works-grid" id="works-grid" style="display:none"></div>
+<!-- PROCESS -->
+<section class="process">
+  <div class="wrap">
+    <div class="process__head">
+      <h2 class="reveal reveal--d1">상담부터 오픈까지<br>10단계 동행</h2>
+    </div>
+    <div class="process__list">
+      <div class="process__item"><div class="process__no">01</div><h3>가맹 상담</h3><p>전화·홈페이지 문의</p></div>
+      <div class="process__item"><div class="process__no">02</div><h3>상권 조사</h3><p>현장 조사·입지 분석</p></div>
+      <div class="process__item"><div class="process__no">03</div><h3>점포 개발</h3><p>입점 매장 확정</p></div>
+      <div class="process__item"><div class="process__no">04</div><h3>매장 계약</h3><p>계약·인테리어 실측</p></div>
+      <div class="process__item"><div class="process__no">05</div><h3>가맹 계약</h3><p>가맹계약 체결</p></div>
+      <div class="process__item"><div class="process__no">06</div><h3>현장 시공</h3><p>BI 인테리어 공사</p></div>
+      <div class="process__item"><div class="process__no">07</div><h3>점주 교육</h3><p>조리·운영·위생</p></div>
+      <div class="process__item"><div class="process__no">08</div><h3>개점 준비</h3><p>인허가·식자재 입고</p></div>
+      <div class="process__item"><div class="process__no">09</div><h3>GRAND OPEN</h3><p>오픈 마케팅 동행</p></div>
+      <div class="process__item"><div class="process__no">10</div><h3>사후 관리</h3><p>슈퍼바이징·정기점검</p></div>
+    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="section" id="contact">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-marker">Contact</span>
+<section class="contact" id="cta">
+  <div class="wrap contact__inner">
+    <div class="contact__head">
+      <h2>고민은 길게,<br><em>성공은 빠르게.</em></h2>
+      <p>
+        소자본 창업, 안정적인 매출, 검증된 37년 레시피.<br>
+        점심부터 저녁 안주까지 잡는 4WAY 매출 구조로<br>
+        적게 투자하고 높은 순익을 남기세요.
+      </p>
+      <a href="tel:1899-3283" class="contact__tel">1899-3283</a>
+      <div class="contact__time">평일 09:00 — 18:00</div>
     </div>
-    <div class="contact-grid">
-      <div class="contact-block">
-        <div class="label">Direct</div>
-        <a href="http://pf.kakao.com/_JdBdX/chat" class="value" target="_blank" rel="noopener">
-          KakaoTalk <span class="arrow">↗</span>
-        </a>
+
+    <form class="form" onsubmit="event.preventDefault();alert('상담 신청이 접수되었습니다. (데모용)')">
+      <div class="form__row">
+        <div class="form__field"><label>성함 *</label><input type="text" required></div>
+        <div class="form__field"><label>연락처 *</label><input type="tel" required placeholder="010-0000-0000"></div>
       </div>
-      <div class="contact-block">
-        <div class="label">Type Work</div>
-        <a href="https://www.peartype.kr" class="value" target="_blank" rel="noopener">
-          Pear Type Foundry <span class="arrow">↗</span>
-        </a>
+      <div class="form__row">
+        <div class="form__field"><label>이메일</label><input type="email" placeholder="email@example.com"></div>
+        <div class="form__field"><label>희망 지역</label><input type="text" placeholder="서울 강남구"></div>
       </div>
-      <div class="contact-block">
-        <div class="label">Based In</div>
-        <span class="value">Seoul, KR</span>
+      <div class="form__row">
+        <div class="form__field"><label>투자 예산</label><select><option>선택</option><option>5천만원 미만</option><option>5천~1억</option><option>1억 이상</option></select></div>
+        <div class="form__field"><label>점포 보유 여부</label><select><option>선택</option><option>있음</option><option>없음</option></select></div>
       </div>
-    </div>
+      <div class="form__field"><label>문의 내용</label><textarea placeholder="자유롭게 작성해주세요"></textarea></div>
+      <label class="form__agree"><input type="checkbox" required>개인정보 취급방침에 동의합니다 *</label>
+      <button type="submit" class="form__submit">상담 신청하기 →</button>
+    </form>
   </div>
 </section>
 
+<!-- 하단 마퀴 -->
+<div class="marquee marquee--cream">
+  <div class="marquee__track">
+    <span>가맹문의 환영</span><span>1899-3283</span><span>무료 창업 상담</span>
+    <span>선착순 가맹비 면제</span><span>화미옥 · SINCE 1987</span>
+    <span>가맹문의 환영</span><span>1899-3283</span><span>무료 창업 상담</span>
+    <span>선착순 가맹비 면제</span><span>화미옥 · SINCE 1987</span>
+  </div>
+</div>
+
 <!-- FOOTER -->
-<footer class="site">
-  <div class="inner">
-    <div class="left">
-      <div class="meta">
-        <span>THISISPEARWAY · Designer</span>
-        <a href="https://www.peartype.kr" target="_blank" rel="noopener">Type design by Pear Type Foundry ↗</a>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <p>한식의 대가, 1987년부터 끓여온 그 맛</p>
+        <p>본사 | <span data-text="contact.addressMain">서울 중랑구 신내역로3길 40-36</span></p>
+        <p>R&amp;D | <span data-text="contact.addressRD">경기도 구리시 갈매순환로 204번길 8-26</span></p>
+      </div>
+      <div>
+        <h4>Business</h4>
+        <p>법인명 (주)솔든코리아</p>
+        <p>대표 홍현우</p>
+        <p>사업자등록번호 599-32-00608</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>창업 상담 <span data-text="contact.phone">1899-3283</span></p>
+        <p>Mon–Fri 09:00 – 18:00</p>
+        <p>info@hwamiok.kr</p>
       </div>
     </div>
-    <div class="right">
-      <div>Brand · Graphic · Spatial · Type</div>
-      <div>Seoul, KR — 2026</div>
-    </div>
-  </div>
-  <div class="wrap copyright">
-    <span>© 2026 THISISPEARWAY</span>
-    <span>Designer · Lee Heebae</span>
+    <div class="footer__copy">© 2026 화미옥 김치찌개 · SOLDEUNKOREA. All rights reserved.</div>
   </div>
 </footer>
 
-<!-- PROJECT DETAIL OVERLAY -->
-<div class="detail-overlay" id="detail-overlay">
-  <div class="detail-header">
-    <div class="title-row">
-      <span>— Project</span>
-      <span class="name" id="detail-name"></span>
-    </div>
-    <button class="close" id="detail-close">Close ×</button>
-  </div>
-  <div class="detail-body" id="detail-body"></div>
-</div>
+<a href="tel:1899-3283" class="float-cta">
+  <span class="float-cta__pulse"></span>
+  창업상담 1899-3283
+</a>
 
-<!-- ============ FIREBASE + RENDER ============ -->
-<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
-import { getFirestore, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
-import Lenis from 'https://cdn.jsdelivr.net/npm/lenis@1.1.20/+esm';
+<script>
+// NAV
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 80));
 
-/* ===== Firebase config (read-only public access via Firestore Rules) ===== */
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "thisispearway.firebaseapp.com",
-  projectId: "thisispearway",
-  storageBucket: "thisispearway.firebasestorage.app",
-  messagingSenderId: "657205333061",
-  appId: "1:657205333061:web:bb6e2daebcc51b2e2e272c"
-};
-const COLLECTION = "projects";
-/* ====================================================================== */
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const $ = id => document.getElementById(id);
-const grid = $('works-grid');
-const loadingEl = $('works-loading');
-const filtersEl = $('filters');
-const overlay = $('detail-overlay');
-const detailName = $('detail-name');
-const detailBody = $('detail-body');
-const detailClose = $('detail-close');
-
-let allProjects = [];
-let currentFilter = 'all';
-
-const esc = s => String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
-/* ---------- SMOOTH SCROLL (Lenis) ---------- */
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-let lenis = null;
-let lenisOverlay = null;
-
-if (!reduceMotion) {
-  // 메인 페이지용
-  lenis = new Lenis({
-    duration: 1.15,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-    touchMultiplier: 1.5,
-    // 오버레이 안에서 발생한 wheel/touch는 메인 Lenis가 무시
-    prevent: (node) => node.closest && node.closest('#detail-overlay') !== null
+// SCROLL REVEAL
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
   });
+}, {threshold:.12, rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal, .t-mask').forEach(el => io.observe(el));
 
-  // 상세 오버레이용 — 오버레이 자체가 overflow:auto 컨테이너
-  lenisOverlay = new Lenis({
-    wrapper: document.getElementById('detail-overlay'),
-    content: document.getElementById('detail-overlay'),
-    duration: 1.1,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-    touchMultiplier: 1.5
-  });
+// 히어로 t-mask는 페이지 로드 직후 즉시 트리거
+setTimeout(() => {
+  document.querySelectorAll('.hero .t-mask').forEach(el => el.classList.add('is-in'));
+}, 2200);
 
-  // 이미지 onload 등에서 호출할 수 있게 전역 helper
-  window.lenisOverlayResize = () => lenisOverlay.resize();
-
-  // 상세 콘텐츠 높이 변화(이미지 늦게 로드, DOM 변경 등) → Lenis 재계산
-  const overlayResize = new ResizeObserver(() => {
-    lenisOverlay.resize();
-  });
-  overlayResize.observe(document.getElementById('detail-body'));
-
-  function raf(time) {
-    lenis.raf(time);
-    lenisOverlay.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-
-  // anchor 링크는 Lenis로 부드럽게 스크롤
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      if (!href || href === '#' || href.length < 2) return;
-      const target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      lenis.scrollTo(target, { offset: -20 });
-    });
-  });
-}
-
-/* ---------- LOADER ---------- */
-const loader = $('loader');
-const loaderBar = $('loader-bar');
-const loaderStatus = $('loader-status');
-let loaderProgress = 0;
-let dataReady = false;
-
-function runLoader() {
-  return new Promise(resolve => {
-    const start = performance.now();
-    const MIN_DURATION = 3000; // 최소 3초 보장
-    const tick = (now) => {
-      const elapsed = now - start;
-      // 시간 기반: 0→100 over MIN_DURATION (ease-out)
-      // 단, 데이터 준비 안 됐으면 95에서 멈추고 기다림
-      const t = Math.min(1, elapsed / MIN_DURATION);
-      let target = (1 - Math.pow(1 - t, 2)) * 100;
-      if (!dataReady && target > 95) target = 95;
-      loaderProgress = Math.min(100, target);
-      loaderBar.style.width = loaderProgress + '%';
-      if (loaderProgress < 100) {
-        requestAnimationFrame(tick);
-      } else {
-        loaderStatus.textContent = 'Ready.';
-        setTimeout(() => {
-          loader.classList.add('done');
-          document.body.classList.add('loaded');
-          if (lenis) lenis.start();
-          resolve();
-        }, 450);
-      }
-    };
-    if (lenis) lenis.stop();
-    requestAnimationFrame(tick);
-  });
-}
-
-/* ---------- Header scroll ---------- */
-const header = document.querySelector('header.site');
-const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
-
-/* ---------- Load projects ---------- */
-async function loadProjects() {
-  try {
-    let snap;
-    try { snap = await getDocs(query(collection(db, COLLECTION), orderBy('order', 'asc'))); }
-    catch { snap = await getDocs(collection(db, COLLECTION)); }
-    allProjects = snap.docs.map(d => ({ _docId: d.id, ...d.data() }));
-    allProjects.sort((a, b) =>
-      (typeof a.order === 'number' ? a.order : 9999) - (typeof b.order === 'number' ? b.order : 9999)
-    );
-    buildFilters();
-    renderGrid();
-  } catch (e) {
-    console.error(e);
-    loadingEl.textContent = '— failed to load projects';
-  }
-}
-
-function buildFilters() {
-  // 데이터에 있는 cat 들 모두 수집해서 필터 자동 생성
-  const cats = [...new Set(allProjects.map(p => p.cat).filter(Boolean))];
-  // 표시 순서: brand → graphic → spatial → web → font → type → 기타
-  const orderHint = ['brand', 'graphic', 'spatial', 'web', 'font', 'type'];
-  cats.sort((a, b) => {
-    const ai = orderHint.indexOf(a); const bi = orderHint.indexOf(b);
-    if (ai === -1 && bi === -1) return a.localeCompare(b);
-    if (ai === -1) return 1;
-    if (bi === -1) return -1;
-    return ai - bi;
-  });
-  // 기존 All 버튼 빼고 다 지우고 다시 생성
-  filtersEl.querySelectorAll('button:not([data-filter="all"])').forEach(b => b.remove());
-  cats.forEach(cat => {
-    const b = document.createElement('button');
-    b.dataset.filter = cat;
-    b.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
-    filtersEl.appendChild(b);
-  });
-  // 클릭 핸들러 (위임)
-  filtersEl.addEventListener('click', e => {
-    const btn = e.target.closest('button');
-    if (!btn) return;
-    filtersEl.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentFilter = btn.dataset.filter;
-    renderGrid();
-  }, { once: false });
-}
-
-function renderGrid() {
-  loadingEl.style.display = 'none';
-  grid.style.display = 'grid';
-  const filtered = currentFilter === 'all'
-    ? allProjects
-    : allProjects.filter(p => p.cat === currentFilter);
-
-  if (filtered.length === 0) {
-    grid.innerHTML = `<div class="loading-state" style="grid-column:1/-1">— no works in this category</div>`;
-    return;
-  }
-
-  grid.innerHTML = filtered.map((p, i) => {
-    const num = String(i + 1).padStart(2, '0');
-    const cat = (p.cat || 'work').toUpperCase();
-    const thumb = p.thumb
-      ? `<img src="${esc(p.thumb)}" alt="${esc(p.title)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-         <div class="fallback" style="display:none">${esc((p.title || '?').charAt(0))}</div>`
-      : `<div class="fallback">${esc((p.title || '?').charAt(0))}</div>`;
-    const tags = (p.tags || []).map(t => `<span>${esc(t)}</span>`).join('');
-
-    return `
-      <a class="work-card" data-doc-id="${esc(p._docId)}" href="#${esc(p._docId)}">
-        <div class="cover">${thumb}</div>
-        <div class="meta-row">
-          <span class="num">${num} / ${esc(cat.toLowerCase())}</span>
-          <span class="year">${esc(p.year || '')}</span>
-        </div>
-        <div class="title">${esc(p.title || '(untitled)')}</div>
-        <p class="summary">${esc(p.desc || '')}</p>
-        <div class="tags">${tags}</div>
-      </a>`;
-  }).join('');
-
-  // bind card click → open detail
-  grid.querySelectorAll('.work-card').forEach(card => {
-    card.addEventListener('click', e => {
-      e.preventDefault();
-      openDetail(card.dataset.docId);
-    });
-  });
-
-  // 새로 그려진 카드에 reveal 적용
-  if (typeof applyReveal === 'function') applyReveal();
-}
-
-/* ---------- Project detail ---------- */
-function openDetail(docId) {
-  const p = allProjects.find(x => x._docId === docId);
-  if (!p) return;
-
-  detailName.textContent = p.title || '';
-
-  const meta = [
-    p.year && `Year — ${esc(p.year)}`,
-    p.cat && `Category — ${esc(p.cat.toUpperCase())}`,
-    p.client && `Client — ${esc(p.client)}`
-  ].filter(Boolean).map(s => `<span>${s}</span>`).join('');
-
-  const blocksHtml = renderBlocks(p.blocks || []);
-  const externalLink = p.url
-    ? `<p style="margin-top:1.5rem"><a href="${esc(p.url)}" target="_blank" rel="noopener" style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--ink-2);padding-bottom:2px">Visit ↗</a></p>`
-    : '';
-
-  detailBody.innerHTML = `
-    <div class="detail-hero">
-      <div class="meta">${meta}</div>
-      <h1>${esc(p.title || '')}</h1>
-      ${p.desc ? `<p class="desc">${esc(p.desc)}</p>` : ''}
-      ${externalLink}
-    </div>
-    <div class="detail-blocks">${blocksHtml}</div>
-  `;
-
-  overlay.classList.add('open');
-  document.body.classList.add('modal-open');
-  overlay.scrollTop = 0;
-  if (lenisOverlay) lenisOverlay.scrollTo(0, { immediate: true });
-  history.pushState({ detail: docId }, '', `#${docId}`);
-}
-
-function renderBlocks(blocks) {
-  if (!Array.isArray(blocks) || blocks.length === 0) return '';
-  return blocks.map(b => {
-    if (!b || !b.type) return '';
-    if (b.type === 'text') {
-      if (!b.heading && !b.body) return '';
-      return `<div class="block-text">
-        ${b.heading ? `<h3>${esc(b.heading)}</h3>` : ''}
-        ${b.body ? `<p>${esc(b.body)}</p>` : ''}
-      </div>`;
-    }
-    if (b.type === 'img') {
-      if (!b.src) return '';
-      return `<div class="block-img"><img src="${esc(b.src)}" alt="" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()" onerror="this.parentElement.style.display='none'"></div>`;
-    }
-    if (b.type === '2col') {
-      const src = Array.isArray(b.src) ? b.src.filter(Boolean) : [];
-      if (src.length === 0) return '';
-      return `<div class="block-2col">
-        ${src.map(s => `<img src="${esc(s)}" alt="" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()" onerror="this.style.display='none'">`).join('')}
-      </div>`;
-    }
-    return '';
-  }).join('');
-}
-
-function closeDetail() {
-  overlay.classList.remove('open');
-  document.body.classList.remove('modal-open');
-  if (location.hash) history.pushState({}, '', location.pathname);
-}
-
-detailClose.addEventListener('click', closeDetail);
-window.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && overlay.classList.contains('open')) closeDetail();
-});
-window.addEventListener('popstate', e => {
-  if (overlay.classList.contains('open')) {
-    overlay.classList.remove('open');
-    document.body.classList.remove('modal-open');
-  }
-});
-
-/* ---------- Reveal on scroll ---------- */
-const io = new IntersectionObserver(entries => {
+// SLOT MACHINE NUMBER ANIMATION — 숫자가 굴러가다 멈추는 효과
+const countIO = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      e.target.classList.add('in');
-      io.unobserve(e.target);
+      const el = e.target;
+      const target = +el.dataset.target;
+      const rollDur = 900;    // 굴러가는 시간
+      const settleDur = 700;  // 정착 시간
+      const start = performance.now();
+      function tick(now){
+        const t = now - start;
+        if (t < rollDur) {
+          // 랜덤 굴림 (slot machine)
+          const max = Math.max(target * 1.5, 10);
+          el.textContent = Math.floor(Math.random() * max);
+          requestAnimationFrame(tick);
+        } else if (t < rollDur + settleDur) {
+          // 타겟으로 정착 (ease-out)
+          const p = (t - rollDur) / settleDur;
+          const eased = 1 - Math.pow(1 - p, 3);
+          // 잠깐 오버슈트했다가 타겟으로
+          const overshoot = Math.floor(target * 1.15);
+          const cur = Math.floor(overshoot - (overshoot - target) * eased);
+          el.textContent = cur;
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = target;
+        }
+      }
+      requestAnimationFrame(tick);
+      countIO.unobserve(el);
     }
   });
-}, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+}, {threshold:.5});
+document.querySelectorAll('.count').forEach(el => countIO.observe(el));
 
-function applyReveal() {
-  // 섹션 헤더 + contact 그리드 + footer
-  document.querySelectorAll('.section-head, .contact-grid, .filters, footer.site .inner, footer.site .copyright').forEach(el => {
-    if (!el.classList.contains('reveal')) {
-      el.classList.add('reveal');
-      io.observe(el);
-    }
-  });
-  // 작품 카드는 stagger 적용
-  document.querySelectorAll('.work-card').forEach((el, i) => {
-    if (!el.classList.contains('reveal')) {
-      el.classList.add('reveal');
-      // 같은 줄(2칸)끼리 stagger — 0, 1, 0, 1, ...
-      const col = i % 2;
-      if (col === 1) el.classList.add('stagger-1');
-      io.observe(el);
-    }
-  });
-}
-
-applyReveal();
-
-/* ---------- Init ---------- */
-Promise.all([
-  loadProjects().then(() => { dataReady = true; }),
-  runLoader()
-]).then(() => {
-  if (location.hash && location.hash.length > 1) {
-    const id = location.hash.slice(1);
-    if (allProjects.find(p => p._docId === id)) openDetail(id);
+// COUNTDOWN
+function startCountdown() {
+  const target = new Date();
+  target.setDate(target.getDate() + 30);
+  target.setHours(23,59,59,0);
+  function update() {
+    const diff = target - new Date();
+    if (diff <= 0) return;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const pad = (n) => String(n).padStart(2,'0');
+    const dEl = document.querySelector('[data-unit="d"]');
+    if (!dEl) return;
+    dEl.textContent = pad(d);
+    document.querySelector('[data-unit="h"]').textContent = pad(h);
+    document.querySelector('[data-unit="m"]').textContent = pad(m);
+    document.querySelector('[data-unit="s"]').textContent = pad(s);
   }
+  update();
+  setInterval(update, 1000);
+}
+startCountdown();
+
+// MENU CAROUSEL — 메뉴 캐러셀 (1초 자동 진행)
+(function(){
+  const track = document.getElementById('mcTrack');
+  const cur = document.getElementById('mcCur');
+  if (!track || !cur) return;
+  const cards = track.querySelectorAll('.menu-carousel__card');
+  const total = cards.length;
+  let idx = 0;
+  let autoTimer = null;
+  const AUTO_INTERVAL = 1000; // 1초
+
+  function getVisible(){
+    const w = window.innerWidth;
+    if (w <= 680) return 2;
+    if (w <= 980) return 3;
+    return 4;
+  }
+  function update(){
+    const visible = getVisible();
+    const maxIdx = Math.max(0, total - visible);
+    if (idx > maxIdx) idx = maxIdx;
+    if (idx < 0) idx = 0;
+    const cardW = cards[0].getBoundingClientRect().width + 16;
+    track.style.transform = `translateX(${-idx * cardW}px)`;
+    cur.textContent = String(idx + 1).padStart(2, '0');
+  }
+  function advance(dir){
+    const visible = getVisible();
+    const maxIdx = Math.max(0, total - visible);
+    if (dir === 'prev') {
+      idx = idx <= 0 ? maxIdx : idx - 1;
+    } else {
+      idx = idx >= maxIdx ? 0 : idx + 1;
+    }
+    update();
+  }
+  function startAuto(){
+    stopAuto();
+    autoTimer = setInterval(() => advance('next'), AUTO_INTERVAL);
+  }
+  function stopAuto(){
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  }
+
+  // 화살표 버튼 클릭 → 즉시 이동 + auto 재시작
+  document.querySelectorAll('.menu-carousel__btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      advance(btn.dataset.dir);
+      startAuto(); // 클릭 후 다시 자동 재생
+    });
+  });
+
+  // 캐러셀 영역 호버 시 일시정지 (UX)
+  const carousel = document.querySelector('.menu-carousel');
+  if (carousel) {
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+  }
+
+  // 페이지가 백그라운드일 때 일시정지
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAuto();
+    else startAuto();
+  });
+
+  window.addEventListener('resize', update);
+  update();
+  startAuto(); // 자동 시작
+})();
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if (id.length > 1) {
+      const tgt = document.querySelector(id);
+      if (tgt) { e.preventDefault(); window.scrollTo({top: tgt.offsetTop - 60, behavior: 'smooth'}); }
+    }
+  });
 });
 </script>
+<!-- 팝업 모달 (홈 진입 시 표시) — 이미지 기반 팝업 3개 -->
+<div class="popups" id="popups" aria-hidden="true">
 
+  <!-- 팝업 1: 매출 3배 UP -->
+  <div class="popup" data-popup-index="0" style="display:none;">
+    <button class="popup__close" aria-label="닫기">×</button>
+    <a href="#cta" class="popup__image-link">
+      <img src="images/popup-1.gif" alt="업종변경으로 매출 3배 UP" class="popup__image">
+    </a>
+    <div class="popup__footer-bar">
+      <button class="popup__hide-today">24시간 닫기</button>
+      <button class="popup__close-btn">닫기</button>
+    </div>
+  </div>
+
+  <!-- 팝업 2: 전국 매장 오픈 현황 -->
+  <div class="popup" data-popup-index="1" style="display:none;">
+    <button class="popup__close" aria-label="닫기">×</button>
+    <a href="#cta" class="popup__image-link">
+      <img src="images/popup-2.gif" alt="전국 매장 오픈 현황" class="popup__image">
+    </a>
+    <div class="popup__footer-bar">
+      <button class="popup__hide-today">24시간 닫기</button>
+      <button class="popup__close-btn">닫기</button>
+    </div>
+  </div>
+
+  <!-- 팝업 3: 창업 설명회 안내 -->
+  <div class="popup" data-popup-index="2" style="display:none;">
+    <button class="popup__close" aria-label="닫기">×</button>
+    <a href="tel:1899-3283" class="popup__image-link">
+      <img src="images/popup-3.png" alt="창업 설명회 안내" class="popup__image">
+    </a>
+    <div class="popup__footer-bar">
+      <button class="popup__hide-today">24시간 닫기</button>
+      <button class="popup__close-btn">닫기</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/loader.js"></script>
+
+<!-- Hero 영상 PC/모바일 자동 분기 (인덱스에 내장 — content.json/loader.js 안 건드림) -->
+<script>
+(function(){
+  const PC_ID = '1194893502';      // PC 16:9 가로
+  const MOBILE_ID = '1195070873';   // 모바일 27:40 세로
+  const BP = '(max-width: 860px)';
+
+  function buildSrc(id){
+    return `https://player.vimeo.com/video/${id}?background=1&autoplay=1&loop=1&muted=1&byline=0&title=0&portrait=0&controls=0&badge=0&autopause=0&player_id=0&app_id=58479`;
+  }
+
+  function applyHeroVideo(){
+    const wrap = document.querySelector('.hero__video-wrap');
+    if (!wrap) return;
+    const isMobile = window.matchMedia(BP).matches;
+    const id = isMobile ? MOBILE_ID : PC_ID;
+    const aspect = isMobile ? '27/40' : '16/9';
+    const expectedSrc = buildSrc(id);
+
+    let iframe = wrap.querySelector('iframe.hero__video');
+    if (!iframe){
+      // loader.js 아직 안 만들었으면 직접 생성
+      const placeholder = wrap.querySelector('.placeholder-video');
+      if (placeholder) placeholder.remove();
+      iframe = document.createElement('iframe');
+      iframe.className = 'hero__video';
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;';
+      iframe.src = expectedSrc;
+      wrap.insertBefore(iframe, wrap.firstChild);
+    } else if (iframe.src !== expectedSrc){
+      // viewport 바뀜 → src 교체
+      iframe.src = expectedSrc;
+    }
+    wrap.setAttribute('data-video-aspect', aspect);
+  }
+
+  // 초기 로드 + loader.js 끝난 후 + 리사이즈
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', applyHeroVideo);
+  } else {
+    applyHeroVideo();
+  }
+  window.addEventListener('load', () => setTimeout(applyHeroVideo, 150));
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(applyHeroVideo, 200);
+  });
+})();
+</script>
 </body>
 </html>
