@@ -294,29 +294,29 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   .hero__corner-seal{display:none!important;}
   .hero__corner-label{display:none!important;}
   .hero__inner{padding:0 16px;height:auto;}
-  /* 영상 컨테이너 — 화면 절반 높이 (영상 안 잘리고 가운데 정렬) */
+  /* 영상 컨테이너 — 27:40 세로 비율 (PC 16:9는 따로 처리) */
   .hero__video-wrap{
     position:relative!important;
     width:100%!important;
-    height:50vh!important;
-    aspect-ratio:auto!important;
+    height:auto!important;
+    aspect-ratio:27/40!important;
     margin:0 0 32px!important;
     border-radius:8px!important;
     border:none!important;
     overflow:hidden;
     z-index:1;
     background:var(--bg-2);
-    display:flex;align-items:center;justify-content:center;
+    display:block;
   }
-  /* iframe — 자연 16:9 비율, 너비 100%, 가운데 정렬 */
+  /* iframe — 컨테이너 100% 채움 (이미 비율 맞으니 자연 핏) */
   .hero__video-wrap iframe,
   .hero__video-wrap iframe.hero__video{
-    position:relative!important;
-    inset:auto!important;
+    position:absolute!important;
+    inset:0!important;
     top:auto!important;left:auto!important;
     width:100%!important;
-    height:auto!important;
-    aspect-ratio:16/9!important;
+    height:100%!important;
+    aspect-ratio:auto!important;
     transform:none!important;
   }
   .placeholder-video{
@@ -3246,5 +3246,59 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 </div>
 
 <script src="js/loader.js"></script>
+
+<!-- Hero 영상 PC/모바일 자동 분기 (인덱스에 내장 — content.json/loader.js 안 건드림) -->
+<script>
+(function(){
+  const PC_ID = '1194893502';      // PC 16:9 가로
+  const MOBILE_ID = '1195070873';   // 모바일 27:40 세로
+  const BP = '(max-width: 860px)';
+
+  function buildSrc(id){
+    return `https://player.vimeo.com/video/${id}?background=1&autoplay=1&loop=1&muted=1&byline=0&title=0&portrait=0&controls=0&badge=0&autopause=0&player_id=0&app_id=58479`;
+  }
+
+  function applyHeroVideo(){
+    const wrap = document.querySelector('.hero__video-wrap');
+    if (!wrap) return;
+    const isMobile = window.matchMedia(BP).matches;
+    const id = isMobile ? MOBILE_ID : PC_ID;
+    const aspect = isMobile ? '27/40' : '16/9';
+    const expectedSrc = buildSrc(id);
+
+    let iframe = wrap.querySelector('iframe.hero__video');
+    if (!iframe){
+      // loader.js 아직 안 만들었으면 직접 생성
+      const placeholder = wrap.querySelector('.placeholder-video');
+      if (placeholder) placeholder.remove();
+      iframe = document.createElement('iframe');
+      iframe.className = 'hero__video';
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none;';
+      iframe.src = expectedSrc;
+      wrap.insertBefore(iframe, wrap.firstChild);
+    } else if (iframe.src !== expectedSrc){
+      // viewport 바뀜 → src 교체
+      iframe.src = expectedSrc;
+    }
+    wrap.setAttribute('data-video-aspect', aspect);
+  }
+
+  // 초기 로드 + loader.js 끝난 후 + 리사이즈
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', applyHeroVideo);
+  } else {
+    applyHeroVideo();
+  }
+  window.addEventListener('load', () => setTimeout(applyHeroVideo, 150));
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(applyHeroVideo, 200);
+  });
+})();
+</script>
 </body>
 </html>
