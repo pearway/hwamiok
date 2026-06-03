@@ -9,6 +9,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<!-- Vimeo 영상 빠른 로드 -->
+<link rel="preconnect" href="https://player.vimeo.com">
+<link rel="preconnect" href="https://i.vimeocdn.com">
+<link rel="preconnect" href="https://f.vimeocdn.com">
+<link rel="dns-prefetch" href="https://player.vimeo.com">
+<link rel="dns-prefetch" href="https://i.vimeocdn.com">
+
 <!-- 파비콘 (모든 디바이스 대응) -->
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -234,8 +241,7 @@ section em {
   text-shadow: none !important;
 }
 
-/* === 특정 타이틀 베이지 명시 (그라데이션 X) === */
-.process__head h2,
+/* === 특정 타이틀 베이지 명시 (그라데이션 X) — 적게 일하고 많이 가져가세요만 === */
 .profit-chart__head h2 {
   background: none !important;
   -webkit-background-clip: initial !important;
@@ -246,7 +252,6 @@ section em {
   animation: none !important;
   text-shadow: 0 2px 14px rgba(0,0,0,.5);
 }
-.process__head h2 em,
 .profit-chart__head h2 em {
   color: var(--red) !important;
   -webkit-text-fill-color: var(--red) !important;
@@ -283,6 +288,14 @@ section em {
 .profit-chart__head p {
   color: rgba(245, 234, 211, .8) !important;
   -webkit-text-fill-color: rgba(245, 234, 211, .8) !important;
+}
+
+/* === Atmosphere 카드 캡션 보호 (catch-all에 잡히지 않도록) === */
+.atmosphere__cell-label,
+.atmosphere__cell-no,
+.atmosphere__cell-name,
+.atmosphere__cell-sub {
+  /* 위에서 설정한 색 그대로 유지하도록 위 룰 specificity 보장 */
 }
 
 /* 빨강 배경 요소들 → 흰글씨 복구 (가독성) */
@@ -1867,29 +1880,32 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
 .atmosphere__cell:hover img{transform:scale(1.04);}
 .atmosphere__cell-label{
   position:absolute;left:24px;right:24px;bottom:24px;z-index:2;
-  color:var(--ink-dark);
+  color:var(--paper);
 }
 .atmosphere__cell-label::before{
   content:'';position:absolute;inset:-30px -30px -30px -30px;
-  background:linear-gradient(180deg,transparent,rgba(0,0,0,.78));
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.82));
   z-index:-1;pointer-events:none;
 }
 .atmosphere__cell-no{
   font-family:var(--serif-en);font-style:italic;
-  font-size:11px;letter-spacing:.3em;color:var(--gold);
+  font-size:11px;letter-spacing:.3em;color:#d8b653;
   margin-bottom:8px;
 }
 .atmosphere__cell-name{
   font-family:var(--display);font-weight:900;
   font-size:clamp(20px,2.4vw,30px);
   letter-spacing:-.02em;line-height:1.2;
+  color:var(--paper);
+  text-shadow:0 2px 8px rgba(0,0,0,.6);
 }
-.atmosphere__cell-name em{font-style:normal;color:var(--red);}
+.atmosphere__cell-name em{font-style:normal;color:#ff6b73;}
 .atmosphere__cell-sub{
   margin-top:8px;
   font-family:var(--display);font-weight:500;
-  font-size:13px;color:rgba(58,40,32,.7);
+  font-size:13px;color:rgba(245,234,211,.85);
   letter-spacing:-.01em;
+  text-shadow:0 1px 4px rgba(0,0,0,.7);
 }
 
 .atmosphere__ways{
