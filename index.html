@@ -85,13 +85,13 @@ body{
   overflow-wrap:break-word;
   position:relative;
 }
-/* 페이지 전체 한지 그레인 — 진하게 (35%) */
+/* 페이지 전체 한지 그레인 — 미세하게만 (사진 변색 방지) */
 body::before{
   content:'';
   position:fixed;inset:0;
   background-image:var(--paper-texture);
   background-size:200px;
-  opacity:.35;
+  opacity:.08;
   pointer-events:none;
   z-index:50;
   mix-blend-mode:multiply;
@@ -2725,7 +2725,7 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   background:linear-gradient(180deg, rgba(10,8,7,.92), rgba(10,8,7,.88));
   pointer-events:none;
 }
-.brochure-sec > .wrap{position:relative;z-index:2;}
+.brochure-sec > .wrap{position:relative;z-index:60;}
 .brochure-sec__badge{
   display:inline-block;
   background:var(--red);color:#fff !important;
