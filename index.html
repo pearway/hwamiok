@@ -3042,14 +3042,16 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
   flex:1;background:transparent;border:none;
   padding:13px 6px;
   font-family:var(--sans);font-size:13px;font-weight:600;
-  color:rgba(58,40,32,.85);cursor:pointer;
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  cursor:pointer;
   transition:background .15s, color .15s;
 }
 .popup__footer-bar button:first-child{
   border-right:1px solid rgba(255,255,255,.08);
 }
 .popup__footer-bar button:hover{
-  background:rgba(212,21,26,.15);color:#fff;
+  background:rgba(212,21,26,.15);color:#fff !important;
 }
 
 /* === PC 반응형 (가운데 그룹 유지, 너비만 줄임) === */
@@ -4012,7 +4014,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   <div class="popup" data-popup-index="1" style="display:none;">
     <button class="popup__close" aria-label="닫기">×</button>
     <a href="#cta" class="popup__image-link">
-      <img src="images/popup-2.gif" alt="전국 매장 오픈 현황" class="popup__image">
+      <img src="images/무제-221-03.gif" alt="전국 매장 오픈 현황" class="popup__image">
     </a>
     <div class="popup__footer-bar">
       <button class="popup__hide-today">24시간 닫기</button>
@@ -4024,7 +4026,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   <div class="popup" data-popup-index="2" style="display:none;">
     <button class="popup__close" aria-label="닫기">×</button>
     <a href="tel:1899-3283" class="popup__image-link">
-      <img src="images/popup-3.png" alt="창업 설명회 안내" class="popup__image">
+      <img src="images/무제dd-1.png" alt="창업 설명회 안내" class="popup__image">
     </a>
     <div class="popup__footer-bar">
       <button class="popup__hide-today">24시간 닫기</button>
