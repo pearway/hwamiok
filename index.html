@@ -97,6 +97,31 @@ body::before{
   mix-blend-mode:multiply;
 }
 
+/* === 사진 영역은 그레인 오버레이 위로 올림 (갈색 톤 입혀지지 않게) === */
+.brochure-sec__photo,
+.brochure-sec__photo img,
+.cookstep__photo,
+.cookstep__photo img,
+.brochure-sec__haccp-photo,
+.brochure-sec__haccp-photo img,
+.ingredient__cell,
+.ingredient__cell img,
+.signature__media,
+.signature__media img,
+.story__media,
+.story__media img,
+.atmosphere__cell img,
+.feature__bg,
+.menu-carousel__item img,
+.menu-show__hero-photo,
+.menu-show__hero-photo img,
+.popup__bg img,
+.popup__store-img img {
+  position: relative;
+  z-index: 51;
+  isolation: isolate;
+}
+
 /* === 어두운 섹션 (Hero, Strip-video) — 라이트 테마에서도 유지 === */
 .hero,
 .strip-video{
@@ -3587,7 +3612,7 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
     </div>
     <div class="feature__grid">
       <div class="feature__cell">
-        <img class="feature__bg" src="images/p6.jpg" alt="" data-img="feature-0">
+        <img class="feature__bg" src="images/p40.jpg" alt="" data-img="feature-0">
         <div class="feature__overlay"></div>
         <div class="feature__content">
           <div class="feature__no">01</div>
@@ -3597,7 +3622,7 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
         </div>
       </div>
       <div class="feature__cell">
-        <img class="feature__bg" src="images/p1.jpg" alt="" data-img="feature-1">
+        <img class="feature__bg" src="images/p41.jpg" alt="" data-img="feature-1">
         <div class="feature__overlay"></div>
         <div class="feature__content">
           <div class="feature__no">02</div>
@@ -3607,7 +3632,7 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
         </div>
       </div>
       <div class="feature__cell">
-        <img class="feature__bg" src="images/p19.jpg" alt="" data-img="feature-2">
+        <img class="feature__bg" src="images/p42.jpg" alt="" data-img="feature-2">
         <div class="feature__overlay"></div>
         <div class="feature__content">
           <div class="feature__no">03</div>
@@ -3617,7 +3642,7 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
         </div>
       </div>
       <div class="feature__cell">
-        <img class="feature__bg" src="images/p3.jpg" alt="" data-img="feature-3">
+        <img class="feature__bg" src="images/p43.jpg" alt="" data-img="feature-3">
         <div class="feature__overlay"></div>
         <div class="feature__content">
           <div class="feature__no">04</div>
