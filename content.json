@@ -2,7 +2,7 @@
   "hero": {
     "vimeoId": "1194893502",
     "vimeoIdMobile": "1195070873",
-    "fallbackImage": "images/p11.png",
+    "fallbackImage": "images/p11.jpg",
     "title": "화미옥",
     "titleHan": "·味",
     "titleSub": "김치찌개",
@@ -13,7 +13,7 @@
     "sideSince": "SINCE 1987 · 원조 한식"
   },
   "story": {
-    "image": "images/p1.png",
+    "image": "images/p1.jpg",
     "tag": "1987 · 석관동 본점",
     "titleLine1": "동트기 전,",
     "titleLine2": "그 골목에서 시작",
@@ -21,117 +21,117 @@
     "sign": "1987, 화미옥김치찌개"
   },
   "menuHero": {
-    "image": "images/p10.png",
+    "image": "images/p10.jpg",
     "titleLine1": "돼지",
     "titleLine2": "김치찌개",
     "body": "국내산 돼지고기를 넣어 진한 담백함이 일품인 김치찌개.\n1987년 석관동에서 끓이기 시작한 그 한 그릇입니다."
   },
   "menuCarousel": [
     {
-      "image": "images/p26.png",
+      "image": "images/p26.jpg",
       "name": "부대 김치찌개"
     },
     {
-      "image": "images/p28.png",
+      "image": "images/p28.jpg",
       "name": "참치 김치찌개"
     },
     {
-      "image": "images/p24.png",
+      "image": "images/p24.jpg",
       "name": "돈까스 김치찌개"
     },
     {
-      "image": "images/p18.png",
+      "image": "images/p18.jpg",
       "name": "고추장 제육볶음"
     },
     {
-      "image": "images/p16.png",
+      "image": "images/p16.jpg",
       "name": "간장 돼지불고기"
     },
     {
-      "image": "images/p32.png",
+      "image": "images/p32.jpg",
       "name": "등심돈까스"
     },
     {
-      "image": "images/p30.png",
+      "image": "images/p30.jpg",
       "name": "묵은지 돼지 김치찜"
     },
     {
-      "image": "images/p17.png",
+      "image": "images/p17.jpg",
       "name": "묵은지 부대 김치찜"
     },
     {
-      "image": "images/p12.png",
+      "image": "images/p12.jpg",
       "name": "햄구이"
     },
     {
-      "image": "images/p5.png",
+      "image": "images/p5.jpg",
       "name": "(치즈)계란말이"
     },
     {
-      "image": "images/p34.png",
+      "image": "images/p34.jpg",
       "name": "김치어묵칼국수"
     },
     {
-      "image": "images/p22.png",
+      "image": "images/p22.jpg",
       "name": "주먹밥"
     }
   ],
   "ingredient": [
     {
-      "image": "images/p3.png",
+      "image": "images/p3.jpg",
       "vimeoId": "",
       "name": "국내산 돼지고기"
     },
     {
-      "image": "images/p49.png",
+      "image": "images/p49.jpg",
       "vimeoId": "1194719858",
       "name": "국내산 배추"
     },
     {
-      "image": "images/p4.png",
+      "image": "images/p4.jpg",
       "vimeoId": "",
       "name": "특제비법 육수 (HACCP)"
     },
     {
-      "image": "images/p2.png",
+      "image": "images/p2.jpg",
       "vimeoId": "",
       "name": "매일 직접 손질"
     }
   ],
   "signature": [
     {
-      "image": "images/p6.png",
+      "image": "images/p6.jpg",
       "vimeoId": "1194719878",
       "alt": "돼지김치찌개"
     },
     {
-      "image": "images/p19.png",
+      "image": "images/p19.jpg",
       "vimeoId": "",
       "alt": "고추장 제육볶음"
     },
     {
-      "image": "images/p5.png",
+      "image": "images/p5.jpg",
       "vimeoId": "",
       "alt": "치즈계란말이"
     }
   ],
   "stripVideo": {
     "vimeoId": "1194719879",
-    "fallbackImage": "images/p11.png",
+    "fallbackImage": "images/p11.jpg",
     "lineText": "SINCE 1987",
     "titleLine1": "매일 손으로,",
     "titleLine2": "한 솥씩."
   },
   "atmosphere": {
-    "image1": "images/p46.png",
-    "image2": "images/p47.png",
-    "image3": "images/p48.png"
+    "image1": "images/p46.jpg",
+    "image2": "images/p47.jpg",
+    "image3": "images/p48.jpg"
   },
   "backgrounds": {
-    "countdown": "images/p9.png",
-    "profitChart": "images/p7.png",
-    "process": "images/p6.png",
-    "contact": "images/p38.png"
+    "countdown": "images/p9.jpg",
+    "profitChart": "images/p7.jpg",
+    "process": "images/p6.jpg",
+    "contact": "images/p38.jpg"
   },
   "countdown": {
     "deadline": "2026-06-30T23:59:59"
