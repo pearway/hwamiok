@@ -78,7 +78,7 @@ td input.memo:focus { outline: none; border-color: #d4151a; background: #fff; }
     <p>관리자 키를 입력하세요</p>
     <div class="field">
       <label>관리자 키</label>
-      <input type="password" id="admin-key" placeholder="hwamiok-xxxxxxxx" autocomplete="off">
+      <input type="password" id="admin-key" placeholder="관리자 키 입력" autocomplete="off">
     </div>
     <button id="login-btn" class="btn-primary">접속</button>
     <div id="login-msg"></div>
@@ -156,7 +156,7 @@ function setKey(k){ try { k ? localStorage.setItem(KEY_STORE, k) : localStorage.
 async function api(method, body){
   const res = await fetch(API, {
     method,
-    headers: { 'x-admin-key': getKey(), ...(body ? {'Content-Type':'application/json'} : {}) },
+    headers: { 'x-admin-key': encodeURIComponent(getKey()), ...(body ? {'Content-Type':'application/json'} : {}) },
     body: body ? JSON.stringify(body) : undefined
   });
   if (res.status === 401) { logout(); throw new Error('관리자 키가 올바르지 않습니다.'); }
