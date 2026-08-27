@@ -3761,16 +3761,31 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
       <a href="tel:1899-3283" class="contact__tel">1899-3283</a>
     </div>
 
-    <form class="form" onsubmit="event.preventDefault();alert('상담 신청이 접수되었습니다. (데모용)')">
+    <form class="form" onsubmit="event.preventDefault();
+      const f = this;
+      const name = f.querySelector('.form__input--name').value.trim();
+      const phone = f.querySelector('.form__input--phone').value.trim();
+      if(!name || !phone){alert('성함과 연락처를 입력해주세요.');return;}
+      const btn = f.querySelector('.form__submit');
+      btn.disabled = true; btn.textContent = '전송 중...';
+      submitLead({
+        name, phone, source:'contact-form',
+        region: f.querySelector('.form__input--region').value.trim() || null,
+        has_store: (v => v === '선택' ? null : v)(f.querySelector('.form__select--store').value),
+        message: f.querySelector('.form__textarea--message').value.trim() || null
+      })
+        .then(() => { alert('상담 신청이 접수되었습니다. 곧 연락드리겠습니다.'); f.reset(); })
+        .catch(() => alert('전송에 실패했습니다. 잠시 후 다시 시도하거나 1899-3283으로 전화주세요.'))
+        .finally(() => { btn.disabled = false; btn.textContent = '상담 신청하기 →'; });">
       <div class="form__row">
-        <div class="form__field"><label>성함 *</label><input type="text" required></div>
-        <div class="form__field"><label>연락처 *</label><input type="tel" required placeholder="010-0000-0000"></div>
+        <div class="form__field"><label>성함 *</label><input type="text" class="form__input--name" required></div>
+        <div class="form__field"><label>연락처 *</label><input type="tel" class="form__input--phone" required placeholder="010-0000-0000"></div>
       </div>
       <div class="form__row">
-        <div class="form__field"><label>희망 지역</label><input type="text" placeholder="서울 강남구"></div>
-        <div class="form__field"><label>점포 보유 여부</label><select><option>선택</option><option>있음</option><option>없음</option></select></div>
+        <div class="form__field"><label>희망 지역</label><input type="text" class="form__input--region" placeholder="서울 강남구"></div>
+        <div class="form__field"><label>점포 보유 여부</label><select class="form__select--store"><option>선택</option><option>있음</option><option>없음</option></select></div>
       </div>
-      <div class="form__field"><label>문의 내용</label><textarea placeholder="자유롭게 작성해주세요"></textarea></div>
+      <div class="form__field"><label>문의 내용</label><textarea class="form__textarea--message" placeholder="자유롭게 작성해주세요"></textarea></div>
       <label class="form__agree"><input type="checkbox" required>개인정보 취급방침에 동의합니다 *</label>
       <button type="submit" class="form__submit">상담 신청하기 →</button>
     </form>
@@ -3811,17 +3826,33 @@ body.loaded .loader{transition:visibility 0s 1.8s;visibility:hidden;}
 
 <!-- 하단 sticky 상담 신청 바 -->
 <form class="sticky-bar" onsubmit="event.preventDefault();
-  const name = this.querySelector('.sticky-bar__input--name').value.trim();
-  const phone = this.querySelector('.sticky-bar__input--phone').value.trim();
+  const f = this;
+  const name = f.querySelector('.sticky-bar__input--name').value.trim();
+  const phone = f.querySelector('.sticky-bar__input--phone').value.trim();
   if(!name || !phone){alert('이름과 연락처를 입력해주세요.');return;}
-  alert('상담 신청이 접수되었습니다. (데모용)\\n이름: ' + name + '\\n연락처: ' + phone);
-  this.reset();">
+  const btn = f.querySelector('.sticky-bar__submit');
+  btn.disabled = true; btn.textContent = '전송 중...';
+  submitLead({name, phone, source:'sticky-bar'})
+    .then(() => { alert('상담 신청이 접수되었습니다. 곧 연락드리겠습니다.'); f.reset(); })
+    .catch(() => alert('전송에 실패했습니다. 잠시 후 다시 시도하거나 1899-3283으로 전화주세요.'))
+    .finally(() => { btn.disabled = false; btn.textContent = '상담 신청하기'; });">
   <input type="text" class="sticky-bar__input sticky-bar__input--name" placeholder="이름" required>
   <input type="tel" class="sticky-bar__input sticky-bar__input--phone" placeholder="연락처 (010-0000-0000)" required>
   <button type="submit" class="sticky-bar__submit">상담 신청하기</button>
 </form>
 
 <script>
+// 상담 신청 → Supabase (RLS: 방문자는 INSERT만 가능)
+const LEADS_URL = 'https://foaybfdymdvdvslmukhp.supabase.co/rest/v1/leads';
+const LEADS_KEY = 'sb_publishable_ysfkzIzyNg8IOlnQ3y21Cw_vZ_v_hmR';
+function submitLead(payload){
+  return fetch(LEADS_URL, {
+    method: 'POST',
+    headers: { 'apikey': LEADS_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).then(res => { if(!res.ok) throw new Error('submit failed'); });
+}
+
 // NAV
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 80));

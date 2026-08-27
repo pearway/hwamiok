@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>화미옥 어드민 — 상담 신청</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+/* === 상담 신청 관리 전용 === */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.stat {
+  background: #fff; border: 1px solid rgba(212,21,26,.15); border-radius: 4px;
+  padding: 18px 20px; box-shadow: 0 2px 12px rgba(0,0,0,.04);
+}
+.stat__label { font-size: 12px; color: #888; font-weight: 700; margin-bottom: 6px; }
+.stat__value { font-size: 28px; font-weight: 900; color: #1a0707; }
+.stat--new .stat__value { color: #d4151a; }
+
+.toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+.toolbar select {
+  padding: 8px 12px; border: 1px solid rgba(212,21,26,.25); border-radius: 3px;
+  font-size: 13px; font-family: inherit; background: #fff;
+}
+.toolbar .spacer { flex: 1; }
+.toolbar .btn-primary, .toolbar .btn-secondary { width: auto; margin: 0; padding: 8px 16px; font-size: 13px; }
+.toolbar .btn-secondary { color: #2a2218; border-color: rgba(0,0,0,.25); }
+
+.leads-table-wrap { background: #fff; border: 1px solid rgba(212,21,26,.15); border-radius: 4px; overflow-x: auto; box-shadow: 0 2px 12px rgba(0,0,0,.04); }
+table.leads { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 900px; }
+table.leads th {
+  text-align: left; padding: 12px 14px; background: #1a0707; color: #f7f1e3;
+  font-size: 12px; font-weight: 700; white-space: nowrap; position: sticky; top: 0;
+}
+table.leads td { padding: 11px 14px; border-bottom: 1px solid rgba(0,0,0,.06); vertical-align: top; }
+table.leads tr:hover td { background: rgba(212,21,26,.03); }
+table.leads tr.is-new td { background: rgba(212,21,26,.05); }
+table.leads td.nowrap { white-space: nowrap; }
+table.leads a.tel { color: #d4151a; font-weight: 700; text-decoration: none; }
+table.leads a.tel:hover { text-decoration: underline; }
+.badge {
+  display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 2px;
+  background: rgba(0,0,0,.07); color: #555; white-space: nowrap;
+}
+.badge--sticky { background: rgba(212,21,26,.1); color: #d4151a; }
+td select.status {
+  padding: 5px 8px; border-radius: 3px; font-size: 12px; font-weight: 700; font-family: inherit;
+  border: 1px solid rgba(0,0,0,.2); background: #fff; cursor: pointer;
+}
+td select.status.s-신규 { border-color: #d4151a; color: #d4151a; }
+td select.status.s-연락완료 { border-color: #1a7f1a; color: #1a7f1a; }
+td select.status.s-보류 { border-color: #b8860b; color: #b8860b; }
+td input.memo {
+  width: 160px; padding: 5px 8px; font-size: 12px; font-family: inherit;
+  border: 1px solid rgba(0,0,0,.15); border-radius: 3px; background: #fbf8f0;
+}
+td input.memo:focus { outline: none; border-color: #d4151a; background: #fff; }
+.del-btn {
+  background: transparent; border: none; color: #bbb; cursor: pointer; font-size: 15px; padding: 2px 6px;
+}
+.del-btn:hover { color: #d4151a; }
+.msg-cell { max-width: 260px; }
+.msg-cell .msg-text { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color: #555; }
+.msg-cell .msg-text.open { -webkit-line-clamp: unset; }
+.empty { padding: 48px; text-align: center; color: #999; font-size: 14px; }
+@media (max-width: 800px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .editor__main { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- 로그인 게이트 -->
+<div id="login" class="login">
+  <div class="login__box">
+    <h1>상담 신청 관리</h1>
+    <p>관리자 키를 입력하세요</p>
+    <div class="field">
+      <label>관리자 키</label>
+      <input type="password" id="admin-key" placeholder="hwamiok-xxxxxxxx" autocomplete="off">
+    </div>
+    <button id="login-btn" class="btn-primary">접속</button>
+    <div id="login-msg"></div>
+  </div>
+</div>
+
+<!-- 메인 -->
+<div id="panel" class="editor hidden">
+  <header class="editor__header">
+    <div class="editor__brand">화미옥 상담 신청 <small id="last-refresh"></small></div>
+    <div class="editor__actions">
+      <a href="index.html" class="btn-ghost" style="text-decoration:none; display:inline-flex; align-items:center;">콘텐츠 편집</a>
+      <button id="csv-btn" class="btn-ghost">CSV 다운로드</button>
+      <button id="refresh-btn" class="btn-primary">새로고침</button>
+      <button id="logout-btn" class="btn-ghost">로그아웃</button>
+    </div>
+  </header>
+
+  <main class="editor__main">
+    <div class="stats">
+      <div class="stat stat--new"><div class="stat__label">신규</div><div class="stat__value" id="st-new">0</div></div>
+      <div class="stat"><div class="stat__label">연락완료</div><div class="stat__value" id="st-done">0</div></div>
+      <div class="stat"><div class="stat__label">보류</div><div class="stat__value" id="st-hold">0</div></div>
+      <div class="stat"><div class="stat__label">전체</div><div class="stat__value" id="st-total">0</div></div>
+    </div>
+
+    <div class="toolbar">
+      <select id="filter-status">
+        <option value="">전체 상태</option>
+        <option value="신규">신규</option>
+        <option value="연락완료">연락완료</option>
+        <option value="보류">보류</option>
+      </select>
+      <select id="filter-source">
+        <option value="">전체 유형</option>
+        <option value="sticky-bar">하단 바</option>
+        <option value="contact-form">상담 폼</option>
+      </select>
+      <div class="spacer"></div>
+    </div>
+
+    <div class="leads-table-wrap">
+      <table class="leads">
+        <thead>
+          <tr>
+            <th>신청일시</th><th>이름</th><th>연락처</th><th>유형</th>
+            <th>희망 지역</th><th>점포</th><th>문의 내용</th><th>상태</th><th>메모</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="leads-body"></tbody>
+      </table>
+      <div id="empty" class="empty hidden">아직 상담 신청이 없습니다.</div>
+    </div>
+  </main>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const API = 'https://foaybfdymdvdvslmukhp.supabase.co/functions/v1/admin-leads';
+const KEY_STORE = 'hwamiok_admin_key';
+let leads = [];
+
+const $ = id => document.getElementById(id);
+function toast(msg, type){
+  const t = $('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' ' + type : '');
+  clearTimeout(t._h);
+  t._h = setTimeout(() => t.classList.remove('show'), 2600);
+}
+function getKey(){ try { return localStorage.getItem(KEY_STORE) || ''; } catch(e){ return ''; } }
+function setKey(k){ try { k ? localStorage.setItem(KEY_STORE, k) : localStorage.removeItem(KEY_STORE); } catch(e){} }
+
+async function api(method, body){
+  const res = await fetch(API, {
+    method,
+    headers: { 'x-admin-key': getKey(), ...(body ? {'Content-Type':'application/json'} : {}) },
+    body: body ? JSON.stringify(body) : undefined
+  });
+  if (res.status === 401) { logout(); throw new Error('관리자 키가 올바르지 않습니다.'); }
+  if (!res.ok) throw new Error('요청 실패 (' + res.status + ')');
+  return res.json();
+}
+
+function fmtDate(iso){
+  const d = new Date(iso);
+  return d.toLocaleString('ko-KR', { timeZone:'Asia/Seoul', year:'2-digit', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit' });
+}
+function esc(s){ return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function render(){
+  const fs = $('filter-status').value, fo = $('filter-source').value;
+  const rows = leads.filter(l => (!fs || l.status === fs) && (!fo || l.source === fo));
+
+  $('st-new').textContent = leads.filter(l => l.status === '신규').length;
+  $('st-done').textContent = leads.filter(l => l.status === '연락완료').length;
+  $('st-hold').textContent = leads.filter(l => l.status === '보류').length;
+  $('st-total').textContent = leads.length;
+
+  const tb = $('leads-body');
+  tb.innerHTML = rows.map(l => `
+    <tr class="${l.status === '신규' ? 'is-new' : ''}" data-id="${l.id}">
+      <td class="nowrap">${fmtDate(l.created_at)}</td>
+      <td class="nowrap"><strong>${esc(l.name)}</strong></td>
+      <td class="nowrap"><a class="tel" href="tel:${esc(l.phone)}">${esc(l.phone)}</a></td>
+      <td><span class="badge ${l.source === 'sticky-bar' ? 'badge--sticky' : ''}">${l.source === 'sticky-bar' ? '하단 바' : '상담 폼'}</span></td>
+      <td class="nowrap">${esc(l.region) || '—'}</td>
+      <td class="nowrap">${esc(l.has_store) || '—'}</td>
+      <td class="msg-cell">${l.message ? `<div class="msg-text" onclick="this.classList.toggle('open')" title="클릭하면 전체 보기">${esc(l.message)}</div>` : '—'}</td>
+      <td>
+        <select class="status s-${l.status}" onchange="updateLead('${l.id}', {status: this.value})">
+          ${['신규','연락완료','보류'].map(s => `<option ${s === l.status ? 'selected' : ''}>${s}</option>`).join('')}
+        </select>
+      </td>
+      <td><input class="memo" value="${esc(l.memo)}" placeholder="메모"
+        onchange="updateLead('${l.id}', {memo: this.value.trim()})"></td>
+      <td><button class="del-btn" title="삭제" onclick="removeLead('${l.id}', '${esc(l.name)}')">✕</button></td>
+    </tr>`).join('');
+
+  $('empty').classList.toggle('hidden', rows.length > 0);
+}
+
+async function load(showToast){
+  try {
+    const { leads: data } = await api('GET');
+    leads = data;
+    render();
+    $('last-refresh').textContent = new Date().toLocaleTimeString('ko-KR', { timeZone:'Asia/Seoul' }) + ' 기준';
+    $('login').classList.add('hidden');
+    $('panel').classList.remove('hidden');
+    if (showToast) toast('불러왔습니다.', 'success');
+  } catch(e) {
+    const m = $('login-msg');
+    if (m) { m.textContent = e.message; m.className = 'error'; }
+    if (!$('panel').classList.contains('hidden')) toast(e.message, 'error');
+  }
+}
+
+async function updateLead(id, patch){
+  try {
+    await api('PATCH', { id, ...patch });
+    const l = leads.find(x => x.id === id);
+    if (l) Object.assign(l, patch);
+    render();
+    toast('저장되었습니다.', 'success');
+  } catch(e) { toast(e.message, 'error'); }
+}
+
+async function removeLead(id, name){
+  if (!confirm(`'${name}' 신청을 삭제할까요? 되돌릴 수 없습니다.`)) return;
+  try {
+    await api('DELETE', { id });
+    leads = leads.filter(x => x.id !== id);
+    render();
+    toast('삭제되었습니다.', 'success');
+  } catch(e) { toast(e.message, 'error'); }
+}
+
+function downloadCsv(){
+  const head = ['신청일시','이름','연락처','유형','희망 지역','점포 보유','문의 내용','상태','메모'];
+  const lines = leads.map(l => [
+    fmtDate(l.created_at), l.name, l.phone,
+    l.source === 'sticky-bar' ? '하단 바' : '상담 폼',
+    l.region || '', l.has_store || '', l.message || '', l.status, l.memo || ''
+  ].map(v => '"' + String(v).replace(/"/g, '""') + '"').join(','));
+  const csv = '﻿' + [head.join(','), ...lines].join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+  a.download = '화미옥_상담신청_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function logout(){
+  setKey('');
+  leads = [];
+  $('panel').classList.add('hidden');
+  $('login').classList.remove('hidden');
+  $('admin-key').value = '';
+}
+
+$('login-btn').addEventListener('click', () => {
+  const k = $('admin-key').value.trim();
+  if (!k) return;
+  setKey(k);
+  load();
+});
+$('admin-key').addEventListener('keydown', e => { if (e.key === 'Enter') $('login-btn').click(); });
+$('refresh-btn').addEventListener('click', () => load(true));
+$('csv-btn').addEventListener('click', downloadCsv);
+$('logout-btn').addEventListener('click', logout);
+$('filter-status').addEventListener('change', render);
+$('filter-source').addEventListener('change', render);
+
+// 자동 새로고침 (2분)
+setInterval(() => { if (!$('panel').classList.contains('hidden')) load(); }, 120000);
+
+if (getKey()) load();
+</script>
+</body>
+</html>
